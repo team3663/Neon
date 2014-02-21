@@ -1,0 +1,6 @@
+MIDlet-Name: Neon
+MIDlet-Version: 1.0.0
+MIDlet-Vendor: FIRST
+MIDlet-1: Robot3663, ,  team3663.neon.Robot3663
+MicroEdition-Profile: IMP-1.0
+MicroEdition-Configuration: CLDC-1.1
