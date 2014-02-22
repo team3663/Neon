@@ -52,7 +52,8 @@ public class ImageProcessing extends Subsystem {
     final int MAX_PARTICLES = 8;
 
     CriteriaCollection cc;      // the criteria for doing the particle filter operation
-
+    AxisCamera camera;          // the axis camera object (connected to the switch)
+    
     public class Scores {
         double rectangularity;
         double aspectRatioVertical;
@@ -76,11 +77,16 @@ public class ImageProcessing extends Subsystem {
     }
     
     public void Init() {
-        cc = new CriteriaCollection();      // create the criteria for the particle filter
-        cc.addCriteria(MeasurementType.IMAQ_MT_AREA, AREA_MINIMUM, 65535, false);
+        
     }
 
     public boolean isGoalHot() {
+        System.out.println("Camera is about to be initialized");
+        camera = AxisCamera.getInstance("10.36.63.50");  // get an instance of the camera
+        System.out.println("camera should have been initialized");
+        cc = new CriteriaCollection();      // create the criteria for the particle filter
+        cc.addCriteria(MeasurementType.IMAQ_MT_AREA, AREA_MINIMUM, 65535, false);
+        
 	TargetReport target = new TargetReport();
 	int verticalTargets[] = new int[MAX_PARTICLES];
 	int horizontalTargets[] = new int[MAX_PARTICLES];
@@ -93,7 +99,7 @@ public class ImageProcessing extends Subsystem {
              * level directory in the flash memory on the cRIO. The file name in this case is "testImage.jpg"
              *
              */
-            ColorImage image = RobotMap.camera.getImage();     // comment if using stored images
+            ColorImage image = camera.getImage();     // comment if using stored images
             //ColorImage image;                           // next 2 lines read image from flash on cRIO
             //image = new RGBImage("/testImage.jpg");		// get the sample image from the cRIO flash
             BinaryImage thresholdImage = image.thresholdHSV(105, 137, 230, 255, 133, 183);   // keep only green objects

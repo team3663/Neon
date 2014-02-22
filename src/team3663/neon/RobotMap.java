@@ -59,14 +59,12 @@ public class RobotMap
     public static AnalogChannel rangeFinderLeftUltrasonic;
     public static AnalogChannel rangeFinderRightUltrasonic;
     
-    public static AxisCamera camera;          // the axis camera object (connected to the switch)
     
     public static void init()
     {
         LiveWindow lw = new LiveWindow(); //May need to be changed because we dont have getInstance()
         
         
-        //camera = AxisCamera.getInstance("10.36.63.100");  // get an instance of the camera
         
         // All of the driveTrain sensors and items----------------------------------
         driveTrainSpeedControllerFrontLeft = new Victor(PortMap.MainModulePort, PortMap.driveTrainSpeedControllerFrontLeftPort);

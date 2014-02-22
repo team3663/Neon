@@ -8,7 +8,9 @@ public class TargetCommand extends CommandBase
     }
     protected void initialize()
     {
-        if(CheckForTarget(5))
+        System.out.println("The image processing is being called");
+        System.out.println("The second message is displayed");
+        if(imageProcess.isGoalHot())
         {
             System.out.println("Robot is facing the hot target");
         }
@@ -32,16 +34,5 @@ public class TargetCommand extends CommandBase
     protected void interrupted()
     {
         
-    }
-    
-    public boolean CheckForTarget(int passes)
-    {
-        for(int i = 0; i < passes; i++)
-        {
-            if(imageProcess.isGoalHot()){
-                return true;
-            }
-        }
-        return false;
     }
 }
