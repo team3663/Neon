@@ -7,7 +7,7 @@ public class DriveCommand extends CommandBase
     
     public DriveCommand()
     {   
-            requires(driveTrain); 
+        requires(driveTrain); 
     }
 
     // Called just before this Command runs the first time
