@@ -82,8 +82,16 @@ public class ImageProcessing extends Subsystem {
 
     public boolean isGoalHot() {
         System.out.println("Camera is about to be initialized");
-        camera = AxisCamera.getInstance("10.36.63.50");  // get an instance of the camera
-        System.out.println("camera should have been initialized");
+        camera = AxisCamera.getInstance();  // get an instance of the camera
+        System.out.println("camera should have been initialized \n camera = " + camera);
+        if (camera == null)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
         cc = new CriteriaCollection();      // create the criteria for the particle filter
         cc.addCriteria(MeasurementType.IMAQ_MT_AREA, AREA_MINIMUM, 65535, false);
         

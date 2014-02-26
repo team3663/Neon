@@ -3,8 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/Karel.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/RobotMap.java</file>
             <file>file:/C:/workspace/Neon/src/team3663/neon/subsystems/ImageProcessing.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/CommandBase.java</file>
             <file>file:/C:/workspace/Neon/src/team3663/neon/commands/TargetCommand.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/AutonomousCommand.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/OI.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/Robot3663.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/Bob.java</file>
         </group>
     </open-files>
 </project-private>

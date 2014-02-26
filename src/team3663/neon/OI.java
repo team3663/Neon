@@ -2,7 +2,9 @@ package team3663.neon;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import team3663.neon.commands.BobNKarel;
 import team3663.neon.commands.HitBallCommand;
+import team3663.neon.commands.Karel;
 import team3663.neon.commands.LaunchBallCommand;
 import team3663.neon.commands.RecockFlipapultCommand;
 import team3663.neon.commands.SwitchToArcadeDriveCommand;
@@ -39,6 +41,9 @@ public class OI
     private static JoystickButton imageOn;
     private static JoystickButton foot;
     
+    private static JoystickButton goBob;
+    private static JoystickButton goKarel;
+    private static JoystickButton goBobNKarel;
     
     //private Button gearShift = new JoystickButton(driveJoystick, 3);
     
@@ -103,6 +108,11 @@ public class OI
         imageOn = new JoystickButton(driveJoystick, 1);
         imageOn.whenPressed(new TargetCommand());
         
+        goBobNKarel = new JoystickButton(driveJoystick, 8);
+        goBobNKarel.whenPressed(new BobNKarel());
+        
+        goKarel = new JoystickButton(driveJoystick, 9);
+        goKarel.whileHeld(new Karel());
         //latch1 off and 2 on for closed latch
         //hammer is load arm
         //foot up = 2 on and 1oof
