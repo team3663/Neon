@@ -12,7 +12,7 @@ public class Compressor extends Subsystem
     public Relay compressorSwitch;
     public DigitalInput compressorLimitSwitch;
     
-    public void Init()
+    public void Compressor()
     {
         compressorLimitSwitch = RobotMap.pneumaticsCompressorLimitSwitch;
         compressorSwitch = RobotMap.pneumaticsCompressorSwitch;

@@ -10,7 +10,7 @@ public class Ultrasonic extends Subsystem
     public AnalogChannel backUS, rightUS;
     double[] distances;
     
-    public void Init()
+    public void Ultrasonic()
     {
         backUS = RobotMap.rangeFinderBackUltrasonic;
         rightUS = RobotMap.rangeFinderRightUltrasonic;

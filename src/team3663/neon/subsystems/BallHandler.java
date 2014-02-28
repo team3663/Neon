@@ -14,7 +14,7 @@ import team3663.neon.RobotMap;
 public class BallHandler extends Subsystem {
     public void initDefaultCommand() {
     }
-    public void Init(){
+    public void BallHandler(){
         LoadingArmMotorStop();
         LoadingArmUp();
         FootUp();

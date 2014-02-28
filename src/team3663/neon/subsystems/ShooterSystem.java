@@ -16,7 +16,7 @@ public class ShooterSystem extends Subsystem
     {
     }
     
-    public void Init()
+    public void ShooterSystem()
     {
         wenchEncoderReset();
         closeLatch();

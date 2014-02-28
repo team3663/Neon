@@ -13,7 +13,7 @@ import team3663.neon.RobotMap;
  */
 public class Hammer extends Subsystem {
     
-    public void Init(){
+    public void Hammer(){
         RetractHammer();
     }
 /** 

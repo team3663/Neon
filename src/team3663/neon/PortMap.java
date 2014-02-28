@@ -14,16 +14,16 @@ public class PortMap
     public static int shooterSpeedControllerPort              = 6;
 
     //All Ports on the Sidecar's Digital IO (1 - 14)
-    public static int pneumaticsCompressorLimitSwitchPort     = 1;
+    public static int pneumaticsCompressorLimitSwitchPort     = 5;//1
     public static int photoelectricGroundSensorPort           = 10;
     public static int shooterLimitSwitchPort                  = 8;
     public static int ballLimitSwitchPort                     = 12;
-    public static int shooterEncoderPort1                     = 2;
-    public static int shooterEncoderPort2                     = 3;
-    public static int driveTrainLeftEncoderport1              = 4;
-    public static int driveTrainLeftEncoderport2              = 5;
-    public static int driveTrainRightEncoderport1             = 6;
-    public static int driveTrainRightEncoderport2             = 7;
+    public static int shooterEncoderPort1                     = 4;//2
+    public static int shooterEncoderPort2                     = 3;//3
+    public static int driveTrainLeftEncoderport1              = 13;//4
+    public static int driveTrainLeftEncoderport2              = 14;//5
+    public static int driveTrainRightEncoderport1             = 1;//6
+    public static int driveTrainRightEncoderport2             = 2;//7
     
     //All Digitals IO's not on the sidecar( connected via puck)
     //Solenoids

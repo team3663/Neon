@@ -1,7 +1,9 @@
 package team3663.neon.subsystems;
 
 import com.sun.squawk.util.MathUtils;
+import edu.wpi.first.wpilibj.DriverStationLCD;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import team3663.neon.RobotMap;
 import team3663.neon.commands.DriveCommand;
 
@@ -16,7 +18,7 @@ public class DriveTrain extends Subsystem
     public boolean highGear;
     private double direction;
     private double magnitude;
-    public void Init()
+    public void DriveTrain()
     {
 
         highGear = true;
@@ -95,14 +97,17 @@ public class DriveTrain extends Subsystem
         RobotMap.driveTrainDriveChange2.set(false);
     }
     
-    /*public void UpdateStatus()
+    public void UpdateStatus()
     {
         SmartDashboard.putNumber("Right Encoder:", GetRightEncoder());
 	SmartDashboard.putNumber("Left Encoder:", GetLeftEncoder());
+	DriverStationLCD.getInstance().println(
+        DriverStationLCD.Line.kUser1,1, "" + GetRightEncoder());
+	DriverStationLCD.getInstance().println(
+        DriverStationLCD.Line.kUser2, 1, "" + GetLeftEncoder());
 	if (highGear)
 		SmartDashboard.putString("Transmission:", "High Gear");
 	else
 		SmartDashboard.putString("Transmission:", "Low Gear");
-    }*/
-
+    }
 }

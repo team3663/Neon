@@ -22,7 +22,7 @@ public class Bob extends CommandBase {
         System.out.println("Bob");
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-        //requires(driveTrain);
+        requires(driveTrain);
     }
 
     // Called just before this Command runs the first time

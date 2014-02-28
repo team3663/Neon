@@ -95,12 +95,12 @@ public class Robot3663 extends IterativeRobot
      */
     public void testPeriodic() 
     {
-        LiveWindow.run();
+        LiveWindow.run(); 
     }
     
     public void UpdateStatus()
     {
-        //CommandBase.driveTrain.UpdateStatus();
+        CommandBase.driveTrain.UpdateStatus();
         CommandBase.photoelectric.UpdateStatus();
         
     }

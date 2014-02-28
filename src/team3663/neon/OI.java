@@ -42,7 +42,18 @@ public class OI
     private static JoystickButton foot;
     
     private static JoystickButton goBob;
-    private static JoystickButton goKarel;
+    /* private static JoystickButton goBob2;
+      private static JoystickButton goBob3;
+       private static JoystickButton goBob4;
+        private static JoystickButton goBob5;
+         private static JoystickButton goBob6;
+          private static JoystickButton goBob7;
+           private static JoystickButton goBob8;
+            private static JoystickButton goBob9;
+             private static JoystickButton goBob10;
+              private static JoystickButton goBob11;
+               private static JoystickButton goBob12;
+    */private static JoystickButton goKarel;
     private static JoystickButton goBobNKarel;
     
     //private Button gearShift = new JoystickButton(driveJoystick, 3);
@@ -107,7 +118,7 @@ public class OI
         
         imageOn = new JoystickButton(driveJoystick, 1);
         imageOn.whenPressed(new TargetCommand());
-        
+       
         goBobNKarel = new JoystickButton(driveJoystick, 8);
         goBobNKarel.whenPressed(new BobNKarel());
         
@@ -116,7 +127,31 @@ public class OI
         
         goBob = new JoystickButton(driveJoystick, 7);
         goBob.whenPressed(new Bob());
-        //latch1 off and 2 on for closed latch
+       /* goBob2 = new JoystickButton(driveJoystick, 2);
+        goBob2.cancelWhenActive(new Bob());
+        goBob3 = new JoystickButton(driveJoystick, 3);
+        goBob3.toggleWhenActive(new Bob());
+        goBob4 = new JoystickButton(driveJoystick, 4);
+        goBob4.toggleWhenPressed(new Bob());
+        goBob5 = new JoystickButton(driveJoystick, 5);
+        goBob5.whenActive(new Bob());
+        goBob6 = new JoystickButton(driveJoystick, 6);
+        goBob6.whenInactive(new Bob());
+        goBob7 = new JoystickButton(driveJoystick, 7);
+        goBob7.whenReleased(new Bob());
+        goBob8 = new JoystickButton(driveJoystick, 8);
+        goBob8.whenPressed(new Bob());
+        
+        goBob9 = new JoystickButton(driveJoystick, 9);
+        goBob9.whileActive(new Bob());
+        goBob10 = new JoystickButton(driveJoystick, 10);
+        goBob10.whileHeld(new Bob());
+        goBob11 = new JoystickButton(driveJoystick, 11);
+        goBob11.whileActive(new Bob());
+        
+        goBob12 = new JoystickButton(driveJoystick, 12);
+        goBob12.whileHeld(new Bob());
+        *///latch1 off and 2 on for closed latch
         //hammer is load arm
         //foot up = 2 on and 1oof
         //neg inwards for pickup wheel

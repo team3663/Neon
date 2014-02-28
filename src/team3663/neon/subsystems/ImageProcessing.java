@@ -76,7 +76,7 @@ public class ImageProcessing extends Subsystem {
         
     }
     
-    public void Init() {
+    public void ImageProcessing() {
         
     }
 
