@@ -14,7 +14,10 @@ import team3663.neon.RobotMap;
  */
 public class Bob extends CommandBase {
     
-    int i;
+    int startTime;
+    int lastSecondTime;
+    boolean executeShouldPrint;
+    
     public Bob() {
         System.out.println("Bob");
         // Use requires() here to declare subsystem dependencies
@@ -24,30 +27,39 @@ public class Bob extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        i = 0;
-        System.out.println("Bob.initialize");
+        lastSecondTime = startTime = (int)Timer.getFPGATimestamp();
+        executeShouldPrint = true;
+        System.out.println("Bob.initialize at " + startTime);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        System.out.println("Bob.execute");
-        Timer.delay(1);
+        if(executeShouldPrint){
+            System.out.println("Bob.execute");
+            executeShouldPrint = false;
+        }
+        
+        //Timer.delay(1);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        System.out.println("Bob.isFinished & i = " + i);
-        if (i < 10)
-        {
-            i++;
-            return false;
+        int currentTime = (int)Timer.getFPGATimestamp();
+        if(currentTime >= (startTime + 10)){
+            System.out.println("Bob.isFinished, returning True");
+            return true;
         }
-        return true;
+        if(currentTime > lastSecondTime){
+            System.out.println("Bob.isFinished time: " + (currentTime - startTime));
+            lastSecondTime = currentTime;
+            executeShouldPrint = true;
+        }
+        return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-        System.out.println("Bob.end");
+        System.out.println("Bob.end at " + lastSecondTime);
     }
 
     // Called when another command which requires one or more of the same

@@ -88,7 +88,7 @@ public class ImageProcessing extends Subsystem {
         {
             return false;
         }
-        else
+        else if(camera != null)
         {
             return true;
         }
