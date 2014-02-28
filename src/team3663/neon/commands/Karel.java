@@ -13,40 +13,52 @@ import edu.wpi.first.wpilibj.Timer;
  */
 public class Karel extends CommandBase {
     
-    int i;
+    int startTime;
+    int lastSecondTime;
+    boolean executeShouldPrint;
+    
     public Karel() {
+        System.out.println("Karel");
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-     //   requires(driveTrain);
-        System.out.println("Karel");
+        requires(driveTrain);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        i = 0;
-        System.out.println("Karel.initialize");
+        lastSecondTime = startTime = (int)Timer.getFPGATimestamp();
+        executeShouldPrint = true;
+        System.out.println("Karel.initialize at " + startTime);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        System.out.println("Karel.execute");
-        Timer.delay(1);
+        if(executeShouldPrint){
+            System.out.println("Karel.execute");
+            executeShouldPrint = false;
+        }
+        
+        //Timer.delay(1);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        System.out.println("Karel.isFinished & i = " + i);
-        if (i < 10)
-        {
-            i++;
-            return false;
+        int currentTime = (int)Timer.getFPGATimestamp();
+        if(currentTime >= (startTime + 10)){
+            System.out.println("Karel.isFinished, returning True");
+            return true;
         }
-        return true;
+        if(currentTime > lastSecondTime){
+            System.out.println("Karel.isFinished time: " + (currentTime - startTime));
+            lastSecondTime = currentTime;
+            executeShouldPrint = true;
+        }
+        return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-        System.out.println("Karel.end");
+        System.out.println("Karel.end at " + lastSecondTime);
     }
 
     // Called when another command which requires one or more of the same

@@ -18,8 +18,8 @@ public class BobNKarel extends CommandGroup {
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
         // these will run in order.
-        addParallel(new Bob());
         addParallel(new Karel());
+        addSequential(new Bob());//Bob's missing...the marriage didn't turn out. they kept interrupting each other
 
         // To run multiple commands at the same time,
         // use addParallel()
