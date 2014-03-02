@@ -7,12 +7,13 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import team3663.neon.commands.CommandBase;
 import team3663.neon.commands.AutonomousCommand;
 
 public class Robot3663 extends IterativeRobot
 {
-    
+    boolean test = true;
     //Command driveCommand;
     Command autonomousCommand;
     //Command rangeFinderCommand;
@@ -48,6 +49,7 @@ public class Robot3663 extends IterativeRobot
 
     public void teleopInit() 
     {
+        LiveWindow.setEnabled(true);
         autonomousCommand.cancel();
     }
     
@@ -60,7 +62,9 @@ public class Robot3663 extends IterativeRobot
     
     public void testPeriodic() 
     {
-        LiveWindow.setEnabled(false);
+        SmartDashboard.getBoolean("live window on:", test);
+        System.out.println(test);
+        //LiveWindow.setEnabled(false);
         Scheduler.getInstance().run();
         LiveWindow.run();
         UpdateStatus();

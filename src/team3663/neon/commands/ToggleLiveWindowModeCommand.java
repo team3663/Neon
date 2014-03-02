@@ -24,8 +24,10 @@ public class ToggleLiveWindowModeCommand extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        LiveWindow.setEnabled(!LiveWindowEnabled);
         LiveWindowEnabled = !LiveWindowEnabled;
+        LiveWindow.setEnabled(LiveWindowEnabled);
+        System.out.println("lw =" + LiveWindowEnabled);
+        
     }
 
     // Called repeatedly when this Command is scheduled to run

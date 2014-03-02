@@ -123,7 +123,7 @@ public class OI
         imageOn.whenPressed(new TargetCommand());
         
         switchLiveWindowStatus = new JoystickButton(driveJoystick, 8);
-        switchLiveWindowStatus.whenPressed(new ToggleLiveWindowModeCommand());
+        switchLiveWindowStatus.toggleWhenPressed(new ToggleLiveWindowModeCommand());
        
    //     goBobNKarel = new JoystickButton(driveJoystick, 8);
   //ForNow   //   goBobNKarel.whenPressed(new BobNKarel());
