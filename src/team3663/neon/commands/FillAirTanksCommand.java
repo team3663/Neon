@@ -12,6 +12,7 @@ public class FillAirTanksCommand extends CommandBase
     }
     protected void execute()
     {
+/*        
         if (compressor.compressorLimitSwitch.get() == false)
         {
 		compressor.TurnOn();
@@ -20,7 +21,7 @@ public class FillAirTanksCommand extends CommandBase
         {
 		compressor.TurnOff();
 	}
-        
+*/        
     }
     protected boolean isFinished()
     {

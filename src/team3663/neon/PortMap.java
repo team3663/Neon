@@ -31,7 +31,6 @@ public class PortMap
     public static int driveTrainGearShift2port                = 4;
     public static int driveTrainDriveChange1port              = 6;
     public static int driveTrainDriveChange2port              = 5;
-    
     public static int pickUpSolenoidPort1                     = 2;
     public static int pickUpsolenoidPort2                     = 1;
     //SomethingWrongWithTheseTwo

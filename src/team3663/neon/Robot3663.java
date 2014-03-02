@@ -1,10 +1,3 @@
-/*----------------------------------------------------------------------------*/
-/* Copyright (c) FIRST 2008. All Rights Reserved.                             */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
-/* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
-/*----------------------------------------------------------------------------*/
-
 package team3663.neon;
 
 
@@ -17,13 +10,6 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import team3663.neon.commands.CommandBase;
 import team3663.neon.commands.AutonomousCommand;
 
-/**
- * The VM is configured to automatically run this class, and to call the
- * functions corresponding to each mode, as described in the IterativeRobot
- * documentation. If you change the name of this class or the package after
- * creating this project, you must also update the manifest file in the resource
- * directory.
- */
 public class Robot3663 extends IterativeRobot
 {
     
@@ -31,12 +17,8 @@ public class Robot3663 extends IterativeRobot
     Command autonomousCommand;
     //Command rangeFinderCommand;
     DriverStation driveStation;
-    DriverStationLCD driveStationLCD;
     //TargetCommand targetCommand;
-    /**
-     * This function is run when the robot is first started up and should be
-     * used for any initialization code.
-     */
+    
     public void robotInit() 
     {
         RobotMap.init();
@@ -46,62 +28,54 @@ public class Robot3663 extends IterativeRobot
         //rangeFinderCommand = new RangeFinder();
         autonomousCommand = new AutonomousCommand();
         driveStation = DriverStation.getInstance();
-        driveStationLCD = DriverStationLCD.getInstance();
         UpdateStatus();
         System.out.println("robotInit");
-   
         
     }
 
     public void autonomousInit() 
     {
-        // schedule the autonomous command (example)
-        //targetCommand.start();
         autonomousCommand.start();
         System.out.println("after autocommmand is called");
     }
 
-    /**
-     * This function is called periodically during autonomous
-     */
     public void autonomousPeriodic()
     {
         Scheduler.getInstance().run();
+        LiveWindow.run();
         UpdateStatus();
     }
 
     public void teleopInit() 
     {
-	// This makes sure that the autonomous stops running when
-        // teleop starts running. If you want the autonomous to 
-        // continue until interrupted by another command, remove
-        // this line or comment it out.
         autonomousCommand.cancel();
     }
-
-    /**
-     * This function is called periodically during operator control
-     */
+    
     public void teleopPeriodic() 
     {
-        driveStationLCD.getInstance().updateLCD();
         Scheduler.getInstance().run();
-        //UpdateStatus();
         LiveWindow.run();
+        UpdateStatus();
     }
     
-    /**
-     * This function is called periodically during test mode
-     */
     public void testPeriodic() 
     {
-        LiveWindow.run(); 
+        LiveWindow.setEnabled(false);
+        Scheduler.getInstance().run();
+        LiveWindow.run();
+        UpdateStatus();
     }
     
     public void UpdateStatus()
     {
         CommandBase.driveTrain.UpdateStatus();
         CommandBase.photoelectric.UpdateStatus();
-        
+	CommandBase.dsLCD.updateLCD();
+        CommandBase.dsLCD.println(DriverStationLCD.Line.kUser1, 1, "                     ");
+        CommandBase.dsLCD.println(DriverStationLCD.Line.kUser2, 1, "                     ");
+        CommandBase.dsLCD.println(DriverStationLCD.Line.kUser3, 1, "                     ");
+        CommandBase.dsLCD.println(DriverStationLCD.Line.kUser4, 1, "                     ");
+        CommandBase.dsLCD.println(DriverStationLCD.Line.kUser5, 1, "                     ");
+        CommandBase.dsLCD.println(DriverStationLCD.Line.kUser6, 1, "                     ");
     }
 }

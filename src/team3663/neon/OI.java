@@ -3,7 +3,6 @@ package team3663.neon;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import team3663.neon.commands.Bob;
-import team3663.neon.commands.BobNKarel;
 import team3663.neon.commands.HitBallCommand;
 import team3663.neon.commands.Karel;
 import team3663.neon.commands.RecockFlipapultCommand;
@@ -13,6 +12,7 @@ import team3663.neon.commands.SwitchToLowGear;
 import team3663.neon.commands.SwitchToMecanumDriveCommand;
 import team3663.neon.commands.TargetCommand;
 import team3663.neon.commands.ToggleFootCommand;
+import team3663.neon.commands.ToggleLiveWindowModeCommand;
 import team3663.neon.commands.TogglePickUpArmCommand;
 
 /**
@@ -41,6 +41,8 @@ public class OI
     private static JoystickButton imageOn;
     private static JoystickButton foot;
     
+    private static JoystickButton switchLiveWindowStatus;
+    
     private static JoystickButton goBob;
     /* private static JoystickButton goBob2;
       private static JoystickButton goBob3;
@@ -55,6 +57,7 @@ public class OI
                private static JoystickButton goBob12;
     */private static JoystickButton goKarel;
     private static JoystickButton goBobNKarel;
+    
     
     //private Button gearShift = new JoystickButton(driveJoystick, 3);
     
@@ -118,9 +121,12 @@ public class OI
         
         imageOn = new JoystickButton(driveJoystick, 1);
         imageOn.whenPressed(new TargetCommand());
+        
+        switchLiveWindowStatus = new JoystickButton(driveJoystick, 8);
+        switchLiveWindowStatus.whenPressed(new ToggleLiveWindowModeCommand());
        
-        goBobNKarel = new JoystickButton(driveJoystick, 8);
-        goBobNKarel.whenPressed(new BobNKarel());
+   //     goBobNKarel = new JoystickButton(driveJoystick, 8);
+  //ForNow   //   goBobNKarel.whenPressed(new BobNKarel());
         
         goKarel = new JoystickButton(driveJoystick, 9);
         goKarel.whenPressed(new Karel());

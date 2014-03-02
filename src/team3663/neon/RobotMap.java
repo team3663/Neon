@@ -147,7 +147,7 @@ public class RobotMap
         //rangeFinderRightUltrasonic = new AnalogChannel(PortMap.MainModulePort, PortMap.rangeFinderRightUltrasonicPort);
        
         //Components that are used generally thouhtout most games END-----------------------------------------
-       
+        
         //All LiveWindow actuators add here
         LiveWindow.addActuator("VICTORS", "SpeedControllerFrontLeft", (Victor)driveTrainSpeedControllerFrontLeft);
         LiveWindow.addActuator("VICTORS", "SpeedControllerBackLeft", (Victor)driveTrainSpeedControllerBackLeft);

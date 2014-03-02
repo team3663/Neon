@@ -1,5 +1,6 @@
 package team3663.neon.commands;
 
+import edu.wpi.first.wpilibj.DriverStationLCD;
 import edu.wpi.first.wpilibj.command.Command;
 import team3663.neon.OI;
 import team3663.neon.subsystems.BallHandler;
@@ -24,6 +25,7 @@ public abstract class CommandBase extends Command
     public static ShooterSystem shooterSystem;
     public static Hammer hammer;
     public static BallHandler ballHandler;
+    public static DriverStationLCD dsLCD;
     
     public static void init() 
     {
@@ -36,6 +38,7 @@ public abstract class CommandBase extends Command
         photoelectric = new Photoelectric();
         motor = new Motor();
         hammer = new Hammer();
+        dsLCD = DriverStationLCD.getInstance();
         
         oi = new OI();
     }

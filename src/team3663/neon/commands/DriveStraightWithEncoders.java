@@ -2,7 +2,7 @@ package team3663.neon.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class DriveStraightWithEncoders extends Command
+public class DriveStraightWithEncoders extends CommandBase
 {
     private double destination;
     private double driveSpeed;
@@ -14,7 +14,7 @@ public class DriveStraightWithEncoders extends Command
     
     public DriveStraightWithEncoders(double pFinalEncoderCount)
     {
-        requires(CommandBase.driveTrain);
+        requires(driveTrain);
         finalEncoderCount = pFinalEncoderCount;
         
         if(finalEncoderCount > 0)
@@ -33,23 +33,23 @@ public class DriveStraightWithEncoders extends Command
     
     protected void initialize()
     {
-        CommandBase.driveTrain.ResetDriveEncoders();
+        driveTrain.ResetDriveEncoders();
     }
     
     protected void execute()
     {
-        CommandBase.driveTrain.Drive(driveSpeed, 0.0);
+        driveTrain.Drive(driveSpeed, 0.0);
     }
     
     protected boolean isFinished()
     {
         if(isDrivingForward){
-            if(CommandBase.driveTrain.GetRightEncoder()>finalEncoderCount){
+            if(driveTrain.GetRightEncoder()>finalEncoderCount){
                 return true;
             }
         }
         else{
-            if(CommandBase.driveTrain.GetRightEncoder()<finalEncoderCount){
+            if(driveTrain.GetRightEncoder()<finalEncoderCount){
                 return true;
             }
         }
@@ -58,7 +58,7 @@ public class DriveStraightWithEncoders extends Command
     
     protected void end()
     {
-        CommandBase.driveTrain.Stop();
+        driveTrain.Stop();
     }
     
     protected void interrupted()

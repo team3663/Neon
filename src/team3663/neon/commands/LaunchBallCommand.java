@@ -5,26 +5,34 @@ import edu.wpi.first.wpilibj.Timer;
 public class LaunchBallCommand  extends CommandBase 
 {
     public boolean isFinished;
+    double startTime;
     
     public LaunchBallCommand()
     {
         requires(shooterSystem);
+        startTime = Timer.getFPGATimestamp();
     }
     
     protected void initialize()
     {
         shooterSystem.openLatch();
-        Timer.delay(0.75);
     }
     
     protected void execute()
     {
-      
+        
     }
     
     protected boolean isFinished()
     {
-        return true;
+        if (Timer.getFPGATimestamp() >= (startTime + 0.75))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
     
     protected void end()

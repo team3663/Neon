@@ -3,10 +3,11 @@ package team3663.neon.subsystems;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DriverStationLCD;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import team3663.neon.RobotMap;
+import team3663.neon.commands.CommandBase;
 
 public class Photoelectric extends Subsystem
 {   
+    int counter = 0;
     public Photoelectric()
     {
         
@@ -26,9 +27,6 @@ public class Photoelectric extends Subsystem
     {
 	/*SmartDashboard.putBoolean("Ground Sensor: ", GetSensorStatus
         (RobotMap.photoelectricGroundSensor));*/
-	DriverStationLCD.getInstance().println
-        (DriverStationLCD.Line.kUser3, 1, "PhotoElectric: " + String.valueOf
-        (GetSensorStatus(RobotMap.photoelectricGroundSensor)));
-	DriverStationLCD.getInstance().updateLCD();
+        CommandBase.dsLCD.println(DriverStationLCD.Line.kUser3, 1, "counter = " + counter++);
     }
 }

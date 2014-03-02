@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.DriverStationLCD;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import team3663.neon.RobotMap;
+import team3663.neon.commands.CommandBase;
 import team3663.neon.commands.DriveCommand;
 
 public class DriveTrain extends Subsystem
@@ -20,8 +21,7 @@ public class DriveTrain extends Subsystem
     private double magnitude;
     public void DriveTrain()
     {
-
-        highGear = true;
+        
         ShiftToLowGear();
         TractionWheelsDown();
     }
@@ -67,7 +67,7 @@ public class DriveTrain extends Subsystem
     {
         Drive(0, 0);
     }
-    public boolean IsHighGear()
+    public boolean IsLowGear()
     {
         return RobotMap.driveTrainGearShift1.get();
     }
@@ -99,15 +99,25 @@ public class DriveTrain extends Subsystem
     
     public void UpdateStatus()
     {
-        SmartDashboard.putNumber("Right Encoder:", GetRightEncoder());
-	SmartDashboard.putNumber("Left Encoder:", GetLeftEncoder());
-	DriverStationLCD.getInstance().println(
-        DriverStationLCD.Line.kUser1,1, "" + GetRightEncoder());
-	DriverStationLCD.getInstance().println(
-        DriverStationLCD.Line.kUser2, 1, "" + GetLeftEncoder());
-	if (highGear)
-		SmartDashboard.putString("Transmission:", "High Gear");
-	else
-		SmartDashboard.putString("Transmission:", "Low Gear");
+    //    SmartDashboard.putNumber("Right Encoder:", GetRightEncoder());
+//	SmartDashboard.putNumber("Left Encoder:", GetLeftEncoder());
+        CommandBase.dsLCD.println(DriverStationLCD.Line.kUser1,1, ("(" + (int)GetRightEncoder()) + "," + (int)GetLeftEncoder() + ")");
+	if (IsLowGear())
+        {
+		CommandBase.dsLCD.println(DriverStationLCD.Line.kUser2, 1, "Low Gear");
+        }
+        else
+        {
+            CommandBase.dsLCD.println(DriverStationLCD.Line.kUser2, 1, "High Gear");
+        }
+        
+        if (IsTractionDown())
+        {
+            CommandBase.dsLCD.println(DriverStationLCD.Line.kUser4, 1, "Traction Wheels Down");
+        }
+        else
+        {
+            CommandBase.dsLCD.println(DriverStationLCD.Line.kUser4, 1, "Tration Wheel Up");
+        }
     }
 }
