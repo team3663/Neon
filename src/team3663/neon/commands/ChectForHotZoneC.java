@@ -2,17 +2,20 @@ package team3663.neon.commands;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class TargetCommand extends CommandBase
+public class ChectForHotZoneC extends CommandBase
 {
-    public TargetCommand()
+    public ChectForHotZoneC()
     {
-        requires(imageProcess);
+        requires(imageProcessingSS);
     }
     protected void initialize()
     {
+    }
+    
+    protected void execute()
+    {
         System.out.println("The image processing is being called");
-        System.out.println("The second message is displayed");
-        if(imageProcess.isGoalHot())
+        if(imageProcessingSS.isGoalHot())
         {
             SmartDashboard.putString("Hot or Cold", "Hot");
             System.out.println("Robot is facing the hot target");
@@ -22,11 +25,9 @@ public class TargetCommand extends CommandBase
             SmartDashboard.putString("Hot or Cold", "Cold");
             System.out.println("No hot target found in autonomous");
         }
+        System.out.println("The image processing is done");
     }
-    protected void execute()
-    {
-         
-    }
+
     protected boolean isFinished()
     {
         return true;

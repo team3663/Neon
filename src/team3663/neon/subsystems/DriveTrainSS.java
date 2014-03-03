@@ -6,9 +6,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import team3663.neon.RobotMap;
 import team3663.neon.commands.CommandBase;
-import team3663.neon.commands.DriveCommand;
+import team3663.neon.commands.DriveC;
 
-public class DriveTrain extends Subsystem
+public class DriveTrainSS extends Subsystem
 {
     
     public double ACCEL_LIMIT = 0.2;
@@ -28,7 +28,7 @@ public class DriveTrain extends Subsystem
         
     public void initDefaultCommand()
     {
-       setDefaultCommand(new DriveCommand());
+       setDefaultCommand(new DriveC());
     }
       
     public boolean IsTractionDown()
@@ -38,7 +38,7 @@ public class DriveTrain extends Subsystem
     
     public void Arcade(double joyX, double joyY, double joyZ)
     {
-        RobotMap.driveTrainRobotDrive3663.arcadeDrive(joyX, -joyY);
+        RobotMap.driveTrain.arcadeDrive(joyX, -joyY);
     }
     
      public void Mecanum(double joyX, double joyY, double joyTwist)
@@ -46,7 +46,7 @@ public class DriveTrain extends Subsystem
         direction = MathUtils.atan2(-joyX, joyY);
         magnitude = Math.sqrt((joyX * joyX) +  (joyY * joyY));
         
-        RobotMap.driveTrainRobotDrive3663.mecanumDrive_Polar(magnitude, Math.toDegrees(direction), joyTwist/2);
+        RobotMap.driveTrain.mecanumDrive_Polar(magnitude, Math.toDegrees(direction), joyTwist/2);
     }
   
     public void ShiftToHighGear(){
@@ -61,7 +61,7 @@ public class DriveTrain extends Subsystem
     
     public void Drive(double speed, double curve)
     {
-        RobotMap.driveTrainRobotDrive3663.arcadeDrive(speed, curve);
+        RobotMap.driveTrain.arcadeDrive(speed, curve);
     }
     public void Stop()
     {

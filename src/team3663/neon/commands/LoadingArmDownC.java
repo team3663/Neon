@@ -1,23 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package team3663.neon.commands;
 
-/**
- *
- * @author TrentHashimoto
- */
-public class SwitchToMecanumDriveCommand extends CommandBase {
+public class LoadingArmDownC extends CommandBase {
     
-    public SwitchToMecanumDriveCommand() {
-        requires(driveTrain);
+    public LoadingArmDownC() {
+        // Use requires() here to declare subsystem dependencies
+        requires(loadingArmSS);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        driveTrain.TractionWheelsUp();
+        loadingArmSS.LoadingArmDown();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -26,7 +18,7 @@ public class SwitchToMecanumDriveCommand extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return false;
     }
 
     // Called once after isFinished returns true

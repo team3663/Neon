@@ -3,45 +3,55 @@ package team3663.neon.commands;
 import edu.wpi.first.wpilibj.DriverStationLCD;
 import edu.wpi.first.wpilibj.command.Command;
 import team3663.neon.OI;
-import team3663.neon.subsystems.BallHandler;
-import team3663.neon.subsystems.Compressor;
-import team3663.neon.subsystems.DriveTrain;
-import team3663.neon.subsystems.Hammer;
-import team3663.neon.subsystems.ImageProcessing;
-import team3663.neon.subsystems.Motor;
-import team3663.neon.subsystems.ShooterSystem;
+import team3663.neon.subsystems.LoadingArmSS;
+import team3663.neon.subsystems.CompressorSS;
+import team3663.neon.subsystems.DriveTrainSS;
+import team3663.neon.subsystems.FootSS;
+import team3663.neon.subsystems.HammerSS;
+import team3663.neon.subsystems.ImageProcessingSS;
+import team3663.neon.subsystems.ShooterWinchAndLatchSS;
 
 public abstract class CommandBase extends Command 
 {
     public static OI oi;
-    public static DriveTrain driveTrain; 
-    public static Compressor compressor;
-    public static Motor motor;
-    public static ImageProcessing imageProcess;
-    public static ShooterSystem shooterSystem;
-    public static Hammer hammer;
-    public static BallHandler ballHandler;
+    public static DriveTrainSS driveTrainSS; 
+    public static CompressorSS compressorSS;
+    public static FootSS footSS;
+    public static ImageProcessingSS imageProcessingSS;
+    public static ShooterWinchAndLatchSS shooterWinchAndLatchSS;
+    public static HammerSS hammerSS;
+    public static LoadingArmSS loadingArmSS;
+    
     public static DriverStationLCD dsLCD;
     
     public static void init() 
     {
-        imageProcess = new ImageProcessing();        
-        driveTrain = new DriveTrain();        
-        ballHandler = new BallHandler();      
-        compressor = new Compressor();
-        shooterSystem = new ShooterSystem();
-        motor = new Motor();
-        hammer = new Hammer();
+         System.out.println("CommandBase.init start");
+
+        compressorSS = new CompressorSS();
+        driveTrainSS = new DriveTrainSS();
+        footSS = new FootSS();
+        hammerSS = new HammerSS();
+        imageProcessingSS = new ImageProcessingSS();        
+        loadingArmSS = new LoadingArmSS();      
+        shooterWinchAndLatchSS = new ShooterWinchAndLatchSS();
+
         dsLCD = DriverStationLCD.getInstance();
         
         oi = new OI();
+        
+        System.out.println("CommandBase.init end");
     }
 
     public CommandBase(String name) {
         super(name);
+        System.out.println("CommandBase constructor start");
+        System.out.println("CommandBase constructor end");
     }
 
     public CommandBase() {
         super();
+        System.out.println("CommandBase constructor start");
+        System.out.println("CommandBase constructor end");
     }
 }

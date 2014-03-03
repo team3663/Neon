@@ -1,14 +1,14 @@
 package team3663.neon.commands;
 
-public class SwitchToLowGear extends CommandBase 
+public class ShiftToHighGearC extends CommandBase 
 {
-    public SwitchToLowGear()
+    public ShiftToHighGearC()
     {
-        requires(driveTrain);
+        requires(driveTrainSS);
     }
     protected void initialize()
     {
-        driveTrain.ShiftToLowGear();
+        driveTrainSS.ShiftToHighGear();
     }
     protected void execute()
     {

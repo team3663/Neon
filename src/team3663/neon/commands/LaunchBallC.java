@@ -2,20 +2,20 @@
 
 import edu.wpi.first.wpilibj.Timer;
 
-public class LaunchBallCommand  extends CommandBase 
+public class LaunchBallC  extends CommandBase 
 {
     public boolean isFinished;
     double startTime;
     
-    public LaunchBallCommand()
+    public LaunchBallC()
     {
-        requires(shooterSystem);
+        requires(shooterWinchAndLatchSS);
         startTime = Timer.getFPGATimestamp();
     }
     
     protected void initialize()
     {
-        shooterSystem.openLatch();
+        shooterWinchAndLatchSS.openLatch();
     }
     
     protected void execute()

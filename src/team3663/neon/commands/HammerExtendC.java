@@ -5,39 +5,28 @@
  */
 package team3663.neon.commands;
 
-import edu.wpi.first.wpilibj.Timer;
-
 /**
  *
- * @author Angelique
+ * @author briking
  */
-public class timeWait extends CommandBase {
+public class HammerExtendC extends CommandBase {
     
-    double endTime;
-    double seconds;
-    
-    public timeWait(double timeToWait) {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-        seconds = timeToWait;
+    public HammerExtendC() {
+        requires(hammerSS);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        endTime = Timer.getFPGATimestamp() + seconds;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+        hammerSS.hammerExtend();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        if (Timer.getFPGATimestamp() >= endTime)
-        {
-            return true;
-        }
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true

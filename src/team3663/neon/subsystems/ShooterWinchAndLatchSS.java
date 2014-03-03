@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import team3663.neon.RobotMap;
 
-public class ShooterSystem extends Subsystem
+public class ShooterWinchAndLatchSS extends Subsystem
 {
     public double PI = 3.14159;
     public double ENCODER_CORRECT  = 4 * 12 / 22 / 1440 * 5 / 3;
@@ -16,7 +16,7 @@ public class ShooterSystem extends Subsystem
     {
     }
     
-    public void ShooterSystem()
+    public void ShooterWinchAndLatch()
     {
         winchEncoderReset();
         closeLatch();
@@ -34,7 +34,7 @@ public class ShooterSystem extends Subsystem
     
     public void setWinch(double speed)
     {
-        RobotMap.shooterSpeedController.set(speed);
+        RobotMap.shooterWinchSpeedController.set(speed);
     }
     
     public void winchEncoderReset()
@@ -54,6 +54,6 @@ public class ShooterSystem extends Subsystem
     
     public boolean IsBallLoaded()
     {
-        return RobotMap.ballLimitSwitchDIO.get();
+        return RobotMap.ballLoadedLimitSwitchDIO.get();
     }
 }

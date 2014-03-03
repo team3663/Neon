@@ -2,11 +2,11 @@ package team3663.neon.commands;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class FillAirTanksCommand extends CommandBase
+public class FillAirTanksC extends CommandBase
 {
-    public FillAirTanksCommand()
+    public FillAirTanksC()
     {
-        requires(compressor);
+        requires(compressorSS);
     }
     protected void initialize()
     {
@@ -14,15 +14,15 @@ public class FillAirTanksCommand extends CommandBase
     }
     protected void execute()
     {        
-        if (compressor.airTanksAreFull())
+        if (compressorSS.airTanksAreFull())
         {
             SmartDashboard.putString("Compressor:", "Off");
-            compressor.TurnOff();
+            compressorSS.TurnOff();
 	}
 	else
         {
             SmartDashboard.putString("Compressor:", "On");
-            compressor.TurnOn();
+            compressorSS.TurnOn();
 	}
     }
     protected boolean isFinished()

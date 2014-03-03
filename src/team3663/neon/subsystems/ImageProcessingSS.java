@@ -27,7 +27,7 @@ import team3663.neon.RobotMap;
  * images.
  */
 
-public class ImageProcessing extends Subsystem {
+public class ImageProcessingSS extends Subsystem {
 
     //Camera constants used for distance calculation
     final int Y_IMAGE_RES = 480;		//X Image resolution in pixels, should be 120, 240 or 480

@@ -9,17 +9,15 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
- * @author Angelique
+ * @author briking
  */
-public class BobNKarel extends CommandGroup {
+public class AutonomousCG extends CommandGroup {
     
-    public BobNKarel() {
+    public AutonomousCG() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
         // these will run in order.
-        addParallel(new Karel());
-        addSequential(new Bob());//Bob's missing...the marriage didn't turn out. they kept interrupting each other
 
         // To run multiple commands at the same time,
         // use addParallel()

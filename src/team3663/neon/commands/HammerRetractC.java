@@ -1,21 +1,19 @@
 package team3663.neon.commands;
 
-import edu.wpi.first.wpilibj.Timer;
-
-public class RetractHammerCommand extends CommandBase
+public class HammerRetractC extends CommandBase
 {
-    public RetractHammerCommand()
+    public HammerRetractC()
     {
-        requires(hammer);
+        requires(hammerSS);
     }
     
     protected void initialize()
     {
-        hammer.RetractHammer();
     }
     
     protected void execute()
     {
+        hammerSS.hammerRetract();
     }
     
     protected boolean isFinished()

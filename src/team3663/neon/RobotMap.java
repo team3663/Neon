@@ -20,7 +20,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  */
 public class RobotMap 
 {
-    public static RobotDrive driveTrainRobotDrive3663;
+    public static RobotDrive driveTrain;
     
     public static Relay compressorOnOffRelay;
 
@@ -28,8 +28,8 @@ public class RobotMap
     public static SpeedController driveTrainBackLeftSpeedController;
     public static SpeedController driveTrainFrontRightSpeedController;
     public static SpeedController driveTrainBackRightSpeedController;
-    public static SpeedController pickUpSpeedController;
-    public static SpeedController shooterSpeedController;
+    public static SpeedController LoadingArmSpeedController;
+    public static SpeedController shooterWinchSpeedController;
     
     public static Encoder shooterEncoder;
     public static Encoder driveTrainLeftEncoder;
@@ -39,76 +39,78 @@ public class RobotMap
     public static Solenoid gearShiftHighLowSolenoid2;
     public static Solenoid tractionWheelUpDownSolenoid1;
     public static Solenoid tractionWheelUpDownSolenoid2;
-    public static Solenoid pickUpSolenoid1;
-    public static Solenoid pickUpSolenoid2;
+    public static Solenoid loadingArmUpDownSolenoid1;
+    public static Solenoid loadingArmUpDownSolenoid2;
     public static Solenoid shooterLatchSolenoid1;
     public static Solenoid shooterLatchSolenoid2;
-    public static Solenoid hammerSolenoid1;
-    public static Solenoid hammerSolenoid2;
-    public static Solenoid footSolenoid1;
-    public static Solenoid footSolenoid2;
+    public static Solenoid hammerRetractExtendSolenoid1;
+    public static Solenoid hammerRetractExtendSolenoid2;
+    public static Solenoid footUpDownSolenoid1;
+    public static Solenoid footUpDownSolenoid2;
     
     public static DigitalInput shooterLimitSwitchDIO;
-    public static DigitalInput ballLimitSwitchDIO;
+    public static DigitalInput ballLoadedLimitSwitchDIO;
     public static DigitalInput compressorLimitSwitchDIO;
     
     public static AnalogChannel frontUltrasonicAnalog;
         
     public static void init()
     {
+        System.out.println("RobotMap.init start");
+
         // All of the driveTrain sensors and items----------------------------------
-        driveTrainFrontLeftSpeedController = new Victor(PortMap.MainModulePort, PortMap.driveTrainSpeedControllerFrontLeftPort);
-        driveTrainBackLeftSpeedController = new Victor(PortMap.MainModulePort, PortMap.driveTrainSpeedControllerBackLeftPort);
-        driveTrainFrontRightSpeedController = new Victor(PortMap.MainModulePort, PortMap.driveTrainSpeedControllerFrontRightPort);
-        driveTrainBackRightSpeedController = new Victor(PortMap.MainModulePort, PortMap.driveTrainSpeedControllerBackRightPort);
+        driveTrainFrontLeftSpeedController = new Victor(PortMap.MainModulePort, PortMap.driveTrainFrontLeftSpeedControllerPort);
+        driveTrainBackLeftSpeedController = new Victor(PortMap.MainModulePort, PortMap.driveTrainBackLeftSpeedControllerPort);
+        driveTrainFrontRightSpeedController = new Victor(PortMap.MainModulePort, PortMap.driveTrainFrontRightSpeedControllerPort);
+        driveTrainBackRightSpeedController = new Victor(PortMap.MainModulePort, PortMap.driveTrainBackRightSpeedControllerPort);
         
-        driveTrainRobotDrive3663 = new RobotDrive(driveTrainFrontLeftSpeedController, driveTrainBackLeftSpeedController,
+        driveTrain = new RobotDrive(driveTrainFrontLeftSpeedController, driveTrainBackLeftSpeedController,
                                                   driveTrainFrontRightSpeedController, driveTrainBackRightSpeedController);
       
-        driveTrainRobotDrive3663.setSafetyEnabled(false);
-        driveTrainRobotDrive3663.setExpiration(0.1);
-        driveTrainRobotDrive3663.setSensitivity(0.5);
-        driveTrainRobotDrive3663.setMaxOutput(1.0);
-        driveTrainRobotDrive3663.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
-        driveTrainRobotDrive3663.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
+        driveTrain.setSafetyEnabled(false);
+        driveTrain.setExpiration(0.1);
+        driveTrain.setSensitivity(0.5);
+        driveTrain.setMaxOutput(1.0);
+        driveTrain.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
+        driveTrain.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
         
-        driveTrainLeftEncoder = new Encoder(PortMap.MainModulePort, PortMap.driveTrainLeftEncoderport1,
-                                            PortMap.MainModulePort, PortMap.driveTrainLeftEncoderport2, false, CounterBase.EncodingType.k4X);
+        driveTrainLeftEncoder = new Encoder(PortMap.MainModulePort, PortMap.driveTrainLeftEncoder1Port,
+                                            PortMap.MainModulePort, PortMap.driveTrainLeftEncoder2Port, false, CounterBase.EncodingType.k4X);
        
         driveTrainLeftEncoder.setDistancePerPulse(1.0);
         driveTrainLeftEncoder.setPIDSourceParameter(Encoder.PIDSourceParameter.kRate);
         driveTrainLeftEncoder.start();
             
-        driveTrainRightEncoder = new Encoder(PortMap.MainModulePort, PortMap.driveTrainRightEncoderport1,
-                                             PortMap.MainModulePort, PortMap.driveTrainRightEncoderport2, false, CounterBase.EncodingType.k4X);
+        driveTrainRightEncoder = new Encoder(PortMap.MainModulePort, PortMap.driveTrainRightEncoder1Port,
+                                             PortMap.MainModulePort, PortMap.driveTrainRightEncoder2Port, false, CounterBase.EncodingType.k4X);
         
         driveTrainRightEncoder.setDistancePerPulse(1.0);
         driveTrainRightEncoder.setPIDSourceParameter(Encoder.PIDSourceParameter.kRate);
         driveTrainRightEncoder.start();    
         
-        gearShiftHighLowSolenoid1 = new Solenoid(PortMap.MainModulePort,PortMap.driveTrainGearShift1port);
-        gearShiftHighLowSolenoid2 = new Solenoid(PortMap.MainModulePort, PortMap.driveTrainGearShift2port);
+        gearShiftHighLowSolenoid1 = new Solenoid(PortMap.MainModulePort,PortMap.gearShiftHighLowSolenoid1Port);
+        gearShiftHighLowSolenoid2 = new Solenoid(PortMap.MainModulePort, PortMap.gearShiftHighLowSolenoid2Port);
 
-        tractionWheelUpDownSolenoid1 = new Solenoid(PortMap.MainModulePort, PortMap.driveTrainDriveChange1port);
-        tractionWheelUpDownSolenoid2 = new Solenoid(PortMap.MainModulePort, PortMap.driveTrainDriveChange2port);
+        tractionWheelUpDownSolenoid1 = new Solenoid(PortMap.MainModulePort, PortMap.tractionWheelUpDownSolenoid1Port);
+        tractionWheelUpDownSolenoid2 = new Solenoid(PortMap.MainModulePort, PortMap.tractionWheelUpDownSolenoid2Port);
         
         //End of driveTrain sensors and items------------------------------------------------------------------
         
         //Components relating to current game(2014) Shooter items Start----------------------------------------
         
-        pickUpSolenoid1 = new Solenoid(PortMap.SecondaryModulePort, PortMap.pickUpSolenoidPort1);
-        pickUpSolenoid2 = new Solenoid(PortMap.SecondaryModulePort, PortMap.pickUpsolenoidPort2);
+        loadingArmUpDownSolenoid1 = new Solenoid(PortMap.SecondaryModulePort, PortMap.loadingArmUpDownSolenoid1Port);
+        loadingArmUpDownSolenoid2 = new Solenoid(PortMap.SecondaryModulePort, PortMap.loadingArmUpDownSolenoid2Port);
         
-        hammerSolenoid1 = new Solenoid(PortMap.MainModulePort, PortMap.hammerSolenoidPort1);
-        hammerSolenoid2 = new Solenoid(PortMap.MainModulePort, PortMap.hammerSolenoidPort2);
+        hammerRetractExtendSolenoid1 = new Solenoid(PortMap.MainModulePort, PortMap.hammerRetractExtendSolenoid1Port);
+        hammerRetractExtendSolenoid2 = new Solenoid(PortMap.MainModulePort, PortMap.hammerRetractExtendSolenoid2Port);
         
-        footSolenoid1 = new Solenoid(PortMap.SecondaryModulePort, PortMap.footSolenoidPort1);
-        footSolenoid2 = new Solenoid(PortMap.SecondaryModulePort, PortMap.footSolenoidPort2);
+        footUpDownSolenoid1 = new Solenoid(PortMap.SecondaryModulePort, PortMap.footUpDownSolenoid1Port);
+        footUpDownSolenoid2 = new Solenoid(PortMap.SecondaryModulePort, PortMap.footUpDownSolenoid2Port);
         
-        shooterLatchSolenoid1 = new Solenoid(PortMap.MainModulePort, PortMap.shooterLatchSolenoidPort1);
-        shooterLatchSolenoid2 = new Solenoid(PortMap.MainModulePort, PortMap.shooterLatchSolenoidPort2);
+        shooterLatchSolenoid1 = new Solenoid(PortMap.MainModulePort, PortMap.shooterLatchSolenoid1Port);
+        shooterLatchSolenoid2 = new Solenoid(PortMap.MainModulePort, PortMap.shooterLatchSolenoid2Port);
         
-        shooterSpeedController = new Victor(PortMap.MainModulePort, PortMap.shooterSpeedControllerPort);
+        shooterWinchSpeedController = new Victor(PortMap.MainModulePort, PortMap.shooterWinchSpeedControllerPort);
         
         shooterEncoder = new Encoder(PortMap.MainModulePort, PortMap.shooterEncoderPort1, 
                                      PortMap.MainModulePort, PortMap.shooterEncoderPort2);
@@ -117,23 +119,23 @@ public class RobotMap
         shooterEncoder.setPIDSourceParameter(Encoder.PIDSourceParameter.kRate);
         shooterEncoder.start();
         
-        pickUpSpeedController = new Victor(PortMap.MainModulePort, PortMap.pickUpSpeedControllerPort); 
-        shooterLimitSwitchDIO = new DigitalInput(PortMap.MainModulePort, PortMap.shooterLimitSwitchPort);
+        LoadingArmSpeedController = new Victor(PortMap.MainModulePort, PortMap.LoadingArmSpeedControllerPort); 
+        shooterLimitSwitchDIO = new DigitalInput(PortMap.MainModulePort, PortMap.shooterLimitSwitchDIOPort);
         
-        ballLimitSwitchDIO = new DigitalInput(PortMap.MainModulePort, PortMap.ballLimitSwitchPort);
+        ballLoadedLimitSwitchDIO = new DigitalInput(PortMap.MainModulePort, PortMap.ballLoadedLimitSwitchDIOPort);
         
-        compressorOnOffRelay = new Relay(PortMap.MainModulePort, PortMap.pneumaticsCompressorSwitchPort);
-        compressorLimitSwitchDIO = new DigitalInput(PortMap.MainModulePort, PortMap.pneumaticsCompressorLimitSwitchPort);
+        compressorOnOffRelay = new Relay(PortMap.MainModulePort, PortMap.compressorOnOffRelayPort);
+        compressorLimitSwitchDIO = new DigitalInput(PortMap.MainModulePort, PortMap.compressorLimitSwitchDIOPort);
         
-        frontUltrasonicAnalog = new AnalogChannel(PortMap.MainModulePort, PortMap.rangeFinderFrontUltrasonicPort);
+        frontUltrasonicAnalog = new AnalogChannel(PortMap.MainModulePort, PortMap.frontUltrasonicAnalogPort);
         
         //All LiveWindow actuators add here
         LiveWindow.addActuator("VICTORS", "SpeedControllerFrontLeft", (Victor)driveTrainFrontLeftSpeedController);
         LiveWindow.addActuator("VICTORS", "SpeedControllerBackLeft", (Victor)driveTrainBackLeftSpeedController);
         LiveWindow.addActuator("VICTORS", "SpeeedControllerFrontRight",(Victor)driveTrainFrontRightSpeedController);
         LiveWindow.addActuator("VICTORS", "SpeeedControllerBackRight",(Victor)driveTrainBackRightSpeedController);
-        LiveWindow.addActuator("VICTORS", "Pick up wheels", (Victor)pickUpSpeedController);
-        LiveWindow.addActuator("VICTORS", "Winch Motor", (Victor)shooterSpeedController);
+        LiveWindow.addActuator("VICTORS", "Pick up wheels", (Victor)LoadingArmSpeedController);
+        LiveWindow.addActuator("VICTORS", "Winch Motor", (Victor)shooterWinchSpeedController);
         
         LiveWindow.addSensor("ENCODERS", "LeftEncoder", driveTrainLeftEncoder);
         LiveWindow.addSensor("ENCODERS", "RightEncoder", driveTrainRightEncoder);
@@ -144,20 +146,22 @@ public class RobotMap
         
         LiveWindow.addActuator("SOLENOIDS", "GearShift1", gearShiftHighLowSolenoid1);
         LiveWindow.addActuator("SOLENOIDS", "GearShift2", gearShiftHighLowSolenoid2);
-        LiveWindow.addActuator("SOLENOIDS", "Hammer1", hammerSolenoid1);
-        LiveWindow.addActuator("SOLENOIDS", "Hammer2", hammerSolenoid2);
-        LiveWindow.addActuator("SOLENOIDS", "Foot1", footSolenoid1);
-        LiveWindow.addActuator("SOLENOIDS", "Foot2", footSolenoid2);
+        LiveWindow.addActuator("SOLENOIDS", "Hammer1", hammerRetractExtendSolenoid1);
+        LiveWindow.addActuator("SOLENOIDS", "Hammer2", hammerRetractExtendSolenoid2);
+        LiveWindow.addActuator("SOLENOIDS", "Foot1", footUpDownSolenoid1);
+        LiveWindow.addActuator("SOLENOIDS", "Foot2", footUpDownSolenoid2);
         LiveWindow.addActuator("SOLENOIDS", "Latch1", shooterLatchSolenoid1);
         LiveWindow.addActuator("SOLENOIDS", "Latch2", shooterLatchSolenoid2);
         LiveWindow.addActuator("SOLENOIDS", "Mecanum/Arcade1", tractionWheelUpDownSolenoid1);
         LiveWindow.addActuator("SOLENOIDS", "Mecanum/Arcade2", tractionWheelUpDownSolenoid2);
-        LiveWindow.addActuator("SOLENOIDS", "Pick Up1", pickUpSolenoid1);
-        LiveWindow.addActuator("SOLENOIDS", "Pick Up2", pickUpSolenoid2);
+        LiveWindow.addActuator("SOLENOIDS", "Pick Up1", loadingArmUpDownSolenoid1);
+        LiveWindow.addActuator("SOLENOIDS", "Pick Up2", loadingArmUpDownSolenoid2);
         
-        LiveWindow.addSensor("LIMIT SWITCHES", "BallLimitSwitch", ballLimitSwitchDIO);
+        LiveWindow.addSensor("LIMIT SWITCHES", "BallLimitSwitch", ballLoadedLimitSwitchDIO);
         LiveWindow.addSensor("LIMIT SWITCHES", "ShooterLimitSwitch", shooterLimitSwitchDIO);
         LiveWindow.addSensor("LIMIT SWITCHES", "LimitSwitch", shooterLimitSwitchDIO);
         LiveWindow.addSensor("RangeFinder", "FrontUltrasonic", frontUltrasonicAnalog);
+
+        System.out.println("RobotMap.init end");
     }
 }

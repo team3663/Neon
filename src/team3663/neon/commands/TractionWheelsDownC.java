@@ -9,15 +9,15 @@ package team3663.neon.commands;
  *
  * @author TrentHashimoto
  */
-public class SwitchToArcadeDriveCommand extends CommandBase {
+public class TractionWheelsDownC extends CommandBase {
     
-    public SwitchToArcadeDriveCommand() {
-        requires(driveTrain);
+    public TractionWheelsDownC() {
+        requires(driveTrainSS);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        driveTrain.TractionWheelsDown();
+        driveTrainSS.TractionWheelsDown();
     }
 
     // Called repeatedly when this Command is scheduled to run
