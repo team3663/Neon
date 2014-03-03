@@ -22,13 +22,12 @@ public class RobotMap
 {
     public static RobotDrive driveTrainRobotDrive3663;
     
-    public static Relay pneumaticsCompressorSwitch;
-    public static Relay lightsledRelay;
-    
-    public static SpeedController driveTrainSpeedControllerFrontLeft;
-    public static SpeedController driveTrainSpeedControllerBackLeft;
-    public static SpeedController driveTrainSpeedControllerFrontRight;
-    public static SpeedController driveTrainSpeedControllerBackRight;
+    public static Relay compressorOnOffRelay;
+
+    public static SpeedController driveTrainFrontLeftSpeedController;
+    public static SpeedController driveTrainBackLeftSpeedController;
+    public static SpeedController driveTrainFrontRightSpeedController;
+    public static SpeedController driveTrainBackRightSpeedController;
     public static SpeedController pickUpSpeedController;
     public static SpeedController shooterSpeedController;
     
@@ -36,10 +35,10 @@ public class RobotMap
     public static Encoder driveTrainLeftEncoder;
     public static Encoder driveTrainRightEncoder;
     
-    public static Solenoid driveTrainGearShift1;
-    public static Solenoid driveTrainGearShift2;
-    public static Solenoid driveTrainDriveChange1;
-    public static Solenoid driveTrainDriveChange2;
+    public static Solenoid gearShiftHighLowSolenoid1;
+    public static Solenoid gearShiftHighLowSolenoid2;
+    public static Solenoid tractionWheelUpDownSolenoid1;
+    public static Solenoid tractionWheelUpDownSolenoid2;
     public static Solenoid pickUpSolenoid1;
     public static Solenoid pickUpSolenoid2;
     public static Solenoid shooterLatchSolenoid1;
@@ -49,31 +48,22 @@ public class RobotMap
     public static Solenoid footSolenoid1;
     public static Solenoid footSolenoid2;
     
-    public static DigitalInput shooterLimitSwitch;
-    public static DigitalInput ballLimitSwitch;
-    public static DigitalInput pneumaticsCompressorLimitSwitch;
-    public static DigitalInput photoelectricGroundSensor;
-
-    public static AnalogChannel rangeFinderFrontUltrasonic;
-    public static AnalogChannel rangeFinderBackUltrasonic;
-    public static AnalogChannel rangeFinderLeftUltrasonic;
-    public static AnalogChannel rangeFinderRightUltrasonic;
+    public static DigitalInput shooterLimitSwitchDIO;
+    public static DigitalInput ballLimitSwitchDIO;
+    public static DigitalInput compressorLimitSwitchDIO;
     
-    
+    public static AnalogChannel frontUltrasonicAnalog;
+        
     public static void init()
     {
-        LiveWindow lw = new LiveWindow(); //May need to be changed because we dont have getInstance()
-        
-        
-        
         // All of the driveTrain sensors and items----------------------------------
-        driveTrainSpeedControllerFrontLeft = new Victor(PortMap.MainModulePort, PortMap.driveTrainSpeedControllerFrontLeftPort);
-        driveTrainSpeedControllerBackLeft = new Victor(PortMap.MainModulePort, PortMap.driveTrainSpeedControllerBackLeftPort);
-        driveTrainSpeedControllerFrontRight = new Victor(PortMap.MainModulePort, PortMap.driveTrainSpeedControllerFrontRightPort);
-        driveTrainSpeedControllerBackRight = new Victor(PortMap.MainModulePort, PortMap.driveTrainSpeedControllerBackRightPort);
+        driveTrainFrontLeftSpeedController = new Victor(PortMap.MainModulePort, PortMap.driveTrainSpeedControllerFrontLeftPort);
+        driveTrainBackLeftSpeedController = new Victor(PortMap.MainModulePort, PortMap.driveTrainSpeedControllerBackLeftPort);
+        driveTrainFrontRightSpeedController = new Victor(PortMap.MainModulePort, PortMap.driveTrainSpeedControllerFrontRightPort);
+        driveTrainBackRightSpeedController = new Victor(PortMap.MainModulePort, PortMap.driveTrainSpeedControllerBackRightPort);
         
-        driveTrainRobotDrive3663 = new RobotDrive(driveTrainSpeedControllerFrontLeft, driveTrainSpeedControllerBackLeft,
-                                                  driveTrainSpeedControllerFrontRight, driveTrainSpeedControllerBackRight);
+        driveTrainRobotDrive3663 = new RobotDrive(driveTrainFrontLeftSpeedController, driveTrainBackLeftSpeedController,
+                                                  driveTrainFrontRightSpeedController, driveTrainBackRightSpeedController);
       
         driveTrainRobotDrive3663.setSafetyEnabled(false);
         driveTrainRobotDrive3663.setExpiration(0.1);
@@ -96,11 +86,11 @@ public class RobotMap
         driveTrainRightEncoder.setPIDSourceParameter(Encoder.PIDSourceParameter.kRate);
         driveTrainRightEncoder.start();    
         
-        driveTrainGearShift1 = new Solenoid(PortMap.MainModulePort,PortMap.driveTrainGearShift1port);
-        driveTrainGearShift2 = new Solenoid(PortMap.MainModulePort, PortMap.driveTrainGearShift2port);
+        gearShiftHighLowSolenoid1 = new Solenoid(PortMap.MainModulePort,PortMap.driveTrainGearShift1port);
+        gearShiftHighLowSolenoid2 = new Solenoid(PortMap.MainModulePort, PortMap.driveTrainGearShift2port);
 
-        driveTrainDriveChange1 = new Solenoid(PortMap.MainModulePort, PortMap.driveTrainDriveChange1port);
-        driveTrainDriveChange2 = new Solenoid(PortMap.MainModulePort, PortMap.driveTrainDriveChange2port);
+        tractionWheelUpDownSolenoid1 = new Solenoid(PortMap.MainModulePort, PortMap.driveTrainDriveChange1port);
+        tractionWheelUpDownSolenoid2 = new Solenoid(PortMap.MainModulePort, PortMap.driveTrainDriveChange2port);
         
         //End of driveTrain sensors and items------------------------------------------------------------------
         
@@ -128,31 +118,20 @@ public class RobotMap
         shooterEncoder.start();
         
         pickUpSpeedController = new Victor(PortMap.MainModulePort, PortMap.pickUpSpeedControllerPort); 
-        shooterLimitSwitch = new DigitalInput(PortMap.MainModulePort, PortMap.shooterLimitSwitchPort);
+        shooterLimitSwitchDIO = new DigitalInput(PortMap.MainModulePort, PortMap.shooterLimitSwitchPort);
         
-        ballLimitSwitch = new DigitalInput(PortMap.MainModulePort, PortMap.ballLimitSwitchPort);
+        ballLimitSwitchDIO = new DigitalInput(PortMap.MainModulePort, PortMap.ballLimitSwitchPort);
         
-        //Components relating to current game(2014) Shooter items END----------------------------------------
+        compressorOnOffRelay = new Relay(PortMap.MainModulePort, PortMap.pneumaticsCompressorSwitchPort);
+        compressorLimitSwitchDIO = new DigitalInput(PortMap.MainModulePort, PortMap.pneumaticsCompressorLimitSwitchPort);
         
-        //Comonents that are used generally throughout most games Start--------------------------------------
-        
-        pneumaticsCompressorSwitch = new Relay(PortMap.MainModulePort, PortMap.pneumaticsCompressorSwitchPort);
-        pneumaticsCompressorLimitSwitch = new DigitalInput(PortMap.MainModulePort, PortMap.pneumaticsCompressorLimitSwitchPort);
-        
-        photoelectricGroundSensor = new DigitalInput(PortMap.MainModulePort, PortMap.photoelectricGroundSensorPort);
-        
-        //lightsledRelay = new Relay(PortMap.MainModulePort,PortMap.lightsledRelayPort);
-       
-        rangeFinderFrontUltrasonic = new AnalogChannel(PortMap.MainModulePort, PortMap.rangeFinderFrontUltrasonicPort);
-        //rangeFinderRightUltrasonic = new AnalogChannel(PortMap.MainModulePort, PortMap.rangeFinderRightUltrasonicPort);
-       
-        //Components that are used generally thouhtout most games END-----------------------------------------
+        frontUltrasonicAnalog = new AnalogChannel(PortMap.MainModulePort, PortMap.rangeFinderFrontUltrasonicPort);
         
         //All LiveWindow actuators add here
-        LiveWindow.addActuator("VICTORS", "SpeedControllerFrontLeft", (Victor)driveTrainSpeedControllerFrontLeft);
-        LiveWindow.addActuator("VICTORS", "SpeedControllerBackLeft", (Victor)driveTrainSpeedControllerBackLeft);
-        LiveWindow.addActuator("VICTORS", "SpeeedControllerFrontRight",(Victor)driveTrainSpeedControllerFrontRight);
-        LiveWindow.addActuator("VICTORS", "SpeeedControllerBackRight",(Victor)driveTrainSpeedControllerBackRight);
+        LiveWindow.addActuator("VICTORS", "SpeedControllerFrontLeft", (Victor)driveTrainFrontLeftSpeedController);
+        LiveWindow.addActuator("VICTORS", "SpeedControllerBackLeft", (Victor)driveTrainBackLeftSpeedController);
+        LiveWindow.addActuator("VICTORS", "SpeeedControllerFrontRight",(Victor)driveTrainFrontRightSpeedController);
+        LiveWindow.addActuator("VICTORS", "SpeeedControllerBackRight",(Victor)driveTrainBackRightSpeedController);
         LiveWindow.addActuator("VICTORS", "Pick up wheels", (Victor)pickUpSpeedController);
         LiveWindow.addActuator("VICTORS", "Winch Motor", (Victor)shooterSpeedController);
         
@@ -160,32 +139,25 @@ public class RobotMap
         LiveWindow.addSensor("ENCODERS", "RightEncoder", driveTrainRightEncoder);
         LiveWindow.addSensor("ENCODERS", "Shooter Encoder", shooterEncoder);
         
-        LiveWindow.addActuator("PNEUMATICS", "CompressorSwitch", pneumaticsCompressorSwitch);
-        LiveWindow.addSensor("PNEUMATICS", "CompressorLimitSwitch", pneumaticsCompressorLimitSwitch);
+        LiveWindow.addActuator("PNEUMATICS", "CompressorOnOffRelay", compressorOnOffRelay);
+        LiveWindow.addSensor("PNEUMATICS", "CompressorLimitSwitch", compressorLimitSwitchDIO);
         
-        LiveWindow.addActuator("SOLENOIDS", "GearShift1", driveTrainGearShift1);
-        LiveWindow.addActuator("SOLENOIDS", "GearShift2", driveTrainGearShift2);
+        LiveWindow.addActuator("SOLENOIDS", "GearShift1", gearShiftHighLowSolenoid1);
+        LiveWindow.addActuator("SOLENOIDS", "GearShift2", gearShiftHighLowSolenoid2);
         LiveWindow.addActuator("SOLENOIDS", "Hammer1", hammerSolenoid1);
         LiveWindow.addActuator("SOLENOIDS", "Hammer2", hammerSolenoid2);
         LiveWindow.addActuator("SOLENOIDS", "Foot1", footSolenoid1);
         LiveWindow.addActuator("SOLENOIDS", "Foot2", footSolenoid2);
         LiveWindow.addActuator("SOLENOIDS", "Latch1", shooterLatchSolenoid1);
         LiveWindow.addActuator("SOLENOIDS", "Latch2", shooterLatchSolenoid2);
-        LiveWindow.addActuator("SOLENOIDS", "Mecanum/Arcade1", driveTrainDriveChange1);
-        LiveWindow.addActuator("SOLENOIDS", "Mecanum/Arcade2", driveTrainDriveChange2);
+        LiveWindow.addActuator("SOLENOIDS", "Mecanum/Arcade1", tractionWheelUpDownSolenoid1);
+        LiveWindow.addActuator("SOLENOIDS", "Mecanum/Arcade2", tractionWheelUpDownSolenoid2);
         LiveWindow.addActuator("SOLENOIDS", "Pick Up1", pickUpSolenoid1);
         LiveWindow.addActuator("SOLENOIDS", "Pick Up2", pickUpSolenoid2);
         
-        LiveWindow.addSensor("LIMIT SWITCHES", "BallLimitSwitch", ballLimitSwitch);
-        LiveWindow.addSensor("LIMIT SWITCHES", "ShooterLimitSwitch", shooterLimitSwitch);
-        LiveWindow.addSensor("LIMIT SWITCHES", "LimitSwitch", shooterLimitSwitch);
-        /*LiveWindow.addSensor("RangeFinder", "BackUltrasonic", rangeFinderBackUltrasonic);
-        LiveWindow.addSensor("RangeFinder", "RightUltrasonic", rangeFinderRightUltrasonic);
-        LiveWindow.addSensor("RangeFinder", "FrontUltrasonic", rangeFinderFrontUltrasonic);
-        LiveWindow.addSensor("RangeFinder", "LeftUltrasonic", rangeFinderLeftUltrasonic);
-        
-        LiveWindow.addActuator("Lights", "LedArray", lightsledRelay);
-        LiveWindow.addSensor("Photoeletric", "GroundLineSensor", photoelectricGroundSensor);*/
-
+        LiveWindow.addSensor("LIMIT SWITCHES", "BallLimitSwitch", ballLimitSwitchDIO);
+        LiveWindow.addSensor("LIMIT SWITCHES", "ShooterLimitSwitch", shooterLimitSwitchDIO);
+        LiveWindow.addSensor("LIMIT SWITCHES", "LimitSwitch", shooterLimitSwitchDIO);
+        LiveWindow.addSensor("RangeFinder", "FrontUltrasonic", frontUltrasonicAnalog);
     }
 }

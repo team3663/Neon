@@ -1,5 +1,7 @@
 package team3663.neon.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 public class DriveCommand extends CommandBase
 {
     double left;
@@ -17,14 +19,28 @@ public class DriveCommand extends CommandBase
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() 
-    {           
-       if(driveTrain.IsTractionDown())
+    {
+        double jX, jY, jZ, jTwist;
+        
+        jX = oi.getDriveJoystick().getX();
+        jY = oi.getDriveJoystick().getY();
+        jZ = oi.getDriveJoystick().getZ();
+        jTwist = oi.getDriveJoystick().getTwist();
+
+        SmartDashboard.putNumber("Joystick X:", jX);
+        SmartDashboard.putNumber("Joystick Y:", jY);
+        SmartDashboard.putNumber("Joystick Z:", jZ);
+        SmartDashboard.putNumber("Joystick Twist:", jTwist);
+
+        if(driveTrain.IsTractionDown())
        {
            driveTrain.Arcade(oi.getDriveJoystick().getX(), oi.getDriveJoystick().getY(), oi.getDriveJoystick().getZ());
+           SmartDashboard.putString("Driving:", "Arcade");
        }
        else
        {
-           driveTrain.Mechanum(oi.getDriveJoystick().getX(), oi.getDriveJoystick().getY(), oi.getDriveJoystick().getTwist());
+           driveTrain.Mecanum(oi.getDriveJoystick().getX(), oi.getDriveJoystick().getY(), oi.getDriveJoystick().getTwist());
+           SmartDashboard.putString("Driving:", "Mecanum");
        }
     }
 

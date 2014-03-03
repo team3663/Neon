@@ -14,12 +14,12 @@ public class RecockFlipapultCommand  extends CommandBase
     
     protected void initialize()
     {
-        while(!RobotMap.ballLimitSwitch.get()){
-            shooterSystem.setWench(1);
+        while(!RobotMap.ballLimitSwitchDIO.get()){
+            shooterSystem.setWinch(1);
         }
         shooterSystem.closeLatch();
         while(shooterSystem.getShooterEncoder() < -40){ //higher number to wind more
-            shooterSystem.setWench(-1);
+            shooterSystem.setWinch(-1);
         }
     }
     

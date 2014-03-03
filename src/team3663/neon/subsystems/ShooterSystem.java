@@ -18,9 +18,9 @@ public class ShooterSystem extends Subsystem
     
     public void ShooterSystem()
     {
-        wenchEncoderReset();
+        winchEncoderReset();
         closeLatch();
-        setWench(0.0);
+        setWinch(0.0);
     }
     
     public void closeLatch(){
@@ -32,12 +32,12 @@ public class ShooterSystem extends Subsystem
         RobotMap.shooterLatchSolenoid2.set(false);
     }
     
-    public void setWench(double speed)
+    public void setWinch(double speed)
     {
         RobotMap.shooterSpeedController.set(speed);
     }
     
-    public void wenchEncoderReset()
+    public void winchEncoderReset()
     {
         RobotMap.shooterEncoder.reset();
     }
@@ -49,11 +49,11 @@ public class ShooterSystem extends Subsystem
     
     public boolean IsFlipperDown()
     {
-        return RobotMap.shooterLimitSwitch.get();
+        return RobotMap.shooterLimitSwitchDIO.get();
     }
     
     public boolean IsBallLoaded()
     {
-        return RobotMap.ballLimitSwitch.get();
+        return RobotMap.ballLimitSwitchDIO.get();
     }
 }

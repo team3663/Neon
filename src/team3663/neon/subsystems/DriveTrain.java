@@ -33,7 +33,7 @@ public class DriveTrain extends Subsystem
       
     public boolean IsTractionDown()
     {
-        return RobotMap.driveTrainDriveChange1.get();
+        return RobotMap.tractionWheelUpDownSolenoid1.get();
     }
     
     public void Arcade(double joyX, double joyY, double joyZ)
@@ -41,7 +41,7 @@ public class DriveTrain extends Subsystem
         RobotMap.driveTrainRobotDrive3663.arcadeDrive(joyX, -joyY);
     }
     
-     public void Mechanum(double joyX, double joyY, double joyTwist)
+     public void Mecanum(double joyX, double joyY, double joyTwist)
     {
         direction = MathUtils.atan2(-joyX, joyY);
         magnitude = Math.sqrt((joyX * joyX) +  (joyY * joyY));
@@ -50,13 +50,13 @@ public class DriveTrain extends Subsystem
     }
   
     public void ShiftToHighGear(){
-        RobotMap.driveTrainGearShift1.set(false);
-        RobotMap.driveTrainGearShift2.set(true);
+        RobotMap.gearShiftHighLowSolenoid1.set(false);
+        RobotMap.gearShiftHighLowSolenoid2.set(true);
     }
     
    public void ShiftToLowGear(){
-        RobotMap.driveTrainGearShift1.set(true);
-        RobotMap.driveTrainGearShift2.set(false);
+        RobotMap.gearShiftHighLowSolenoid1.set(true);
+        RobotMap.gearShiftHighLowSolenoid2.set(false);
     }
     
     public void Drive(double speed, double curve)
@@ -69,7 +69,7 @@ public class DriveTrain extends Subsystem
     }
     public boolean IsLowGear()
     {
-        return RobotMap.driveTrainGearShift1.get();
+        return RobotMap.gearShiftHighLowSolenoid1.get();
     }
     public double GetLeftEncoder()
     {
@@ -87,14 +87,14 @@ public class DriveTrain extends Subsystem
     
     public void TractionWheelsUp()
     {
-        RobotMap.driveTrainDriveChange1.set(false);
-        RobotMap.driveTrainDriveChange2.set(true);
+        RobotMap.tractionWheelUpDownSolenoid1.set(false);
+        RobotMap.tractionWheelUpDownSolenoid2.set(true);
     }
     
     public void TractionWheelsDown()
     {
-        RobotMap.driveTrainDriveChange1.set(true);
-        RobotMap.driveTrainDriveChange2.set(false);
+        RobotMap.tractionWheelUpDownSolenoid1.set(true);
+        RobotMap.tractionWheelUpDownSolenoid2.set(false);
     }
     
     public void UpdateStatus()
@@ -113,11 +113,11 @@ public class DriveTrain extends Subsystem
         
         if (IsTractionDown())
         {
-            CommandBase.dsLCD.println(DriverStationLCD.Line.kUser4, 1, "Traction Wheels Down");
+            CommandBase.dsLCD.println(DriverStationLCD.Line.kUser3, 1, "Traction Wheels Down");
         }
         else
         {
-            CommandBase.dsLCD.println(DriverStationLCD.Line.kUser4, 1, "Tration Wheel Up");
+            CommandBase.dsLCD.println(DriverStationLCD.Line.kUser3, 1, "Traction Wheels Up");
         }
     }
 }

@@ -6,6 +6,7 @@
 package team3663.neon.commands;
 
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import team3663.neon.RobotMap;
 
 /**
@@ -51,6 +52,7 @@ public class Bob extends CommandBase {
         }
         if(currentTime > lastSecondTime){
             System.out.println("Bob.isFinished time: " + (currentTime - startTime));
+            SmartDashboard.putNumber("Bob count:", currentTime - startTime);
             lastSecondTime = currentTime;
             executeShouldPrint = true;
         }

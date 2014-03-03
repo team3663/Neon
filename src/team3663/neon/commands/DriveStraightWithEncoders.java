@@ -1,6 +1,7 @@
 package team3663.neon.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DriveStraightWithEncoders extends CommandBase
 {
@@ -43,13 +44,17 @@ public class DriveStraightWithEncoders extends CommandBase
     
     protected boolean isFinished()
     {
+        double rEncoder = driveTrain.GetRightEncoder();
+        
         if(isDrivingForward){
-            if(driveTrain.GetRightEncoder()>finalEncoderCount){
+            SmartDashboard.putNumber("Right Encoder remaing ticks:", rEncoder-finalEncoderCount);
+            if(rEncoder>finalEncoderCount){
                 return true;
             }
         }
         else{
-            if(driveTrain.GetRightEncoder()<finalEncoderCount){
+            SmartDashboard.putNumber("Right Encoder remaing ticks:", finalEncoderCount-rEncoder);
+            if(rEncoder<finalEncoderCount){
                 return true;
             }
         }
@@ -65,5 +70,4 @@ public class DriveStraightWithEncoders extends CommandBase
     {
         end();
     }
-    
 }

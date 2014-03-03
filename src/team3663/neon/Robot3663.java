@@ -43,13 +43,13 @@ public class Robot3663 extends IterativeRobot
     public void autonomousPeriodic()
     {
         Scheduler.getInstance().run();
-        LiveWindow.run();
+        //LiveWindow.run();
         UpdateStatus();
     }
 
     public void teleopInit() 
     {
-        LiveWindow.setEnabled(true);
+        //LiveWindow.setEnabled(true);
         autonomousCommand.cancel();
     }
     
@@ -62,8 +62,7 @@ public class Robot3663 extends IterativeRobot
     
     public void testPeriodic() 
     {
-        SmartDashboard.getBoolean("live window on:", test);
-        System.out.println(test);
+        //System.out.println(test);
         //LiveWindow.setEnabled(false);
         Scheduler.getInstance().run();
         LiveWindow.run();
@@ -73,7 +72,8 @@ public class Robot3663 extends IterativeRobot
     public void UpdateStatus()
     {
         CommandBase.driveTrain.UpdateStatus();
-        CommandBase.photoelectric.UpdateStatus();
+        CommandBase.compressor.UpdateStatus();
+        CommandBase.dsLCD.println(DriverStationLCD.Line.kUser4, 1, "Brian14");
 	CommandBase.dsLCD.updateLCD();
         CommandBase.dsLCD.println(DriverStationLCD.Line.kUser1, 1, "                     ");
         CommandBase.dsLCD.println(DriverStationLCD.Line.kUser2, 1, "                     ");

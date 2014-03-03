@@ -47,7 +47,7 @@ public class BallHandler extends Subsystem {
     }
     //checks
     public boolean IsBallLoaded(){
-        return RobotMap.ballLimitSwitch.get();
+        return RobotMap.ballLimitSwitchDIO.get();
     }
     public boolean IsFootUp(){
         return RobotMap.footSolenoid1.get();

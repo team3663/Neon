@@ -1,5 +1,7 @@
 package team3663.neon.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 public class FillAirTanksCommand extends CommandBase
 {
     public FillAirTanksCommand()
@@ -8,20 +10,20 @@ public class FillAirTanksCommand extends CommandBase
     }
     protected void initialize()
     {
-        
+
     }
     protected void execute()
-    {
-/*        
-        if (compressor.compressorLimitSwitch.get() == false)
+    {        
+        if (compressor.airTanksAreFull())
         {
-		compressor.TurnOn();
+            SmartDashboard.putString("Compressor:", "Off");
+            compressor.TurnOff();
 	}
 	else
         {
-		compressor.TurnOff();
+            SmartDashboard.putString("Compressor:", "On");
+            compressor.TurnOn();
 	}
-*/        
     }
     protected boolean isFinished()
     {
@@ -29,7 +31,7 @@ public class FillAirTanksCommand extends CommandBase
     }
     protected void end()
     {
-        
+
     }
     protected void interrupted()
     {

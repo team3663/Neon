@@ -1,29 +1,33 @@
 package team3663.neon.commands;
 
-public class RangeFinder extends CommandBase
+import edu.wpi.first.wpilibj.Timer;
+
+public class RetractHammerCommand extends CommandBase
 {
-    public RangeFinder()
+    public RetractHammerCommand()
     {
-        requires(ultraSonic);
+        requires(hammer);
     }
+    
     protected void initialize()
     {
-        
+        hammer.RetractHammer();
     }
+    
     protected void execute()
     {
-        //ultraSonic.getDistanceInches();
     }
+    
     protected boolean isFinished()
     {
         return true;
     }
+    
     protected void end()
     {
-        
     }
+    
     protected void interrupted()
     {
-        
     }
 }
