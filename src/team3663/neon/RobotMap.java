@@ -87,29 +87,53 @@ public class RobotMap
         driveTrainRightEncoder.setDistancePerPulse(1.0);
         driveTrainRightEncoder.setPIDSourceParameter(Encoder.PIDSourceParameter.kRate);
         driveTrainRightEncoder.start();    
-        
-        gearShiftHighLowSolenoid1 = new Solenoid(PortMap.MainModulePort,PortMap.gearShiftHighLowSolenoid1Port);
-        gearShiftHighLowSolenoid2 = new Solenoid(PortMap.MainModulePort, PortMap.gearShiftHighLowSolenoid2Port);
+        if(Robot3663.mustard){
+            gearShiftHighLowSolenoid1 = new Solenoid(PortMap.MainModulePort,PortMap.gearShiftHighLowSolenoid1Port);
+            gearShiftHighLowSolenoid2 = new Solenoid(PortMap.MainModulePort, PortMap.gearShiftHighLowSolenoid2Port);
 
-        tractionWheelUpDownSolenoid1 = new Solenoid(PortMap.MainModulePort, PortMap.tractionWheelUpDownSolenoid1Port);
-        tractionWheelUpDownSolenoid2 = new Solenoid(PortMap.MainModulePort, PortMap.tractionWheelUpDownSolenoid2Port);
-        
-        //End of driveTrain sensors and items------------------------------------------------------------------
-        
-        //Components relating to current game(2014) Shooter items Start----------------------------------------
-        
-        loadingArmUpDownSolenoid1 = new Solenoid(PortMap.SecondaryModulePort, PortMap.loadingArmUpDownSolenoid1Port);
-        loadingArmUpDownSolenoid2 = new Solenoid(PortMap.SecondaryModulePort, PortMap.loadingArmUpDownSolenoid2Port);
-        
-        hammerRetractExtendSolenoid1 = new Solenoid(PortMap.MainModulePort, PortMap.hammerRetractExtendSolenoid1Port);
-        hammerRetractExtendSolenoid2 = new Solenoid(PortMap.MainModulePort, PortMap.hammerRetractExtendSolenoid2Port);
-        
-        footUpDownSolenoid1 = new Solenoid(PortMap.SecondaryModulePort, PortMap.footUpDownSolenoid1Port);
-        footUpDownSolenoid2 = new Solenoid(PortMap.SecondaryModulePort, PortMap.footUpDownSolenoid2Port);
-        
-        shooterLatchSolenoid1 = new Solenoid(PortMap.MainModulePort, PortMap.shooterLatchSolenoid1Port);
-        shooterLatchSolenoid2 = new Solenoid(PortMap.MainModulePort, PortMap.shooterLatchSolenoid2Port);
-        
+            tractionWheelUpDownSolenoid1 = new Solenoid(PortMap.MainModulePort, PortMap.tractionWheelUpDownSolenoid1Port);
+            tractionWheelUpDownSolenoid2 = new Solenoid(PortMap.MainModulePort, PortMap.tractionWheelUpDownSolenoid2Port);
+
+            //End of driveTrain sensors and items------------------------------------------------------------------
+
+            //Components relating to current game(2014) Shooter items Start----------------------------------------
+
+            loadingArmUpDownSolenoid1 = new Solenoid(PortMap.SecondaryModulePort, PortMap.loadingArmUpDownSolenoid1Port);
+            loadingArmUpDownSolenoid2 = new Solenoid(PortMap.SecondaryModulePort, PortMap.loadingArmUpDownSolenoid2Port);
+
+            hammerRetractExtendSolenoid1 = new Solenoid(PortMap.MainModulePort, PortMap.hammerRetractExtendSolenoid1Port);
+            hammerRetractExtendSolenoid2 = new Solenoid(PortMap.MainModulePort, PortMap.hammerRetractExtendSolenoid2Port);
+
+            footUpDownSolenoid1 = new Solenoid(PortMap.SecondaryModulePort, PortMap.footUpDownSolenoid1Port);
+            footUpDownSolenoid2 = new Solenoid(PortMap.SecondaryModulePort, PortMap.footUpDownSolenoid2Port);
+
+            shooterLatchSolenoid1 = new Solenoid(PortMap.MainModulePort, PortMap.shooterLatchSolenoid1Port);
+            shooterLatchSolenoid2 = new Solenoid(PortMap.MainModulePort, PortMap.shooterLatchSolenoid2Port);
+        }
+        else
+        {
+            gearShiftHighLowSolenoid1 = new Solenoid(PortMap.SecondaryModulePort,PortMap.gearShiftHighLowSolenoid1PortK);
+            gearShiftHighLowSolenoid2 = new Solenoid(PortMap.SecondaryModulePort, PortMap.gearShiftHighLowSolenoid2PortK);
+
+            tractionWheelUpDownSolenoid1 = new Solenoid(PortMap.SecondaryModulePort, PortMap.tractionWheelUpDownSolenoid1PortK);
+            tractionWheelUpDownSolenoid2 = new Solenoid(PortMap.SecondaryModulePort, PortMap.tractionWheelUpDownSolenoid2PortK);
+
+            //End of driveTrain sensors and items------------------------------------------------------------------
+
+            //Components relating to current game(2014) Shooter items Start----------------------------------------
+
+            loadingArmUpDownSolenoid1 = new Solenoid(PortMap.MainModulePort, PortMap.loadingArmUpDownSolenoid1PortK);
+            loadingArmUpDownSolenoid2 = new Solenoid(PortMap.MainModulePort, PortMap.loadingArmUpDownSolenoid2PortK);
+
+            hammerRetractExtendSolenoid1 = new Solenoid(PortMap.SecondaryModulePort, PortMap.hammerRetractExtendSolenoid1PortK);
+            hammerRetractExtendSolenoid2 = new Solenoid(PortMap.SecondaryModulePort, PortMap.hammerRetractExtendSolenoid2PortK);
+
+            footUpDownSolenoid1 = new Solenoid(PortMap.SecondaryModulePort, PortMap.footUpDownSolenoid1PortK);
+            footUpDownSolenoid2 = new Solenoid(PortMap.SecondaryModulePort, PortMap.footUpDownSolenoid2PortK);
+
+            shooterLatchSolenoid1 = new Solenoid(PortMap.MainModulePort, PortMap.shooterLatchSolenoid1PortK);
+            shooterLatchSolenoid2 = new Solenoid(PortMap.MainModulePort, PortMap.shooterLatchSolenoid2PortK);
+        }
         shooterWinchSpeedController = new Victor(PortMap.MainModulePort, PortMap.shooterWinchSpeedControllerPort);
         
         shooterEncoder = new Encoder(PortMap.MainModulePort, PortMap.shooterEncoderPort1, 

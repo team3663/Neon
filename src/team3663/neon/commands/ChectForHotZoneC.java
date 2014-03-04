@@ -15,12 +15,12 @@ public class ChectForHotZoneC extends CommandBase
     protected void execute()
     {
         System.out.println("The image processing is being called");
-        if(imageProcessingSS.isGoalHot())
+        //if(imageProcessingSS.isGoalHot())
         {
             SmartDashboard.putString("Hot or Cold", "Hot");
             System.out.println("Robot is facing the hot target");
         }
-        else
+        //else
         {
             SmartDashboard.putString("Hot or Cold", "Cold");
             System.out.println("No hot target found in autonomous");

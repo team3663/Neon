@@ -15,6 +15,8 @@ import team3663.neon.commands.FootUpC;
 import team3663.neon.commands.HammerExtendC;
 import team3663.neon.commands.LoadingArmDownC;
 import team3663.neon.commands.LoadingArmUpC;
+import team3663.neon.commands.ShooterLatchCloseC;
+import team3663.neon.commands.ShooterLatchOpenC;
 
 public class OI 
 {
@@ -65,6 +67,8 @@ public class OI
         SmartDashboard.putData("ShiftToHighGear", new ShiftToHighGearC());
         SmartDashboard.putData("TractionWheelsDown", new TractionWheelsDownC());
         SmartDashboard.putData("TractionWheelsUp", new TractionWheelsUpC());
+        SmartDashboard.putData("ShooterLatchClose", new ShooterLatchCloseC());
+        SmartDashboard.putData("ShooterLatchOpen", new ShooterLatchOpenC());
         
         System.out.println("OI constructor end");
     }

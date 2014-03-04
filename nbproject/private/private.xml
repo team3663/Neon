@@ -4,23 +4,10 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/workspace/Neon/src/team3663/neon/RobotMap.java</file>
-            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/AutonomousCommand.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/PortMap.java</file>
             <file>file:/C:/workspace/Neon/src/team3663/neon/commands/CommandBase.java</file>
             <file>file:/C:/workspace/Neon/src/team3663/neon/OI.java</file>
-            <file>file:/C:/workspace/Neon/src/team3663/neon/subsystems/Photoelectric.java</file>
-            <file>file:/C:/workspace/Neon/src/team3663/neon/subsystems/Hammer.java</file>
-            <file>file:/C:/workspace/Neon/src/team3663/neon/subsystems/ShooterSystem.java</file>
-            <file>file:/C:/workspace/Neon/src/team3663/neon/subsystems/Compressor.java</file>
-            <file>file:/C:/workspace/Neon/src/team3663/neon/subsystems/BallHandler.java</file>
-            <file>file:/C:/workspace/Neon/src/team3663/neon/subsystems/Ultrasonic.java</file>
-            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/ToggleLiveWindowModeCommand.java</file>
-            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/DriveCommand.java</file>
             <file>file:/C:/workspace/Neon/src/team3663/neon/Robot3663.java</file>
-            <file>file:/C:/workspace/Neon/src/team3663/neon/subsystems/ImageProcessing.java</file>
-            <file>file:/C:/workspace/Neon/src/team3663/neon/subsystems/Motor.java</file>
-            <file>file:/C:/workspace/Neon/src/team3663/neon/PortMap.java</file>
-            <file>file:/C:/workspace/Neon/src/team3663/neon/subsystems/DriveTrain.java</file>
-            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/Bob.java</file>
         </group>
     </open-files>
 </project-private>

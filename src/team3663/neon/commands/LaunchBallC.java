@@ -15,7 +15,7 @@ public class LaunchBallC  extends CommandBase
     
     protected void initialize()
     {
-        shooterWinchAndLatchSS.openLatch();
+        shooterWinchAndLatchSS.latchOpen();
     }
     
     protected void execute()

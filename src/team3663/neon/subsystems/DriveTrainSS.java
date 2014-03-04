@@ -19,9 +19,9 @@ public class DriveTrainSS extends Subsystem
     public boolean highGear;
     private double direction;
     private double magnitude;
-    public void DriveTrain()
+    
+    public void DriveTrainSS()
     {
-        
         ShiftToLowGear();
         TractionWheelsDown();
     }

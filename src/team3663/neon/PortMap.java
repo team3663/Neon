@@ -22,6 +22,7 @@ public class PortMap
     public static int ballLoadedLimitSwitchDIOPort            = 12;
     
     //Solenoids
+   
     public static int hammerRetractExtendSolenoid1Port        = 1;
     public static int hammerRetractExtendSolenoid2Port        = 2;
     public static int gearShiftHighLowSolenoid1Port           = 3; 
@@ -37,6 +38,22 @@ public class PortMap
     public static int footUpDownSolenoid2Port                 = 3;
     public static int footUpDownSolenoid1Port                 = 4;
    
+    //solinoids ketup
+    public static int hammerRetractExtendSolenoid1PortK        = 1;
+    public static int hammerRetractExtendSolenoid2PortK        = 2;
+    public static int gearShiftHighLowSolenoid1PortK           = 3; 
+    public static int gearShiftHighLowSolenoid2PortK           = 4;
+    public static int tractionWheelUpDownSolenoid2PortK        = 5;
+    public static int tractionWheelUpDownSolenoid1PortK        = 6;
+    public static int shooterLatchSolenoid2PortK               = 8;
+    public static int shooterLatchSolenoid1PortK               = 7;
+
+    // 2nd puck ketup
+    public static int loadingArmUpDownSolenoid2PortK           = 2;
+    public static int loadingArmUpDownSolenoid1PortK           = 1;
+    public static int footUpDownSolenoid2PortK                 = 7;
+    public static int footUpDownSolenoid1PortK                 = 8;
+    
     //All analog ports
     public static int frontUltrasonicAnalogPort               = 1;
     

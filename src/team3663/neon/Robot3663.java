@@ -12,6 +12,7 @@ import team3663.neon.commands.CommandBase;
 
 public class Robot3663 extends IterativeRobot
 {
+    public static boolean mustard = false;
     boolean test = true;
     int counter=0;
     CommandGroup autonomousCG;
@@ -74,7 +75,8 @@ public class Robot3663 extends IterativeRobot
     
     public void UpdateStatus()
     {
-        CommandBase.driveTrainSS.UpdateStatus();
+        //CommandBase.driveTrainSS.UpdateStatus();
+        CommandBase.shooterWinchAndLatchSS.UpdateStatus();
         CommandBase.compressorSS.UpdateStatus();
         CommandBase.dsLCD.println(DriverStationLCD.Line.kUser4, 1, "Brian14 "+ counter++);
 	CommandBase.dsLCD.updateLCD();

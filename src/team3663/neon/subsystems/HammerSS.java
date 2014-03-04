@@ -8,7 +8,7 @@ public class HammerSS extends Subsystem {
     public void initDefaultCommand() {
     }
     
-    public void Hammer(){
+    public void HammerSS(){
         hammerRetract();
     }
 /** 

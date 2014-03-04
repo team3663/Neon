@@ -1,19 +1,28 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package team3663.neon.commands;
 
-public class LoadingArmDownC extends CommandBase {
+/**
+ *
+ * @author curtis
+ */
+public class ShooterLatchCloseC extends CommandBase {
     
-    public LoadingArmDownC() {
+    public ShooterLatchCloseC() {
         // Use requires() here to declare subsystem dependencies
-        requires(loadingArmSS);
+        requires(shooterWinchAndLatchSS);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        loadingArmSS.LoadingArmDown();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+        shooterWinchAndLatchSS.latchClose();
     }
 
     // Make this return true when this Command no longer needs to run execute()
