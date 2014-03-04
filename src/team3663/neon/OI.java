@@ -16,6 +16,7 @@ import team3663.neon.commands.LoadingArmDownC;
 import team3663.neon.commands.LoadingArmUpC;
 import team3663.neon.commands.LoosenWinchAndLatchC;
 import team3663.neon.commands.ResetWinchEncoderC;
+import team3663.neon.commands.ShootAndRecockCG;
 import team3663.neon.commands.ShooterLatchCloseC;
 import team3663.neon.commands.ShooterLatchOpenC;
 import team3663.neon.commands.WindWinchC;
@@ -76,7 +77,7 @@ public class OI
         SmartDashboard.putData("WindWinch_-50", new WindWinchC(-50));
         SmartDashboard.putData("ResetWinchEncoder", new ResetWinchEncoderC());
         SmartDashboard.putData("LoosenWinchAndLatch", new LoosenWinchAndLatchC());
-
+        SmartDashboard.putData("ShootAndRecockCG", new ShootAndRecockCG());
         
         System.out.println("OI constructor end");
     }

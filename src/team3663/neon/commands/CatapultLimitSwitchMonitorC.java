@@ -19,22 +19,22 @@ public class CatapultLimitSwitchMonitorC extends CommandBase {
     
     public CatapultLimitSwitchMonitorC() {
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+        requires(catapultLimitSwitchSS);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
         whenCatapultWentDown = 0;
-//        if (catapultLimitSwitchSS.catapultIsDownRaw())
+        if (catapultLimitSwitchSS.catapultIsDownRaw())
             catapultIsReallyDown = catapultWasPreviouslyDown = true;
-//        else
+        else
             catapultIsReallyDown = catapultWasPreviouslyDown = false;
-//        catapultLimitSwitchSS.putCatapultIsDown(catapultIsReallyDown);
+        catapultLimitSwitchSS.putCatapultIsDown(catapultIsReallyDown);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    /*
+
         boolean catapultIsCurrentlyDown = catapultLimitSwitchSS.catapultIsDownRaw();
 
         if (!catapultIsCurrentlyDown)
@@ -59,7 +59,6 @@ public class CatapultLimitSwitchMonitorC extends CommandBase {
             }
         }
         catapultLimitSwitchSS.putCatapultIsDown(catapultIsReallyDown);  
-    */
     }
 
     // Make this return true when this Command no longer needs to run execute()
