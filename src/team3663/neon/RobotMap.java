@@ -31,7 +31,7 @@ public class RobotMap
     public static SpeedController LoadingArmSpeedController;
     public static SpeedController shooterWinchSpeedController;
     
-    public static Encoder shooterEncoder;
+    public static Encoder winchEncoder;
     public static Encoder driveTrainLeftEncoder;
     public static Encoder driveTrainRightEncoder;
     
@@ -86,7 +86,8 @@ public class RobotMap
         
         driveTrainRightEncoder.setDistancePerPulse(1.0);
         driveTrainRightEncoder.setPIDSourceParameter(Encoder.PIDSourceParameter.kRate);
-        driveTrainRightEncoder.start();    
+        driveTrainRightEncoder.start();
+        
         if(Robot3663.mustard){
             gearShiftHighLowSolenoid1 = new Solenoid(PortMap.MainModulePort,PortMap.gearShiftHighLowSolenoid1Port);
             gearShiftHighLowSolenoid2 = new Solenoid(PortMap.MainModulePort, PortMap.gearShiftHighLowSolenoid2Port);
@@ -112,11 +113,11 @@ public class RobotMap
         }
         else
         {
-            gearShiftHighLowSolenoid1 = new Solenoid(PortMap.SecondaryModulePort,PortMap.gearShiftHighLowSolenoid1PortK);
-            gearShiftHighLowSolenoid2 = new Solenoid(PortMap.SecondaryModulePort, PortMap.gearShiftHighLowSolenoid2PortK);
+            gearShiftHighLowSolenoid1 = new Solenoid(PortMap.MainModulePort,PortMap.gearShiftHighLowSolenoid1PortK);
+            gearShiftHighLowSolenoid2 = new Solenoid(PortMap.MainModulePort, PortMap.gearShiftHighLowSolenoid2PortK);
 
-            tractionWheelUpDownSolenoid1 = new Solenoid(PortMap.SecondaryModulePort, PortMap.tractionWheelUpDownSolenoid1PortK);
-            tractionWheelUpDownSolenoid2 = new Solenoid(PortMap.SecondaryModulePort, PortMap.tractionWheelUpDownSolenoid2PortK);
+            tractionWheelUpDownSolenoid1 = new Solenoid(PortMap.MainModulePort, PortMap.tractionWheelUpDownSolenoid1PortK);
+            tractionWheelUpDownSolenoid2 = new Solenoid(PortMap.MainModulePort, PortMap.tractionWheelUpDownSolenoid2PortK);
 
             //End of driveTrain sensors and items------------------------------------------------------------------
 
@@ -136,12 +137,12 @@ public class RobotMap
         }
         shooterWinchSpeedController = new Victor(PortMap.MainModulePort, PortMap.shooterWinchSpeedControllerPort);
         
-        shooterEncoder = new Encoder(PortMap.MainModulePort, PortMap.shooterEncoderPort1, 
+        winchEncoder = new Encoder(PortMap.MainModulePort, PortMap.shooterEncoderPort1, 
                                      PortMap.MainModulePort, PortMap.shooterEncoderPort2);
         
-        shooterEncoder.setDistancePerPulse(1.0);
-        shooterEncoder.setPIDSourceParameter(Encoder.PIDSourceParameter.kRate);
-        shooterEncoder.start();
+        winchEncoder.setDistancePerPulse(1.0);
+        winchEncoder.setPIDSourceParameter(Encoder.PIDSourceParameter.kRate);
+        winchEncoder.start();
         
         LoadingArmSpeedController = new Victor(PortMap.MainModulePort, PortMap.LoadingArmSpeedControllerPort); 
         shooterLimitSwitchDIO = new DigitalInput(PortMap.MainModulePort, PortMap.shooterLimitSwitchDIOPort);
@@ -163,7 +164,7 @@ public class RobotMap
         
         LiveWindow.addSensor("ENCODERS", "LeftEncoder", driveTrainLeftEncoder);
         LiveWindow.addSensor("ENCODERS", "RightEncoder", driveTrainRightEncoder);
-        LiveWindow.addSensor("ENCODERS", "Shooter Encoder", shooterEncoder);
+        LiveWindow.addSensor("ENCODERS", "Shooter Encoder", winchEncoder);
         
         LiveWindow.addActuator("PNEUMATICS", "CompressorOnOffRelay", compressorOnOffRelay);
         LiveWindow.addSensor("PNEUMATICS", "CompressorLimitSwitch", compressorLimitSwitchDIO);

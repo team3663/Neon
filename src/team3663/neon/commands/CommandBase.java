@@ -3,12 +3,12 @@ package team3663.neon.commands;
 import edu.wpi.first.wpilibj.DriverStationLCD;
 import edu.wpi.first.wpilibj.command.Command;
 import team3663.neon.OI;
+import team3663.neon.subsystems.CatapultLimitSwitchSS;
 import team3663.neon.subsystems.LoadingArmSS;
 import team3663.neon.subsystems.CompressorSS;
 import team3663.neon.subsystems.DriveTrainSS;
 import team3663.neon.subsystems.FootSS;
 import team3663.neon.subsystems.HammerSS;
-import team3663.neon.subsystems.ImageProcessingSS;
 import team3663.neon.subsystems.ShooterWinchAndLatchSS;
 
 public abstract class CommandBase extends Command 
@@ -17,10 +17,10 @@ public abstract class CommandBase extends Command
     public static DriveTrainSS driveTrainSS; 
     public static CompressorSS compressorSS;
     public static FootSS footSS;
-    public static ImageProcessingSS imageProcessingSS;
     public static ShooterWinchAndLatchSS shooterWinchAndLatchSS;
     public static HammerSS hammerSS;
     public static LoadingArmSS loadingArmSS;
+    public static CatapultLimitSwitchSS catapultLimitSwitchSS;
     
     public static DriverStationLCD dsLCD;
     
@@ -32,9 +32,9 @@ public abstract class CommandBase extends Command
         driveTrainSS = new DriveTrainSS();
         footSS = new FootSS();
         hammerSS = new HammerSS();
-        imageProcessingSS = new ImageProcessingSS();        
         loadingArmSS = new LoadingArmSS();      
         shooterWinchAndLatchSS = new ShooterWinchAndLatchSS();
+        catapultLimitSwitchSS = new CatapultLimitSwitchSS();
 
         dsLCD = DriverStationLCD.getInstance();
         

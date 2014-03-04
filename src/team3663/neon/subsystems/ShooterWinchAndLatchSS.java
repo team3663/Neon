@@ -18,11 +18,11 @@ public class ShooterWinchAndLatchSS extends Subsystem
     {
     }
     
-    public void ShooterWinchAndLatchSS()
+    public void WinchAndLatchSS()
     {
         winchEncoderReset();
         latchClose();
-        setWinch(0.0);
+        setWinchSpeed(0.0);
     }
     
     public void latchClose(){
@@ -34,53 +34,28 @@ public class ShooterWinchAndLatchSS extends Subsystem
         RobotMap.shooterLatchSolenoid2.set(false);
     }
     
-    public void setWinch(double speed)
+    public void setWinchSpeed(double speed)
     {
         RobotMap.shooterWinchSpeedController.set(speed);
     }
     
     public void winchEncoderReset()
     {
-        RobotMap.shooterEncoder.reset();
+        RobotMap.winchEncoder.reset();
     }
     
     public double getWinchEncoder()
     {
         //one revolution is 360 ticks
-        return RobotMap.shooterEncoder.get();
+        return RobotMap.winchEncoder.get();
     }
     
-    public boolean IsFlipperDown()
-    {
-        return RobotMap.shooterLimitSwitchDIO.get();
-    }
-    
-    public boolean IsBallLoaded()
+    public boolean ballIsLoaded()
     {
         return RobotMap.ballLoadedLimitSwitchDIO.get();
     }
     public void UpdateStatus()
     {
         CommandBase.dsLCD.println(DriverStationLCD.Line.kUser1,1, "" + (int)getWinchEncoder());
-    }
-    //encoder tightens using negative speed
-    //encoder counts deacrese when tightened
-    public void WindUpWinch(int TargetTicks){
-        while(true)
-        {
-            if(getWinchEncoder()< TargetTicks)
-            {
-                RobotMap.shooterWinchSpeedController.set(1);
-            }
-            else if(getWinchEncoder()> TargetTicks)
-            {
-                RobotMap.shooterWinchSpeedController.set(-1);
-            }
-            else
-            {
-                RobotMap.shooterWinchSpeedController.set(0);
-                break;
-            }
-        }
     }
 }
