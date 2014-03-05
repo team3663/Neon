@@ -10,12 +10,6 @@ import team3663.neon.commands.DriveC;
 
 public class DriveTrainSS extends Subsystem
 {
-    
-    public double ACCEL_LIMIT = 0.2;
-    public double DECEL_LIMIT = 0.2;
-    public double PI = 3.14159;
-    public double ENCODER_CORRECT  = 4 * 12 / 22 / 1440 * 5 / 3;
-    
     public boolean highGear;
     private double direction;
     private double magnitude;
@@ -38,12 +32,12 @@ public class DriveTrainSS extends Subsystem
     
     public void Arcade(double joyX, double joyY, double joyZ)
     {
-        RobotMap.driveTrain.arcadeDrive(joyX, -joyY);
+        RobotMap.driveTrain.arcadeDrive(joyX, joyY);//mustard may be -joyY
     }
     
      public void Mecanum(double joyX, double joyY, double joyTwist)
     {
-        direction = MathUtils.atan2(-joyX, joyY);
+        direction = MathUtils.atan2(-joyX, -joyY); // mustard may be joyY
         magnitude = Math.sqrt((joyX * joyX) +  (joyY * joyY));
         
         RobotMap.driveTrain.mecanumDrive_Polar(magnitude, Math.toDegrees(direction), joyTwist/2);
@@ -101,7 +95,7 @@ public class DriveTrainSS extends Subsystem
     {
     //    SmartDashboard.putNumber("Right Encoder:", GetRightEncoder());
 //	SmartDashboard.putNumber("Left Encoder:", GetLeftEncoder());
-        CommandBase.dsLCD.println(DriverStationLCD.Line.kUser1,1, ("(" + (int)GetRightEncoder()) + "," + (int)GetLeftEncoder() + ")");
+        CommandBase.dsLCD.println(DriverStationLCD.Line.kUser1,1, ("R:" + (int)GetRightEncoder()) + " L:" + (int)GetLeftEncoder());
 	if (IsLowGear())
         {
 		CommandBase.dsLCD.println(DriverStationLCD.Line.kUser2, 1, "Low Gear");

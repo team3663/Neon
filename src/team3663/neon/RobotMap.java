@@ -65,15 +65,16 @@ public class RobotMap
         driveTrainBackRightSpeedController = new Victor(PortMap.MainModulePort, PortMap.driveTrainBackRightSpeedControllerPort);
         
         driveTrain = new RobotDrive(driveTrainFrontLeftSpeedController, driveTrainBackLeftSpeedController,
-                                                  driveTrainFrontRightSpeedController, driveTrainBackRightSpeedController);
+                                              driveTrainFrontRightSpeedController, driveTrainBackRightSpeedController);
       
         driveTrain.setSafetyEnabled(false);
         driveTrain.setExpiration(0.1);
         driveTrain.setSensitivity(0.5);
         driveTrain.setMaxOutput(1.0);
+
         driveTrain.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
         driveTrain.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
-        
+
         driveTrainLeftEncoder = new Encoder(PortMap.MainModulePort, PortMap.driveTrainLeftEncoder1Port,
                                             PortMap.MainModulePort, PortMap.driveTrainLeftEncoder2Port, false, CounterBase.EncodingType.k4X);
        

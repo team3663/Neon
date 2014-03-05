@@ -75,8 +75,8 @@ public class Robot3663 extends IterativeRobot
     
     public void UpdateStatus()
     {
-        //CommandBase.driveTrainSS.UpdateStatus();
-        CommandBase.shooterWinchAndLatchSS.UpdateStatus();
+        CommandBase.driveTrainSS.UpdateStatus();
+        //CommandBase.shooterWinchAndLatchSS.UpdateStatus();
         CommandBase.compressorSS.UpdateStatus();
         CommandBase.dsLCD.println(DriverStationLCD.Line.kUser4, 1, "Brian14 "+ counter++);
 	CommandBase.dsLCD.updateLCD();

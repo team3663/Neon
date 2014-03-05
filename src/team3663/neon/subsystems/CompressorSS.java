@@ -16,7 +16,7 @@ public class CompressorSS extends Subsystem
     
     public void initDefaultCommand() 
     {
-        setDefaultCommand(new FillAirTanksC());
+//        setDefaultCommand(new FillAirTanksC());
     }
 
     public void Compressor()
