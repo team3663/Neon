@@ -3,9 +3,11 @@ package team3663.neon.commands;
 public class WindWinchC extends CommandBase {
     
     double targetTicks;
-    boolean tighten;
+    boolean tightening;
     double speed;
     double direction;
+    //double tighteningScale;
+    //double looseningScale;
     
     public WindWinchC(double pTargetTicks) {
         requires(shooterWinchAndLatchSS);
@@ -15,14 +17,22 @@ public class WindWinchC extends CommandBase {
     //encoder tightens using negative speed
     //encoder counts deacrese when tightened
     protected void initialize() {
-        tighten = shooterWinchAndLatchSS.getWinchEncoder() > targetTicks;
+        tightening = shooterWinchAndLatchSS.getWinchEncoder() > targetTicks;
         
-        if (tighten){
+        if (tightening){
             direction = speed = -1;
         }
         else{
             direction = speed = 1;
         }
+        /*if(targetTicks > 100)
+        {
+            looseningScale = tighteningScale = 1;
+        }
+        else
+        {
+            looseningScale = tighteningScale = targetTicks/100;
+        }*/
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -35,7 +45,7 @@ public class WindWinchC extends CommandBase {
         double currentTicks = shooterWinchAndLatchSS.getWinchEncoder();
         
         //stop if goal passed
-        if (tighten){
+        if (tightening){
             if (currentTicks < targetTicks){
                 return true;
             }
@@ -45,19 +55,32 @@ public class WindWinchC extends CommandBase {
             }
         }
 
-        double ticksToGo = targetTicks - currentTicks;
-        if (ticksToGo < 0)
-            ticksToGo = -ticksToGo;
-
-        if (ticksToGo < 15)
-            return true;
-        else if (ticksToGo < 30)
-            speed = .25 * direction;
-        else if (ticksToGo < 45)
-            speed = .5 * direction;
-        else if (ticksToGo < 60)
-            speed = .75 * direction;
+        //double ticksToGo = targetTicks - currentTicks;
+        //if (ticksToGo < 0)
+          //  ticksToGo = -ticksToGo;
         
+        //if(tightening)
+        /*{
+            if (ticksToGo < 1)
+                return true;
+            else if (ticksToGo < 15*tighteningScale)
+                speed = .25 * direction;
+            else if (ticksToGo < 30*tighteningScale)
+                speed = .5 * direction;
+            else if (ticksToGo < 45*tighteningScale)
+                speed = .75 * direction;
+        }
+        /*else
+        {
+            if (ticksToGo < 15/looseningScale)
+                return true;
+            else if (ticksToGo < 30/looseningScale)
+                speed = .25 * direction;
+            else if (ticksToGo < 60/looseningScale)
+                speed = .5 * direction;
+            else if (ticksToGo < 120/looseningScale)
+                speed = .75 * direction;
+        }*/
         return false;
     }
 

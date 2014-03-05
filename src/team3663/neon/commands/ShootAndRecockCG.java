@@ -17,6 +17,7 @@ public class ShootAndRecockCG extends CommandGroup {
         // Add Commands here:
         addSequential(new ShooterLatchOpenC());
         addSequential(new LoosenWinchAndLatchC());
+        addSequential(new WindWinchC(0));
         // these will run in order.
 
         // To run multiple commands at the same time,

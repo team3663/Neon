@@ -5,11 +5,15 @@
  */
 package team3663.neon.commands;
 
+import edu.wpi.first.wpilibj.Timer;
+
 /**
  *
  * @author curtis
  */
 public class ShooterLatchOpenC extends CommandBase {
+    
+    double startTime;
     
     public ShooterLatchOpenC() {
         // Use requires() here to declare subsystem dependencies
@@ -18,15 +22,24 @@ public class ShooterLatchOpenC extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+        shooterWinchAndLatchSS.latchOpen();
+        startTime = Timer.getFPGATimestamp();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        shooterWinchAndLatchSS.latchOpen();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
+        if(Timer.getFPGATimestamp() - startTime > 1)
+        {
+            return true;
+        }
+        if(catapultLimitSwitchSS.catapultIsDown())
+        {
+            return false;
+        }
         return true;
     }
 
