@@ -1,7 +1,10 @@
 package team3663.neon.commands;
 
+import edu.wpi.first.wpilibj.Timer;
+
 public class LoadingArmDownC extends CommandBase {
     
+    double startTime;
     public LoadingArmDownC() {
         // Use requires() here to declare subsystem dependencies
         requires(loadingArmSS);
@@ -10,6 +13,7 @@ public class LoadingArmDownC extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() {
         loadingArmSS.LoadingArmDown();
+        startTime = Timer.getFPGATimestamp();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -18,7 +22,11 @@ public class LoadingArmDownC extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        if(Timer.getFPGATimestamp() - startTime > .5)
+        {
+            return true;
+        }
+        return false;
     }
 
     // Called once after isFinished returns true

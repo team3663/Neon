@@ -73,67 +73,78 @@ public class DriveBasedOnEncodersC extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        RobotMap.driveTrainBackLeftSpeedController.set(leftSpeed);
-        RobotMap.driveTrainFrontLeftSpeedController.set(leftSpeed);
-        RobotMap.driveTrainBackRightSpeedController.set(rightSpeed);
-        RobotMap.driveTrainFrontRightSpeedController.set(rightSpeed);
+        RobotMap.driveTrainBackLeftSpeedController.set(-leftSpeed);
+        RobotMap.driveTrainFrontLeftSpeedController.set(-leftSpeed);
+        RobotMap.driveTrainBackRightSpeedController.set(-rightSpeed);
+        RobotMap.driveTrainFrontRightSpeedController.set(-rightSpeed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        double currentLeftTicks = driveTrainSS.GetLeftEncoder();
         
-        //stop if goal passed
-        if (leftMovingForward){
-            if (currentLeftTicks > leftEncoderTicksGoal){
-                leftSpeed = 0;
+        leftSpeed = findNewSpeed(leftEncoderTicksGoal, driveTrainSS.GetLeftEncoder(), leftSpeed, leftDirection, leftMovingForward);
+        rightSpeed = findNewSpeed(rightEncoderTicksGoal, driveTrainSS.GetRightEncoder(), rightSpeed, rightDirection, rightMovingForward);
+
+        if ((leftSpeed == 0) && (rightSpeed == 0))
+            return true;
+        else
+            return false;
+    }
+    
+    protected double findNewSpeed(double ticksGoal, double currentTicks, double currentSpeed, double direction, boolean movingForward)
+    {
+        double newSpeed = currentSpeed;
+        
+        if (movingForward){
+            if (currentTicks > ticksGoal){
+                return 0;
             }
         } else {
-            if (currentLeftTicks < leftEncoderTicksGoal){
-                leftSpeed = 0;
+            if (currentTicks < ticksGoal){
+                return 0;
             }
         }
-
-        double ticksToGo = leftEncoderTicksGoal - currentLeftTicks;
+        
+        double lCurrentTicks = currentTicks;
+        if (lCurrentTicks < 0)
+            lCurrentTicks = -lCurrentTicks;
+        
+        if (lCurrentTicks > 4500)
+            newSpeed = 1 * direction;
+        else if (lCurrentTicks < 500)
+            newSpeed = .25 * direction;
+        else if (lCurrentTicks < 1500)
+            newSpeed = .4 * direction;
+        else if (lCurrentTicks < 3000)
+            newSpeed = .6 * direction;
+        else if (lCurrentTicks < 4500)
+            newSpeed = .75 * direction;
+        
+        double ticksToGo = ticksGoal - currentTicks;
         if (ticksToGo < 0)
             ticksToGo = -ticksToGo;
         
-        if (ticksToGo < 5)
-            leftSpeed = 0;
-        else if (ticksToGo < 15)
-            leftSpeed = .25 * leftDirection;
-        else if (ticksToGo < 30)
-            leftSpeed = .5 * leftDirection;
-        else if (ticksToGo < 45)
-            leftSpeed = .75 * leftDirection;
+        if (ticksToGo < 500)
+            return 0;
+        else if (ticksToGo < 1500)
+            newSpeed = .1 * direction;
+        else if (ticksToGo < 3000)
+            newSpeed = .25 * direction;
+        else if (ticksToGo < 4500)
+            newSpeed = .5 * direction;
 
-        double currentRightTicks = driveTrainSS.GetRightEncoder();
-        
-        //stop if goal passed
-        if (rightMovingForward){
-            if (currentRightTicks > rightEncoderTicksGoal){
-                rightSpeed = 0;
+ /*
+        if (movingForward){
+            if (currentSpeed < newSpeed){
+                return currentSpeed;
             }
         } else {
-            if (currentRightTicks < rightEncoderTicksGoal){
-                rightSpeed = 0;
+            if (currentSpeed > newSpeed){
+                return currentSpeed;
             }
         }
-
-        ticksToGo = rightEncoderTicksGoal - currentRightTicks;
-        if (ticksToGo < 0)
-            ticksToGo = -ticksToGo;
-        
-        if (ticksToGo < 5)
-            rightSpeed = 0;
-        else if (ticksToGo < 15)
-            rightSpeed = .25 * rightDirection;
-        else if (ticksToGo < 30)
-            rightSpeed = .5 * rightDirection;
-        else if (ticksToGo < 45)
-            rightSpeed = .75 * rightDirection;
-
-        return false;
+  */      
+        return newSpeed;
     }
 
     // Called once after isFinished returns true
