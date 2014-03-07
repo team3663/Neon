@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.Timer;
 
 public class LoosenWinchAndLatchC extends CommandBase {
     
-    double targetTicks = 400;
+    double targetTicks = 720;
     double startTime;
     
     public LoosenWinchAndLatchC() {

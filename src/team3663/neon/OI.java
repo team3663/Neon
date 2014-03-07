@@ -9,7 +9,6 @@ import team3663.neon.commands.TractionWheelsDownC;
 import team3663.neon.commands.ShiftToHighGearC;
 import team3663.neon.commands.ShiftToLowGearC;
 import team3663.neon.commands.TractionWheelsUpC;
-import team3663.neon.commands.FillAirTanksC;
 import team3663.neon.commands.FootDownC;
 import team3663.neon.commands.FootUpC;
 import team3663.neon.commands.HammerExtendC;
@@ -21,6 +20,7 @@ import team3663.neon.commands.ResetWinchEncoderC;
 import team3663.neon.commands.ShootAndRecockCG;
 import team3663.neon.commands.ShooterLatchCloseC;
 import team3663.neon.commands.ShooterLatchOpenC;
+import team3663.neon.commands.TimeWaitC;
 import team3663.neon.commands.WindWinchC;
 
 public class OI 
@@ -46,10 +46,10 @@ public class OI
         driveJoystick = new Joystick(1);
         turnJoystick = new Joystick(2);
         
-        loadBall = new JoystickButton(driveJoystick, 1);
+        loadBall = new JoystickButton(driveJoystick, 2);
         loadBall.whileHeld(new LoadBallC());
 
-        shoot = new JoystickButton(driveJoystick, 2);
+        shoot = new JoystickButton(driveJoystick, 1);
         shoot.whenPressed(new ShootAndRecockCG(0));
 
         changeToMecanumDrive = new JoystickButton(driveJoystick, 5);
@@ -116,6 +116,14 @@ public class OI
     public Joystick getTurnJoystick() 
     {
 	return turnJoystick;
+    }
+    public void disableButtons()
+    {
+        loadBall.whileHeld(new TimeWaitC(0));
+    }
+    public void enableButtons()
+    {
+        loadBall.whileHeld(new LoadBallC());
     }
 }
 

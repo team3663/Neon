@@ -27,7 +27,7 @@ public class DriveTrainSS extends Subsystem
       
     public boolean IsTractionDown()
     {
-        return RobotMap.tractionWheelUpDownSolenoid1.get();
+        return RobotMap.tractionWheelUpDownSolenoid2.get();
     }
     
     public void Arcade(double joyX, double joyY, double joyZ)
@@ -37,7 +37,7 @@ public class DriveTrainSS extends Subsystem
     
      public void Mecanum(double joyX, double joyY, double joyTwist)
     {
-        direction = MathUtils.atan2(-joyX, -joyY); // mustard may be joyY
+        direction = MathUtils.atan2(joyX, -joyY); // mustard may be joyY
         magnitude = Math.sqrt((joyX * joyX) +  (joyY * joyY));
         
         RobotMap.driveTrain.mecanumDrive_Polar(magnitude, Math.toDegrees(direction), joyTwist/2);

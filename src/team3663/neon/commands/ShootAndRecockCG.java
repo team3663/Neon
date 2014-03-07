@@ -6,6 +6,7 @@
 package team3663.neon.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import team3663.neon.OI;
 
 /**
  *
@@ -15,13 +16,14 @@ public class ShootAndRecockCG extends CommandGroup {
     
     public ShootAndRecockCG(double shotStrength) {
         // Add Commands here:
-        
+        addSequential(new EnableAndDissableButtons(true));
         addParallel(new WindWinchC(shotStrength));
         addSequential(new LoadingArmDownC());
         addSequential(new ShooterLatchOpenC());
         addParallel(new LoadingArmUpC());
         addSequential(new LoosenWinchAndLatchC());
         addSequential(new WindWinchC(0));
+        addSequential(new EnableAndDissableButtons(false));
         // these will run in order.
 
         // To run multiple commands at the same time,
