@@ -15,7 +15,6 @@ public class AutonomousCG extends CommandGroup {
     
     public AutonomousCG() {
         addSequential(new DriveForwardTimeC(1.5));  
-        addParallel(new TimerC(15));
         //addSequential(new EnableAndDissableButtons(true));
         addParallel(new WindWinchC(0));
         System.out.println("Wound Winch");

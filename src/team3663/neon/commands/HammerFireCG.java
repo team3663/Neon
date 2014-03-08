@@ -15,9 +15,9 @@ public class HammerFireCG extends CommandGroup {
     
     public HammerFireCG() {
         addSequential(new FootDownC());
-        addSequential(new HammerExtendC());
-        addSequential(new TimeWaitC(1));
         addSequential(new HammerRetractC());
+        addSequential(new TimeWaitC(0.5));
+        addSequential(new HammerExtendC());
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

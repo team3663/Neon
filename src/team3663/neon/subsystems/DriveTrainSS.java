@@ -32,7 +32,7 @@ public class DriveTrainSS extends Subsystem
     
     public void Arcade(double joyY, double joyTwist, double joyZ)
     {
-        if(joyY < 0.05 && joyY > -0.05)
+        if(joyY < 0.1 && joyY > -0.1)
         {
             joyY = 0;
         }
@@ -45,11 +45,11 @@ public class DriveTrainSS extends Subsystem
     {
         direction = MathUtils.atan2(joyX, -joyY); // mustard may be joyY
         magnitude = Math.sqrt((joyX * joyX) +  (joyY * joyY));
-        if (magnitude < 0.05 && magnitude > -0.05)
+        if (magnitude < 0.1 && magnitude > -0.1)
         {
             magnitude = 0;
         }
-        if (joyTwist < 0.05 && joyTwist > -0.05)
+        if (joyTwist < 0.1 && joyTwist > -0.1)
         {
             joyTwist = 0;
         }

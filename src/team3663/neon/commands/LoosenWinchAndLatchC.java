@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.DriverStationLCD;
 import edu.wpi.first.wpilibj.Timer;
 
 public class LoosenWinchAndLatchC extends CommandBase {
-    
+    double currentTicks;
     double targetTicks = 720;
     double startTime;
     
@@ -22,7 +22,7 @@ public class LoosenWinchAndLatchC extends CommandBase {
     }
 
     protected boolean isFinished() {
-        double currentTicks = shooterWinchAndLatchSS.getWinchEncoder();
+         currentTicks = shooterWinchAndLatchSS.getWinchEncoder();
 
         if (currentTicks > targetTicks){
             return true;

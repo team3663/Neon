@@ -85,18 +85,18 @@ public class OI
         switchToLowGear.whenPressed(new ShiftToLowGearC());
         
         shootMedium = new JoystickButton(buttonJoystick, 5);
-        shootMedium.whenPressed(new ShootAndRecockCG(30));
+        shootMedium.whenPressed(new ShootAndRecockCG(200));
 
         shootWeak = new JoystickButton(buttonJoystick, 3);
-        shootWeak.whenPressed(new ShootAndRecockCG(60));
+        shootWeak.whenPressed(new ShootAndRecockCG(400));
 
         hammer = new JoystickButton(buttonJoystick, 2);
         hammer.whenPressed(new HammerFireCG());
         
-        footDown = new JoystickButton(buttonJoystick, 6);
+        footDown = new JoystickButton(buttonJoystick, 4);
         footDown.whenPressed(new FootDownC());
         
-        footUp = new JoystickButton(buttonJoystick, 4);
+        footUp = new JoystickButton(buttonJoystick, 6);
         footUp.whenPressed(new FootUpC());
         
         SmartDashboard.putData("loadBall", new LoadBallC());
