@@ -16,16 +16,22 @@ public class ShootAndRecockCG extends CommandGroup {
     
     public ShootAndRecockCG(double shotStrength) {
         // Add Commands here:
-        addParallel(new TimerC(15));
-        addSequential(new EnableAndDissableButtons(true));
+        //addSequential(new EnableAndDissableButtons(true));
         addParallel(new WindWinchC(shotStrength));
+        System.out.println("Wound Winch");
         addSequential(new LoadingArmDownC());
+        System.out.println("Loading Down");
         addSequential(new ShooterLatchOpenC());
-        addSequential(new FootUpC());
+        System.out.println("Latch Open");
+        addSequential(new FootDownC());
+        System.out.println("Foot down");
         addParallel(new LoadingArmUpC());
+        System.out.println("Loading Arm");
         addSequential(new LoosenWinchAndLatchC());
+        System.out.println("Loosen Winch");
         addSequential(new WindWinchC(0));
-        addSequential(new EnableAndDissableButtons(false));
+        System.out.println("Wound Winch");
+        //addSequential(new EnableAndDissableButtons(false));
         // these will run in order.
 
         // To run multiple commands at the same time,

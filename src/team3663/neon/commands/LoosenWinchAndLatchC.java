@@ -1,5 +1,6 @@
 package team3663.neon.commands;
 
+import edu.wpi.first.wpilibj.DriverStationLCD;
 import edu.wpi.first.wpilibj.Timer;
 
 public class LoosenWinchAndLatchC extends CommandBase {
@@ -12,6 +13,7 @@ public class LoosenWinchAndLatchC extends CommandBase {
     }
 
     protected void initialize() {
+        shooterWinchAndLatchSS.latchOpen();
         startTime = 0;
     }
 
@@ -28,6 +30,7 @@ public class LoosenWinchAndLatchC extends CommandBase {
 
         if (catapultLimitSwitchSS.catapultIsDown() && (startTime == 0))
         {
+            CommandBase.dsLCD.println(DriverStationLCD.Line.kUser4, 1, "Latched and Winding");
             shooterWinchAndLatchSS.latchClose();
             startTime = Timer.getFPGATimestamp();
         }

@@ -4,7 +4,7 @@ public class FootDownC extends CommandBase {
     
     public FootDownC() {
         // Use requires() here to declare subsystem dependencies
-        requires(footSS);
+       // requires(footSS);
     }
 
     // Called just before this Command runs the first time

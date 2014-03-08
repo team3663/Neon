@@ -1,5 +1,7 @@
 package team3663.neon.commands;
 
+import edu.wpi.first.wpilibj.DriverStationLCD;
+
 public class WindWinchC extends CommandBase {
     
     double targetTicks;
@@ -86,6 +88,7 @@ public class WindWinchC extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
+        CommandBase.dsLCD.println(DriverStationLCD.Line.kUser4, 1, "~~~~READY TO FIRE~~~~");
         shooterWinchAndLatchSS.setWinchSpeed(0);
     }
 

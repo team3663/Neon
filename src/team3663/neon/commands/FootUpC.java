@@ -13,7 +13,7 @@ public class FootUpC extends CommandBase {
     
     public FootUpC() {
         // Use requires() here to declare subsystem dependencies
-        requires(footSS);
+        //requires(footSS);
     }
 
     // Called just before this Command runs the first time

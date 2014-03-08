@@ -7,7 +7,7 @@ public class LoadingArmDownC extends CommandBase {
     double startTime;
     public LoadingArmDownC() {
         // Use requires() here to declare subsystem dependencies
-        requires(loadingArmSS);
+     //   requires(loadingArmSS);
     }
 
     // Called just before this Command runs the first time

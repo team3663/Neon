@@ -5,52 +5,50 @@
  */
 package team3663.neon.commands;
 
-import edu.wpi.first.wpilibj.DriverStationLCD;
 import edu.wpi.first.wpilibj.Timer;
 
 /**
  *
  * @author curtis
  */
-public class ShooterLatchOpenC extends CommandBase {
+public class DriveForwardTimeC extends CommandBase {
     
-    double startTime;
+    double timeToWait;
+    double endTime;
     
-    public ShooterLatchOpenC() {
+    public DriveForwardTimeC(double pTimeWait) {
+        timeToWait = pTimeWait;
         // Use requires() here to declare subsystem dependencies
-        requires(shooterWinchAndLatchSS);
+        requires(driveTrainSS);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        shooterWinchAndLatchSS.latchOpen();
-        startTime = Timer.getFPGATimestamp();
-        CommandBase.dsLCD.println(DriverStationLCD.Line.kUser4, 1, "~~~DO NOT FIRE~~~");
+        endTime = Timer.getFPGATimestamp() + timeToWait;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+        driveTrainSS.Drive(0.5, 0);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        if(Timer.getFPGATimestamp() - startTime > 1)
+        if(Timer.getFPGATimestamp() >= endTime)
         {
             return true;
         }
-        if(catapultLimitSwitchSS.catapultIsDown())
-        {
-            return false;
-        }
-        return true;
+        return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
+        driveTrainSS.Drive(0, 0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+        end();
     }
 }

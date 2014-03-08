@@ -9,28 +9,16 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
- * @author briking
+ * @author curtis
  */
-public class AutonomousCG extends CommandGroup {
+public class HammerFireCG extends CommandGroup {
     
-    public AutonomousCG() {
-        addSequential(new DriveForwardTimeC(1.5));  
-        addParallel(new TimerC(15));
-        //addSequential(new EnableAndDissableButtons(true));
-        addParallel(new WindWinchC(0));
-        System.out.println("Wound Winch");
-        addSequential(new LoadingArmDownC());
-        System.out.println("Loading Down");
-        addSequential(new ShooterLatchOpenC());
-        System.out.println("Latch Open");
+    public HammerFireCG() {
         addSequential(new FootDownC());
-        System.out.println("Foot down");
-        addParallel(new LoadingArmUpC());
-        System.out.println("Loading Arm");
-        addSequential(new LoosenWinchAndLatchC());
-        System.out.println("Loosen Winch");
-        addSequential(new WindWinchC(0));
-        System.out.println("Wound Winch");// Add Commands here:
+        addSequential(new HammerExtendC());
+        addSequential(new TimeWaitC(1));
+        addSequential(new HammerRetractC());
+        // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
         // these will run in order.

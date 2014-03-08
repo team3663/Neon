@@ -3,7 +3,6 @@ package team3663.neon;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import team3663.neon.commands.DriveBasedOnEncodersC;
 import team3663.neon.commands.HammerRetractC;
 import team3663.neon.commands.TractionWheelsDownC;
 import team3663.neon.commands.ShiftToHighGearC;
@@ -12,6 +11,7 @@ import team3663.neon.commands.TractionWheelsUpC;
 import team3663.neon.commands.FootDownC;
 import team3663.neon.commands.FootUpC;
 import team3663.neon.commands.HammerExtendC;
+import team3663.neon.commands.HammerFireCG;
 import team3663.neon.commands.LoadBallC;
 import team3663.neon.commands.LoadingArmDownC;
 import team3663.neon.commands.LoadingArmUpC;
@@ -21,13 +21,15 @@ import team3663.neon.commands.ShootAndRecockCG;
 import team3663.neon.commands.ShooterLatchCloseC;
 import team3663.neon.commands.ShooterLatchOpenC;
 import team3663.neon.commands.TimeWaitC;
+import team3663.neon.commands.WinchLoosenC;
+import team3663.neon.commands.WinchTightenC;
 import team3663.neon.commands.WindWinchC;
 
 
 public class OI 
 {
     private final Joystick driveJoystick;
-    private final Joystick turnJoystick;
+    private final Joystick buttonJoystick;
 
     private static JoystickButton changeToArcadeDrive;
     private static JoystickButton changeToMecanumDrive;
@@ -41,17 +43,33 @@ public class OI
     private static JoystickButton shootWeak;
     private static JoystickButton footUp;
     private static JoystickButton footDown;
+    private static JoystickButton loosenWinch;
+    private static JoystickButton tightenWinch;
+    private static JoystickButton winchEncoderZero;
+    private static JoystickButton LoosenWinchAndLatch;
     public OI()
     {
         System.out.println("OI constructor start");
-
+//might be diffrent in mustard
         driveJoystick = new Joystick(1);
-        turnJoystick = new Joystick(2);
+        buttonJoystick = new Joystick(2);
+        
+        LoosenWinchAndLatch = new JoystickButton(driveJoystick, 9);
+        LoosenWinchAndLatch.whenPressed(new LoosenWinchAndLatchC());
+        
+        winchEncoderZero = new JoystickButton(driveJoystick, 10);
+        winchEncoderZero.whenPressed(new WindWinchC(0));
+        
+        tightenWinch = new JoystickButton(driveJoystick, 12);
+        tightenWinch.whileHeld(new WinchTightenC());
+        
+        loosenWinch = new JoystickButton(driveJoystick, 11);
+        loosenWinch.whileHeld(new WinchLoosenC());
         
         loadBall = new JoystickButton(driveJoystick, 2);
         loadBall.whileHeld(new LoadBallC());
 
-        shoot = new JoystickButton(driveJoystick, 1);
+        shoot = new JoystickButton(buttonJoystick, 1);
         shoot.whenPressed(new ShootAndRecockCG(0));
 
         changeToMecanumDrive = new JoystickButton(driveJoystick, 5);
@@ -66,19 +84,19 @@ public class OI
         switchToLowGear = new JoystickButton(driveJoystick, 4);
         switchToLowGear.whenPressed(new ShiftToLowGearC());
         
-        shootMedium = new JoystickButton(driveJoystick, 7);
+        shootMedium = new JoystickButton(buttonJoystick, 5);
         shootMedium.whenPressed(new ShootAndRecockCG(30));
 
-        shootWeak = new JoystickButton(driveJoystick, 8);
+        shootWeak = new JoystickButton(buttonJoystick, 3);
         shootWeak.whenPressed(new ShootAndRecockCG(60));
 
-        hammer = new JoystickButton(driveJoystick, 12);
-        hammer.whenPressed(new HammerRetractC());
+        hammer = new JoystickButton(buttonJoystick, 2);
+        hammer.whenPressed(new HammerFireCG());
         
-        footDown = new JoystickButton(driveJoystick, 10);
+        footDown = new JoystickButton(buttonJoystick, 6);
         footDown.whenPressed(new FootDownC());
         
-        footUp = new JoystickButton(driveJoystick, 9);
+        footUp = new JoystickButton(buttonJoystick, 4);
         footUp.whenPressed(new FootUpC());
         
         SmartDashboard.putData("loadBall", new LoadBallC());
@@ -95,16 +113,19 @@ public class OI
         SmartDashboard.putData("ShooterLatchOpen", new ShooterLatchOpenC());
         SmartDashboard.putData("ShooterLatchClose", new ShooterLatchCloseC());
         SmartDashboard.putData("WindWinch_0", new WindWinchC(0));
-        SmartDashboard.putData("WindWinch_30", new WindWinchC(30));
-        SmartDashboard.putData("WindWinch_60", new WindWinchC(60));
-        SmartDashboard.putData("WindWinch_120", new WindWinchC(120));
+       //SmartDashboard.putData("WindWinch_30", new WindWinchC(30));
+        //SmartDashboard.putData("WindWinch_60", new WindWinchC(60));
+        SmartDashboard.putData("TightenWinch", new WinchTightenC());
+        SmartDashboard.putData("TightenWinch", new WinchLoosenC());
+        /*SmartDashboard.putData("WindWinch_120", new WindWinchC(120));
         SmartDashboard.putData("WindWinch_360", new WindWinchC(360));
         SmartDashboard.putData("WindWinch_500", new WindWinchC(500));
-        SmartDashboard.putData("WindWinch_-50", new WindWinchC(-50));
+        */
+        //SmartDashboard.putData("WindWinch_-50", new WindWinchC(-50));
         SmartDashboard.putData("ResetWinchEncoder", new ResetWinchEncoderC());
         SmartDashboard.putData("LoosenWinchAndLatch", new LoosenWinchAndLatchC());
         SmartDashboard.putData("ShootAndRecockCG", new ShootAndRecockCG(0));
-        SmartDashboard.putData("DriveBasedOnEncodersC(2000,2000)", new DriveBasedOnEncodersC(2000,2000));
+       /* SmartDashboard.putData("DriveBasedOnEncodersC(2000,2000)", new DriveBasedOnEncodersC(2000,2000));
         SmartDashboard.putData("DriveBasedOnEncodersC(20000,0)", new DriveBasedOnEncodersC(20000,0));
         SmartDashboard.putData("DriveBasedOnEncodersC(0,-20000)", new DriveBasedOnEncodersC(0,-20000));
         SmartDashboard.putData("DriveBasedOnEncodersC(-20000,-20000)", new DriveBasedOnEncodersC(-20000,-20000));
@@ -112,7 +133,7 @@ public class OI
         SmartDashboard.putData("DriveBasedOnEncodersC(20000,20000)", new DriveBasedOnEncodersC(20000,20000));
         SmartDashboard.putData("DriveBasedOnEncodersC(-6000,20000)", new DriveBasedOnEncodersC(-6000,20000));
         SmartDashboard.putData("DriveBasedOnEncodersC(-20000,20000)", new DriveBasedOnEncodersC(-20000,20000));
-    
+    */
         System.out.println("OI constructor end");
     }
     
@@ -123,15 +144,17 @@ public class OI
     
     public Joystick getTurnJoystick() 
     {
-	return turnJoystick;
+	return buttonJoystick;
     }
     public void disableButtons()
     {
-        loadBall.whileHeld(new TimeWaitC(0));
+        loadBall.whenPressed(new TimeWaitC(0));
+        System.out.println("Buttons Disable");
     }
     public void enableButtons()
     {
         loadBall.whileHeld(new LoadBallC());
+        System.out.println("Buttons Enabled");
     }
 }
 
