@@ -127,11 +127,11 @@ public class RobotMap
             loadingArmUpDownSolenoid1 = new Solenoid(PortMap.MainModulePort, PortMap.loadingArmUpDownSolenoid1PortK);
             loadingArmUpDownSolenoid2 = new Solenoid(PortMap.MainModulePort, PortMap.loadingArmUpDownSolenoid2PortK);
 
-            hammerRetractExtendSolenoid1 = new Solenoid(PortMap.SecondaryModulePort, PortMap.hammerRetractExtendSolenoid1PortK);
-            hammerRetractExtendSolenoid2 = new Solenoid(PortMap.SecondaryModulePort, PortMap.hammerRetractExtendSolenoid2PortK);
+            hammerRetractExtendSolenoid1 = new Solenoid(PortMap.SecondaryModulePort, PortMap.hammerRetractExtendSolenoid1Port);
+            hammerRetractExtendSolenoid2 = new Solenoid(PortMap.SecondaryModulePort, PortMap.hammerRetractExtendSolenoid2Port);
 
-            footUpDownSolenoid1 = new Solenoid(PortMap.SecondaryModulePort, PortMap.footUpDownSolenoid1PortK);
-            footUpDownSolenoid2 = new Solenoid(PortMap.SecondaryModulePort, PortMap.footUpDownSolenoid2PortK);
+            footUpDownSolenoid1 = new Solenoid(PortMap.SecondaryModulePort, PortMap.footUpDownSolenoid1Port);
+            footUpDownSolenoid2 = new Solenoid(PortMap.SecondaryModulePort, PortMap.footUpDownSolenoid2Port);
 
             shooterLatchSolenoid1 = new Solenoid(PortMap.MainModulePort, PortMap.shooterLatchSolenoid1PortK);
             shooterLatchSolenoid2 = new Solenoid(PortMap.MainModulePort, PortMap.shooterLatchSolenoid2PortK);

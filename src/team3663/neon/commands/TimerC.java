@@ -11,27 +11,39 @@ import edu.wpi.first.wpilibj.DriverStationLCD;
  *
  * @author curtis
  */
-public class Timer extends CommandBase {
-    int timer;
+public class TimerC extends CommandBase {
     
-    public Timer(boolean showTime) {
+    
+    double endTime;
+    double seconds;
+    double startTime;
+    double counter;
+    public TimerC(double timeToWait) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+        seconds = timeToWait;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+        endTime = edu.wpi.first.wpilibj.Timer.getFPGATimestamp() + seconds;
+        startTime = edu.wpi.first.wpilibj.Timer.getFPGATimestamp();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        
-        CommandBase.dsLCD.println(DriverStationLCD.Line.kUser2, 1, ""+ timer);
+        counter = endTime - startTime;
+        CommandBase.dsLCD.println(DriverStationLCD.Line.kUser4, 1, "ETA tell fire = " + counter);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        if (edu.wpi.first.wpilibj.Timer.getFPGATimestamp() >= endTime)
+        {
+            CommandBase.dsLCD.println(DriverStationLCD.Line.kUser4, 1, "ETA tell fire = READY TO FIRE");
+            return true;
+        }
+        return false;
     }
 
     // Called once after isFinished returns true

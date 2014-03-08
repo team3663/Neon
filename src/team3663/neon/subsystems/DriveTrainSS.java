@@ -30,9 +30,9 @@ public class DriveTrainSS extends Subsystem
         return RobotMap.tractionWheelUpDownSolenoid2.get();
     }
     
-    public void Arcade(double joyX, double joyY, double joyZ)
+    public void Arcade(double joyY, double joyTwist, double joyZ)
     {
-        RobotMap.driveTrain.arcadeDrive(joyX, joyY);//mustard may be -joyY
+        RobotMap.driveTrain.arcadeDrive(joyTwist, joyY);//mustard may be -joyY
     }
     
      public void Mecanum(double joyX, double joyY, double joyTwist)
@@ -40,7 +40,7 @@ public class DriveTrainSS extends Subsystem
         direction = MathUtils.atan2(joyX, -joyY); // mustard may be joyY
         magnitude = Math.sqrt((joyX * joyX) +  (joyY * joyY));
         
-        RobotMap.driveTrain.mecanumDrive_Polar(magnitude, Math.toDegrees(direction), joyTwist/2);
+        RobotMap.driveTrain.mecanumDrive_Polar(magnitude, Math.toDegrees(direction), joyTwist);
     }
   
     public void ShiftToHighGear(){
@@ -111,7 +111,7 @@ public class DriveTrainSS extends Subsystem
         }
         else
         {
-            CommandBase.dsLCD.println(DriverStationLCD.Line.kUser3, 1, "Traction Wheels Up");
+            CommandBase.dsLCD.println(DriverStationLCD.Line.kUser3, 1, "Traction Wheels Up   ");
         }
     }
 }

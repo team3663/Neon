@@ -16,10 +16,12 @@ public class ShootAndRecockCG extends CommandGroup {
     
     public ShootAndRecockCG(double shotStrength) {
         // Add Commands here:
+        addParallel(new TimerC(15));
         addSequential(new EnableAndDissableButtons(true));
         addParallel(new WindWinchC(shotStrength));
         addSequential(new LoadingArmDownC());
         addSequential(new ShooterLatchOpenC());
+        addSequential(new FootUpC());
         addParallel(new LoadingArmUpC());
         addSequential(new LoosenWinchAndLatchC());
         addSequential(new WindWinchC(0));

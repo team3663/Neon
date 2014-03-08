@@ -23,6 +23,7 @@ import team3663.neon.commands.ShooterLatchOpenC;
 import team3663.neon.commands.TimeWaitC;
 import team3663.neon.commands.WindWinchC;
 
+
 public class OI 
 {
     private final Joystick driveJoystick;
@@ -38,7 +39,8 @@ public class OI
     private static JoystickButton shoot;
     private static JoystickButton shootMedium;
     private static JoystickButton shootWeak;
-    
+    private static JoystickButton footUp;
+    private static JoystickButton footDown;
     public OI()
     {
         System.out.println("OI constructor start");
@@ -73,17 +75,23 @@ public class OI
         hammer = new JoystickButton(driveJoystick, 12);
         hammer.whenPressed(new HammerRetractC());
         
+        footDown = new JoystickButton(driveJoystick, 10);
+        footDown.whenPressed(new FootDownC());
+        
+        footUp = new JoystickButton(driveJoystick, 9);
+        footUp.whenPressed(new FootUpC());
+        
         SmartDashboard.putData("loadBall", new LoadBallC());
-        SmartDashboard.putData("FootDown", new FootDownC());
-        SmartDashboard.putData("FootUp", new FootUpC());
+        SmartDashboard.putData("FootUp", new FootDownC());
+        SmartDashboard.putData("FootDown", new FootUpC());
         SmartDashboard.putData("HammerRetract", new HammerRetractC());
         SmartDashboard.putData("HammerExtendC", new HammerExtendC());
         SmartDashboard.putData("LoadingArmDown", new LoadingArmDownC());
         SmartDashboard.putData("LoadingArmUp", new LoadingArmUpC());
         SmartDashboard.putData("ShiftToLowGear", new ShiftToLowGearC());
         SmartDashboard.putData("ShiftToHighGear", new ShiftToHighGearC());
-        SmartDashboard.putData("TractionWheelsDown", new TractionWheelsDownC());
-        SmartDashboard.putData("TractionWheelsUp", new TractionWheelsUpC());
+        SmartDashboard.putData("TractionWheelsUp", new TractionWheelsDownC());
+        SmartDashboard.putData("TractionWheelsDown", new TractionWheelsUpC());
         SmartDashboard.putData("ShooterLatchOpen", new ShooterLatchOpenC());
         SmartDashboard.putData("ShooterLatchClose", new ShooterLatchCloseC());
         SmartDashboard.putData("WindWinch_0", new WindWinchC(0));

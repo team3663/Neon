@@ -49,10 +49,10 @@ public class PortMap
     public static int shooterLatchSolenoid1PortK               = 7;
 
     // 2nd puck ketchup
-    public static int hammerRetractExtendSolenoid1PortK        = 1;
-    public static int hammerRetractExtendSolenoid2PortK        = 2;
-    public static int footUpDownSolenoid2PortK                 = 7;
-    public static int footUpDownSolenoid1PortK                 = 8;
+   // public static int hammerRetractExtendSolenoid1PortK        = 1;
+    //public static int hammerRetractExtendSolenoid2PortK        = 2;
+    //public static int footUpDownSolenoid2PortK                 = 7;
+    //public static int footUpDownSolenoid1PortK                 = 7;
     
     //All analog ports
     public static int frontUltrasonicAnalogPort               = 1;

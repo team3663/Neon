@@ -78,13 +78,14 @@ public class Robot3663 extends IterativeRobot
         //CommandBase.driveTrainSS.UpdateStatus();
         CommandBase.shooterWinchAndLatchSS.UpdateStatus();
         CommandBase.compressorSS.UpdateStatus();
-        CommandBase.dsLCD.println(DriverStationLCD.Line.kUser4, 1, "Brian14 "+ counter++);
+        CommandBase.driveTrainSS.UpdateStatus();
+        //CommandBase.dsLCD.println(DriverStationLCD.Line.kUser4, 1, "Brian14 "+ counter++);
 	CommandBase.dsLCD.updateLCD();
-        CommandBase.dsLCD.println(DriverStationLCD.Line.kUser1, 1, "                     ");
-        CommandBase.dsLCD.println(DriverStationLCD.Line.kUser2, 1, "                     ");
-        CommandBase.dsLCD.println(DriverStationLCD.Line.kUser3, 1, "                     ");
-        CommandBase.dsLCD.println(DriverStationLCD.Line.kUser4, 1, "                     ");
-        CommandBase.dsLCD.println(DriverStationLCD.Line.kUser5, 1, "                     ");
-        CommandBase.dsLCD.println(DriverStationLCD.Line.kUser6, 1, "                     ");
+        //CommandBase.dsLCD.println(DriverStationLCD.Line.kUser1, 1, "                     ");
+        //CommandBase.dsLCD.println(DriverStationLCD.Line.kUser2, 1, "                     ");
+       // CommandBase.dsLCD.println(DriverStationLCD.Line.kUser3, 1, "                     ");
+        //CommandBase.dsLCD.println(DriverStationLCD.Line.kUser4, 1, "                     ");
+        //CommandBase.dsLCD.println(DriverStationLCD.Line.kUser5, 1, "                     ");
+        //CommandBase.dsLCD.println(DriverStationLCD.Line.kUser6, 1, "                     ");
     }
 }
