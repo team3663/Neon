@@ -56,69 +56,90 @@ public class OI
         driveJoystick = new Joystick(1);
         buttonJoystick = new Joystick(2);
         
+        SmartDashboard.putString("DriveLabel", "DriveStick");
+        SmartDashboard.putString("MonkeyLabel", "ButtonMonkeyStick");
+        
+        
         LoosenWinchAndLatch = new JoystickButton(driveJoystick, 9);
         LoosenWinchAndLatch.whenPressed(new LoosenWinchAndLatchC());
+        SmartDashboard.putString("Drive9:", "9: Loosen Winch & Latch");
         
         winchEncoderZero = new JoystickButton(driveJoystick, 10);
         winchEncoderZero.whenPressed(new WindWinchC(0));
+        SmartDashboard.putString("Drive10:", "10: windWinch to 0");
         
         tightenWinch = new JoystickButton(driveJoystick, 12);
         tightenWinch.whileHeld(new WinchTightenC());
+        SmartDashboard.putString("Drive12:", "12: Tighten Winch");
         
         loosenWinch = new JoystickButton(driveJoystick, 11);
         loosenWinch.whileHeld(new WinchLoosenC());
+        SmartDashboard.putString("Drive11:", "11: Loosen Winch");
         
         loadBall = new JoystickButton(driveJoystick, 2);
         loadBall.whileHeld(new LoadBallC());
+        SmartDashboard.putString("Drive2:", "2: pickUp arm down");
 
         shoot = new JoystickButton(buttonJoystick, 1);
         shoot.whenPressed(new ShootAndRecockCG(0));
+        SmartDashboard.putString("Monkey1:", "1: SHOOT!");
 
         changeToMecanumDrive = new JoystickButton(driveJoystick, 5);
         changeToMecanumDrive.whenPressed(new TractionWheelsUpC());
+        SmartDashboard.putString("Drive5:", "5: Traction Wheels Up");
         
         changeToArcadeDrive = new JoystickButton(driveJoystick, 3);
         changeToArcadeDrive.whenPressed(new TractionWheelsDownC());
+        SmartDashboard.putString("Drive3:", "3: Traction Wheels Down");
 
         switchToHighGear = new JoystickButton(driveJoystick, 6);
         switchToHighGear.whenPressed(new ShiftToHighGearC());
+        SmartDashboard.putString("Drive6:", "6: Shift to High Gear");
         
         switchToLowGear = new JoystickButton(driveJoystick, 4);
         switchToLowGear.whenPressed(new ShiftToLowGearC());
+        SmartDashboard.putString("Drive4:", "4: Shift to Low Gear");
         
         shootMedium = new JoystickButton(buttonJoystick, 5);
         shootMedium.whenPressed(new ShootAndRecockCG(200));
+        SmartDashboard.putString("Monkey5:", "5: Shoot Medium");
 
         shootWeak = new JoystickButton(buttonJoystick, 3);
         shootWeak.whenPressed(new ShootAndRecockCG(400));
+        SmartDashboard.putString("Monkey3:", "3: 1 pt Shot");
 
         hammer = new JoystickButton(buttonJoystick, 2);
         hammer.whenPressed(new HammerFireCG());
+        SmartDashboard.putString("Monkey2:", "2: hammer");
         
         footDown = new JoystickButton(buttonJoystick, 4);
         footDown.whenPressed(new FootDownC());
+        SmartDashboard.putString("Monkey4:", "4: foot Down");
         
         footUp = new JoystickButton(buttonJoystick, 6);
         footUp.whenPressed(new FootUpC());
+        SmartDashboard.putString("Monkey6:", "6: foot Up");
+        
+        SmartDashboard.putNumber("WinchEncoder", RobotMap.winchEncoder.get());
         
         SmartDashboard.putData("loadBall", new LoadBallC());
-        SmartDashboard.putData("FootUp", new FootDownC());
-        SmartDashboard.putData("FootDown", new FootUpC());
+        SmartDashboard.putData("FootDown", new FootDownC());
+        SmartDashboard.putData("FootUp", new FootUpC());
         SmartDashboard.putData("HammerRetract", new HammerRetractC());
         SmartDashboard.putData("HammerExtendC", new HammerExtendC());
         SmartDashboard.putData("LoadingArmDown", new LoadingArmDownC());
         SmartDashboard.putData("LoadingArmUp", new LoadingArmUpC());
         SmartDashboard.putData("ShiftToLowGear", new ShiftToLowGearC());
         SmartDashboard.putData("ShiftToHighGear", new ShiftToHighGearC());
-        SmartDashboard.putData("TractionWheelsUp", new TractionWheelsDownC());
-        SmartDashboard.putData("TractionWheelsDown", new TractionWheelsUpC());
+        SmartDashboard.putData("TractionWheelsUp", new TractionWheelsUpC());
+        SmartDashboard.putData("TractionWheelsDown", new TractionWheelsDownC());
         SmartDashboard.putData("ShooterLatchOpen", new ShooterLatchOpenC());
         SmartDashboard.putData("ShooterLatchClose", new ShooterLatchCloseC());
         SmartDashboard.putData("WindWinch_0", new WindWinchC(0));
        //SmartDashboard.putData("WindWinch_30", new WindWinchC(30));
         //SmartDashboard.putData("WindWinch_60", new WindWinchC(60));
         SmartDashboard.putData("TightenWinch", new WinchTightenC());
-        SmartDashboard.putData("TightenWinch", new WinchLoosenC());
+        SmartDashboard.putData("LoosenWinch", new WinchLoosenC());
         SmartDashboard.putData("Automiss", new DriveForwardTimeC(.5));
         /*SmartDashboard.putData("WindWinch_120", new WindWinchC(120));
         SmartDashboard.putData("WindWinch_360", new WindWinchC(360));

@@ -25,7 +25,7 @@ public class DriveTrainSS extends Subsystem
        setDefaultCommand(new DriveC());
     }
       
-    public boolean IsTractionDown()
+    public boolean TractionIsDown()
     {
         return RobotMap.tractionWheelUpDownSolenoid2.get();
     }
@@ -62,14 +62,14 @@ public class DriveTrainSS extends Subsystem
         RobotMap.driveTrain.mecanumDrive_Polar(magnitude, Math.toDegrees(direction), joyTwist);
     }
   
-    public void ShiftToHighGear(){
-        RobotMap.gearShiftHighLowSolenoid1.set(false);
-        RobotMap.gearShiftHighLowSolenoid2.set(true);
-    }
-    
-   public void ShiftToLowGear(){
+    public void ShiftToHighGear(){//black slider of transmissions out
         RobotMap.gearShiftHighLowSolenoid1.set(true);
         RobotMap.gearShiftHighLowSolenoid2.set(false);
+    }
+    
+   public void ShiftToLowGear(){//black slider of transmissions in
+        RobotMap.gearShiftHighLowSolenoid1.set(false);
+        RobotMap.gearShiftHighLowSolenoid2.set(true);
     }
     
     public void Drive(double speed, double curve)
@@ -80,9 +80,9 @@ public class DriveTrainSS extends Subsystem
     {
         Drive(0, 0);
     }
-    public boolean IsLowGear()
+    public boolean InLowGear()
     {
-        return RobotMap.gearShiftHighLowSolenoid1.get();
+        return RobotMap.gearShiftHighLowSolenoid2.get();
     }
     public double GetLeftEncoder()
     {
@@ -100,14 +100,14 @@ public class DriveTrainSS extends Subsystem
     
     public void TractionWheelsUp()
     {
-        RobotMap.tractionWheelUpDownSolenoid1.set(false);
-        RobotMap.tractionWheelUpDownSolenoid2.set(true);
+        RobotMap.tractionWheelUpDownSolenoid1.set(true);
+        RobotMap.tractionWheelUpDownSolenoid2.set(false);
     }
     
     public void TractionWheelsDown()
     {
-        RobotMap.tractionWheelUpDownSolenoid1.set(true);
-        RobotMap.tractionWheelUpDownSolenoid2.set(false);
+        RobotMap.tractionWheelUpDownSolenoid1.set(false);
+        RobotMap.tractionWheelUpDownSolenoid2.set(true);
     }
     
     public void UpdateStatus()
@@ -115,7 +115,7 @@ public class DriveTrainSS extends Subsystem
     //    SmartDashboard.putNumber("Right Encoder:", GetRightEncoder());
 //	SmartDashboard.putNumber("Left Encoder:", GetLeftEncoder());
         CommandBase.dsLCD.println(DriverStationLCD.Line.kUser1,1, ("R:" + (int)GetRightEncoder()) + " L:" + (int)GetLeftEncoder());
-	if (IsLowGear())
+	if (InLowGear())
         {
 		CommandBase.dsLCD.println(DriverStationLCD.Line.kUser2, 1, "Low Gear");
         }
@@ -124,7 +124,7 @@ public class DriveTrainSS extends Subsystem
             CommandBase.dsLCD.println(DriverStationLCD.Line.kUser2, 1, "High Gear");
         }
         
-        if (IsTractionDown())
+        if (TractionIsDown())
         {
             CommandBase.dsLCD.println(DriverStationLCD.Line.kUser3, 1, "Traction Wheels Down");
         }

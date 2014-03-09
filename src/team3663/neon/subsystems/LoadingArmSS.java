@@ -31,7 +31,7 @@ public class LoadingArmSS extends Subsystem {
     public boolean IsBallLoaded(){
         return RobotMap.ballLoadedLimitSwitchDIO.get();
     }
-    public boolean IsLoadingArmUp(){
-        return !RobotMap.loadingArmUpDownSolenoid1.get();
+    public boolean loadingArmIsUp(){
+        return !RobotMap.loadingArmUpDownSolenoid2.get();
     }
 }

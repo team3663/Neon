@@ -20,7 +20,7 @@ public class FootSS extends Subsystem {
         RobotMap.footUpDownSolenoid2.set(true);
     }
 
-    public boolean IsFootUp(){
+    public boolean FootIsUp(){
         return RobotMap.footUpDownSolenoid1.get();
     }
 }

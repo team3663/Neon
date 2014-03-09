@@ -25,13 +25,20 @@ public class ShooterWinchAndLatchSS extends Subsystem
         setWinchSpeed(0.0);
     }
     
-    public void latchClose(){
+    public void latchClose()
+    {
         RobotMap.shooterLatchSolenoid1.set(false);
         RobotMap.shooterLatchSolenoid2.set(true);
     }
-    public void latchOpen(){
+    public void latchOpen()
+    {
         RobotMap.shooterLatchSolenoid1.set(true);
         RobotMap.shooterLatchSolenoid2.set(false);
+    }
+    
+    public boolean latchIsOpen()
+    {
+        return RobotMap.shooterLatchSolenoid1.get();
     }
     
     public void setWinchSpeed(double speed)
@@ -50,10 +57,6 @@ public class ShooterWinchAndLatchSS extends Subsystem
         return RobotMap.winchEncoder.get();
     }
     
-    public boolean ballIsLoaded()
-    {
-        return RobotMap.ballLoadedLimitSwitchDIO.get();
-    }
     public void UpdateStatus()
     {
         CommandBase.dsLCD.println(DriverStationLCD.Line.kUser1,1, "" + (int)getWinchEncoder());

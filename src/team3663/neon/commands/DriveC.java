@@ -32,7 +32,7 @@ public class DriveC extends CommandBase
         SmartDashboard.putNumber("Joystick Z:", jZ);
         SmartDashboard.putNumber("Joystick Twist:", jTwist);
 
-        if(driveTrainSS.IsTractionDown())
+        if(driveTrainSS.TractionIsDown())
        {
            driveTrainSS.Arcade(oi.getDriveJoystick().getY(), oi.getDriveJoystick().getZ());
            SmartDashboard.putString("Driving:", "Arcade");

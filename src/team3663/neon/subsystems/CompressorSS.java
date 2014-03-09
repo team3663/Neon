@@ -45,8 +45,8 @@ public class CompressorSS extends Subsystem
     
     public void UpdateStatus()
     {
-        CommandBase.dsLCD.println(DriverStationLCD.Line.kUser5, 1, "Compressor on="+compressorOn);
-        CommandBase.dsLCD.println(DriverStationLCD.Line.kUser6, 1, "Air " + airTanksAreFull()+ " " + counter);
+        //CommandBase.dsLCD.println(DriverStationLCD.Line.kUser5, 1, "Compressor on="+compressorOn);
+        //CommandBase.dsLCD.println(DriverStationLCD.Line.kUser6, 1, "Air " + airTanksAreFull()+ " " + counter);
         //SmartDashboard.putBoolean("Compressor State", compressorSwitch.get() == Relay.Value.kOn);
     }
 }
