@@ -34,7 +34,7 @@ public class DriveC extends CommandBase
 
         if(driveTrainSS.IsTractionDown())
        {
-           driveTrainSS.Arcade(oi.getDriveJoystick().getX(), oi.getDriveJoystick().getY(), oi.getDriveJoystick().getZ());
+           driveTrainSS.Arcade(oi.getDriveJoystick().getY(), oi.getDriveJoystick().getZ());
            SmartDashboard.putString("Driving:", "Arcade");
        }
        else

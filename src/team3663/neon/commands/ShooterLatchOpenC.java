@@ -23,17 +23,20 @@ public class ShooterLatchOpenC extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+        System.out.println("SHooterLatchOpenC.initialize");
         shooterWinchAndLatchSS.latchOpen();
         startTime = Timer.getFPGATimestamp();
-        CommandBase.dsLCD.println(DriverStationLCD.Line.kUser4, 1, "~~~DO NOT FIRE~~~");
+       CommandBase.dsLCD.println(DriverStationLCD.Line.kUser4, 1, "~~~DO NOT FIRE~~~");
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+        System.out.println("SHooterLatchOpenC.execute");
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
+        System.out.println("SHooterLatchOpenC.isFinshed");
         if(Timer.getFPGATimestamp() - startTime > 1)
         {
             return true;
@@ -47,10 +50,12 @@ public class ShooterLatchOpenC extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
+        System.out.println("SHooterLatchOpenC.end");
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+        System.out.println("SHooterLatchOpenC.interrupted");
     }
 }

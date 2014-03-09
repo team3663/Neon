@@ -5,51 +5,43 @@
  */
 package team3663.neon.commands;
 
-import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  * @author curtis
  */
-public class DriveForwardTimeC extends CommandBase {
+public class Bob extends CommandBase {
+    double bobsvalue;
     
-    double timeToWait;
-    double endTime;  
-    
-    public DriveForwardTimeC(double pTimeWait) {
-        
-        timeToWait = pTimeWait;
+    public Bob() {
         // Use requires() here to declare subsystem dependencies
-        requires(driveTrainSS);
+        // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        endTime = Timer.getFPGATimestamp() + timeToWait;
+        
+        bobsvalue = SmartDashboard.getNumber("Bob the Var: ", bobsvalue);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        driveTrainSS.Arcade(-1, 0);
+        
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        if(Timer.getFPGATimestamp() >= endTime)
-        {
-            return true;
-        }
+        SmartDashboard.putNumber("Bob's current value: ", bobsvalue);
         return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-        driveTrainSS.Arcade(0, 0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-        end();
     }
 }

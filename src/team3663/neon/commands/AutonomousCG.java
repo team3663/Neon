@@ -6,6 +6,7 @@
 package team3663.neon.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -14,9 +15,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutonomousCG extends CommandGroup {
     
     public AutonomousCG() {
-        addSequential(new DriveForwardTimeC(1.5));  
+        addSequential(new DriveForwardTimeC(0.5));  
         //addSequential(new EnableAndDissableButtons(true));
-        addParallel(new WindWinchC(0));
+        addSequential(new WindWinchC(0));
         System.out.println("Wound Winch");
         addSequential(new LoadingArmDownC());
         System.out.println("Loading Down");

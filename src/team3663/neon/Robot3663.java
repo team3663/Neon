@@ -72,7 +72,16 @@ public class Robot3663 extends IterativeRobot
         LiveWindow.run();
         UpdateStatus();
     }
-    
+    public void disabledInit() 
+    {
+        System.out.println("disableInit.start");
+        System.out.println("disableInit.end");
+    }
+    public void disabledPeriodic()
+    {
+        //System.out.println("disablePeriodic.start");
+        //System.out.println("disablePeriodic.end");
+    }
     public void UpdateStatus()
     {
         //CommandBase.driveTrainSS.UpdateStatus();

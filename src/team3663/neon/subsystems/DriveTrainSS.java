@@ -2,8 +2,8 @@ package team3663.neon.subsystems;
 
 import com.sun.squawk.util.MathUtils;
 import edu.wpi.first.wpilibj.DriverStationLCD;
+import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import team3663.neon.RobotMap;
 import team3663.neon.commands.CommandBase;
 import team3663.neon.commands.DriveC;
@@ -30,19 +30,25 @@ public class DriveTrainSS extends Subsystem
         return RobotMap.tractionWheelUpDownSolenoid2.get();
     }
     
-    public void Arcade(double joyY, double joyTwist, double joyZ)
+    public void Arcade(double joyY, double joyZ)
     {
+        //find a way to fix this
+        RobotMap.driveTrain.setInvertedMotor(RobotDrive.MotorType.kFrontRight, false);
+        RobotMap.driveTrain.setInvertedMotor(RobotDrive.MotorType.kRearRight, false);
+        System.out.println("joyY = " + joyY + "\njoyZ = " + joyZ);
         if(joyY < 0.1 && joyY > -0.1)
         {
             joyY = 0;
         }
-        RobotMap.driveTrain.arcadeDrive(joyTwist, joyY);//mustard may be -joyY
+        RobotMap.driveTrain.arcadeDrive(-joyY, -joyZ);//mustard may be -joyY
         
        
     }
     
      public void Mecanum(double joyX, double joyY, double joyTwist)
     {
+        RobotMap.driveTrain.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
+        RobotMap.driveTrain.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
         direction = MathUtils.atan2(joyX, -joyY); // mustard may be joyY
         magnitude = Math.sqrt((joyX * joyX) +  (joyY * joyY));
         if (magnitude < 0.1 && magnitude > -0.1)

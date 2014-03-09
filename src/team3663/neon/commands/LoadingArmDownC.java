@@ -12,16 +12,19 @@ public class LoadingArmDownC extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+        System.out.println("LoadingArmDownC.initalize");
         loadingArmSS.LoadingArmDown();
         startTime = Timer.getFPGATimestamp();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+        System.out.println("LoadingArmDownC.execute");
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
+        System.out.println("LoadingArmDownC.isFinshed");
         if(Timer.getFPGATimestamp() - startTime > .5)
         {
             return true;
@@ -31,10 +34,12 @@ public class LoadingArmDownC extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
+        System.out.println("LoadingArmDownC.end");
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+        System.out.println("LoadingArmDownC.interrupted");
     }
 }

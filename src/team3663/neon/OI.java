@@ -3,6 +3,8 @@ package team3663.neon;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import team3663.neon.commands.Bob;
+import team3663.neon.commands.DriveForwardTimeC;
 import team3663.neon.commands.HammerRetractC;
 import team3663.neon.commands.TractionWheelsDownC;
 import team3663.neon.commands.ShiftToHighGearC;
@@ -117,6 +119,7 @@ public class OI
         //SmartDashboard.putData("WindWinch_60", new WindWinchC(60));
         SmartDashboard.putData("TightenWinch", new WinchTightenC());
         SmartDashboard.putData("TightenWinch", new WinchLoosenC());
+        SmartDashboard.putData("Automiss", new DriveForwardTimeC(.5));
         /*SmartDashboard.putData("WindWinch_120", new WindWinchC(120));
         SmartDashboard.putData("WindWinch_360", new WindWinchC(360));
         SmartDashboard.putData("WindWinch_500", new WindWinchC(500));
@@ -133,7 +136,10 @@ public class OI
         SmartDashboard.putData("DriveBasedOnEncodersC(20000,20000)", new DriveBasedOnEncodersC(20000,20000));
         SmartDashboard.putData("DriveBasedOnEncodersC(-6000,20000)", new DriveBasedOnEncodersC(-6000,20000));
         SmartDashboard.putData("DriveBasedOnEncodersC(-20000,20000)", new DriveBasedOnEncodersC(-20000,20000));
+        
     */
+        SmartDashboard.putData("Bob: ", new Bob());
+        
         System.out.println("OI constructor end");
     }
     
