@@ -52,7 +52,7 @@ public class OI
     public OI()
     {
         System.out.println("OI constructor start");
-//might be diffrent in mustard
+
         driveJoystick = new Joystick(1);
         buttonJoystick = new Joystick(2);
         

@@ -1,16 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package team3663.neon.commands;
 
 import edu.wpi.first.wpilibj.Timer;
 
-/**
- *
- * @author curtis
- */
 public class DriveForwardTimeC extends CommandBase {
     
     double timeToWait;
@@ -19,21 +10,18 @@ public class DriveForwardTimeC extends CommandBase {
     public DriveForwardTimeC(double pTimeWait) {
         
         timeToWait = pTimeWait;
-        // Use requires() here to declare subsystem dependencies
         requires(driveTrainSS);
     }
 
-    // Called just before this Command runs the first time
     protected void initialize() {
+        System.out.println("DriveForwardTimeC.initialize");
         endTime = Timer.getFPGATimestamp() + timeToWait;
     }
 
-    // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         driveTrainSS.Arcade(-1, 0);
     }
 
-    // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         if(Timer.getFPGATimestamp() >= endTime)
         {
@@ -42,14 +30,13 @@ public class DriveForwardTimeC extends CommandBase {
         return false;
     }
 
-    // Called once after isFinished returns true
     protected void end() {
+        System.out.println("DriveForwardTimeC.end");
         driveTrainSS.Arcade(0, 0);
     }
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
     protected void interrupted() {
+        System.out.println("DriveForwardTimeC.interrupted");
         end();
     }
 }

@@ -16,12 +16,10 @@ public class FillAirTanksC extends CommandBase
     {        
         if (compressorSS.airTanksAreFull())
         {
-            SmartDashboard.putString("Compressor:", "Off");
             compressorSS.TurnOff();
 	}
 	else
         {
-            SmartDashboard.putString("Compressor:", "On");
             compressorSS.TurnOn();
 	}
     }

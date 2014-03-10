@@ -4,6 +4,7 @@ import com.sun.squawk.util.MathUtils;
 import edu.wpi.first.wpilibj.DriverStationLCD;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import team3663.neon.Robot3663;
 import team3663.neon.RobotMap;
 import team3663.neon.commands.CommandBase;
 import team3663.neon.commands.DriveC;
@@ -16,8 +17,11 @@ public class DriveTrainSS extends Subsystem
     
     public void DriveTrainSS()
     {
+        System.out.println("DriveTrainSS constructor start");
+        Stop();
         ShiftToLowGear();
         TractionWheelsDown();
+        System.out.println("DriveTrainSS constructor end");
     }
         
     public void initDefaultCommand()
@@ -40,7 +44,15 @@ public class DriveTrainSS extends Subsystem
         {
             joyY = 0;
         }
-        RobotMap.driveTrain.arcadeDrive(-joyY, -joyZ);//mustard may be -joyY
+        if(Robot3663.mustard)
+        {
+            RobotMap.driveTrain.arcadeDrive(-joyY, -joyZ);
+        }
+        else
+        {
+            RobotMap.driveTrain.arcadeDrive(-joyY, -joyZ);
+        }
+        
         
        
     }
@@ -110,7 +122,7 @@ public class DriveTrainSS extends Subsystem
         RobotMap.tractionWheelUpDownSolenoid2.set(false);
     }
     
-    public void UpdateStatus()
+    public void updateStatus()
     {
     //    SmartDashboard.putNumber("Right Encoder:", GetRightEncoder());
 //	SmartDashboard.putNumber("Left Encoder:", GetLeftEncoder());

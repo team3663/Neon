@@ -17,8 +17,8 @@ public class LoadBallC extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        loadingArmSS.LoadingArmDown();
-        loadingArmSS.LoadingArmMotorIntake();
+        loadingArmSS.loadingArmDown();
+        loadingArmSS.loadingArmMotorIntake();
         
     }
 
@@ -33,8 +33,8 @@ public class LoadBallC extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-        loadingArmSS.LoadingArmUp();
-        loadingArmSS.LoadingArmMotorStop();
+        loadingArmSS.loadingArmUp();
+        loadingArmSS.loadingArmMotorStop();
     }
 
     // Called when another command which requires one or more of the same

@@ -19,7 +19,6 @@ public class PortMap
     public static int driveTrainRightEncoder1Port             = 6;
     public static int driveTrainRightEncoder2Port             = 7;
     public static int shooterLimitSwitchDIOPort               = 8;
-    public static int ballLoadedLimitSwitchDIOPort            = 12;
     
     //Solenoids
    
@@ -48,8 +47,8 @@ public class PortMap
     public static int shooterLatchSolenoid1PortK               = 7;
 
     // 2nd puck ketchup
-   public static int hammerRetractExtendSolenoid1PortK        = 5;
-   public static int hammerRetractExtendSolenoid2PortK        = 6;
+    public static int hammerRetractExtendSolenoid1PortK        = 5;
+    public static int hammerRetractExtendSolenoid2PortK        = 6;
     public static int footUpDownSolenoid2PortK                 = 7;
     public static int footUpDownSolenoid1PortK                 = 8;
     public static int loadingArmUpDownSolenoid2PortK           = 4;

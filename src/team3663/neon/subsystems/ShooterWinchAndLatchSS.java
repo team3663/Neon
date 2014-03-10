@@ -1,10 +1,6 @@
 package team3663.neon.subsystems;
 
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DriverStationLCD;
-import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.Solenoid;
-import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import team3663.neon.RobotMap;
@@ -21,9 +17,11 @@ public class ShooterWinchAndLatchSS extends Subsystem
     
     public void WinchAndLatchSS()
     {
+        System.out.println("WinchAndLatchSS constructor start");
         winchEncoderReset();
         latchClose();
         setWinchSpeed(0.0);
+        System.out.println("WinchAndLatchSS constructor end");
     }
     
     public void latchClose()
@@ -58,9 +56,10 @@ public class ShooterWinchAndLatchSS extends Subsystem
         return RobotMap.winchEncoder.get();
     }
     
-    public void UpdateStatus()
+    public void updateStatus()
     {
         SmartDashboard.putNumber("WinchEncoder", getWinchEncoder());
-        CommandBase.dsLCD.println(DriverStationLCD.Line.kUser1,1, "" + (int)getWinchEncoder());
+        SmartDashboard.putBoolean("Latch Open: ", latchIsOpen());
+        CommandBase.dsLCD.println(DriverStationLCD.Line.kUser6,1, "" + (int)getWinchEncoder());
     }
 }

@@ -1,6 +1,7 @@
 package team3663.neon.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import team3663.neon.RobotMap;
 
 public class HammerSS extends Subsystem {
@@ -9,7 +10,9 @@ public class HammerSS extends Subsystem {
     }
     
     public void HammerSS(){
+        System.out.println("HammerSS constructor start");
         hammerRetract();
+        System.out.println("HammerSS constructor end");
     }
 /** 
 **don't know if this is sending the proper response
@@ -26,5 +29,8 @@ public class HammerSS extends Subsystem {
     public void hammerRetract(){
         RobotMap.hammerRetractExtendSolenoid1.set(false);
         RobotMap.hammerRetractExtendSolenoid2.set(true);
+    }
+    public void updateStatus(){
+        SmartDashboard.putBoolean("Hammer Retracted: ", hammerIsRetracted());
     }
 }

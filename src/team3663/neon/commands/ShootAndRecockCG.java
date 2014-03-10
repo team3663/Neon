@@ -6,7 +6,6 @@
 package team3663.neon.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import team3663.neon.OI;
 
 /**
  *

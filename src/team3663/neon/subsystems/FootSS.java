@@ -1,6 +1,7 @@
 package team3663.neon.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import team3663.neon.RobotMap;
 
 public class FootSS extends Subsystem {
@@ -8,6 +9,9 @@ public class FootSS extends Subsystem {
     }
     
     public void FootSS(){
+        System.out.println("FootSS constructor start");
+        footUp();
+        System.out.println("FootSS constructor end");
     }
     
     public void footUp(){
@@ -20,7 +24,10 @@ public class FootSS extends Subsystem {
         RobotMap.footUpDownSolenoid2.set(true);
     }
 
-    public boolean FootIsUp(){
+    public boolean footIsUp(){
         return RobotMap.footUpDownSolenoid1.get();
+    }
+    public void updateStatus(){
+        SmartDashboard.putBoolean("Foot is up: ", footIsUp());
     }
 }

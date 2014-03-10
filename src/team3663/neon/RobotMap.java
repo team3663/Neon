@@ -9,7 +9,6 @@ import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Victor;
-import edu.wpi.first.wpilibj.camera.*;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 /**
@@ -148,8 +147,6 @@ public class RobotMap
         LoadingArmSpeedController = new Victor(PortMap.MainModulePort, PortMap.LoadingArmSpeedControllerPort); 
         shooterLimitSwitchDIO = new DigitalInput(PortMap.MainModulePort, PortMap.shooterLimitSwitchDIOPort);
         
-        ballLoadedLimitSwitchDIO = new DigitalInput(PortMap.MainModulePort, PortMap.ballLoadedLimitSwitchDIOPort);
-        
         compressorOnOffRelay = new Relay(PortMap.MainModulePort, PortMap.compressorOnOffRelayPort);
         compressorLimitSwitchDIO = new DigitalInput(PortMap.MainModulePort, PortMap.compressorLimitSwitchDIOPort);
         
@@ -183,7 +180,6 @@ public class RobotMap
         LiveWindow.addActuator("SOLENOIDS", "Pick Up1", loadingArmUpDownSolenoid1);
         LiveWindow.addActuator("SOLENOIDS", "Pick Up2", loadingArmUpDownSolenoid2);
         
-        LiveWindow.addSensor("LIMIT SWITCHES", "BallLimitSwitch", ballLoadedLimitSwitchDIO);
         LiveWindow.addSensor("LIMIT SWITCHES", "ShooterLimitSwitch", shooterLimitSwitchDIO);
         LiveWindow.addSensor("LIMIT SWITCHES", "LimitSwitch", shooterLimitSwitchDIO);
         LiveWindow.addSensor("RangeFinder", "FrontUltrasonic", frontUltrasonicAnalog);

@@ -1,6 +1,7 @@
 package team3663.neon.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import team3663.neon.RobotMap;
 
 public class LoadingArmSS extends Subsystem {
@@ -8,30 +9,35 @@ public class LoadingArmSS extends Subsystem {
     }
     
     public void LoadingArmSS(){
+        System.out.println("LoadingArmSS constructor start");
+        loadingArmUp();
+        System.out.println("LoadingArmSS constructor end");
     }
     
-    public void LoadingArmDown(){
+    public void loadingArmDown(){
         RobotMap.loadingArmUpDownSolenoid1.set(true);
         RobotMap.loadingArmUpDownSolenoid2.set(false);
     }
-    public void LoadingArmUp(){
+    public void loadingArmUp(){
         RobotMap.loadingArmUpDownSolenoid1.set(false);
         RobotMap.loadingArmUpDownSolenoid2.set(true);
     }
-    public void LoadingArmMotorIntake(){
+    public void loadingArmMotorIntake(){
         RobotMap.LoadingArmSpeedController.set(-1.0);
     }
-    public void LoadingArmMotorEject(){
+    public void loadingArmMotorEject(){
         RobotMap.LoadingArmSpeedController.set(1.0);
     }
-    public void LoadingArmMotorStop(){
+    public void loadingArmMotorStop(){
         RobotMap.LoadingArmSpeedController.set(0.0);
-    }
-    //checks
-    public boolean IsBallLoaded(){
-        return RobotMap.ballLoadedLimitSwitchDIO.get();
     }
     public boolean loadingArmIsUp(){
         return !RobotMap.loadingArmUpDownSolenoid2.get();
     }
+    public void updateStatus()
+    {
+        SmartDashboard.putBoolean("Loading Arm is Up: ", loadingArmIsUp());
+        SmartDashboard.putNumber("LoadingArm Motor: ", RobotMap.LoadingArmSpeedController.get());
+    }
+    
 }

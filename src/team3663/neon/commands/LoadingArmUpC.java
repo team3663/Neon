@@ -12,7 +12,7 @@ public class LoadingArmUpC extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        loadingArmSS.LoadingArmUp();
+        loadingArmSS.loadingArmUp();
         startTime = Timer.getFPGATimestamp();
     }
 
