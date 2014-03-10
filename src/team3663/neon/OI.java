@@ -120,7 +120,6 @@ public class OI
         footUp.whenPressed(new FootUpC());
         SmartDashboard.putString("Monkey6:", "6: foot Up");
         
-        SmartDashboard.putNumber("WinchEncoder", RobotMap.winchEncoder.get());
         
         SmartDashboard.putData("loadBall", new LoadBallC());
         SmartDashboard.putData("FootDown", new FootDownC());

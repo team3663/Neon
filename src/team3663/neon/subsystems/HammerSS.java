@@ -15,16 +15,16 @@ public class HammerSS extends Subsystem {
 **don't know if this is sending the proper response
 **/
     public boolean hammerIsRetracted(){
-        return RobotMap.hammerRetractExtendSolenoid1.get();
+        return RobotMap.hammerRetractExtendSolenoid2.get();
     }
     
     public void hammerExtend(){
-        RobotMap.hammerRetractExtendSolenoid1.set(false);
-        RobotMap.hammerRetractExtendSolenoid2.set(true);        
+        RobotMap.hammerRetractExtendSolenoid1.set(true);
+        RobotMap.hammerRetractExtendSolenoid2.set(false);        
     }
     
     public void hammerRetract(){
-        RobotMap.hammerRetractExtendSolenoid1.set(true);
-        RobotMap.hammerRetractExtendSolenoid2.set(false);        
+        RobotMap.hammerRetractExtendSolenoid1.set(false);
+        RobotMap.hammerRetractExtendSolenoid2.set(true);
     }
 }

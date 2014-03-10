@@ -27,7 +27,7 @@ public class DriveTrainSS extends Subsystem
       
     public boolean TractionIsDown()
     {
-        return RobotMap.tractionWheelUpDownSolenoid2.get();
+        return RobotMap.tractionWheelUpDownSolenoid1.get();
     }
     
     public void Arcade(double joyY, double joyZ)
@@ -63,13 +63,13 @@ public class DriveTrainSS extends Subsystem
     }
   
     public void ShiftToHighGear(){//black slider of transmissions out
-        RobotMap.gearShiftHighLowSolenoid1.set(true);
-        RobotMap.gearShiftHighLowSolenoid2.set(false);
+        RobotMap.gearShiftHighLowSolenoid1.set(false);
+        RobotMap.gearShiftHighLowSolenoid2.set(true);
     }
     
    public void ShiftToLowGear(){//black slider of transmissions in
-        RobotMap.gearShiftHighLowSolenoid1.set(false);
-        RobotMap.gearShiftHighLowSolenoid2.set(true);
+        RobotMap.gearShiftHighLowSolenoid1.set(true);
+        RobotMap.gearShiftHighLowSolenoid2.set(false);
     }
     
     public void Drive(double speed, double curve)
@@ -100,14 +100,14 @@ public class DriveTrainSS extends Subsystem
     
     public void TractionWheelsUp()
     {
-        RobotMap.tractionWheelUpDownSolenoid1.set(true);
-        RobotMap.tractionWheelUpDownSolenoid2.set(false);
+        RobotMap.tractionWheelUpDownSolenoid1.set(false);
+        RobotMap.tractionWheelUpDownSolenoid2.set(true);
     }
     
     public void TractionWheelsDown()
     {
-        RobotMap.tractionWheelUpDownSolenoid1.set(false);
-        RobotMap.tractionWheelUpDownSolenoid2.set(true);
+        RobotMap.tractionWheelUpDownSolenoid1.set(true);
+        RobotMap.tractionWheelUpDownSolenoid2.set(false);
     }
     
     public void UpdateStatus()

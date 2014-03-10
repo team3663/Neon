@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import team3663.neon.RobotMap;
 import team3663.neon.commands.CommandBase;
 
@@ -59,6 +60,7 @@ public class ShooterWinchAndLatchSS extends Subsystem
     
     public void UpdateStatus()
     {
+        SmartDashboard.putNumber("WinchEncoder", getWinchEncoder());
         CommandBase.dsLCD.println(DriverStationLCD.Line.kUser1,1, "" + (int)getWinchEncoder());
     }
 }
