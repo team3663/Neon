@@ -26,6 +26,7 @@
             <file>file:/C:/workspace/Neon/src/team3663/neon/RobotMap.java</file>
             <file>file:/C:/workspace/Neon/src/team3663/neon/commands/TractionWheelsUpC.java</file>
             <file>file:/C:/workspace/Neon/src/team3663/neon/subsystems/ShooterWinchAndLatchSS.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/ShiftToHighGearC.java</file>
             <file>file:/C:/workspace/Neon/src/team3663/neon/commands/ResetWinchEncoderC.java</file>
             <file>file:/C:/workspace/Neon/src/team3663/neon/commands/CommandBase.java</file>
             <file>file:/C:/workspace/Neon/src/team3663/neon/commands/CatapultLimitSwitchMonitorC.java</file>
@@ -38,6 +39,7 @@
             <file>file:/C:/workspace/Neon/src/team3663/neon/commands/AutonomousCG.java</file>
             <file>file:/C:/workspace/Neon/src/team3663/neon/commands/HitBallCG.java</file>
             <file>file:/C:/workspace/Neon/src/team3663/neon/commands/ShooterLatchOpenC.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/FRC_ImageVersion.ini</file>
             <file>file:/C:/workspace/Neon/src/team3663/neon/subsystems/FootSS.java</file>
             <file>file:/C:/workspace/Neon/src/team3663/neon/commands/Bob.java</file>
         </group>

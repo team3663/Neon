@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutonomousCG extends CommandGroup {
     
     public AutonomousCG() {
-        addSequential(new DriveForwardTimeC(0.5));  
+        addSequential(new DriveForwardTimeC(0.7));  
         //addSequential(new EnableAndDissableButtons(true));
         addSequential(new WindWinchC(0));
         System.out.println("Wound Winch");

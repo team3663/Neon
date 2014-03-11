@@ -21,7 +21,6 @@ public class WindWinchC extends CommandBase {
     protected void initialize() {
         System.out.println("WindWinch.initialize" + targetTicks);
         tightening = shooterWinchAndLatchSS.getWinchEncoder() > targetTicks;
-        
         if (tightening){
             direction = speed = -1;
         }

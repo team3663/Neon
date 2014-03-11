@@ -30,6 +30,9 @@ import team3663.neon.commands.WindWinchC;
 
 public class OI 
 {
+    public boolean fireOrNotWeak;
+    public boolean fireOrNotMediam;
+    public boolean fireOrNotFull;
     private final Joystick driveJoystick;
     private final Joystick buttonJoystick;
 
@@ -49,6 +52,7 @@ public class OI
     private static JoystickButton tightenWinch;
     private static JoystickButton winchEncoderZero;
     private static JoystickButton LoosenWinchAndLatch;
+    private static JoystickButton heldTractionWheels;
     public OI()
     {
         System.out.println("OI constructor start");
@@ -83,6 +87,11 @@ public class OI
         shoot = new JoystickButton(buttonJoystick, 1);
         shoot.whenPressed(new ShootAndRecockCG(0));
         SmartDashboard.putString("Monkey1:", "1: SHOOT!");
+        
+        //changed things for drive team
+        heldTractionWheels = new JoystickButton(driveJoystick, 1);
+        heldTractionWheels.whileHeld(new TractionWheelsDownC());
+        SmartDashboard.putString("Driver1:", "1: Hold Tarction Down");
 
         changeToMecanumDrive = new JoystickButton(driveJoystick, 5);
         changeToMecanumDrive.whenPressed(new TractionWheelsUpC());
@@ -99,14 +108,25 @@ public class OI
         switchToLowGear = new JoystickButton(driveJoystick, 4);
         switchToLowGear.whenPressed(new ShiftToLowGearC());
         SmartDashboard.putString("Drive4:", "4: Shift to Low Gear");
-        
-        shootMedium = new JoystickButton(buttonJoystick, 5);
-        shootMedium.whenPressed(new ShootAndRecockCG(200));
-        SmartDashboard.putString("Monkey5:", "5: Shoot Medium");
+       
+       /* if (fireOrNot)
+        {
+            shootMedium = new JoystickButton(buttonJoystick, 5);
+            shootMedium.whenPressed(new ShootAndRecockCG(100));
 
-        shootWeak = new JoystickButton(buttonJoystick, 3);
-        shootWeak.whenPressed(new ShootAndRecockCG(400));
-        SmartDashboard.putString("Monkey3:", "3: 1 pt Shot");
+            shootWeak = new JoystickButton(buttonJoystick, 3);
+            shootWeak.whenPressed(new ShootAndRecockCG(200));
+        }*/
+        //else
+        //{
+            shootMedium = new JoystickButton(buttonJoystick, 5);
+            shootMedium.whenPressed(new ShootAndRecockCG(100));
+            SmartDashboard.putString("Monkey5:", "5: Shoot Medium");
+
+            shootWeak = new JoystickButton(buttonJoystick, 3);
+            shootWeak.whenPressed(new ShootAndRecockCG(200));
+            SmartDashboard.putString("Monkey3:", "3: 1 pt Shot");
+        //}
 
         hammer = new JoystickButton(buttonJoystick, 2);
         hammer.whenPressed(new HammerFireCG());
@@ -167,7 +187,7 @@ public class OI
     {
 	return driveJoystick;
     }
-    
+   
     public Joystick getTurnJoystick() 
     {
 	return buttonJoystick;
