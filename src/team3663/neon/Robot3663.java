@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import team3663.neon.commands.AutonomousCG;
 import team3663.neon.commands.CommandBase;
 
@@ -17,6 +18,7 @@ public class Robot3663 extends IterativeRobot
     int counter=0;
     CommandGroup autonomousCG;
     DriverStation driveStation;
+    int isAliveCounter;
     
     public void robotInit() 
     {
@@ -84,6 +86,8 @@ public class Robot3663 extends IterativeRobot
     }
     public void updateStatus()
     {
+        SmartDashboard.putNumber("updateStatus", isAliveCounter++);
+
         CommandBase.shooterWinchAndLatchSS.updateStatus();
         CommandBase.compressorSS.updateStatus();
         CommandBase.driveTrainSS.updateStatus();
@@ -98,7 +102,7 @@ public class Robot3663 extends IterativeRobot
         CommandBase.dsLCD.println(DriverStationLCD.Line.kUser2, 1, "                     ");
         CommandBase.dsLCD.println(DriverStationLCD.Line.kUser3, 1, "                     ");
         //CommandBase.dsLCD.println(DriverStationLCD.Line.kUser4, 1, "                     ");
-        CommandBase.dsLCD.println(DriverStationLCD.Line.kUser5, 1, "                     ");
+        //CommandBase.dsLCD.println(DriverStationLCD.Line.kUser5, 1, "                     ");
         CommandBase.dsLCD.println(DriverStationLCD.Line.kUser6, 1, "                     ");
     }
 }

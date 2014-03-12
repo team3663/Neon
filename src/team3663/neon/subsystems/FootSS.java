@@ -28,6 +28,9 @@ public class FootSS extends Subsystem {
         return RobotMap.footUpDownSolenoid1.get();
     }
     public void updateStatus(){
-        SmartDashboard.putBoolean("Foot is up: ", footIsUp());
+        if(footIsUp())
+            SmartDashboard.putString("Foot","Foot is up");
+        else
+            SmartDashboard.putString("Foot","Foot is down");
     }
 }

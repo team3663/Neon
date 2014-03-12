@@ -14,63 +14,79 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class TestAllPartsOfTheRobotCG extends CommandGroup {
     
     public TestAllPartsOfTheRobotCG() {
-        addSequential(new WaitForCompressorC());
-        addSequential(new WindWinchC(400));
-        addSequential(new ShooterLatchCloseC());
-        addSequential(new ShooterLatchOpenC());
-        addSequential(new TimeWaitC(0.2));
-        addSequential(new ShooterLatchCloseC());
-        addSequential(new TimeWaitC(0.2));
-        addSequential(new WindWinchC(0));  
-        addSequential(new TractionWheelsDownC());
-        addSequential(new TimeWaitC(0.2));
-        addSequential(new TractionWheelsUpC());
-        addSequential(new TimeWaitC(0.2));
-        addSequential(new TractionWheelsDownC());
-        addSequential(new TimeWaitC(0.2));
-        addSequential(new ShiftToHighGearC());
-        addSequential(new TimeWaitC(0.2));
-        addSequential(new ShiftToLowGearC());
-        addSequential(new TimeWaitC(0.2));
-        addSequential(new ShiftToHighGearC());
-        addSequential(new TimeWaitC(0.2));
-        addSequential(new HammerRetractC());
-        addSequential(new TimeWaitC(0.2));
-        addSequential(new HammerExtendC());
-        addSequential(new TimeWaitC(0.2));
-        addSequential(new HammerRetractC());
-        addSequential(new TimeWaitC(0.2));
-        addSequential(new FootUpC());
-        addSequential(new TimeWaitC(0.2));
-        addSequential(new FootDownC());
-        addSequential(new TimeWaitC(0.2));
-        addSequential(new FootUpC());
-        addSequential(new LoadingArmUpC());
-        addSequential(new TimeWaitC(0.2));
-        addSequential(new LoadingArmDownC());
-        addSequential(new TimeWaitC(0.2));
-        addSequential(new LoadingArmUpC());
-        addSequential(new TimeWaitC(0.2));
-        addSequential(new MotorTestC(1, 1, .5));
-        addSequential(new MotorTestC(2, 1, .5));
-        addSequential(new MotorTestC(3, 1, .5));
-        addSequential(new MotorTestC(4, 1, .5));
-        addSequential(new MotorTestC(5, 1, .5));
         
-        // Add Commands here:
-        // e.g. addSequential(new Command1());
-        //      addSequential(new Command2());
-        // these will run in order.
+        double interCommandDelay = .25;
+        
+        //compressor
+        addSequential(new WaitForCompressorC());
+        
+        //winch and latch
+        addSequential(new WindWinchC(400));
+        
+        addSequential(new ShooterLatchCloseC());
+        
+        addSequential(new ShooterLatchOpenC());
+        addSequential(new TimeWaitC(interCommandDelay));
+        
+        addSequential(new ShooterLatchCloseC());
+        addSequential(new TimeWaitC(interCommandDelay));
+        
+        addSequential(new WindWinchC(0));  
+        
+        //traction wheels
+        addSequential(new TractionWheelsDownC());
+        addSequential(new TimeWaitC(interCommandDelay));
+        
+        addSequential(new TractionWheelsUpC());
+        addSequential(new TimeWaitC(interCommandDelay));
+        
+        addSequential(new TractionWheelsDownC());
+        
+        //gear shifting
+        addSequential(new ShiftToHighGearC());
+        addSequential(new TimeWaitC(interCommandDelay));
+        
+        addSequential(new ShiftToLowGearC());
+        addSequential(new TimeWaitC(interCommandDelay));
+        
+        addSequential(new ShiftToHighGearC());
+        
+        //hammer
+        addSequential(new HammerRetractC());
+        addSequential(new TimeWaitC(interCommandDelay));
+        
+        addSequential(new HammerExtendC());
+        addSequential(new TimeWaitC(interCommandDelay));
+        
+        addSequential(new HammerRetractC());
 
-        // To run multiple commands at the same time,
-        // use addParallel()
-        // e.g. addParallel(new Command1());
-        //      addSequential(new Command2());
-        // Command1 and Command2 will run in parallel.
-        // A command group will require all of the subsystems that each member
-        // would require.
-        // e.g. if Command1 requires chassis, and Command2 requires arm,
-        // a CommandGroup containing them would require both the chassis and the
-        // arm.
-    }
+        //foot
+        addSequential(new FootUpC());
+        addSequential(new TimeWaitC(interCommandDelay));
+        
+        addSequential(new FootDownC());
+        addSequential(new TimeWaitC(interCommandDelay));
+        
+        addSequential(new FootUpC());
+        
+        //loading arm
+        addSequential(new LoadingArmUpC());
+        addSequential(new TimeWaitC(interCommandDelay));
+        
+        addSequential(new LoadingArmDownC());
+        addSequential(new TimeWaitC(interCommandDelay));
+        
+        addSequential(new SpinLoadingArmMotorC(true, 2.0));
+        addSequential(new TimeWaitC(interCommandDelay));
+        addSequential(new SpinLoadingArmMotorC(false, 2.0));
+        
+        addSequential(new LoadingArmUpC());
+        addSequential(new TimeWaitC(interCommandDelay));
+
+        addSequential(new DriveMotorTestC(1, 2, .5));
+        addSequential(new DriveMotorTestC(2, 2, .5));
+        addSequential(new DriveMotorTestC(3, 2, .5));
+        addSequential(new DriveMotorTestC(4, 2, .5));
+
+}
 }

@@ -25,7 +25,7 @@ public class CompressorSS extends Subsystem
     public void TurnOn()
     {
         compressorOn = true;
-        RobotMap.compressorOnOffRelay.set(Relay.Value.kForward);//Mustard may be kReverse
+        RobotMap.compressorOnOffRelay.set(Relay.Value.kForward);
     }
     
     public void TurnOff()
@@ -36,25 +36,25 @@ public class CompressorSS extends Subsystem
     
     public boolean airTanksAreFull()
     {
-        return RobotMap.compressorLimitSwitchDIO.get();//Mustard may be opposite
+        return RobotMap.compressorLimitSwitchDIO.get();
     }
     
     public void updateStatus()
     {
         if(airTanksAreFull()){
-            SmartDashboard.putString("Air Tanks: ", "Full");
+            SmartDashboard.putString("Air Tanks", "Air tanks full");
         }
         else
         {
-            SmartDashboard.putString("Air Tanks:", "Not full");
+            SmartDashboard.putString("Air Tanks", "Air tanks not full");
         }
         if(compressorOn)
         {
-            SmartDashboard.putString("Compressor: ", "ON");
+            SmartDashboard.putString("Compressor", "Compressor on");
         }
         else
         {
-            SmartDashboard.putString("Compressor: ", "OFF");
+            SmartDashboard.putString("Compressor: ", "Compressor off");
         }
     }
 }

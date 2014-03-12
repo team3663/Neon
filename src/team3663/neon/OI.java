@@ -3,8 +3,8 @@ package team3663.neon;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import team3663.neon.commands.Bob;
 import team3663.neon.commands.DriveForwardTimeC;
+import team3663.neon.commands.DriveMotorTestC;
 import team3663.neon.commands.HammerRetractC;
 import team3663.neon.commands.TractionWheelsDownC;
 import team3663.neon.commands.ShiftToHighGearC;
@@ -22,6 +22,7 @@ import team3663.neon.commands.ResetWinchEncoderC;
 import team3663.neon.commands.ShootAndRecockCG;
 import team3663.neon.commands.ShooterLatchCloseC;
 import team3663.neon.commands.ShooterLatchOpenC;
+import team3663.neon.commands.SpinLoadingArmMotorC;
 import team3663.neon.commands.TestAllPartsOfTheRobotCG;
 import team3663.neon.commands.TimeWaitC;
 import team3663.neon.commands.WinchLoosenC;
@@ -139,15 +140,23 @@ public class OI
         SmartDashboard.putData("ShiftToHighGear", new ShiftToHighGearC());
         SmartDashboard.putData("TractionWheelsUp", new TractionWheelsUpC());
         SmartDashboard.putData("TractionWheelsDown", new TractionWheelsDownC());
-        SmartDashboard.putData("ShooterLatchOpen", new ShooterLatchOpenC());
-        SmartDashboard.putData("ShooterLatchClose", new ShooterLatchCloseC());
+        SmartDashboard.putData("LatchOpen", new ShooterLatchOpenC());
+        SmartDashboard.putData("LatchClose", new ShooterLatchCloseC());
+        SmartDashboard.putData("TightenWinch", new WinchTightenC());
+        SmartDashboard.putData("LoosenWinch", new WinchLoosenC());
         SmartDashboard.putData("WindWinch_0", new WindWinchC(0));
+        SmartDashboard.putData("SpinLoadingArmMotorC_Intake", new SpinLoadingArmMotorC(true,10000));
+        SmartDashboard.putData("SpinLoadingArmMotorC_Eject", new SpinLoadingArmMotorC(false,10000));
+        SmartDashboard.putData("DriveMotorTestC_LeftBack", new DriveMotorTestC(1,10000,.5));
+        SmartDashboard.putData("DriveMotorTestC_LeftFront", new DriveMotorTestC(3,10000,.5));
+        SmartDashboard.putData("DriveMotorTestC_RightFront", new DriveMotorTestC(4,10000,.5));
+        SmartDashboard.putData("DriveMotorTestC_RightBack", new DriveMotorTestC(2,10000,.5));
+        
+        
         SmartDashboard.putData("TestAllThingsOfTheRobot", new TestAllPartsOfTheRobotCG());
        //SmartDashboard.putData("WindWinch_30", new WindWinchC(30));
         //SmartDashboard.putData("WindWinch_60", new WindWinchC(60));
-        SmartDashboard.putData("TightenWinch", new WinchTightenC());
-        SmartDashboard.putData("LoosenWinch", new WinchLoosenC());
-        SmartDashboard.putData("Automiss", new DriveForwardTimeC(.5));
+        SmartDashboard.putData("DriveForwardTime_70", new DriveForwardTimeC(.7));
         /*SmartDashboard.putData("WindWinch_120", new WindWinchC(120));
         SmartDashboard.putData("WindWinch_360", new WindWinchC(360));
         SmartDashboard.putData("WindWinch_500", new WindWinchC(500));
@@ -166,7 +175,6 @@ public class OI
         SmartDashboard.putData("DriveBasedOnEncodersC(-20000,20000)", new DriveBasedOnEncodersC(-20000,20000));
         
     */
-        SmartDashboard.putData("Bob: ", new Bob());
         
         System.out.println("OI constructor end");
     }

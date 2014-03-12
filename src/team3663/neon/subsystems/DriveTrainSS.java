@@ -4,7 +4,7 @@ import com.sun.squawk.util.MathUtils;
 import edu.wpi.first.wpilibj.DriverStationLCD;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import team3663.neon.Robot3663;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import team3663.neon.RobotMap;
 import team3663.neon.commands.CommandBase;
 import team3663.neon.commands.DriveC;
@@ -18,9 +18,9 @@ public class DriveTrainSS extends Subsystem
     public void DriveTrainSS()
     {
         System.out.println("DriveTrainSS constructor start");
-        Stop();
         ShiftToLowGear();
         TractionWheelsDown();
+        Arcade(0,0);
         System.out.println("DriveTrainSS constructor end");
     }
         
@@ -34,43 +34,52 @@ public class DriveTrainSS extends Subsystem
         return RobotMap.tractionWheelUpDownSolenoid1.get();
     }
     
+    // should switch DriveC to use this when it can be tested
+    /*
+    public void drive3663(double jX, double jY, double jZ) 
+    {
+       if(TractionIsDown())
+       {
+           Arcade(jY, jZ);
+           SmartDashboard.putString("Driving:", "Arcade");
+       }
+       else
+       {
+           Mecanum(jX, jY, jZ);
+           SmartDashboard.putString("Driving:", "Mecanum");
+       }
+    }
+*/
+    
     public void Arcade(double joyY, double joyZ)
     {
-        //find a way to fix this
+        //todo: add logic so invert does not need to be called every time
         RobotMap.driveTrain.setInvertedMotor(RobotDrive.MotorType.kFrontRight, false);
         RobotMap.driveTrain.setInvertedMotor(RobotDrive.MotorType.kRearRight, false);
-        System.out.println("joyY = " + joyY + "\njoyZ = " + joyZ);
+
+        //stop motor hum when idle
         if(joyY < 0.1 && joyY > -0.1)
         {
             joyY = 0;
         }
-        if(Robot3663.mustard)
-        {
-            RobotMap.driveTrain.arcadeDrive(-joyY, -joyZ);
-        }
-        else
-        {
-            RobotMap.driveTrain.arcadeDrive(-joyY, -joyZ);
-        }
-        
-        
-       
+
+        RobotMap.driveTrain.arcadeDrive(-joyY, -joyZ);
     }
     
      public void Mecanum(double joyX, double joyY, double joyTwist)
     {
+        //todo: add logic so invert does not need to be called every time
         RobotMap.driveTrain.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
         RobotMap.driveTrain.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
-        direction = MathUtils.atan2(joyX, -joyY); // mustard may be joyY
+
+        direction = MathUtils.atan2(joyX, -joyY);
         magnitude = Math.sqrt((joyX * joyX) +  (joyY * joyY));
+        
         if (magnitude < 0.1 && magnitude > -0.1)
         {
             magnitude = 0;
         }
-        if (joyTwist < 0.1 && joyTwist > -0.1)
-        {
-            joyTwist = 0;
-        }
+
         RobotMap.driveTrain.mecanumDrive_Polar(magnitude, Math.toDegrees(direction), joyTwist);
     }
   
@@ -83,37 +92,27 @@ public class DriveTrainSS extends Subsystem
         RobotMap.gearShiftHighLowSolenoid1.set(true);
         RobotMap.gearShiftHighLowSolenoid2.set(false);
     }
-    public void TestMotors(int motorNumber, double speed)
+   
+    public void driveBackLeftSpeedController(double speed)
     {
-        if(motorNumber == 1)
-        {
-            RobotMap.driveTrainBackLeftSpeedController.set(speed);
-        }
-        if(motorNumber == 2)
-        {
-            RobotMap.driveTrainFrontLeftSpeedController.set(speed);
-        }
-        if(motorNumber == 3)
-        {
-            RobotMap.driveTrainFrontRightSpeedController.set(speed);
-        }
-        if(motorNumber == 4)
-        {
-            RobotMap.driveTrainBackRightSpeedController.set(speed);
-        }
-        if(motorNumber == 5)
-        {
-            RobotMap.LoadingArmSpeedController.set(speed);
-        }
+        RobotMap.driveTrainBackLeftSpeedController.set(speed);
     }
-    public void Drive(double speed, double curve)
+
+    public void driveFrontLeftSpeedController(double speed)
     {
-        RobotMap.driveTrain.arcadeDrive(speed, curve);
+        RobotMap.driveTrainFrontLeftSpeedController.set(speed);
     }
-    public void Stop()
+
+    public void driveFrontRightSpeedController(double speed)
     {
-        Drive(0, 0);
+        RobotMap.driveTrainFrontRightSpeedController.set(speed);
     }
+
+    public void driveBackRightSpeedController(double speed)
+    {
+        RobotMap.driveTrainBackRightSpeedController.set(speed);
+    }
+    
     public boolean InLowGear()
     {
         return RobotMap.gearShiftHighLowSolenoid2.get();
@@ -149,22 +148,28 @@ public class DriveTrainSS extends Subsystem
     //    SmartDashboard.putNumber("Right Encoder:", GetRightEncoder());
 //	SmartDashboard.putNumber("Left Encoder:", GetLeftEncoder());
         CommandBase.dsLCD.println(DriverStationLCD.Line.kUser1,1, ("R:" + (int)GetRightEncoder()) + " L:" + (int)GetLeftEncoder());
+        SmartDashboard.putNumber("LeftEncoder",GetLeftEncoder());
+        SmartDashboard.putNumber("RightEncoder",GetRightEncoder());
 	if (InLowGear())
         {
-		CommandBase.dsLCD.println(DriverStationLCD.Line.kUser2, 1, "Low Gear");
+            CommandBase.dsLCD.println(DriverStationLCD.Line.kUser2, 1, "Low Gear");
+            SmartDashboard.putString("Gear","Low");
         }
         else
         {
             CommandBase.dsLCD.println(DriverStationLCD.Line.kUser2, 1, "High Gear");
+            SmartDashboard.putString("Gear","High");
         }
         
         if (TractionIsDown())
         {
             CommandBase.dsLCD.println(DriverStationLCD.Line.kUser3, 1, "Traction Wheels Down");
+            SmartDashboard.putString("Traction Wheels","Down");
         }
         else
         {
             CommandBase.dsLCD.println(DriverStationLCD.Line.kUser3, 1, "Traction Wheels Up   ");
+            SmartDashboard.putString("Traction Wheels","Up");
         }
     }
 }
