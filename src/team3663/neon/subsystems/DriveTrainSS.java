@@ -46,7 +46,7 @@ public class DriveTrainSS extends Subsystem
         }
         if(Robot3663.mustard)
         {
-            RobotMap.driveTrain.arcadeDrive(-joyY, -joyZ);
+            RobotMap.driveTrain.arcadeDrive(joyY, -joyZ);// changed Y to see if it'll go correct dir
         }
         else
         {
@@ -61,7 +61,7 @@ public class DriveTrainSS extends Subsystem
     {
         RobotMap.driveTrain.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
         RobotMap.driveTrain.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
-        direction = MathUtils.atan2(joyX, -joyY); // mustard may be joyY
+        direction = MathUtils.atan2(joyX, joyY); // mustard may be joyY //on mustard now
         magnitude = Math.sqrt((joyX * joyX) +  (joyY * joyY));
         if (magnitude < 0.1 && magnitude > -0.1)
         {

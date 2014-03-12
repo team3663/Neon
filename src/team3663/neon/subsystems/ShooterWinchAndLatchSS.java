@@ -53,7 +53,7 @@ public class ShooterWinchAndLatchSS extends Subsystem
     public double getWinchEncoder()
     {
         //one revolution is 360 ticks
-        return RobotMap.winchEncoder.get();
+        return -RobotMap.winchEncoder.get();
     }
     
     public void updateStatus()

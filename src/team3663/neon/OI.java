@@ -86,6 +86,8 @@ public class OI
 
         shoot = new JoystickButton(buttonJoystick, 1);
         shoot.whenPressed(new ShootAndRecockCG(0));
+        Robot3663.shot = "full";
+         
         SmartDashboard.putString("Monkey1:", "1: SHOOT!");
         
         //changed things for drive team
@@ -120,11 +122,13 @@ public class OI
         //else
         //{
             shootMedium = new JoystickButton(buttonJoystick, 5);
-            shootMedium.whenPressed(new ShootAndRecockCG(100));
+            shootMedium.whenPressed(new ShootAndRecockCG(100)); 
+            Robot3663.shot = "medium";
             SmartDashboard.putString("Monkey5:", "5: Shoot Medium");
 
             shootWeak = new JoystickButton(buttonJoystick, 3);
             shootWeak.whenPressed(new ShootAndRecockCG(200));
+            Robot3663.shot = "weak";
             SmartDashboard.putString("Monkey3:", "3: 1 pt Shot");
         //}
 
@@ -164,6 +168,8 @@ public class OI
         SmartDashboard.putData("WindWinch_360", new WindWinchC(360));
         SmartDashboard.putData("WindWinch_500", new WindWinchC(500));
         */
+        //SmartDashboard.putNumber("WinchEncoderReading", -RobotMap.winchEncoder.get());
+        
         //SmartDashboard.putData("WindWinch_-50", new WindWinchC(-50));
         SmartDashboard.putData("ResetWinchEncoder", new ResetWinchEncoderC());
         SmartDashboard.putData("LoosenWinchAndLatch", new LoosenWinchAndLatchC());

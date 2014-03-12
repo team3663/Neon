@@ -13,6 +13,7 @@ import team3663.neon.commands.CommandBase;
 public class Robot3663 extends IterativeRobot
 {
     public static boolean mustard = true;
+    public static String shot = "full";
     boolean test = true;
     int counter=0;
     CommandGroup autonomousCG;
