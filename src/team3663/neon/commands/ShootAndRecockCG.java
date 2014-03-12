@@ -22,7 +22,9 @@ public class ShootAndRecockCG extends CommandGroup {
         addSequential(new FootDownC());
         addParallel(new LoadingArmUpC());
         addSequential(new LoosenWinchAndLatchC());
+        //addParallel(new ResetTheFireButtonsC());
         addSequential(new WindWinchC(0));
+        
         
         //addSequential(new EnableAndDissableButtons(false));
         // these will run in order.

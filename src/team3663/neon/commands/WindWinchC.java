@@ -19,6 +19,24 @@ public class WindWinchC extends CommandBase {
     //encoder tightens using negative speed
     //encoder counts deacrese when tightened
     protected void initialize() {
+       /* if(targetTicks == 200)
+        {
+            oi.fullButtonPressedOnce(false);
+            oi.mediumButtonPressedOnce(false);
+            oi.weakButtonPressedOnce(true);
+        }
+        else if(targetTicks == 100)
+        {
+            oi.fullButtonPressedOnce(false);
+            oi.mediumButtonPressedOnce(true);
+            oi.weakButtonPressedOnce(false);
+        }
+        else if(targetTicks == 0)
+        {
+            oi.fullButtonPressedOnce(true);
+            oi.mediumButtonPressedOnce(false);
+            oi.weakButtonPressedOnce(false);
+        }*/
         System.out.println("WindWinch.initialize" + targetTicks);
         tightening = shooterWinchAndLatchSS.getWinchEncoder() > targetTicks;
         if (tightening){

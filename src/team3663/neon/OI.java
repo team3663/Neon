@@ -22,6 +22,7 @@ import team3663.neon.commands.ResetWinchEncoderC;
 import team3663.neon.commands.ShootAndRecockCG;
 import team3663.neon.commands.ShooterLatchCloseC;
 import team3663.neon.commands.ShooterLatchOpenC;
+import team3663.neon.commands.TestAllPartsOfTheRobotCG;
 import team3663.neon.commands.TimeWaitC;
 import team3663.neon.commands.WinchLoosenC;
 import team3663.neon.commands.WinchTightenC;
@@ -30,9 +31,6 @@ import team3663.neon.commands.WindWinchC;
 
 public class OI 
 {
-    public boolean fireOrNotWeak;
-    public boolean fireOrNotMediam;
-    public boolean fireOrNotFull;
     private final Joystick driveJoystick;
     private final Joystick buttonJoystick;
 
@@ -109,24 +107,13 @@ public class OI
         switchToLowGear.whenPressed(new ShiftToLowGearC());
         SmartDashboard.putString("Drive4:", "4: Shift to Low Gear");
        
-       /* if (fireOrNot)
-        {
-            shootMedium = new JoystickButton(buttonJoystick, 5);
-            shootMedium.whenPressed(new ShootAndRecockCG(100));
+        shootMedium = new JoystickButton(buttonJoystick, 5);
+        shootMedium.whenPressed(new ShootAndRecockCG(100));
+        SmartDashboard.putString("Monkey5:", "5: Shoot Medium");
 
-            shootWeak = new JoystickButton(buttonJoystick, 3);
-            shootWeak.whenPressed(new ShootAndRecockCG(200));
-        }*/
-        //else
-        //{
-            shootMedium = new JoystickButton(buttonJoystick, 5);
-            shootMedium.whenPressed(new ShootAndRecockCG(100));
-            SmartDashboard.putString("Monkey5:", "5: Shoot Medium");
-
-            shootWeak = new JoystickButton(buttonJoystick, 3);
-            shootWeak.whenPressed(new ShootAndRecockCG(200));
-            SmartDashboard.putString("Monkey3:", "3: 1 pt Shot");
-        //}
+        shootWeak = new JoystickButton(buttonJoystick, 3);
+        shootWeak.whenPressed(new ShootAndRecockCG(200));
+        SmartDashboard.putString("Monkey3:", "3: 1 pt Shot");
 
         hammer = new JoystickButton(buttonJoystick, 2);
         hammer.whenPressed(new HammerFireCG());
@@ -155,6 +142,7 @@ public class OI
         SmartDashboard.putData("ShooterLatchOpen", new ShooterLatchOpenC());
         SmartDashboard.putData("ShooterLatchClose", new ShooterLatchCloseC());
         SmartDashboard.putData("WindWinch_0", new WindWinchC(0));
+        SmartDashboard.putData("TestAllThingsOfTheRobot", new TestAllPartsOfTheRobotCG());
        //SmartDashboard.putData("WindWinch_30", new WindWinchC(30));
         //SmartDashboard.putData("WindWinch_60", new WindWinchC(60));
         SmartDashboard.putData("TightenWinch", new WinchTightenC());
@@ -201,6 +189,39 @@ public class OI
     {
         loadBall.whileHeld(new LoadBallC());
         System.out.println("Buttons Enabled");
+    }
+    public void weakButtonPressedOnce(boolean buttonWasPressed)
+    {
+        if(buttonWasPressed)
+        {
+            shootWeak.whenPressed(new ShootAndRecockCG(200));
+        }
+        else
+        {
+            shootWeak.whenPressed(new WindWinchC(200));
+        }
+    }
+    public void mediumButtonPressedOnce(boolean buttonWasPressed)
+    {
+        if(buttonWasPressed)
+        {
+            shootMedium.whenPressed(new ShootAndRecockCG(100));
+        }
+        else
+        {
+            shootMedium.whenPressed(new WindWinchC(100));
+        }
+    }
+    public void fullButtonPressedOnce(boolean buttonWasPressed)
+    {
+        if(buttonWasPressed)
+        {
+            shoot.whenPressed(new ShootAndRecockCG(0));
+        }
+        else
+        {
+            shoot.whenPressed(new WindWinchC(0));
+        }
     }
 }
 

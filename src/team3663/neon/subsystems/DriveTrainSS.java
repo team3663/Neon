@@ -83,7 +83,29 @@ public class DriveTrainSS extends Subsystem
         RobotMap.gearShiftHighLowSolenoid1.set(true);
         RobotMap.gearShiftHighLowSolenoid2.set(false);
     }
-    
+    public void TestMotors(int motorNumber, double speed)
+    {
+        if(motorNumber == 1)
+        {
+            RobotMap.driveTrainBackLeftSpeedController.set(speed);
+        }
+        if(motorNumber == 2)
+        {
+            RobotMap.driveTrainFrontLeftSpeedController.set(speed);
+        }
+        if(motorNumber == 3)
+        {
+            RobotMap.driveTrainFrontRightSpeedController.set(speed);
+        }
+        if(motorNumber == 4)
+        {
+            RobotMap.driveTrainBackRightSpeedController.set(speed);
+        }
+        if(motorNumber == 5)
+        {
+            RobotMap.LoadingArmSpeedController.set(speed);
+        }
+    }
     public void Drive(double speed, double curve)
     {
         RobotMap.driveTrain.arcadeDrive(speed, curve);
