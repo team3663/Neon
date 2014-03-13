@@ -39,6 +39,7 @@ public class PortMap
    
     //solenoids ketchup
     
+    
     public static int gearShiftHighLowSolenoid1PortK           = 3; 
     public static int gearShiftHighLowSolenoid2PortK           = 4;
     public static int tractionWheelUpDownSolenoid2PortK        = 5;
