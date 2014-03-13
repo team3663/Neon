@@ -90,7 +90,7 @@ public class OI
         //changed things for drive team
         heldTractionWheels = new JoystickButton(driveJoystick, 1);
         heldTractionWheels.whileHeld(new TractionWheelsDownC());
-        SmartDashboard.putString("Driver1:", "1: Hold Tarction Down");
+        SmartDashboard.putString("Driver1:", "1: Hold Traction Down");
 
         changeToMecanumDrive = new JoystickButton(driveJoystick, 5);
         changeToMecanumDrive.whenPressed(new TractionWheelsUpC());

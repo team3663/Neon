@@ -25,7 +25,7 @@ public class Robot3663 extends IterativeRobot
         RobotMap.init();
         CommandBase.init();
         
-        autonomousCG = new AutonomousCG();
+        //autonomousCG = new AutonomousCG();
         driveStation = DriverStation.getInstance();
         CommandBase.dsLCD.clear();
         updateStatus();
@@ -35,7 +35,7 @@ public class Robot3663 extends IterativeRobot
     public void autonomousInit() 
     {
         System.out.println("Robot3663.autonomousInit start");
-        autonomousCG.start();
+        //autonomousCG.start();
         System.out.println("Robot3663.autonomousInit end");
     }
 
@@ -56,7 +56,7 @@ public class Robot3663 extends IterativeRobot
     public void teleopPeriodic() 
     {
         Scheduler.getInstance().run();
-        LiveWindow.run();
+        //LiveWindow.run();
         updateStatus();
     }
     
@@ -70,7 +70,7 @@ public class Robot3663 extends IterativeRobot
     public void testPeriodic() 
     {
         Scheduler.getInstance().run();
-        LiveWindow.run();
+        //LiveWindow.run();
         updateStatus();
     }
     public void disabledInit() 
