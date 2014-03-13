@@ -3,6 +3,7 @@ package team3663.neon.subsystems;
 import com.sun.squawk.util.MathUtils;
 import edu.wpi.first.wpilibj.DriverStationLCD;
 import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import team3663.neon.RobotMap;
@@ -15,6 +16,15 @@ public class DriveTrainSS extends Subsystem
     private double direction;
     private double magnitude;
     
+    public double PI;
+    public double ENCODER_CORRECT;
+    private double encodeRightPrevious;
+    private double encodeLeftPrevious;
+    private double encodeLeftChange;
+    private double encodeRightChange;
+    public Encoder leftEncoder;
+    public Encoder rightEncoder;
+    
     public void DriveTrainSS()
     {
         System.out.println("DriveTrainSS constructor start");
@@ -22,6 +32,14 @@ public class DriveTrainSS extends Subsystem
         TractionWheelsDown();
         Arcade(0,0);
         System.out.println("DriveTrainSS constructor end");
+    }
+    
+    public void Init()
+    {
+        PI = 3.14159;
+        ENCODER_CORRECT = PI * 4.8 /** 18.0000 * (5.0000/18.0000) * (1.0000/30.0000) * 6.0000*/;
+        leftEncoder = RobotMap.driveTrainLeftEncoder;
+        rightEncoder = RobotMap.driveTrainRightEncoder; 
     }
         
     public void initDefaultCommand()
@@ -131,6 +149,42 @@ public class DriveTrainSS extends Subsystem
         RobotMap.driveTrainLeftEncoder.reset();
     }
     
+    public double GetLeftDistance()
+    {
+        encodeLeftChange = ((leftEncoder.getRaw() / 360.0000)/ ENCODER_CORRECT);
+        return -1 * encodeLeftChange;
+    }
+    public double GetRightDistance()
+    {
+        encodeRightChange = ((rightEncoder.getRaw() / 360.0000 ) / ENCODER_CORRECT);
+        return -1 * encodeRightChange;
+    }
+    
+    public double EncoderError()
+    {
+        double avg = ((GetRightDistance() +  GetLeftDistance())) / 10;
+        System.out.println("% Difference: "+avg);
+        if(avg > 0.3)
+        {
+            avg = 0.3;
+        }
+        return avg;
+    }
+    
+    public double GetTotalDistance()
+    {
+        double avgDistance = ((rightEncoder.getRaw() +  (leftEncoder.getRaw())) / 2.0000);
+        System.out.println("GetTotalDistance()");
+        
+        return -1 * ((avgDistance/360.0000) / ENCODER_CORRECT);// 5.5, 8, 9.3
+    }
+    
+    public void DriveEncoderReset()
+    {
+        rightEncoder.reset();
+        leftEncoder.reset();
+    }
+    
     public void TractionWheelsUp()
     {
         RobotMap.tractionWheelUpDownSolenoid1.set(false);
@@ -150,7 +204,11 @@ public class DriveTrainSS extends Subsystem
         CommandBase.dsLCD.println(DriverStationLCD.Line.kUser1,1, ("R:" + (int)GetRightEncoder()) + " L:" + (int)GetLeftEncoder());
         SmartDashboard.putNumber("LeftEncoder",GetLeftEncoder());
         SmartDashboard.putNumber("RightEncoder",GetRightEncoder());
-	if (InLowGear())
+	
+	
+        System.out.println("Ecnoder fr DriveTrain:"+GetTotalDistance());
+        //CommandBase.dsLCD.println(DriverStationLCD.Line.kUser1,1, ("R:" + (int)GetRightEncoder()) + " L:" + (int)GetLeftEncoder());
+        if (InLowGear())
         {
             CommandBase.dsLCD.println(DriverStationLCD.Line.kUser2, 1, "Low Gear");
             SmartDashboard.putString("Gear","Low");

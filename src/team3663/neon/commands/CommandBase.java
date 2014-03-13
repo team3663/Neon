@@ -10,10 +10,12 @@ import team3663.neon.subsystems.DriveTrainSS;
 import team3663.neon.subsystems.FootSS;
 import team3663.neon.subsystems.HammerSS;
 import team3663.neon.subsystems.ShooterWinchAndLatchSS;
+import team3663.neon.subsystems.ImageProcessing;
 
 public abstract class CommandBase extends Command 
 {
     public static OI oi;
+    public static boolean isShoot;
     public static DriveTrainSS driveTrainSS; 
     public static CompressorSS compressorSS;
     public static FootSS footSS;
@@ -21,20 +23,26 @@ public abstract class CommandBase extends Command
     public static HammerSS hammerSS;
     public static LoadingArmSS loadingArmSS;
     public static CatapultLimitSwitchSS catapultLimitSwitchSS;
+    public static ImageProcessing imageProcess;
     
     public static DriverStationLCD dsLCD;
+    
+    public static boolean isHot;
     
     public static void init() 
     {
          System.out.println("CommandBase.init start");
-
+         isHot = false;
         compressorSS = new CompressorSS();
         driveTrainSS = new DriveTrainSS();
+        driveTrainSS.Init();
         footSS = new FootSS();
         hammerSS = new HammerSS();
         loadingArmSS = new LoadingArmSS();      
         shooterWinchAndLatchSS = new ShooterWinchAndLatchSS();
         catapultLimitSwitchSS = new CatapultLimitSwitchSS();
+        imageProcess = new ImageProcessing();
+        imageProcess.Init();
 
         dsLCD = DriverStationLCD.getInstance();
         

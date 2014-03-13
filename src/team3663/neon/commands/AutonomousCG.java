@@ -1,48 +1,35 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package team3663.neon.commands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import team3663.neon.commands.autonomous.CheckIsHotCommand;
+import team3663.neon.commands.autonomous.EncoderDrive;
+import team3663.neon.commands.autonomous.ShooterCommand;
+import team3663.neon.commands.autonomous.TargetCommand;
 
-/**
- *
- * @author briking
+/*
+ * @author Kainoa & Tyler
  */
-public class AutonomousCG extends CommandGroup {
+public class AutonomousCG extends CommandGroup
+{
     
-    public AutonomousCG() {
-        addSequential(new DriveForwardTimeC(0.7));  
-        //addSequential(new EnableAndDissableButtons(true));
-        addSequential(new WindWinchC(0));
-        System.out.println("Wound Winch");
-        addSequential(new LoadingArmDownC());
-        System.out.println("Loading Down");
-        addSequential(new ShooterLatchOpenC());
-        System.out.println("Latch Open");
-        addSequential(new FootDownC());
-        System.out.println("Foot down");
-        addParallel(new LoadingArmUpC());
-        System.out.println("Loading Arm");
-        addSequential(new LoosenWinchAndLatchC());
-        System.out.println("Loosen Winch");
-        addSequential(new WindWinchC(0));
-        System.out.println("Wound Winch");// Add Commands here:
-        // e.g. addSequential(new Command1());
-        //      addSequential(new Command2());
-        // these will run in order.
-
-        // To run multiple commands at the same time,
-        // use addParallel()
-        // e.g. addParallel(new Command1());
-        //      addSequential(new Command2());
-        // Command1 and Command2 will run in parallel.
-        // A command group will require all of the subsystems that each member
-        // would require.
-        // e.g. if Command1 requires chassis, and Command2 requires arm,
-        // a CommandGroup containing them would require both the chassis and the
-        // arm.
+    public AutonomousCG()
+    {
+        addSequential(new EncoderDrive(10, -0.8));
+        addSequential(new TargetCommand());
+        addSequential(new CheckIsHotCommand());
+        System.out.println("Autonomous isHot: "+CommandBase.isHot);
+        /*while(Timer.getFPGATimestamp() < 10)
+        {
+            if(CommandBase.isHot)
+            {
+                System.out.println("isHot true auto");
+                addSequential(new ShooterCommand());
+            }
+            else
+            {
+                System.out.println("isHot false auto");
+            }
+        }*/
     }
 }
