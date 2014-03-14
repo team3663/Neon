@@ -34,6 +34,7 @@ public class OI
 {
     private final Joystick driveJoystick;
     private final Joystick buttonJoystick;
+    private final Joystick diagJoystick;
 
     private static JoystickButton changeToArcadeDrive;
     private static JoystickButton changeToMecanumDrive;
@@ -52,12 +53,26 @@ public class OI
     private static JoystickButton winchEncoderZero;
     private static JoystickButton LoosenWinchAndLatch;
     private static JoystickButton heldTractionWheels;
+    private static JoystickButton tractionWheelsDown;
+    private static JoystickButton tractionWheelsUp;
+    private static JoystickButton shooterLatchOpen;
+    private static JoystickButton shooterLatchClose;
+    private static JoystickButton hammerRetract;
+    private static JoystickButton hammerExtend;
+    private static JoystickButton motorTest_LeftFront;
+    private static JoystickButton motorTest_RightFront;
+    private static JoystickButton motorTest_RightBack;
+    private static JoystickButton motorTest_LeftBack;
+    private static JoystickButton spinLoadingArmMotorIntake;
+    private static JoystickButton spinLoadingArmMotorEject;
+    
     public OI()
     {
         System.out.println("OI constructor start");
 
         driveJoystick = new Joystick(1);
         buttonJoystick = new Joystick(2);
+        diagJoystick = new Joystick(3);
         
         SmartDashboard.putString("DriveLabel", "DriveStick");
         SmartDashboard.putString("MonkeyLabel", "ButtonMonkeyStick");
@@ -129,6 +144,54 @@ public class OI
         SmartDashboard.putString("Monkey6:", "6: foot Up");
         
         
+        tractionWheelsDown = new JoystickButton(diagJoystick, 1);
+        tractionWheelsDown.whenPressed(new TractionWheelsDownC());
+        SmartDashboard.putString("diag1:", "1: tractionWheelsDown");
+        
+        tractionWheelsUp = new JoystickButton(diagJoystick, 2);
+        tractionWheelsUp.whenPressed(new TractionWheelsUpC());
+        SmartDashboard.putString("diag2:", "2: tractionWheelsUp");
+        
+        shooterLatchOpen = new JoystickButton(diagJoystick, 3);
+        shooterLatchOpen.whenPressed(new ShooterLatchOpenC());
+        SmartDashboard.putString("diag3:", "3: ShooterLatchOpen");
+        
+        shooterLatchClose = new JoystickButton(diagJoystick, 4);
+        shooterLatchClose.whenPressed(new ShooterLatchCloseC());
+        SmartDashboard.putString("diag4:", "4: ShooterLatchClose");
+        
+        hammerRetract = new JoystickButton(diagJoystick, 5);
+        hammerRetract.whenPressed(new HammerRetractC());
+        SmartDashboard.putString("diag5:", "5: hammerRetract");
+        
+        hammerExtend = new JoystickButton(diagJoystick, 6);
+        hammerExtend.whenPressed(new HammerExtendC());
+        SmartDashboard.putString("diag6:", "6: hammerExtend");
+        
+        motorTest_LeftFront = new JoystickButton(diagJoystick, 7);
+        motorTest_LeftFront.whileHeld(new DriveMotorTestC(3,10000,.5));
+        SmartDashboard.putString("diag7:", "7: spin left front drive motor");
+        
+        motorTest_RightFront = new JoystickButton(diagJoystick, 8);
+        motorTest_RightFront.whileHeld(new DriveMotorTestC(4,10000,.5));
+        SmartDashboard.putString("diag8:", "8: spin right front drive motor");
+        
+        motorTest_RightBack = new JoystickButton(diagJoystick, 9);
+        motorTest_RightBack.whileHeld(new DriveMotorTestC(2,10000,.5));
+        SmartDashboard.putString("diag9:", "9: spin right back drive motor");
+        
+        motorTest_LeftBack = new JoystickButton(diagJoystick, 10);
+        motorTest_LeftBack.whileHeld(new DriveMotorTestC(1,10000,.5));
+        SmartDashboard.putString("diag10:", "10: spin left back drive motor");
+        
+        spinLoadingArmMotorIntake = new JoystickButton(diagJoystick, 11);
+        spinLoadingArmMotorIntake.whileHeld(new SpinLoadingArmMotorC(true,10000));
+        SmartDashboard.putString("diag11:", "11: spinLoadingArmMotorIntake");
+        
+        spinLoadingArmMotorEject = new JoystickButton(diagJoystick, 12);
+        spinLoadingArmMotorEject.whileHeld(new SpinLoadingArmMotorC(false,10000));
+        SmartDashboard.putString("diag12:", "12: spinLoadingArmMotorEject");
+        
         SmartDashboard.putData("loadBall", new LoadBallC());
         SmartDashboard.putData("FootDown", new FootDownC());
         SmartDashboard.putData("FootUp", new FootUpC());
@@ -157,14 +220,14 @@ public class OI
        //SmartDashboard.putData("WindWinch_30", new WindWinchC(30));
         //SmartDashboard.putData("WindWinch_60", new WindWinchC(60));
         SmartDashboard.putData("DriveForwardTime_70", new DriveForwardTimeC(.7));
-        /*SmartDashboard.putData("WindWinch_120", new WindWinchC(120));
-        SmartDashboard.putData("WindWinch_360", new WindWinchC(360));
-        SmartDashboard.putData("WindWinch_500", new WindWinchC(500));
-        */
+        //SmartDashboard.putData("WindWinch_120", new WindWinchC(120));
+        //SmartDashboard.putData("WindWinch_360", new WindWinchC(360));
+        //SmartDashboard.putData("WindWinch_500", new WindWinchC(500));
         //SmartDashboard.putData("WindWinch_-50", new WindWinchC(-50));
         SmartDashboard.putData("ResetWinchEncoder", new ResetWinchEncoderC());
         SmartDashboard.putData("LoosenWinchAndLatch", new LoosenWinchAndLatchC());
         SmartDashboard.putData("ShootAndRecockCG", new ShootAndRecockCG(0));
+
        /* SmartDashboard.putData("DriveBasedOnEncodersC(2000,2000)", new DriveBasedOnEncodersC(2000,2000));
         SmartDashboard.putData("DriveBasedOnEncodersC(20000,0)", new DriveBasedOnEncodersC(20000,0));
         SmartDashboard.putData("DriveBasedOnEncodersC(0,-20000)", new DriveBasedOnEncodersC(0,-20000));

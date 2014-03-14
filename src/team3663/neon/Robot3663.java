@@ -49,7 +49,7 @@ public class Robot3663 extends IterativeRobot
     public void teleopInit() 
     {
         System.out.println("Robot3663.teleopInit start");
-        autonomousCG.cancel();
+        //autonomousCG.cancel();
         System.out.println("Robot3663.teleopInit end");
     }
     
@@ -63,7 +63,7 @@ public class Robot3663 extends IterativeRobot
     public void testInit() 
     {
         System.out.println("Robot3663.testInit start");
-        autonomousCG.cancel();
+        //autonomousCG.cancel();
         System.out.println("Robot3663.testInit end");
     }
 

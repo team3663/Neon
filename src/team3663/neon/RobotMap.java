@@ -128,6 +128,7 @@ public class RobotMap
         frontUltrasonicAnalog = new AnalogChannel(PortMap.MainModulePort, PortMap.frontUltrasonicAnalogPort);
         
         //All LiveWindow actuators add here
+        /*
         LiveWindow.addActuator("VICTORS", "SpeedControllerFrontLeft", (Victor)driveTrainFrontLeftSpeedController);
         LiveWindow.addActuator("VICTORS", "SpeedControllerBackLeft", (Victor)driveTrainBackLeftSpeedController);
         LiveWindow.addActuator("VICTORS", "SpeeedControllerFrontRight",(Victor)driveTrainFrontRightSpeedController);
@@ -158,7 +159,7 @@ public class RobotMap
         LiveWindow.addSensor("LIMIT SWITCHES", "ShooterLimitSwitch", shooterLimitSwitchDIO);
         LiveWindow.addSensor("LIMIT SWITCHES", "LimitSwitch", shooterLimitSwitchDIO);
         LiveWindow.addSensor("RangeFinder", "FrontUltrasonic", frontUltrasonicAnalog);
-
+*/
         System.out.println("RobotMap.init end");
     }
 }

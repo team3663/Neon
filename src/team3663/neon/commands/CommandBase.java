@@ -41,6 +41,7 @@ public abstract class CommandBase extends Command
         loadingArmSS = new LoadingArmSS();      
         shooterWinchAndLatchSS = new ShooterWinchAndLatchSS();
         catapultLimitSwitchSS = new CatapultLimitSwitchSS();
+
         imageProcess = new ImageProcessing();
         imageProcess.Init();
 
