@@ -173,11 +173,11 @@ public class OI
         SmartDashboard.putString("diag7:", "7: spin left front drive motor");
         
         motorTest_RightFront = new JoystickButton(diagJoystick, 8);
-        motorTest_RightFront.whileHeld(new DriveMotorTestC(4,10000,.5));
+        motorTest_RightFront.whileHeld(new DriveMotorTestC(4,10000,-.5));
         SmartDashboard.putString("diag8:", "8: spin right front drive motor");
         
         motorTest_RightBack = new JoystickButton(diagJoystick, 9);
-        motorTest_RightBack.whileHeld(new DriveMotorTestC(2,10000,.5));
+        motorTest_RightBack.whileHeld(new DriveMotorTestC(2,10000,-.5));
         SmartDashboard.putString("diag9:", "9: spin right back drive motor");
         
         motorTest_LeftBack = new JoystickButton(diagJoystick, 10);

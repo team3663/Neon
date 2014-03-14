@@ -137,11 +137,11 @@ public class DriveTrainSS extends Subsystem
     }
     public double GetLeftEncoder()
     {
-        return RobotMap.driveTrainLeftEncoder.getRaw();
+        return -RobotMap.driveTrainLeftEncoder.getRaw();
     }
     public double GetRightEncoder()
     {
-        return RobotMap.driveTrainRightEncoder.getRaw();
+        return -RobotMap.driveTrainRightEncoder.getRaw();
     }
     public void ResetDriveEncoders()
     {
@@ -206,7 +206,7 @@ public class DriveTrainSS extends Subsystem
         SmartDashboard.putNumber("RightEncoder",GetRightEncoder());
 	
 	
-        System.out.println("Ecnoder fr DriveTrain:"+GetTotalDistance());
+       // System.out.println("Ecnoder fr DriveTrain:"+GetTotalDistance());
         //CommandBase.dsLCD.println(DriverStationLCD.Line.kUser1,1, ("R:" + (int)GetRightEncoder()) + " L:" + (int)GetLeftEncoder());
         if (InLowGear())
         {

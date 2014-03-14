@@ -35,27 +35,7 @@ public class PortMap
     public static int loadingArmUpDownSolenoid2Port           = 1;
     public static int loadingArmUpDownSolenoid1Port           = 2;
     public static int footUpDownSolenoid2Port                 = 3;
-    public static int footUpDownSolenoid1Port                 = 4;
-   
-    //solenoids ketchup
-    
-    
-    public static int gearShiftHighLowSolenoid1PortK           = 3; 
-    public static int gearShiftHighLowSolenoid2PortK           = 4;
-    public static int tractionWheelUpDownSolenoid2PortK        = 5;
-    public static int tractionWheelUpDownSolenoid1PortK        = 6;
-    public static int shooterLatchSolenoid2PortK               = 8;
-    public static int shooterLatchSolenoid1PortK               = 7;
-
-    // 2nd puck ketchup
-    public static int hammerRetractExtendSolenoid1PortK        = 5;
-    public static int hammerRetractExtendSolenoid2PortK        = 6;
-    public static int footUpDownSolenoid2PortK                 = 7;
-    public static int footUpDownSolenoid1PortK                 = 8;
-    public static int loadingArmUpDownSolenoid2PortK           = 4;
-    public static int loadingArmUpDownSolenoid1PortK           = 3;
-    //All analog ports
-    public static int frontUltrasonicAnalogPort               = 1;
+    public static int footUpDownSolenoid1Port                 = 4;   
     
     //These are all the Relay ports
     public static int compressorOnOffRelayPort                = 1;

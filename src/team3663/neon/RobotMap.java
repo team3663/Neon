@@ -125,8 +125,6 @@ public class RobotMap
         compressorOnOffRelay = new Relay(PortMap.MainModulePort, PortMap.compressorOnOffRelayPort);
         compressorLimitSwitchDIO = new DigitalInput(PortMap.MainModulePort, PortMap.compressorLimitSwitchDIOPort);
         
-        frontUltrasonicAnalog = new AnalogChannel(PortMap.MainModulePort, PortMap.frontUltrasonicAnalogPort);
-        
         //All LiveWindow actuators add here
         /*
         LiveWindow.addActuator("VICTORS", "SpeedControllerFrontLeft", (Victor)driveTrainFrontLeftSpeedController);
