@@ -1,6 +1,7 @@
 package team3663.neon.commands;
 
 import edu.wpi.first.wpilibj.DriverStationLCD;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import team3663.neon.OI;
 import team3663.neon.subsystems.CatapultLimitSwitchSS;
@@ -28,11 +29,14 @@ public abstract class CommandBase extends Command
     public static DriverStationLCD dsLCD;
     
     public static boolean isHot;
+    public static boolean autoIsShot;
+    public static Timer timer;
     
     public static void init() 
     {
          System.out.println("CommandBase.init start");
          isHot = false;
+         autoIsShot = false;
         compressorSS = new CompressorSS();
         driveTrainSS = new DriveTrainSS();
         driveTrainSS.Init();

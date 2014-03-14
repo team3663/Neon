@@ -20,12 +20,12 @@ public class ShooterCommand extends CommandGroup
     public void Shoot()
     {
         System.out.println("************************It shot in shooter command***********");
-       /* addSequential(new WindWinchC(0));
+        addSequential(new WindWinchC(0));
         addSequential(new LoadingArmDownC());
         addSequential(new ShooterLatchOpenC());
         addSequential(new FootDownC());
         addParallel(new LoadingArmUpC());
         addSequential(new LoosenWinchAndLatchC());
-        addSequential(new WindWinchC(0));*/
+        addSequential(new WindWinchC(0));
     }
 }

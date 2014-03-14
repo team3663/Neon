@@ -102,7 +102,7 @@ public class ImageProcessing extends Subsystem
             //ColorImage image;                           // next 2 lines read image from flash on cRIO
             //image =  new RGBImage("/targetTest.jpg");
             //BinaryImage thresholdImage = image.thresholdRGB(0, 150, 200, 255, 200, 255);   // keep only green objects
-            BinaryImage thresholdImage = image.thresholdRGB(230, 255, 230, 255, 230, 255);
+            BinaryImage thresholdImage = image.thresholdRGB(230, 255, 230, 255, 230, 255);   // keep only white objects
             //BinaryImage thresholdImage = image.thresholdRGB(0, 150, 200, 255, 200, 255);   
             BinaryImage bigObjectsImage = thresholdImage.removeSmallObjects(false, 2);  // remove small artifacts
             BinaryImage convexHullImage = bigObjectsImage.convexHull(false);          // fill in occluded rectangles
@@ -245,7 +245,7 @@ public class ImageProcessing extends Subsystem
             }
             
             System.out.println("Number of Particles:"+filteredImage.getNumberParticles() + " Timestamp: " + Timer.getFPGATimestamp());
-            convexHullImage.write("/photos/hullImage.bmp");
+            //convexHullImage.write("/photos/hullImage.bmp");
             thresholdImage.write("/photos/thresholdImage.bmp");
             //filteredImage.write("/photos/filteredImage.bmp");
             /**

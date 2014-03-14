@@ -5,7 +5,7 @@
  */
 package team3663.neon.commands.autonomous;
 
-import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.Timer;
 import team3663.neon.commands.CommandBase;
 
 public class CheckIsHotCommand extends CommandBase 
@@ -22,14 +22,17 @@ public class CheckIsHotCommand extends CommandBase
     // Called just before this Command runs the first time
     protected void initialize() 
     {
-         if(CommandBase.isHot)
+         if(CommandBase.isHot && !CommandBase.autoIsShot)
         {
             System.out.println("************************It shot***********");
             shootCommand.Shoot();
+            CommandBase.autoIsShot = true;
         }
-        else
+        if(!CommandBase.isHot && (CommandBase.timer.getFPGATimestamp() > 5) && !CommandBase.autoIsShot)
         {
+            shootCommand.Shoot();
             System.out.println("isHot false auto");
+            CommandBase.autoIsShot = true;
         }
     }
 

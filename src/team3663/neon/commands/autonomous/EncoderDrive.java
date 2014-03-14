@@ -1,5 +1,6 @@
 package team3663.neon.commands.autonomous;
 
+import edu.wpi.first.wpilibj.Timer;
 import team3663.neon.commands.CommandBase;
 
 public class EncoderDrive extends CommandBase
@@ -19,6 +20,7 @@ public class EncoderDrive extends CommandBase
     
     protected void initialize()
     {
+        timer = new Timer();
         CommandBase.driveTrainSS.DriveEncoderReset();
     }
     
