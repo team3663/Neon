@@ -1,8 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/RobotMap.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/LaunchBallC.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/ShooterLatchOpenC.java</file>
             <file>file:/C:/workspace/Neon/src/team3663/neon/OI.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/AutonomusLatchOnlyCG.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/HammerFireCG.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/WindAndLatchToFullPowerCG.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/AutonomousBackUpCG.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/WindWinchC.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/DriveForwardTimeC.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/Robot3663.java</file>
         </group>
     </open-files>
 </project-private>

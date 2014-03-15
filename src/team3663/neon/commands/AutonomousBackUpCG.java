@@ -11,13 +11,23 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  *
  * @author curtis
  */
-public class HammerFireCG extends CommandGroup {
+public class AutonomousBackUpCG extends CommandGroup {
     
-    public HammerFireCG() {
+    public AutonomousBackUpCG() {
+        addSequential(new TractionWheelsDownC());
+        addSequential(new FootUpC());
+        addSequential(new ShiftToHighGearC());
+        addSequential(new TimeWaitC(.5));
+        addSequential(new DriveForwardTimeC(.6));
+        addSequential(new WindWinchC(0));     
+        addSequential(new LoadingArmDownC());   
+        addSequential(new ShooterLatchOpenC());
         addSequential(new FootDownC());
-        addSequential(new HammerExtendC());
-        addSequential(new TimeWaitC(0.5));
-        addSequential(new HammerRetractC());
+        addParallel(new LoadingArmUpC());
+        addSequential(new TractionWheelsUpC());
+        addSequential(new LoosenWinchAndLatchC());
+        //addParallel(new ResetTheFireButtonsC());
+        addSequential(new WindWinchC(0));
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

@@ -31,6 +31,7 @@ public class LoosenWinchAndLatchC extends CommandBase {
         if (catapultLimitSwitchSS.catapultIsDown() && (startTime == 0))
         {
             CommandBase.dsLCD.println(DriverStationLCD.Line.kUser4, 1, "~Latched and Winding~");
+            shooterWinchAndLatchSS.readyToShoot = false;
             shooterWinchAndLatchSS.latchClose();
             startTime = Timer.getFPGATimestamp();
         }

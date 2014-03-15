@@ -15,17 +15,17 @@ public class FootSS extends Subsystem {
     }
     
     public void footUp(){
-        RobotMap.footUpDownSolenoid1.set(true);
-        RobotMap.footUpDownSolenoid2.set(false);
-    }
-
-    public void footDown(){
         RobotMap.footUpDownSolenoid1.set(false);
         RobotMap.footUpDownSolenoid2.set(true);
     }
 
+    public void footDown(){
+        RobotMap.footUpDownSolenoid1.set(true);
+        RobotMap.footUpDownSolenoid2.set(false);
+    }
+
     public boolean footIsUp(){
-        return RobotMap.footUpDownSolenoid1.get();
+        return RobotMap.footUpDownSolenoid2.get();
     }
     public void updateStatus(){
         if(footIsUp())

@@ -37,7 +37,7 @@ public class DriveTrainSS extends Subsystem
     public void Init()
     {
         PI = 3.14159;
-        ENCODER_CORRECT = PI * 4.8 /** 18.0000 * (5.0000/18.0000) * (1.0000/30.0000) * 6.0000*/;
+        ENCODER_CORRECT = PI * 6.25 /** 18.0000 * (5.0000/18.0000) * (1.0000/30.0000) * 6.0000*/;
         leftEncoder = RobotMap.driveTrainLeftEncoder;
         rightEncoder = RobotMap.driveTrainRightEncoder; 
     }
@@ -81,7 +81,7 @@ public class DriveTrainSS extends Subsystem
             joyY = 0;
         }
 
-        RobotMap.driveTrain.arcadeDrive(-joyY, -joyZ);
+        RobotMap.driveTrain.arcadeDrive(joyY, -joyZ);
     }
     
      public void Mecanum(double joyX, double joyY, double joyTwist)
@@ -90,7 +90,7 @@ public class DriveTrainSS extends Subsystem
         RobotMap.driveTrain.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
         RobotMap.driveTrain.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
 
-        direction = MathUtils.atan2(joyX, -joyY);
+        direction = MathUtils.atan2(joyX, joyY);
         magnitude = Math.sqrt((joyX * joyX) +  (joyY * joyY));
         
         if (magnitude < 0.1 && magnitude > -0.1)

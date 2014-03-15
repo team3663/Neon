@@ -109,7 +109,8 @@ public class WindWinchC extends CommandBase {
     // Called once after isFinished returns true
     protected void end() {
         System.out.println("WindWinch.end");
-       CommandBase.dsLCD.println(DriverStationLCD.Line.kUser4, 1, "~~~~READY TO FIRE~~~~");
+        CommandBase.dsLCD.println(DriverStationLCD.Line.kUser4, 1, "~~~~READY TO FIRE~~~~");
+        shooterWinchAndLatchSS.readyToShoot = true;
         shooterWinchAndLatchSS.setWinchSpeed(0);
     }
 

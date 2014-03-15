@@ -11,13 +11,10 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  *
  * @author curtis
  */
-public class HammerFireCG extends CommandGroup {
+public class MoveAllTheMotors extends CommandGroup {
     
-    public HammerFireCG() {
-        addSequential(new FootDownC());
-        addSequential(new HammerExtendC());
-        addSequential(new TimeWaitC(0.5));
-        addSequential(new HammerRetractC());
+    public MoveAllTheMotors() {
+        
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

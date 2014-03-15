@@ -10,6 +10,7 @@ public class ShooterWinchAndLatchSS extends Subsystem
 {
     public double PI = 3.14159;
     public double ENCODER_CORRECT  = 4 * 12 / 22 / 1440 * 5 / 3;
+    public boolean readyToShoot; 
     
     public void initDefaultCommand()
     {

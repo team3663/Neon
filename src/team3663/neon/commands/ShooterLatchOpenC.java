@@ -26,7 +26,8 @@ public class ShooterLatchOpenC extends CommandBase {
         System.out.println("SHooterLatchOpenC.initialize");
         shooterWinchAndLatchSS.latchOpen();
         startTime = Timer.getFPGATimestamp();
-       CommandBase.dsLCD.println(DriverStationLCD.Line.kUser4, 1, "~~~DO NOT FIRE~~~");
+        CommandBase.dsLCD.println(DriverStationLCD.Line.kUser4, 1, "~~~DO NOT FIRE~~~");
+        shooterWinchAndLatchSS.readyToShoot = false;
     }
 
     // Called repeatedly when this Command is scheduled to run

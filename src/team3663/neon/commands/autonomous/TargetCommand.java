@@ -16,7 +16,7 @@ public class TargetCommand extends CommandBase
     protected void initialize()
     {
         //AutonomousInformation autoInfo = new AutonomousInformation();
-        if(CheckForTarget(2))
+        /*if(CheckForTarget(2))
         {
             isHot = true;
             System.out.println("hot target Left in autonomous: " + imageProcess.getHotIsLeft());
@@ -29,11 +29,21 @@ public class TargetCommand extends CommandBase
             System.out.println("No hot target found in autonomous");
             System.out.println("target isHot: " + isHot);
             isFinished = true;
-        }
+        }*/
     }
     protected void execute()
     {
-         
+         imageProcess.processCameraImage();
+         System.out.println("Target time: "+timer.get());
+         if(imageProcess.hotTargetFound())
+         {
+             isHot = true;
+             isFinished = true;
+         }
+         else if(timer.get() >= 7)
+         {
+             isFinished = true;
+         }
     }
     protected boolean isFinished()
     {

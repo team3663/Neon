@@ -5,7 +5,6 @@ import edu.wpi.first.wpilibj.DriverStationLCD;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import team3663.neon.commands.AutonomousCG;
 import team3663.neon.commands.CommandBase;
@@ -16,6 +15,8 @@ public class Robot3663 extends IterativeRobot
     boolean test = true;
     int counter=0;
     CommandGroup autonomousCG;
+    CommandGroup autonomousBackUpCG; 
+
     DriverStation driveStation;
     int isAliveCounter;
     
@@ -25,7 +26,8 @@ public class Robot3663 extends IterativeRobot
         RobotMap.init();
         CommandBase.init();
         
-        //autonomousCG = new AutonomousCG();
+        autonomousCG = new AutonomousCG();
+        //autonomousBackUpCG = new AutonomousBackUpCG();
         driveStation = DriverStation.getInstance();
         CommandBase.dsLCD.clear();
         updateStatus();
@@ -35,7 +37,8 @@ public class Robot3663 extends IterativeRobot
     public void autonomousInit() 
     {
         System.out.println("Robot3663.autonomousInit start");
-        //autonomousCG.start();
+        //autonomousBackUpCG.start();
+        autonomousCG.start();
         System.out.println("Robot3663.autonomousInit end");
     }
 
@@ -49,7 +52,8 @@ public class Robot3663 extends IterativeRobot
     public void teleopInit() 
     {
         System.out.println("Robot3663.teleopInit start");
-        //autonomousCG.cancel();
+        //autonomousBackUpCG.cancel();
+        autonomousCG.cancel();
         System.out.println("Robot3663.teleopInit end");
     }
     

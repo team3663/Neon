@@ -22,7 +22,7 @@ public class CheckIsHotCommand extends CommandBase
     // Called just before this Command runs the first time
     protected void initialize() 
     {
-         if(CommandBase.isHot && !CommandBase.autoIsShot)
+         /*if(CommandBase.isHot && !CommandBase.autoIsShot)
         {
             System.out.println("************************It shot***********");
             shootCommand.Shoot();
@@ -33,17 +33,27 @@ public class CheckIsHotCommand extends CommandBase
             shootCommand.Shoot();
             System.out.println("isHot false auto");
             CommandBase.autoIsShot = true;
-        }
+        }*/
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() 
     {
-         if(!shootCommand.isRunning())
-         {
-             System.out.println("Shooter command stopped running");
-             isFinished = true;
-         }
+        System.out.println("Time in Check: "+timer.get());
+         if(CommandBase.isHot && !CommandBase.autoIsShot)
+        {
+            System.out.println("************************It shot***********");
+            shootCommand.Shoot();
+            CommandBase.autoIsShot = true;
+            isFinished = true;
+        }
+         else if(!CommandBase.isHot && timer.get() >= 7)
+        {
+            shootCommand.Shoot();
+            System.out.println("isHot false auto");
+            CommandBase.autoIsShot = true;
+            isFinished = true;
+        }
     }
 
     // Make this return true when this Command no longer needs to run execute()
