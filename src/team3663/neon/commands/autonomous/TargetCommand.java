@@ -1,4 +1,5 @@
 package team3663.neon.commands.autonomous;
+import edu.wpi.first.wpilibj.Timer;
 import team3663.neon.commands.CommandBase;
 
 /*
@@ -8,6 +9,7 @@ import team3663.neon.commands.CommandBase;
 public class TargetCommand extends CommandBase
 {
     private boolean isFinished;
+    public double targetTime;
     public TargetCommand()
     {
         requires(imageProcess);
@@ -15,6 +17,8 @@ public class TargetCommand extends CommandBase
     }
     protected void initialize()
     {
+        
+        targetTime = Timer.getFPGATimestamp();
         //AutonomousInformation autoInfo = new AutonomousInformation();
         /*if(CheckForTarget(2))
         {
@@ -34,13 +38,13 @@ public class TargetCommand extends CommandBase
     protected void execute()
     {
          imageProcess.processCameraImage();
-         System.out.println("Target time: "+timer.get());
+         System.out.println("Target time: "+ (Timer.getFPGATimestamp() - targetTime));
          if(imageProcess.hotTargetFound())
          {
              isHot = true;
              isFinished = true;
          }
-         else if(timer.get() >= 7)
+         else if((Timer.getFPGATimestamp() - targetTime) >= 3)
          {
              isFinished = true;
          }

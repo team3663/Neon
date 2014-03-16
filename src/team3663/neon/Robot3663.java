@@ -6,8 +6,10 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import team3663.neon.commands.AutonomousCG;
+import team3663.neon.commands.AutonomousBackUpCG;
+import team3663.neon.commands.Bob;
 import team3663.neon.commands.CommandBase;
+import team3663.neon.commands.WindAndLatchToFullPowerCG;
 
 public class Robot3663 extends IterativeRobot
 {
@@ -16,6 +18,8 @@ public class Robot3663 extends IterativeRobot
     int counter=0;
     CommandGroup autonomousCG;
     CommandGroup autonomousBackUpCG; 
+    CommandBase bob;
+    CommandGroup windWinchToFull;
 
     DriverStation driveStation;
     int isAliveCounter;
@@ -26,8 +30,10 @@ public class Robot3663 extends IterativeRobot
         RobotMap.init();
         CommandBase.init();
         
-        autonomousCG = new AutonomousCG();
-        //autonomousBackUpCG = new AutonomousBackUpCG();
+        bob = new Bob();
+        windWinchToFull = new WindAndLatchToFullPowerCG();
+        //autonomousCG = new AutonomousCG();
+        autonomousBackUpCG = new AutonomousBackUpCG();
         driveStation = DriverStation.getInstance();
         CommandBase.dsLCD.clear();
         updateStatus();
@@ -37,8 +43,8 @@ public class Robot3663 extends IterativeRobot
     public void autonomousInit() 
     {
         System.out.println("Robot3663.autonomousInit start");
-        //autonomousBackUpCG.start();
-        autonomousCG.start();
+        autonomousBackUpCG.start();
+        //autonomousCG.start();
         System.out.println("Robot3663.autonomousInit end");
     }
 
@@ -51,9 +57,11 @@ public class Robot3663 extends IterativeRobot
 
     public void teleopInit() 
     {
+        windWinchToFull.start();
+       // bob.start();
         System.out.println("Robot3663.teleopInit start");
-        //autonomousBackUpCG.cancel();
-        autonomousCG.cancel();
+        autonomousBackUpCG.cancel();
+        //autonomousCG.cancel();
         System.out.println("Robot3663.teleopInit end");
     }
     
@@ -94,7 +102,7 @@ public class Robot3663 extends IterativeRobot
         CommandBase.shooterWinchAndLatchSS.updateStatus();
         CommandBase.compressorSS.updateStatus();
         CommandBase.driveTrainSS.updateStatus();
-        CommandBase.footSS.updateStatus();
+        CommandBase.footSS.updateStatus(); 
         CommandBase.catapultLimitSwitchSS.updateStatus();
         CommandBase.hammerSS.updateStatus();
         CommandBase.shooterWinchAndLatchSS.updateStatus();

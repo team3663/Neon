@@ -5,49 +5,52 @@
  */
 package team3663.neon.commands;
 
+import edu.wpi.first.wpilibj.Timer;
+
 /**
  *
  * @author curtis
  */
-public class AutonomousBackUpUsingEncodersC extends CommandBase {
-    private double encoderLeft;
-    private double encoderRight;
-    int finalEncoderWantedVal = 1180;
+public class Bob extends CommandBase {
+    double counter;
     
-    public AutonomousBackUpUsingEncodersC() {
-        
+    public Bob() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        driveTrainSS.ResetDriveEncoders();
+        counter = 20 + Timer.getFPGATimestamp();
+        System.out.println("Bob has Initialized");
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        driveTrainSS.Arcade(-.7, 0);
-        encoderLeft = driveTrainSS.GetLeftEncoder();
-        encoderRight = driveTrainSS.GetRightEncoder();
+        
+        System.out.println("bob is counting" + counter);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        if((encoderRight > finalEncoderWantedVal)||(encoderLeft > finalEncoderWantedVal))
+        if(Timer.getFPGATimestamp() > counter)
         {
+            System.out.println("bob is returning true in is finshed");
             return true;
         }
         return false;
+        
     }
 
     // Called once after isFinished returns true
     protected void end() {
-        driveTrainSS.Arcade(0, 0);
+        System.out.println("bob has ended");
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+        System.out.println("bob was interruped");
+        end();
     }
 }

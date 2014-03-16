@@ -12,6 +12,7 @@ public class CheckIsHotCommand extends CommandBase
 {
     private boolean isFinished;
     private ShooterCommand shootCommand;
+    public double isHotTime;
     
     public CheckIsHotCommand() 
     {
@@ -34,22 +35,25 @@ public class CheckIsHotCommand extends CommandBase
             System.out.println("isHot false auto");
             CommandBase.autoIsShot = true;
         }*/
-    }
+        isHotTime = Timer.getFPGATimestamp();
+   }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() 
     {
-        System.out.println("Time in Check: "+timer.get());
+        System.out.println("Time in Check: "+ (Timer.getFPGATimestamp() - isHotTime) );
          if(CommandBase.isHot && !CommandBase.autoIsShot)
         {
             System.out.println("************************It shot***********");
-            shootCommand.Shoot();
+            //shootCommand.Shoot();
+            new ShooterCommand();
             CommandBase.autoIsShot = true;
             isFinished = true;
         }
-         else if(!CommandBase.isHot && timer.get() >= 7)
+         else if(!CommandBase.isHot && (Timer.getFPGATimestamp() - isHotTime) >= 3)
         {
-            shootCommand.Shoot();
+            //shootCommand.Shoot();
+            new ShooterCommand();
             System.out.println("isHot false auto");
             CommandBase.autoIsShot = true;
             isFinished = true;
