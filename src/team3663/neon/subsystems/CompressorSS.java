@@ -42,19 +42,19 @@ public class CompressorSS extends Subsystem
     public void updateStatus()
     {
         if(airTanksAreFull()){
-            SmartDashboard.putString("Air Tanks", "Air tanks full");
+            SmartDashboard.putString("Air tanks ", "full");
         }
         else
         {
-            SmartDashboard.putString("Air Tanks", "Air tanks not full");
+            SmartDashboard.putString("Air tanks ", "not full");
         }
         if(compressorOn)
         {
-            SmartDashboard.putString("Compressor", "Compressor on");
+            SmartDashboard.putString("Compressor ", "on");
         }
         else
         {
-            SmartDashboard.putString("Compressor: ", "Compressor off");
+            SmartDashboard.putString("Compressor ", "off");
         }
     }
 }

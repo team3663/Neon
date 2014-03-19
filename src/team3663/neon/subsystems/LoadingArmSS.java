@@ -37,11 +37,11 @@ public class LoadingArmSS extends Subsystem {
     public void updateStatus()
     {
         if (loadingArmIsUp())
-            SmartDashboard.putString("LoadingArm", "Loading arm is up");
+            SmartDashboard.putString("Loading arm ", "up");
         else
-            SmartDashboard.putString("LoadingArm", "Loading arm is down");
+            SmartDashboard.putString("Loading arm ", "down");
         
-        SmartDashboard.putNumber("LoadingArm Motor: ", RobotMap.LoadingArmSpeedController.get());
+        SmartDashboard.putNumber("Loading arm motor speed:", RobotMap.LoadingArmSpeedController.get());
     }
     
 }

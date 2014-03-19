@@ -1,7 +1,5 @@
 package team3663.neon.commands;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 public class FillAirTanksC extends CommandBase
 {
     public FillAirTanksC()

@@ -15,6 +15,7 @@ public class HammerSS extends Subsystem {
         System.out.println("HammerSS constructor end");
     }
 
+    // mustard code below (ketchup is flipped)
     public boolean hammerIsRetracted(){
         return RobotMap.hammerRetractExtendSolenoid2.get();
     }
@@ -30,8 +31,8 @@ public class HammerSS extends Subsystem {
     }
     public void updateStatus(){
         if (hammerIsRetracted())
-            SmartDashboard.putString("Hammer","Hammer is retracted");
+            SmartDashboard.putString("Hammer ","retracted");
         else
-            SmartDashboard.putString("Hammer","Hammer is extended");
+            SmartDashboard.putString("Hammer ","extended");
     }
 }

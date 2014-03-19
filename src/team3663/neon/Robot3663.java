@@ -3,9 +3,10 @@ package team3663.neon;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStationLCD;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import team3663.neon.commands.AutonomousBackUpCG;
 import team3663.neon.commands.Bob;
 import team3663.neon.commands.CommandBase;
@@ -24,6 +25,10 @@ public class Robot3663 extends IterativeRobot
     DriverStation driveStation;
     int isAliveCounter;
     
+    double updateStatusNextRefresh;
+    final double UPDATESTATUSREFRESHINTERVAL = 0.25;
+
+    
     public void robotInit() 
     {
         System.out.println("Robot3663.robotInit start");
@@ -36,6 +41,7 @@ public class Robot3663 extends IterativeRobot
         autonomousBackUpCG = new AutonomousBackUpCG();
         driveStation = DriverStation.getInstance();
         CommandBase.dsLCD.clear();
+        updateStatusNextRefresh = Timer.getFPGATimestamp();
         updateStatus();
         System.out.println("Robot3663.robotInit end");
     }
@@ -75,6 +81,7 @@ public class Robot3663 extends IterativeRobot
     public void testInit() 
     {
         System.out.println("Robot3663.testInit start");
+        LiveWindow.setEnabled(false);
         //autonomousCG.cancel();
         System.out.println("Robot3663.testInit end");
     }
@@ -97,23 +104,31 @@ public class Robot3663 extends IterativeRobot
     }
     public void updateStatus()
     {
-        SmartDashboard.putNumber("updateStatus", isAliveCounter++);
+        double currentTime = Timer.getFPGATimestamp();
+        if (currentTime >= updateStatusNextRefresh)
+        {
+            updateStatusNextRefresh += UPDATESTATUSREFRESHINTERVAL;
+            if (currentTime > updateStatusNextRefresh)
+                updateStatusNextRefresh = currentTime + UPDATESTATUSREFRESHINTERVAL;
+            
+            //SmartDashboard.putNumber("updateStatus:", isAliveCounter++);
 
-        CommandBase.shooterWinchAndLatchSS.updateStatus();
-        CommandBase.compressorSS.updateStatus();
-        CommandBase.driveTrainSS.updateStatus();
-        CommandBase.footSS.updateStatus(); 
-        CommandBase.catapultLimitSwitchSS.updateStatus();
-        CommandBase.hammerSS.updateStatus();
-        CommandBase.shooterWinchAndLatchSS.updateStatus();
-        CommandBase.loadingArmSS.updateStatus();
-        //CommandBase.dsLCD.println(DriverStationLCD.Line.kUser4, 1, "Brian14 "+ counter++);
-	CommandBase.dsLCD.updateLCD();
-        CommandBase.dsLCD.println(DriverStationLCD.Line.kUser1, 1, "                     ");
-        CommandBase.dsLCD.println(DriverStationLCD.Line.kUser2, 1, "                     ");
-        CommandBase.dsLCD.println(DriverStationLCD.Line.kUser3, 1, "                     ");
-        //CommandBase.dsLCD.println(DriverStationLCD.Line.kUser4, 1, "                     ");
-        //CommandBase.dsLCD.println(DriverStationLCD.Line.kUser5, 1, "                     ");
-        CommandBase.dsLCD.println(DriverStationLCD.Line.kUser6, 1, "                     ");
+            CommandBase.shooterWinchAndLatchSS.updateStatus();
+            CommandBase.compressorSS.updateStatus();
+            CommandBase.driveTrainSS.updateStatus();
+            CommandBase.footSS.updateStatus(); 
+            CommandBase.catapultLimitSwitchSS.updateStatus();
+            CommandBase.hammerSS.updateStatus();
+            CommandBase.shooterWinchAndLatchSS.updateStatus();
+            CommandBase.loadingArmSS.updateStatus();
+            //CommandBase.dsLCD.println(DriverStationLCD.Line.kUser4, 1, "Brian14 "+ counter++);
+            CommandBase.dsLCD.updateLCD();
+            CommandBase.dsLCD.println(DriverStationLCD.Line.kUser1, 1, "                     ");
+            CommandBase.dsLCD.println(DriverStationLCD.Line.kUser2, 1, "                     ");
+            CommandBase.dsLCD.println(DriverStationLCD.Line.kUser3, 1, "                     ");
+            //CommandBase.dsLCD.println(DriverStationLCD.Line.kUser4, 1, "                     ");
+            //CommandBase.dsLCD.println(DriverStationLCD.Line.kUser5, 1, "                     ");
+            CommandBase.dsLCD.println(DriverStationLCD.Line.kUser6, 1, "                     ");
+        }
     }
 }

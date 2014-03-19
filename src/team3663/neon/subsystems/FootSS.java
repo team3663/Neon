@@ -15,22 +15,33 @@ public class FootSS extends Subsystem {
     }
     
     public void footUp(){
-        RobotMap.footUpDownSolenoid1.set(false);
-        RobotMap.footUpDownSolenoid2.set(true);
-    }
+        // mustard RobotMap.footUpDownSolenoid1.set(false);
+        // mustard RobotMap.footUpDownSolenoid2.set(true);
 
-    public void footDown(){
+        // ketchup
         RobotMap.footUpDownSolenoid1.set(true);
         RobotMap.footUpDownSolenoid2.set(false);
     }
 
+    public void footDown(){
+        // mustard RobotMap.footUpDownSolenoid1.set(true);
+        // mustard RobotMap.footUpDownSolenoid2.set(false);
+
+        // ketchup
+        RobotMap.footUpDownSolenoid1.set(false);
+        RobotMap.footUpDownSolenoid2.set(true);
+    }
+
     public boolean footIsUp(){
-        return RobotMap.footUpDownSolenoid2.get();
+        // mustard return RobotMap.footUpDownSolenoid2.get();
+        
+        // ketchup
+        return RobotMap.footUpDownSolenoid1.get();
     }
     public void updateStatus(){
         if(footIsUp())
-            SmartDashboard.putString("Foot","Foot is up");
+            SmartDashboard.putString("Foot ","up");
         else
-            SmartDashboard.putString("Foot","Foot is down");
+            SmartDashboard.putString("Foot ","down");
     }
 }

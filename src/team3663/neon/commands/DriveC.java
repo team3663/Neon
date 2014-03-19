@@ -1,12 +1,7 @@
 package team3663.neon.commands;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 public class DriveC extends CommandBase
 {
-    double left;
-    double right;
-    
     public DriveC()
     {   
         requires(driveTrainSS); 
@@ -19,25 +14,12 @@ public class DriveC extends CommandBase
     protected void execute() 
     {
         double jX, jY, jZ;
-        
+
         jX = oi.getDriveJoystick().getX();
         jY = oi.getDriveJoystick().getY();
         jZ = oi.getDriveJoystick().getZ(); // twist
 
-        SmartDashboard.putNumber("Joystick X:", jX);
-        SmartDashboard.putNumber("Joystick Y:", jY);
-        SmartDashboard.putNumber("Joystick Z:", jZ);
-
-        if(driveTrainSS.TractionIsDown())
-       {
-           driveTrainSS.Arcade(jY, jZ);
-           SmartDashboard.putString("Driving:", "Arcade");
-       }
-       else
-       {
-           driveTrainSS.Mecanum(jX, jY, jZ);
-           SmartDashboard.putString("Driving:", "Mecanum");
-       }
+        driveTrainSS.drive3663(jX, jY, jZ);
     }
 
     protected boolean isFinished() 

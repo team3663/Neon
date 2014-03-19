@@ -54,17 +54,18 @@ public class ShooterWinchAndLatchSS extends Subsystem
     public double getWinchEncoder()
     {
         //one revolution is 360 ticks
-        return -RobotMap.winchEncoder.get();
+        return RobotMap.winchEncoder.get();
+        // mustard return -RobotMap.winchEncoder.get();
     }
     
     public void updateStatus()
     {
         if (latchIsOpen())
-            SmartDashboard.putString("Latch","Latch is open");
+            SmartDashboard.putString("Latch ","open");
         else
-            SmartDashboard.putString("Latch","Latch is closed");
+            SmartDashboard.putString("Latch ","closed");
         
-        SmartDashboard.putNumber("WinchEncoder", getWinchEncoder());
+        SmartDashboard.putNumber("WinchEncoder:", getWinchEncoder());
         CommandBase.dsLCD.println(DriverStationLCD.Line.kUser6,1, "Winch: " + (int)getWinchEncoder());
     }
 }

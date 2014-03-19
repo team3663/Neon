@@ -19,7 +19,7 @@ public class DriveForwardTimeC extends CommandBase {
     }
 
     protected void execute() {
-        driveTrainSS.Arcade(-1, 0);
+        driveTrainSS.drive3663(0,-1, 0);
     }
 
     protected boolean isFinished() {
@@ -32,7 +32,7 @@ public class DriveForwardTimeC extends CommandBase {
 
     protected void end() {
         System.out.println("DriveForwardTimeC.end");
-        driveTrainSS.Arcade(0, 0);
+        driveTrainSS.drive3663(0, 0, 0);
     }
 
     protected void interrupted() {

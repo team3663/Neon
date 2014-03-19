@@ -28,9 +28,9 @@ public class CatapultLimitSwitchSS extends Subsystem {
     }
     public void updateStatus(){
         if (catapultIsReallyDown)
-            SmartDashboard.putString("Catapult Limit Switch", "Catapult is down");
+            SmartDashboard.putString("Catapult is ", "down");
         else
-            SmartDashboard.putString("Catapult Limit Switch", "Catapult is up");
+            SmartDashboard.putString("Catapult is ", "up");
         //CommandBase.dsLCD.println(DriverStationLCD.Line.kUser2, 1, "Catapult down: " + catapultIsReallyDown);
     }
     

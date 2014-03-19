@@ -12,18 +12,14 @@ import team3663.neon.commands.DriveC;
 
 public class DriveTrainSS extends Subsystem
 {
-    public boolean highGear;
-    private double direction;
-    private double magnitude;
-    
     public double PI;
     public double ENCODER_CORRECT;
-    private double encodeRightPrevious;
-    private double encodeLeftPrevious;
     private double encodeLeftChange;
     private double encodeRightChange;
     public Encoder leftEncoder;
     public Encoder rightEncoder;
+    
+    private double joyX, joyY, joyZ;
     
     public void DriveTrainSS()
     {
@@ -52,53 +48,48 @@ public class DriveTrainSS extends Subsystem
         return RobotMap.tractionWheelUpDownSolenoid1.get();
     }
     
-    // should switch DriveC to use this when it can be tested
-    /*
     public void drive3663(double jX, double jY, double jZ) 
     {
-       if(TractionIsDown())
-       {
-           Arcade(jY, jZ);
-           SmartDashboard.putString("Driving:", "Arcade");
-       }
-       else
-       {
-           Mecanum(jX, jY, jZ);
-           SmartDashboard.putString("Driving:", "Mecanum");
-       }
-    }
-*/
-    
-    public void Arcade(double joyY, double joyZ)
-    {
-        //todo: add logic so invert does not need to be called every time
-        RobotMap.driveTrain.setInvertedMotor(RobotDrive.MotorType.kFrontRight, false);
-        RobotMap.driveTrain.setInvertedMotor(RobotDrive.MotorType.kRearRight, false);
+        final double IDLETOLERANCE = 0.09;
+        
+        joyX = jX;
+        joyY = jY;
+        joyZ = jZ;
+        
+        if(jX < IDLETOLERANCE && jX > -IDLETOLERANCE)
+            jX = 0;
 
-        //stop motor hum when idle
-        if(joyY < 0.1 && joyY > -0.1)
+        if(jY < IDLETOLERANCE && jY > -IDLETOLERANCE)
+            jY = 0;
+
+        if(jZ < IDLETOLERANCE && jZ > -IDLETOLERANCE)
+            jZ = 0;
+
+        // mustard does not flip
+        // ketchup
+        jY = -jY;
+        
+        if(TractionIsDown())
         {
-            joyY = 0;
+            Arcade(jY, jZ);
         }
-
+        else
+        {
+            Mecanum(jX, jY, jZ);
+        }
+    }
+    
+    private void Arcade(double joyY, double joyZ)
+    {
         RobotMap.driveTrain.arcadeDrive(joyY, -joyZ);
     }
     
-     public void Mecanum(double joyX, double joyY, double joyTwist)
+    private void Mecanum(double jX, double jY, double jZ)
     {
-        //todo: add logic so invert does not need to be called every time
-        RobotMap.driveTrain.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
-        RobotMap.driveTrain.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
-
-        direction = MathUtils.atan2(joyX, joyY);
-        magnitude = Math.sqrt((joyX * joyX) +  (joyY * joyY));
+        double direction = Math.toDegrees(MathUtils.atan2(jX, jY));
+        double magnitude = Math.sqrt((jX * jX) +  (jY * jY));
         
-        if (magnitude < 0.1 && magnitude > -0.1)
-        {
-            magnitude = 0;
-        }
-
-        RobotMap.driveTrain.mecanumDrive_Polar(magnitude, Math.toDegrees(direction), joyTwist);
+        RobotMap.driveTrain.mecanumDrive_Polar(magnitude, direction, jZ);
     }
   
     public void ShiftToHighGear(){//black slider of transmissions out
@@ -189,12 +180,21 @@ public class DriveTrainSS extends Subsystem
     {
         RobotMap.tractionWheelUpDownSolenoid1.set(false);
         RobotMap.tractionWheelUpDownSolenoid2.set(true);
-    }
+
+        //set for mecanum
+        RobotMap.driveTrain.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
+        RobotMap.driveTrain.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
+
+}
     
     public void TractionWheelsDown()
     {
         RobotMap.tractionWheelUpDownSolenoid1.set(true);
         RobotMap.tractionWheelUpDownSolenoid2.set(false);
+
+        //set for arcade
+        RobotMap.driveTrain.setInvertedMotor(RobotDrive.MotorType.kFrontRight, false);
+        RobotMap.driveTrain.setInvertedMotor(RobotDrive.MotorType.kRearRight, false);
     }
     
     public void updateStatus()
@@ -202,8 +202,12 @@ public class DriveTrainSS extends Subsystem
     //    SmartDashboard.putNumber("Right Encoder:", GetRightEncoder());
 //	SmartDashboard.putNumber("Left Encoder:", GetLeftEncoder());
         CommandBase.dsLCD.println(DriverStationLCD.Line.kUser1,1, ("R:" + (int)GetRightEncoder()) + " L:" + (int)GetLeftEncoder());
-        SmartDashboard.putNumber("LeftEncoder",GetLeftEncoder());
-        SmartDashboard.putNumber("RightEncoder",GetRightEncoder());
+        SmartDashboard.putNumber("Left encoder:",GetLeftEncoder());
+        SmartDashboard.putNumber("Right encoder:",GetRightEncoder());
+        SmartDashboard.putNumber("Joystick X:", joyX);
+        SmartDashboard.putNumber("Joystick Y:", joyY);
+        SmartDashboard.putNumber("Joystick Z:", joyZ);
+
 	
 	
        // System.out.println("Ecnoder fr DriveTrain:"+GetTotalDistance());
@@ -211,23 +215,25 @@ public class DriveTrainSS extends Subsystem
         if (InLowGear())
         {
             CommandBase.dsLCD.println(DriverStationLCD.Line.kUser2, 1, "Low Gear");
-            SmartDashboard.putString("Gear","Low");
+            SmartDashboard.putString("Gear ","low");
         }
         else
         {
             CommandBase.dsLCD.println(DriverStationLCD.Line.kUser2, 1, "High Gear");
-            SmartDashboard.putString("Gear","High");
+            SmartDashboard.putString("Gear ","high");
         }
         
         if (TractionIsDown())
         {
             CommandBase.dsLCD.println(DriverStationLCD.Line.kUser3, 1, "Traction Wheels Down");
-            SmartDashboard.putString("Traction Wheels","Down");
+            SmartDashboard.putString("Traction wheels ","down");
+            SmartDashboard.putString("Driving mode ", "arcade");
         }
         else
         {
             CommandBase.dsLCD.println(DriverStationLCD.Line.kUser3, 1, "Traction Wheels Up   ");
-            SmartDashboard.putString("Traction Wheels","Up");
+            SmartDashboard.putString("Traction wheels ","up");
+            SmartDashboard.putString("Driving mode ", "mecanum");
         }
     }
 }

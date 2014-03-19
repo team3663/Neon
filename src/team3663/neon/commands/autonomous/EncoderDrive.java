@@ -28,11 +28,11 @@ public class EncoderDrive extends CommandBase
     {
         if (driveTrainSS.GetTotalDistance() <= targetDistance)
         {
-                driveTrainSS.Arcade(driveSpeed, 0/*driveTrainSS.EncoderError()*/);//995 988 992 991.875
+                driveTrainSS.drive3663(0, driveSpeed, 0/*driveTrainSS.EncoderError()*/);//995 988 992 991.875
         }
         else
         {
-            driveTrainSS.Arcade(0, 0);
+            driveTrainSS.drive3663(0, 0, 0);
             isFinished = true;
         }
         
@@ -48,7 +48,7 @@ public class EncoderDrive extends CommandBase
     
     protected void end()
     {
-        driveTrainSS.Arcade(0, 0);
+        driveTrainSS.drive3663(0, 0, 0);
     }
     
     protected void interrupted()

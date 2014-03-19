@@ -27,7 +27,7 @@ public class AutonomousBackUpUsingEncodersC extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        driveTrainSS.Arcade(-.7, 0);
+        driveTrainSS.drive3663(0,-.7, 0);
         encoderLeft = driveTrainSS.GetLeftEncoder();
         encoderRight = driveTrainSS.GetRightEncoder();
     }
@@ -43,7 +43,7 @@ public class AutonomousBackUpUsingEncodersC extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-        driveTrainSS.Arcade(0, 0);
+        driveTrainSS.drive3663(0, 0, 0);
     }
 
     // Called when another command which requires one or more of the same

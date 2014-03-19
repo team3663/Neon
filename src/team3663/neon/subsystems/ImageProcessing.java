@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.image.NIVision;
 import edu.wpi.first.wpilibj.image.NIVision.MeasurementType;
 import edu.wpi.first.wpilibj.image.NIVisionException;
 import edu.wpi.first.wpilibj.image.ParticleAnalysisReport;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import team3663.neon.commands.autonomous.TargetCommand;
 
 public class ImageProcessing extends Subsystem 
@@ -216,6 +217,7 @@ public class ImageProcessing extends Subsystem
                     }
                     else
                     {
+                        hotTargetFound = false;
                         System.out.println("No hot target presnet");
                         System.out.println("HorizontalDistance: " + distance);
                     }
@@ -237,6 +239,7 @@ public class ImageProcessing extends Subsystem
                     }
                     else
                     {
+                        hotTargetFound = false;
                         System.out.println("No hot target presnet");
                         System.out.println("Vertical Distance: " + distance);
                     }
@@ -404,5 +407,16 @@ public class ImageProcessing extends Subsystem
     protected void initDefaultCommand()
     {
         //setDefaultCommand(new TargetCommand());
+    }
+    
+        public void updateStatus()
+    {
+        if(hotTargetFound()){
+            SmartDashboard.putString("Goal is ", "hot");
+        }
+        else
+        {
+            SmartDashboard.putString("Goal is ", "cold");
+        }
     }
 }
