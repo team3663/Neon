@@ -57,13 +57,11 @@ public class WindWinchC extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        System.out.println("WindWinch.execute");
         shooterWinchAndLatchSS.setWinchSpeed(speed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        System.out.println("WindWinch.isFinshed");
         double currentTicks = shooterWinchAndLatchSS.getWinchEncoder();
         
         //stop if goal passed
@@ -108,7 +106,7 @@ public class WindWinchC extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-        System.out.println("WindWinch.end");
+
         CommandBase.dsLCD.println(DriverStationLCD.Line.kUser4, 1, "~~~~READY TO FIRE~~~~");
         shooterWinchAndLatchSS.readyToShoot = true;
         shooterWinchAndLatchSS.setWinchSpeed(0);
@@ -117,7 +115,6 @@ public class WindWinchC extends CommandBase {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-        System.out.println("WindWinch.interrupted");
         end();
     }
 }

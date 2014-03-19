@@ -1,76 +1,46 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package team3663.neon.commands.autonomous;
 
 import edu.wpi.first.wpilibj.Timer;
+import team3663.neon.Robot3663;
 import team3663.neon.commands.CommandBase;
 
 public class CheckIsHotCommand extends CommandBase 
 {
-    private boolean isFinished;
-    private ShooterCommand shootCommand;
-    public double isHotTime;
+    public double endTime;
     
     public CheckIsHotCommand() 
     {
-        isFinished = false;
-        shootCommand = new ShooterCommand();
-    }
 
-    // Called just before this Command runs the first time
+    }
+    
     protected void initialize() 
     {
-         /*if(CommandBase.isHot && !CommandBase.autoIsShot)
+        if(Robot3663.isTesting)
         {
-            System.out.println("************************It shot***********");
-            shootCommand.Shoot();
-            CommandBase.autoIsShot = true;
+            System.out.println("istesting auto");
+            Robot3663.autoTimeStart = Timer.getFPGATimestamp();
         }
-        if(!CommandBase.isHot && (CommandBase.timer.getFPGATimestamp() > 5) && !CommandBase.autoIsShot)
-        {
-            shootCommand.Shoot();
-            System.out.println("isHot false auto");
-            CommandBase.autoIsShot = true;
-        }*/
-        isHotTime = Timer.getFPGATimestamp();
-   }
+        
+        System.out.println("Timer startAuto: "+Timer.getFPGATimestamp());
+        endTime = Robot3663.autoTimeStart + 5.5;
 
-    // Called repeatedly when this Command is scheduled to run
-    protected void execute() 
+    }
+    
+    protected void execute() {}
+    
+    protected boolean isFinished() 
     {
-        System.out.println("Time in Check: "+ (Timer.getFPGATimestamp() - isHotTime) );
-         if(CommandBase.isHot && !CommandBase.autoIsShot)
-        {
-            System.out.println("************************It shot***********");
-            //shootCommand.Shoot();
-            new ShooterCommand();
-            CommandBase.autoIsShot = true;
-            isFinished = true;
-        }
-         else if(!CommandBase.isHot && (Timer.getFPGATimestamp() - isHotTime) >= 3)
-        {
-            //shootCommand.Shoot();
-            new ShooterCommand();
-            System.out.println("isHot false auto");
-            CommandBase.autoIsShot = true;
-            isFinished = true;
-        }
+         if(CommandBase.isHot || Timer.getFPGATimestamp() > endTime)
+         {
+            return true;
+         }
+         return false;
     }
-
-    // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-        return isFinished;
+    
+    protected void end() 
+    {
+        System.out.println("TImer endAuto: "+Timer.getFPGATimestamp());
     }
-
-    // Called once after isFinished returns true
-    protected void end() {
-    }
-
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
-    protected void interrupted() {
-    }
+    
+    protected void interrupted() {}
 }

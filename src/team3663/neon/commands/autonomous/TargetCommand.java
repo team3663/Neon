@@ -8,77 +8,36 @@ import team3663.neon.commands.CommandBase;
 
 public class TargetCommand extends CommandBase
 {
-    private boolean isFinished;
-    public double targetTime;
+    private double _endTime;
+    
     public TargetCommand()
     {
         requires(imageProcess);
-        isFinished = false;
     }
     protected void initialize()
-    {
-        
-        targetTime = Timer.getFPGATimestamp();
-        //AutonomousInformation autoInfo = new AutonomousInformation();
-        /*if(CheckForTarget(2))
-        {
-            isHot = true;
-            System.out.println("hot target Left in autonomous: " + imageProcess.getHotIsLeft());
-            System.out.println("target isHot: " + isHot);
-            isFinished = true;
-        }
-        else
-        {
-            isHot = false;
-            System.out.println("No hot target found in autonomous");
-            System.out.println("target isHot: " + isHot);
-            isFinished = true;
-        }*/
+    {  
+        _endTime = Timer.getFPGATimestamp() + 2;
     }
-    protected void execute()
-    {
-         imageProcess.processCameraImage();
-         System.out.println("Target time: "+ (Timer.getFPGATimestamp() - targetTime));
-         if(imageProcess.hotTargetFound())
-         {
-             isHot = true;
-             isFinished = true;
-         }
-         else if((Timer.getFPGATimestamp() - targetTime) >= 3)
-         {
-             isFinished = true;
-         }
-    }
+    protected void execute() {}
+    
     protected boolean isFinished()
     {
-        return isFinished;
-    }
-    protected void end()
-    {
-        
-    }
-    protected void interrupted()
-    {
-        
-    }
-    
-    public boolean CheckForTarget(int passes)
-    {
-        int count = 0;
-        for(int i = 0; i < passes; i++)
+        imageProcess.processCameraImage();
+
+        if(imageProcess.hotTargetFound())
         {
-            imageProcess.processCameraImage();
-            if(imageProcess.hotTargetFound())
-            {
-                count++;
-            }
+            isHot = true;
+            return true;
         }
-        System.out.println("count of hot targets: "+count);
-        if(count >= 1)
+        if(Timer.getFPGATimestamp() > _endTime)
         {
             return true;
         }
         return false;
-        
     }
+    protected void end()
+    {
+        System.out.println("Target time: "+ (Timer.getFPGATimestamp()));
+    }
+    protected void interrupted() {}
 }

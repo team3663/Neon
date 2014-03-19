@@ -34,7 +34,6 @@ public abstract class CommandBase extends Command
     
     public static void init() 
     {
-         System.out.println("CommandBase.init start");
          isHot = false;
          autoIsShot = false;
         compressorSS = new CompressorSS();
@@ -52,19 +51,13 @@ public abstract class CommandBase extends Command
         dsLCD = DriverStationLCD.getInstance();
         
         oi = new OI();
-        
-        System.out.println("CommandBase.init end");
     }
 
     public CommandBase(String name) {
         super(name);
-        System.out.println("CommandBase constructor start");
-        System.out.println("CommandBase constructor end");
     }
 
     public CommandBase() {
         super();
-        System.out.println("CommandBase constructor start");
-        System.out.println("CommandBase constructor end");
     }
 }

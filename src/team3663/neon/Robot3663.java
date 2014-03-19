@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import team3663.neon.commands.AutonomousBackUpCG;
+import team3663.neon.commands.AutonomousfinalCG;
 import team3663.neon.commands.Bob;
 import team3663.neon.commands.CommandBase;
 import team3663.neon.commands.WindAndLatchToFullPowerCG;
@@ -17,13 +17,15 @@ public class Robot3663 extends IterativeRobot
     public static boolean mustard = true;
     boolean test = true;
     int counter=0;
-    CommandGroup autonomousCG;
+    CommandGroup autonomousfinalCG;
     CommandGroup autonomousBackUpCG; 
     CommandBase bob;
     CommandGroup windWinchToFull;
 
     DriverStation driveStation;
     int isAliveCounter;
+    public static boolean isTesting;
+    public static double autoTimeStart;
     
     double updateStatusNextRefresh;
     final double UPDATESTATUSREFRESHINTERVAL = 0.25;
@@ -37,8 +39,8 @@ public class Robot3663 extends IterativeRobot
         
         bob = new Bob();
         windWinchToFull = new WindAndLatchToFullPowerCG();
-        //autonomousCG = new AutonomousCG();
-        autonomousBackUpCG = new AutonomousBackUpCG();
+        autonomousfinalCG = new AutonomousfinalCG();
+        //autonomousBackUpCG = new AutonomousBackUpCG();
         driveStation = DriverStation.getInstance();
         CommandBase.dsLCD.clear();
         updateStatusNextRefresh = Timer.getFPGATimestamp();
@@ -48,9 +50,11 @@ public class Robot3663 extends IterativeRobot
 
     public void autonomousInit() 
     {
+        isTesting = false;
         System.out.println("Robot3663.autonomousInit start");
-        autonomousBackUpCG.start();
-        //autonomousCG.start();
+        //autonomousBackUpCG.start();
+        autoTimeStart = Timer.getFPGATimestamp();
+        autonomousfinalCG.start();
         System.out.println("Robot3663.autonomousInit end");
     }
 
@@ -63,11 +67,12 @@ public class Robot3663 extends IterativeRobot
 
     public void teleopInit() 
     {
+        isTesting = false;
         windWinchToFull.start();
        // bob.start();
         System.out.println("Robot3663.teleopInit start");
-        autonomousBackUpCG.cancel();
-        //autonomousCG.cancel();
+        //autonomousBackUpCG.cancel();
+        autonomousfinalCG.cancel();
         System.out.println("Robot3663.teleopInit end");
     }
     
@@ -81,8 +86,9 @@ public class Robot3663 extends IterativeRobot
     public void testInit() 
     {
         System.out.println("Robot3663.testInit start");
-        LiveWindow.setEnabled(false);
-        //autonomousCG.cancel();
+        //LiveWindow.setEnabled(false);
+        isTesting = true;
+        autonomousfinalCG.cancel();
         System.out.println("Robot3663.testInit end");
     }
 

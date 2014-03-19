@@ -19,12 +19,10 @@ public class LoadingArmDownC extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        System.out.println("LoadingArmDownC.execute");
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        System.out.println("LoadingArmDownC.isFinshed");
         if(Timer.getFPGATimestamp() - startTime > .5)
         {
             return true;

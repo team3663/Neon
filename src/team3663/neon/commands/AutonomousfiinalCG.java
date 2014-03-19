@@ -8,10 +8,10 @@ import team3663.neon.commands.autonomous.TargetCommand;
 /*
  * @author Kainoa & Tyler
  */
-public class AutonomousCG extends CommandGroup
+public class AutonomousfiinalCG extends CommandGroup
 {
     
-    public AutonomousCG()
+    public AutonomousfiinalCG()
     {
         addSequential(new TractionWheelsDownC());
         addSequential(new ShiftToHighGearC());
@@ -19,7 +19,7 @@ public class AutonomousCG extends CommandGroup
         addSequential(new LoadingArmDownC());
         addSequential(new EncoderDrive(10, -0.8));
         addParallel(new TargetCommand());
-        addSequential(new CheckIsHotCommand());
+        addParallel(new CheckIsHotCommand());
         System.out.println("Autonomous isHot: " + CommandBase.isHot);
         /*while(Timer.getFPGATimestamp() < 10)
         {

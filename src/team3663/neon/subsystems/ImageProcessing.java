@@ -13,7 +13,6 @@ import edu.wpi.first.wpilibj.image.NIVision.MeasurementType;
 import edu.wpi.first.wpilibj.image.NIVisionException;
 import edu.wpi.first.wpilibj.image.ParticleAnalysisReport;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import team3663.neon.commands.autonomous.TargetCommand;
 
 public class ImageProcessing extends Subsystem 
 {
@@ -104,7 +103,7 @@ public class ImageProcessing extends Subsystem
             //image =  new RGBImage("/targetTest.jpg");
             //BinaryImage thresholdImage = image.thresholdRGB(0, 150, 200, 255, 200, 255);   // keep only green objects
             BinaryImage thresholdImage = image.thresholdRGB(230, 255, 230, 255, 230, 255);   // keep only white objects
-            //BinaryImage thresholdImage = image.thresholdRGB(0, 150, 200, 255, 200, 255);   
+            
             BinaryImage bigObjectsImage = thresholdImage.removeSmallObjects(false, 2);  // remove small artifacts
             BinaryImage convexHullImage = bigObjectsImage.convexHull(false);          // fill in occluded rectangles
             BinaryImage filteredImage = convexHullImage.particleFilter(cc);           // find filled in rectangle
@@ -205,21 +204,17 @@ public class ImageProcessing extends Subsystem
                     /* Information about the target is contaned in the "target" class
                        to get measurement information such as sizes or locations use the
                        horizontal or vertical index to get the particle report as shown below*/
-                    ParticleAnalysisReport distanceReport = filteredImage.getParticleAnalysisReport(target.horizontalIndex);
-                    double distance = computeDistance(filteredImage, distanceReport, target.horizontalIndex, false);
                     if(target.Hot)
                     {   // This is nto accurate and was not put together well it will fail for horizontal distance
                         hotTargetSide(target);
                         hotTargetFound = true;
                         System.out.println("Target on Left: " + getHotIsLeft() );
                         System.out.println("Hot target located");
-                        System.out.println("HorizontalDistance: " + distance);
                     }
                     else
                     {
                         hotTargetFound = false;
                         System.out.println("No hot target presnet");
-                        System.out.println("HorizontalDistance: " + distance);
                     }
                 }
                 if(verticalTargetCount > 0)
@@ -227,21 +222,17 @@ public class ImageProcessing extends Subsystem
                     /* Information about the target is contaned in the "target" class
                        to get measurement information such as sizes or locations use the
                        horizontal or vertical index to get the particle report as shown below*/
-                    ParticleAnalysisReport distanceReport = filteredImage.getParticleAnalysisReport(target.verticalIndex);
-                    double distance = computeDistance(filteredImage, distanceReport, target.verticalIndex, true);
                     if(target.Hot)
                     {
                         hotTargetSide(target);
                         hotTargetFound = true;
                         System.out.println("Target on Left: " + getHotIsLeft() );
                         System.out.println("Hot target located");
-                        System.out.println("Vertical Distance: " + distance);
                     }
                     else
                     {
                         hotTargetFound = false;
                         System.out.println("No hot target presnet");
-                        System.out.println("Vertical Distance: " + distance);
                     }
                     
                 }
@@ -249,8 +240,9 @@ public class ImageProcessing extends Subsystem
             
             System.out.println("Number of Particles:"+filteredImage.getNumberParticles() + " Timestamp: " + Timer.getFPGATimestamp());
             //convexHullImage.write("/photos/hullImage.bmp");
-            thresholdImage.write("/photos/thresholdImage.bmp");
+            //thresholdImage.write("/photos/thresholdImage.bmp");
             //filteredImage.write("/photos/filteredImage.bmp");
+            image.write("/photos/baseimage.bmp");
             /**
              * all images in Java must be freed after they are used since they are allocated out
              * of C data structures. Not calling free() will cause the memory to accumulate over
@@ -269,7 +261,7 @@ public class ImageProcessing extends Subsystem
         }
         dsLCD.println(DriverStationLCD.Line.kUser5, 1,"cycle completed" );
         dsLCD.updateLCD();
-        Timer.delay(0.2);
+        //Timer.delay(0.2);
     }
     
     public double scoreAspectRatio(BinaryImage image, ParticleAnalysisReport report, int particleNumber, boolean vertical) throws NIVisionException
@@ -338,30 +330,6 @@ public class ImageProcessing extends Subsystem
         
         return isTarget;
     }
-        
-    private double computeDistance (BinaryImage image, ParticleAnalysisReport report, int particleNumber, boolean vertical) throws NIVisionException 
-    {
-        double rectLong, height;
-        double distance;
-        double angle;
-        int targetHeight;
-
-        rectLong = NIVision.MeasureParticle(image.image, particleNumber, false, MeasurementType.IMAQ_MT_EQUIVALENT_RECT_LONG_SIDE);
-        //using the smaller of the estimated rectangle long side and the bounding rectangle height results in better performance
-        //on skewed rectangles
-        height = Math.min(report.boundingRectHeight, rectLong);
-        targetHeight = vertical ? 32 : 5;/* The 5 should be 4 but since the floor at this school has a glare we adjusted*/
-
-        distance = Y_IMAGE_RES * targetHeight / (height * 12 * 2 * Math.tan(VIEW_ANGLE*Math.PI/(360)));
-        //angle = 2*(MathUtils.atan2(320, distance));
-        //System.out.println("Angle: "+angle);
-        return distance;
-    }
-    
-    /*double getAngle()
-    {
-        return MathUtils.atan2(640, distance);
-    }*/
         
     private boolean hotOrNot(TargetReport target)
     {
