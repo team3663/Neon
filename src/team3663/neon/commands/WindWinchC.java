@@ -66,11 +66,11 @@ public class WindWinchC extends CommandBase {
         
         //stop if goal passed
         if (tightening){
-            if (currentTicks < targetTicks){
+            if (currentTicks <= targetTicks){
                 return true;
             }
         } else {
-            if (currentTicks > targetTicks){
+            if (currentTicks >= targetTicks){
                 return true;
             }
         }

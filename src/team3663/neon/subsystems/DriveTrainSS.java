@@ -92,12 +92,17 @@ public class DriveTrainSS extends Subsystem
         RobotMap.driveTrain.mecanumDrive_Polar(magnitude, direction, jZ);
     }
   
+    public boolean InLowGear()
+    {
+        return RobotMap.gearShiftHighLowSolenoid1.get();
+    }
+
     public void ShiftToHighGear(){//black slider of transmissions out
         RobotMap.gearShiftHighLowSolenoid1.set(false);
         RobotMap.gearShiftHighLowSolenoid2.set(true);
     }
     
-   public void ShiftToLowGear(){//black slider of transmissions in
+    public void ShiftToLowGear(){//black slider of transmissions in
         RobotMap.gearShiftHighLowSolenoid1.set(true);
         RobotMap.gearShiftHighLowSolenoid2.set(false);
     }
@@ -122,10 +127,6 @@ public class DriveTrainSS extends Subsystem
         RobotMap.driveTrainBackRightSpeedController.set(speed);
     }
     
-    public boolean InLowGear()
-    {
-        return RobotMap.gearShiftHighLowSolenoid2.get();
-    }
     public double GetLeftEncoder()
     {
         return -RobotMap.driveTrainLeftEncoder.getRaw();

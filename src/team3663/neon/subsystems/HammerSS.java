@@ -17,17 +17,31 @@ public class HammerSS extends Subsystem {
 
     // mustard code below (ketchup is flipped)
     public boolean hammerIsRetracted(){
-        return RobotMap.hammerRetractExtendSolenoid2.get();
+        // mustard
+        //return RobotMap.hammerRetractExtendSolenoid2.get();
+        
+        //ketchup
+        return RobotMap.hammerRetractExtendSolenoid1.get();
     }
     
     public void hammerExtend(){
-        RobotMap.hammerRetractExtendSolenoid1.set(true);
-        RobotMap.hammerRetractExtendSolenoid2.set(false);        
+        //mustard
+        //RobotMap.hammerRetractExtendSolenoid1.set(true);
+        //RobotMap.hammerRetractExtendSolenoid2.set(false);        
+
+        //ketchup
+        RobotMap.hammerRetractExtendSolenoid1.set(false);
+        RobotMap.hammerRetractExtendSolenoid2.set(true);        
     }
     
     public void hammerRetract(){
-        RobotMap.hammerRetractExtendSolenoid1.set(false);
-        RobotMap.hammerRetractExtendSolenoid2.set(true);
+        //mustard
+        //RobotMap.hammerRetractExtendSolenoid1.set(false);
+        //RobotMap.hammerRetractExtendSolenoid2.set(true);
+
+        //ketchup
+        RobotMap.hammerRetractExtendSolenoid1.set(true);
+        RobotMap.hammerRetractExtendSolenoid2.set(false);
     }
     public void updateStatus(){
         if (hammerIsRetracted())
