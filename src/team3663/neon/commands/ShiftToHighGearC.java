@@ -6,25 +6,23 @@ public class ShiftToHighGearC extends CommandBase
     {
         requires(driveTrainSS);
     }
+    
     protected void initialize()
     {
         driveTrainSS.ShiftToHighGear();
     }
-    protected void execute()
-    {
-        
+    
+    protected void execute(){
     }
+    
     protected boolean isFinished()
     {
         return true;
     }
-    public void end()
-    {
-        
-    }
-    public void interrupted()
-    {
-        
+    
+    public void end(){
     }
     
+    public void interrupted(){
+    }
 }

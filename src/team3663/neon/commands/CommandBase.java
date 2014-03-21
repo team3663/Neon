@@ -10,7 +10,7 @@ import team3663.neon.subsystems.CompressorSS;
 import team3663.neon.subsystems.DriveTrainSS;
 import team3663.neon.subsystems.FootSS;
 import team3663.neon.subsystems.HammerSS;
-import team3663.neon.subsystems.ShooterWinchAndLatchSS;
+import team3663.neon.subsystems.WinchAndLatchSS;
 import team3663.neon.subsystems.ImageProcessing;
 
 public abstract class CommandBase extends Command 
@@ -20,7 +20,7 @@ public abstract class CommandBase extends Command
     public static DriveTrainSS driveTrainSS; 
     public static CompressorSS compressorSS;
     public static FootSS footSS;
-    public static ShooterWinchAndLatchSS shooterWinchAndLatchSS;
+    public static WinchAndLatchSS winchAndLatchSS;
     public static HammerSS hammerSS;
     public static LoadingArmSS loadingArmSS;
     public static CatapultLimitSwitchSS catapultLimitSwitchSS;
@@ -34,15 +34,15 @@ public abstract class CommandBase extends Command
     
     public static void init() 
     {
-         isHot = false;
-         autoIsShot = false;
+        isHot = false;
+        autoIsShot = false;
         compressorSS = new CompressorSS();
         driveTrainSS = new DriveTrainSS();
         driveTrainSS.Init();
         footSS = new FootSS();
         hammerSS = new HammerSS();
         loadingArmSS = new LoadingArmSS();      
-        shooterWinchAndLatchSS = new ShooterWinchAndLatchSS();
+        winchAndLatchSS = new WinchAndLatchSS();
         catapultLimitSwitchSS = new CatapultLimitSwitchSS();
 
         imageProcess = new ImageProcessing();

@@ -6,25 +6,22 @@ public class ShiftToLowGearC extends CommandBase
     {
         requires(driveTrainSS);
     }
+    
     protected void initialize()
     {
         driveTrainSS.ShiftToLowGear();
     }
-    protected void execute()
-    {
-        
-    }
-    protected boolean isFinished()
-    {
-        return true;
-    }
-    public void end()
-    {
-        
-    }
-    public void interrupted()
-    {
-        
+    
+    protected void execute(){
     }
     
+    protected boolean isFinished(){
+        return true;
+    }
+    
+    public void end(){
+    }
+    
+    public void interrupted(){
+    }
 }

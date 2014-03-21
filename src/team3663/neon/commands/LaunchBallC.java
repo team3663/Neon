@@ -1,6 +1,7 @@
  package team3663.neon.commands;
 
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class LaunchBallC  extends CommandBase 
 {
@@ -12,7 +13,7 @@ public class LaunchBallC  extends CommandBase
     
     public LaunchBallC()
     {
-        requires(shooterWinchAndLatchSS);
+        requires(winchAndLatchSS);
     }
     
     protected void initialize()
@@ -21,7 +22,8 @@ public class LaunchBallC  extends CommandBase
         // long after it was created
         endTime = Timer.getFPGATimestamp() + DURATION;
         
-        shooterWinchAndLatchSS.latchOpen();
+        winchAndLatchSS.latchOpen();
+        SmartDashboard.putString("LaunchBallC", "initialize");        
     }
     
     protected void execute()
@@ -39,10 +41,11 @@ public class LaunchBallC  extends CommandBase
     
     protected void end()
     {
+        SmartDashboard.putString("LaunchBallC", "end");        
     }
     
     protected void interrupted()
     {
-    }
-    
+        SmartDashboard.putString("LaunchBallC", "interrupted");        
+    }    
 }

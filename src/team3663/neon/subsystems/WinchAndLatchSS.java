@@ -6,11 +6,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import team3663.neon.RobotMap;
 import team3663.neon.commands.CommandBase;
 
-public class ShooterWinchAndLatchSS extends Subsystem
+public class WinchAndLatchSS extends Subsystem
 {
     public double PI = 3.14159;
     public double ENCODER_CORRECT  = 4 * 12 / 22 / 1440 * 5 / 3;
-    public boolean readyToShoot; 
     
     public void initDefaultCommand()
     {
@@ -54,8 +53,7 @@ public class ShooterWinchAndLatchSS extends Subsystem
     public double getWinchEncoder()
     {
         //one revolution is 360 ticks
-        return RobotMap.winchEncoder.get();
-        // mustard return -RobotMap.winchEncoder.get();
+        return -RobotMap.winchEncoder.get();
     }
     
     public void updateStatus()
@@ -66,6 +64,7 @@ public class ShooterWinchAndLatchSS extends Subsystem
             SmartDashboard.putString("Latch ","closed");
         
         SmartDashboard.putNumber("WinchEncoder:", getWinchEncoder());
+        SmartDashboard.putNumber("WinchMotor:", RobotMap.shooterWinchSpeedController.get());
         CommandBase.dsLCD.println(DriverStationLCD.Line.kUser6,1, "Winch: " + (int)getWinchEncoder());
     }
 }

@@ -1,16 +1,16 @@
 package team3663.neon.commands;
 
-public class FootUpC extends CommandBase {
+public class LatchCloseC extends CommandBase {
     
-    public FootUpC() {
-        //requires(footSS);
+    public LatchCloseC() {
+        requires(winchAndLatchSS);
     }
 
     protected void initialize() {
     }
 
     protected void execute() {
-        footSS.footUp();
+        winchAndLatchSS.latchClose();
     }
 
     protected boolean isFinished() {

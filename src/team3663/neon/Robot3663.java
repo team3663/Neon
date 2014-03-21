@@ -119,13 +119,13 @@ public class Robot3663 extends IterativeRobot
             
             //SmartDashboard.putNumber("updateStatus:", isAliveCounter++);
 
-            CommandBase.shooterWinchAndLatchSS.updateStatus();
+            CommandBase.winchAndLatchSS.updateStatus();
             CommandBase.compressorSS.updateStatus();
             CommandBase.driveTrainSS.updateStatus();
             CommandBase.footSS.updateStatus(); 
             CommandBase.catapultLimitSwitchSS.updateStatus();
             CommandBase.hammerSS.updateStatus();
-            CommandBase.shooterWinchAndLatchSS.updateStatus();
+            CommandBase.winchAndLatchSS.updateStatus();
             CommandBase.loadingArmSS.updateStatus();
             //CommandBase.dsLCD.println(DriverStationLCD.Line.kUser4, 1, "Brian14 "+ counter++);
             CommandBase.dsLCD.updateLCD();

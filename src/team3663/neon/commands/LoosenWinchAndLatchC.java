@@ -2,6 +2,7 @@ package team3663.neon.commands;
 
 import edu.wpi.first.wpilibj.DriverStationLCD;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class LoosenWinchAndLatchC extends CommandBase {
     double currentTicks;
@@ -9,20 +10,21 @@ public class LoosenWinchAndLatchC extends CommandBase {
     double startTime;
     
     public LoosenWinchAndLatchC() {
-        requires(shooterWinchAndLatchSS);
+        requires(winchAndLatchSS);
     }
 
     protected void initialize() {
-        shooterWinchAndLatchSS.latchOpen();
+        SmartDashboard.putString("LoosenWinchAndLatchC", "initialize");        
+        winchAndLatchSS.latchOpen();
         startTime = 0;
     }
 
     protected void execute() {
-        shooterWinchAndLatchSS.setWinchSpeed(1);
+        winchAndLatchSS.setWinchSpeed(1);
     }
 
     protected boolean isFinished() {
-         currentTicks = shooterWinchAndLatchSS.getWinchEncoder();
+         currentTicks = winchAndLatchSS.getWinchEncoder();
 
         if (currentTicks > targetTicks){
             return true;
@@ -31,8 +33,7 @@ public class LoosenWinchAndLatchC extends CommandBase {
         if (catapultLimitSwitchSS.catapultIsDown() && (startTime == 0))
         {
             CommandBase.dsLCD.println(DriverStationLCD.Line.kUser4, 1, "~Latched and Winding~");
-            shooterWinchAndLatchSS.readyToShoot = false;
-            shooterWinchAndLatchSS.latchClose();
+            winchAndLatchSS.latchClose();
             startTime = Timer.getFPGATimestamp();
         }
         if (Timer.getFPGATimestamp() - startTime > .5 && (startTime != 0))
@@ -43,10 +44,12 @@ public class LoosenWinchAndLatchC extends CommandBase {
     }
 
     protected void end() {
-        shooterWinchAndLatchSS.setWinchSpeed(0);
+        SmartDashboard.putString("LoosenWinchAndLatchC", "end");        
+        winchAndLatchSS.setWinchSpeed(0);
     }
 
     protected void interrupted() {
+        SmartDashboard.putString("LoosenWinchAndLatchC", "interrupted");        
         end();
     }
 }

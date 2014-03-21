@@ -7,8 +7,7 @@ public class HammerRetractC extends CommandBase
         requires(hammerSS);
     }
     
-    protected void initialize()
-    {
+    protected void initialize(){
     }
     
     protected void execute()

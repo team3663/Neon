@@ -22,7 +22,7 @@ public class Autonomous2CG extends CommandGroup {
         addSequential(new DriveForwardTimeC(.7));
         addSequential(new WindWinchC(0));     
         addSequential(new LoadingArmDownC());   
-        addSequential(new ShooterLatchOpenC());
+        addSequential(new LatchOpenC());
         addSequential(new FootDownC());
         addParallel(new LoadingArmUpC());
         addSequential(new TractionWheelsUpC());

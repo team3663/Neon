@@ -1,6 +1,7 @@
 package team3663.neon.commands;
 
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DriveForwardTimeC extends CommandBase {
     
@@ -14,6 +15,7 @@ public class DriveForwardTimeC extends CommandBase {
     }
 
     protected void initialize() {
+        SmartDashboard.putString("DriveForwardTimeC", "initialize");        
         System.out.println("DriveForwardTimeC.initialize");
         endTime = Timer.getFPGATimestamp() + timeToWait;
     }
@@ -31,11 +33,13 @@ public class DriveForwardTimeC extends CommandBase {
     }
 
     protected void end() {
+        SmartDashboard.putString("DriveForwardTimeC", "end");        
         System.out.println("DriveForwardTimeC.end");
         driveTrainSS.drive3663(0, 0, 0);
     }
 
     protected void interrupted() {
+        SmartDashboard.putString("DriveForwardTimeC", "interrupted");        
         System.out.println("DriveForwardTimeC.interrupted");
         end();
     }

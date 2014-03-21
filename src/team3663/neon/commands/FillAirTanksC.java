@@ -6,10 +6,10 @@ public class FillAirTanksC extends CommandBase
     {
         requires(compressorSS);
     }
-    protected void initialize()
-    {
-
+    
+    protected void initialize(){
     }
+    
     protected void execute()
     {        
         if (compressorSS.airTanksAreFull())
@@ -21,16 +21,15 @@ public class FillAirTanksC extends CommandBase
             compressorSS.TurnOn();
 	}
     }
+    
     protected boolean isFinished()
     {
         return true;
     }
-    protected void end()
-    {
-
+    
+    protected void end(){
     }
-    protected void interrupted()
-    {
-        end();
+    
+    protected void interrupted(){
     }
 }

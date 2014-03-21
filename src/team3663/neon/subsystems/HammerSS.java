@@ -10,39 +10,23 @@ public class HammerSS extends Subsystem {
     }
     
     public void HammerSS(){
-        System.out.println("HammerSS constructor start");
         hammerRetract();
-        System.out.println("HammerSS constructor end");
     }
 
-    // mustard code below (ketchup is flipped)
     public boolean hammerIsRetracted(){
-        // mustard
-        //return RobotMap.hammerRetractExtendSolenoid2.get();
-        
-        //ketchup
-        return RobotMap.hammerRetractExtendSolenoid1.get();
+        return RobotMap.hammerRetractExtendSolenoid2.get();
     }
     
     public void hammerExtend(){
-        //mustard
-        //RobotMap.hammerRetractExtendSolenoid1.set(true);
-        //RobotMap.hammerRetractExtendSolenoid2.set(false);        
-
-        //ketchup
-        RobotMap.hammerRetractExtendSolenoid1.set(false);
-        RobotMap.hammerRetractExtendSolenoid2.set(true);        
+        RobotMap.hammerRetractExtendSolenoid1.set(true);
+        RobotMap.hammerRetractExtendSolenoid2.set(false);        
     }
     
     public void hammerRetract(){
-        //mustard
-        //RobotMap.hammerRetractExtendSolenoid1.set(false);
-        //RobotMap.hammerRetractExtendSolenoid2.set(true);
-
-        //ketchup
-        RobotMap.hammerRetractExtendSolenoid1.set(true);
-        RobotMap.hammerRetractExtendSolenoid2.set(false);
+        RobotMap.hammerRetractExtendSolenoid1.set(false);
+        RobotMap.hammerRetractExtendSolenoid2.set(true);
     }
+    
     public void updateStatus(){
         if (hammerIsRetracted())
             SmartDashboard.putString("Hammer ","retracted");

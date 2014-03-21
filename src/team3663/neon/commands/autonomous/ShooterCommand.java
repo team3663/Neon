@@ -6,7 +6,7 @@ import team3663.neon.commands.FootDownC;
 import team3663.neon.commands.LoadingArmDownC;
 import team3663.neon.commands.LoadingArmUpC;
 import team3663.neon.commands.LoosenWinchAndLatchC;
-import team3663.neon.commands.ShooterLatchOpenC;
+import team3663.neon.commands.LatchOpenC;
 import team3663.neon.commands.TractionWheelsUpC;
 import team3663.neon.commands.WindWinchC;
 
@@ -19,7 +19,7 @@ public class ShooterCommand extends CommandGroup
     {     System.out.println("************************It shot in shooter command***********");
         addSequential(new WindWinchC(0));       
         System.out.println("wind winch");
-        addSequential(new ShooterLatchOpenC());
+        addSequential(new LatchOpenC());
         Timer.delay(0.5);
         System.out.println("shoot latch");
         addSequential(new FootDownC());

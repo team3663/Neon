@@ -23,12 +23,12 @@ public class TestAllPartsOfTheRobotCG extends CommandGroup {
         //winch and latch
         addSequential(new WindWinchC(400));
         
-        addSequential(new ShooterLatchCloseC());
+        addSequential(new LatchCloseC());
         
-        addSequential(new ShooterLatchOpenC());
+        addSequential(new LatchOpenC());
         addSequential(new TimeWaitC(interCommandDelay));
         
-        addSequential(new ShooterLatchCloseC());
+        addSequential(new LatchCloseC());
         addSequential(new TimeWaitC(interCommandDelay));
         
         addSequential(new WindWinchC(0));  

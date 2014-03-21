@@ -7,8 +7,7 @@ public class DriveC extends CommandBase
         requires(driveTrainSS); 
     }
 
-    protected void initialize() 
-    {
+    protected void initialize(){
     }
 
     protected void execute() 
@@ -27,12 +26,10 @@ public class DriveC extends CommandBase
         return false;
     }
 
-    protected void end()
-    {
+    protected void end(){
     }
 
-    protected void interrupted()
-    {
+    protected void interrupted(){
     }
 }
 

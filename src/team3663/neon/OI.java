@@ -22,8 +22,8 @@ import team3663.neon.commands.LoadingArmUpC;
 import team3663.neon.commands.LoosenWinchAndLatchC;
 import team3663.neon.commands.ResetWinchEncoderC;
 import team3663.neon.commands.ShootAndRecockCG;
-import team3663.neon.commands.ShooterLatchCloseC;
-import team3663.neon.commands.ShooterLatchOpenC;
+import team3663.neon.commands.LatchCloseC;
+import team3663.neon.commands.LatchOpenC;
 import team3663.neon.commands.SpinLoadingArmMotorC;
 import team3663.neon.commands.TestAllPartsOfTheRobotCG;
 import team3663.neon.commands.TimeWaitC;
@@ -163,11 +163,11 @@ public class OI
         //SmartDashboard.putString("diag2:", "2: tractionWheelsUp");
         
         shooterLatchOpen = new JoystickButton(diagJoystick, 3);
-        shooterLatchOpen.whenPressed(new ShooterLatchOpenC());
+        shooterLatchOpen.whenPressed(new LatchOpenC());
         //SmartDashboard.putString("diag3:", "3: ShooterLatchOpen");
         
         shooterLatchClose = new JoystickButton(diagJoystick, 4);
-        shooterLatchClose.whenPressed(new ShooterLatchCloseC());
+        shooterLatchClose.whenPressed(new LatchCloseC());
         //SmartDashboard.putString("diag4:", "4: ShooterLatchClose");
         
         hammerRetract = new JoystickButton(diagJoystick, 5);
@@ -221,8 +221,8 @@ public class OI
         SmartDashboard.putData("ShiftToHighGear", new ShiftToHighGearC());
         SmartDashboard.putData("TractionWheelsUp", new TractionWheelsUpC());
         SmartDashboard.putData("TractionWheelsDown", new TractionWheelsDownC());
-        SmartDashboard.putData("LatchOpen", new ShooterLatchOpenC());
-        SmartDashboard.putData("LatchClose", new ShooterLatchCloseC());
+        SmartDashboard.putData("LatchOpen", new LatchOpenC());
+        SmartDashboard.putData("LatchClose", new LatchCloseC());
         SmartDashboard.putData("TightenWinch", new WinchTightenC());
         SmartDashboard.putData("LoosenWinch", new WinchLoosenC());
         SmartDashboard.putData("WindWinch_0", new WindWinchC(0));
