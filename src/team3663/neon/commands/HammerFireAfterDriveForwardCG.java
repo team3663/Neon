@@ -15,7 +15,6 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class HammerFireAfterDriveForwardCG extends CommandGroup {
     
     public HammerFireAfterDriveForwardCG() {
-        addSequential(new TractionWheelsDownC());
         addSequential(new DriveForwardTimeC(0.3, -0.5));
         addSequential(new FootDownC());
         addSequential(new HammerExtendC());

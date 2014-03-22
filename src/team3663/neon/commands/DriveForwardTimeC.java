@@ -13,9 +13,13 @@ public class DriveForwardTimeC extends CommandBase {
         speed = pSpeed;
         timeToWait = pTimeWait;
         requires(driveTrainSS);
+        SmartDashboard.putNumber("drive forward time speed", speed);
+        SmartDashboard.putNumber("drive forward time time ", timeToWait);
     }
 
     protected void initialize() {
+        SmartDashboard.getNumber("drive forward time speed", speed);
+        SmartDashboard.getNumber("drive forward time time ", timeToWait);
         SmartDashboard.putString("DriveForwardTimeC", "initialize");        
         System.out.println("DriveForwardTimeC.initialize");
         endTime = Timer.getFPGATimestamp() + timeToWait;

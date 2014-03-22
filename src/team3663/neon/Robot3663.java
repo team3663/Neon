@@ -7,8 +7,7 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import team3663.neon.commands.AutonomousfinalCG;
-import team3663.neon.commands.Bob;
+import team3663.neon.commands.AutonomousBackUpCG;
 import team3663.neon.commands.CommandBase;
 import team3663.neon.commands.WindAndLatchToFullPowerCG;
 
@@ -37,8 +36,8 @@ public class Robot3663 extends IterativeRobot
         RobotMap.init();
         CommandBase.init();
         windWinchToFull = new WindAndLatchToFullPowerCG();
-        autonomousfinalCG = new AutonomousfinalCG();
-        //autonomousBackUpCG = new AutonomousBackUpCG();
+        //autonomousfinalCG = new AutonomousfinalCG();
+        autonomousBackUpCG = new AutonomousBackUpCG();
         driveStation = DriverStation.getInstance();
         CommandBase.dsLCD.clear();
         updateStatusNextRefresh = Timer.getFPGATimestamp();
@@ -50,9 +49,9 @@ public class Robot3663 extends IterativeRobot
     {
         isTesting = false;
         System.out.println("Robot3663.autonomousInit start");
-        //autonomousBackUpCG.start();
+        autonomousBackUpCG.start();
         autoTimeStart = Timer.getFPGATimestamp();
-        autonomousfinalCG.start();
+        //autonomousfinalCG.start();
         System.out.println("Robot3663.autonomousInit end");
     }
 
@@ -68,8 +67,8 @@ public class Robot3663 extends IterativeRobot
         isTesting = false;
        // bob.start();
         System.out.println("Robot3663.teleopInit start");
-        //autonomousBackUpCG.cancel();
-        autonomousfinalCG.cancel();
+        autonomousBackUpCG.cancel();
+        //autonomousfinalCG.cancel();
         windWinchToFull.start();
         System.out.println("Robot3663.teleopInit end");
     }
