@@ -18,8 +18,8 @@ public class DriveForwardTimeC extends CommandBase {
     }
 
     protected void initialize() {
-        SmartDashboard.getNumber("drive forward time speed", speed);
-        SmartDashboard.getNumber("drive forward time time ", timeToWait);
+       // speed = SmartDashboard.getNumber("drive forward time speed");
+       //timeToWait = SmartDashboard.getNumber("drive forward time time ");
         SmartDashboard.putString("DriveForwardTimeC", "initialize");        
         System.out.println("DriveForwardTimeC.initialize");
         endTime = Timer.getFPGATimestamp() + timeToWait;
