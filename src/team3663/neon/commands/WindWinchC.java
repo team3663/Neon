@@ -9,6 +9,8 @@ public class WindWinchC extends CommandBase {
     boolean tightening;
     double speed;
     double direction;
+    int counter;
+    double encoder;
 
     public WindWinchC(double pTargetTicks) {
         requires(winchAndLatchSS);
@@ -18,6 +20,8 @@ public class WindWinchC extends CommandBase {
     //encoder tightens using negative speed
     //encoder counts deacrese when tightened
     protected void initialize() {
+        encoder = winchAndLatchSS.getWinchEncoder();
+        counter = 0;
         SmartDashboard.putString("WindWinchC", "initialize "+targetTicks);
         System.out.println("WindWinch.initialize" + targetTicks);
         tightening = winchAndLatchSS.getWinchEncoder() > targetTicks;
@@ -30,6 +34,7 @@ public class WindWinchC extends CommandBase {
     }
 
     protected void execute() {
+        counter++;
         winchAndLatchSS.setWinchSpeed(speed);
     }
 
@@ -45,6 +50,10 @@ public class WindWinchC extends CommandBase {
             if (currentTicks >= targetTicks){
                 return true;
             }
+        }
+        if ((counter >= 50)&&(encoder == winchAndLatchSS.getWinchEncoder()))
+        {
+            return true;
         }
         return false;
     }

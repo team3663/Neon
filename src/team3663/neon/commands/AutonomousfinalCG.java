@@ -14,7 +14,7 @@ public class AutonomousfinalCG extends CommandGroup
         addSequential(new FootUpC());
         addSequential(new ShiftToHighGearC());
         addSequential(new TimeWaitC(.5));
-        addSequential(new DriveForwardTimeC(.7));
+        addSequential(new DriveForwardTimeC(.7, -1));
         addSequential(new WindWinchC(0));     
         addSequential(new LoadingArmDownC());   
         addSequential(new LatchOpenC());

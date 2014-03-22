@@ -11,6 +11,7 @@ public class LoadBallC extends CommandBase {
     protected void initialize() {
         loadingArmSS.loadingArmDown();
         loadingArmSS.loadingArmMotorIntake();
+        footSS.footDown();
         SmartDashboard.putString("LoadBallC", "initialize");        
     }
 
@@ -22,6 +23,7 @@ public class LoadBallC extends CommandBase {
     }
 
     protected void end() {
+        footSS.footUp();
         loadingArmSS.loadingArmUp();
         loadingArmSS.loadingArmMotorStop();
         SmartDashboard.putString("LoadBallC", "end");        

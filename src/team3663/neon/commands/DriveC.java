@@ -17,6 +17,8 @@ public class DriveC extends CommandBase
         jX = oi.getDriveJoystick().getX();
         jY = oi.getDriveJoystick().getY();
         jZ = oi.getDriveJoystick().getZ(); // twist
+        
+        jZ = jZ*.75;
 
         driveTrainSS.drive3663(jX, jY, jZ);
     }

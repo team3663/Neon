@@ -86,7 +86,7 @@ public class Robot3663 extends IterativeRobot
     public void testInit() 
     {
         System.out.println("Robot3663.testInit start");
-        //LiveWindow.setEnabled(false);
+        LiveWindow.setEnabled(false);
         isTesting = true;
         autonomousfinalCG.cancel();
         System.out.println("Robot3663.testInit end");

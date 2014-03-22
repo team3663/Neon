@@ -7,9 +7,10 @@ public class DriveForwardTimeC extends CommandBase {
     
     double timeToWait;
     double endTime;  
+    double speed;
     
-    public DriveForwardTimeC(double pTimeWait) {
-        
+    public DriveForwardTimeC(double pTimeWait, double pSpeed) {
+        speed = pSpeed;
         timeToWait = pTimeWait;
         requires(driveTrainSS);
     }
@@ -21,7 +22,7 @@ public class DriveForwardTimeC extends CommandBase {
     }
 
     protected void execute() {
-        driveTrainSS.drive3663(0,-1, 0);
+        driveTrainSS.drive3663(0,speed, 0);
     }
 
     protected boolean isFinished() {

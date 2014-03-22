@@ -27,6 +27,8 @@ import team3663.neon.commands.LatchOpenC;
 import team3663.neon.commands.SpinLoadingArmMotorC;
 import team3663.neon.commands.TestAllPartsOfTheRobotCG;
 import team3663.neon.commands.TimeWaitC;
+import team3663.neon.commands.TractionDownLowGearCG;
+import team3663.neon.commands.TractionWheelsUpHighGearCG;
 import team3663.neon.commands.WinchLoosenC;
 import team3663.neon.commands.WinchTightenC;
 import team3663.neon.commands.WindAndLatchToFullPowerCG;
@@ -37,7 +39,6 @@ public class OI
 {
     private final Joystick driveJoystick;
     private final Joystick buttonJoystick;
-    private final Joystick diagJoystick;
 
     private static JoystickButton changeToArcadeDrive;
     private static JoystickButton changeToMecanumDrive;
@@ -72,140 +73,54 @@ public class OI
     private static JoystickButton moveAllTheMotors;
     private static JoystickButton testAllThings;
     private static JoystickButton resetWinchEncoder;
+    private static JoystickButton fullFireAfterBackUp;
+    private static JoystickButton fireHammerAfterBackUp;
+    private static JoystickButton relatchAndRewind;
     public OI()
     {
         System.out.println("OI constructor start");
 
         driveJoystick = new Joystick(1);
         buttonJoystick = new Joystick(2);
-        diagJoystick = new Joystick(3);
         
-        //SmartDashboard.putString("DriveLabel", "DriveStick\nplus 2nd line\nplus 3rd line");
-        //SmartDashboard.putString("MonkeyLabel", "ButtonMonkeyStick");
-        
-        heldTractionWheels = new JoystickButton(driveJoystick, 1);
-        heldTractionWheels.whileHeld(new TractionWheelsDownC());
-        //SmartDashboard.putString("Driver1:", "1: Hold Traction Down");
+        shoot = new JoystickButton(driveJoystick, 1);
+        shoot.whenPressed(new ShootAndRecockCG(0));
         
         loadBall = new JoystickButton(driveJoystick, 2);
         loadBall.whileHeld(new LoadBallC());
-        //SmartDashboard.putString("Drive2:", "2: pickUp arm down");
         
         changeToArcadeDrive = new JoystickButton(driveJoystick, 3);
-        changeToArcadeDrive.whenPressed(new TractionWheelsDownC());
-        //SmartDashboard.putString("Drive3:", "3: Traction Wheels Down");
+        changeToArcadeDrive.whenPressed(new TractionDownLowGearCG());
         
-        switchToLowGear = new JoystickButton(driveJoystick, 4);
-        switchToLowGear.whenPressed(new ShiftToLowGearC());
-        //SmartDashboard.putString("Drive4:", "4: Shift to Low Gear");
+        shootWeak = new JoystickButton(driveJoystick, 4);
+        shootWeak.whenPressed(new ShootAndRecockCG(200));
         
         changeToMecanumDrive = new JoystickButton(driveJoystick, 5);
-        changeToMecanumDrive.whenPressed(new TractionWheelsUpC());
-        //SmartDashboard.putString("Drive5:", "5: Traction Wheels Up");
+        changeToMecanumDrive.whenPressed(new TractionWheelsUpHighGearCG());
         
-        switchToHighGear = new JoystickButton(driveJoystick, 6);
-        switchToHighGear.whenPressed(new ShiftToHighGearC());
-        //SmartDashboard.putString("Drive6:", "6: Shift to High Gear");
+        shootMedium = new JoystickButton(driveJoystick, 6);
+        shootMedium.whenPressed(new ShootAndRecockCG(100));
         
-        resetWinchEncoder = new JoystickButton(driveJoystick, 8);
-        resetWinchEncoder.whenPressed(new ResetWinchEncoderC());
+        //fullFireAfterBackUp = new JoystickButton(driveJoystick, 9);
+        //fullFireAfterBackUp.whenPressed(new FullFireAfterBackUpC());
         
-        LoosenWinchAndLatch = new JoystickButton(driveJoystick, 9);
-        LoosenWinchAndLatch.whenPressed(new WindAndLatchToFullPowerCG());
-        //SmartDashboard.putString("Drive9:", "9: Loosen Winch & Latch");
+        //hammerFireAfterBackUp = new JoystickButton(driveJoystick, 11);
+        //hammerFireAfterBackUp.whileHeld(new HammerFireAfterBackUpC());
         
-        winchEncoderZero = new JoystickButton(driveJoystick, 10);
-        winchEncoderZero.whenPressed(new WindWinchC(0));
-        //SmartDashboard.putString("Drive10:", "10: windWinch to 0");
-        
-        tightenWinch = new JoystickButton(driveJoystick, 12);
-        tightenWinch.whileHeld(new WinchTightenC());
-        //SmartDashboard.putString("Drive12:", "12: Tighten Winch");
-        
-        loosenWinch = new JoystickButton(driveJoystick, 11);
-        loosenWinch.whileHeld(new WinchLoosenC());
-        //SmartDashboard.putString("Drive11:", "11: Loosen Winch");
-        
-
-        shoot = new JoystickButton(buttonJoystick, 1);
-        shoot.whenPressed(new ShootAndRecockCG(0));
-        //SmartDashboard.putString("Monkey1:", "1: SHOOT!");
-        
-        hammer = new JoystickButton(buttonJoystick, 2);
+        hammer = new JoystickButton(driveJoystick, 12);
         hammer.whenPressed(new HammerFireCG());
-        //SmartDashboard.putString("Monkey2:", "2: hammer");
         
-        shootWeak = new JoystickButton(buttonJoystick, 3);
-        shootWeak.whenPressed(new ShootAndRecockCG(200));
-        //SmartDashboard.putString("Monkey3:", "3: 1 pt Shot");
+        relatchAndRewind = new JoystickButton(buttonJoystick, 3);
+        relatchAndRewind.whenPressed(new WindAndLatchToFullPowerCG());
         
         footDown = new JoystickButton(buttonJoystick, 4);
         footDown.whenPressed(new FootDownC());
-        //SmartDashboard.putString("Monkey4:", "4: foot Down");
         
-        shootMedium = new JoystickButton(buttonJoystick, 5);
-        shootMedium.whenPressed(new ShootAndRecockCG(100));
-        //SmartDashboard.putString("Monkey5:", "5: Shoot Medium");
+        windWinchToFull = new JoystickButton(buttonJoystick, 5);
+        windWinchToFull.whenPressed(new WindWinchC(0));
 
         footUp = new JoystickButton(buttonJoystick, 6);
         footUp.whenPressed(new FootUpC());
-        //SmartDashboard.putString("Monkey6:", "6: foot Up");
-        
-        windWinchToFull = new JoystickButton(buttonJoystick, 12);
-        windWinchToFull.whenPressed(new WindAndLatchToFullPowerCG());
-        
-        tractionWheelsDown = new JoystickButton(diagJoystick, 1);
-        tractionWheelsDown.whenPressed(new TractionWheelsDownC());
-        //SmartDashboard.putString("diag1:", "1: tractionWheelsDown");
-        
-        tractionWheelsUp = new JoystickButton(diagJoystick, 2);
-        tractionWheelsUp.whenPressed(new TractionWheelsUpC());
-        //SmartDashboard.putString("diag2:", "2: tractionWheelsUp");
-        
-        shooterLatchOpen = new JoystickButton(diagJoystick, 3);
-        shooterLatchOpen.whenPressed(new LatchOpenC());
-        //SmartDashboard.putString("diag3:", "3: ShooterLatchOpen");
-        
-        shooterLatchClose = new JoystickButton(diagJoystick, 4);
-        shooterLatchClose.whenPressed(new LatchCloseC());
-        //SmartDashboard.putString("diag4:", "4: ShooterLatchClose");
-        
-        hammerRetract = new JoystickButton(diagJoystick, 5);
-        hammerRetract.whenPressed(new HammerRetractC());
-        //SmartDashboard.putString("diag5:", "5: hammerRetract");
-        
-        hammerExtend = new JoystickButton(diagJoystick, 6);
-        hammerExtend.whenPressed(new HammerExtendC());
-        //SmartDashboard.putString("diag6:", "6: hammerExtend");
-        
-        /*motorTest_LeftFront = new JoystickButton(diagJoystick, 7);
-        motorTest_LeftFront.whileHeld(new DriveMotorTestC(3,10000,.5));
-        SmartDashboard.putString("diag7:", "7: spin left front drive motor");
-        
-        motorTest_RightFront = new JoystickButton(diagJoystick, 8);
-        motorTest_RightFront.whileHeld(new DriveMotorTestC(4,10000,-.5));
-        SmartDashboard.putString("diag8:", "8: spin right front drive motor");
-        
-        motorTest_RightBack = new JoystickButton(diagJoystick, 9);
-        motorTest_RightBack.whileHeld(new DriveMotorTestC(2,10000,-.5));
-        SmartDashboard.putString("diag9:", "9: spin right back drive motor");
-        
-        motorTest_LeftBack = new JoystickButton(diagJoystick, 10);
-        motorTest_LeftBack.whileHeld(new DriveMotorTestC(1,10000,.5));
-        SmartDashboard.putString("diag10:", "10: spin left back drive motor");*/
-        
-        moveAllTheMotors = new JoystickButton(diagJoystick, 7);
-        
-        testAllThings = new JoystickButton(diagJoystick, 8);
-        testAllThings.whenPressed(new TestAllPartsOfTheRobotCG());
-        
-        spinLoadingArmMotorIntake = new JoystickButton(diagJoystick, 11);
-        spinLoadingArmMotorIntake.whileHeld(new SpinLoadingArmMotorC(true,10000));
-        //SmartDashboard.putString("diag11:", "11: spinLoadingArmMotorIntake");
-        
-        spinLoadingArmMotorEject = new JoystickButton(diagJoystick, 12);
-        spinLoadingArmMotorEject.whileHeld(new SpinLoadingArmMotorC(false,10000));
-        //SmartDashboard.putString("diag12:", "12: spinLoadingArmMotorEject");
         
         
         SmartDashboard.putData("Autonomous2", new Autonomous2CG());
@@ -235,7 +150,7 @@ public class OI
         
         
         SmartDashboard.putData("TestAllThingsOfTheRobot", new TestAllPartsOfTheRobotCG());
-        SmartDashboard.putData("DriveForwardTime_70", new DriveForwardTimeC(.7));
+        SmartDashboard.putData("DriveForwardTime_70", new DriveForwardTimeC(.7, -1));
         SmartDashboard.putData("ResetWinchEncoder", new ResetWinchEncoderC());
         SmartDashboard.putData("LoosenWinchAndLatch", new LoosenWinchAndLatchC());
         SmartDashboard.putData("ShootAndRecockCG", new ShootAndRecockCG(0));
@@ -261,49 +176,6 @@ public class OI
     public Joystick getTurnJoystick() 
     {
 	return buttonJoystick;
-    }
-    public void disableButtons()
-    {
-        loadBall.whenPressed(new TimeWaitC(0));
-        System.out.println("Buttons Disable");
-    }
-    public void enableButtons()
-    {
-        loadBall.whileHeld(new LoadBallC());
-        System.out.println("Buttons Enabled");
-    }
-    public void weakButtonPressedOnce(boolean buttonWasPressed)
-    {
-        if(buttonWasPressed)
-        {
-            shootWeak.whenPressed(new ShootAndRecockCG(200));
-        }
-        else
-        {
-            shootWeak.whenPressed(new WindWinchC(200));
-        }
-    }
-    public void mediumButtonPressedOnce(boolean buttonWasPressed)
-    {
-        if(buttonWasPressed)
-        {
-            shootMedium.whenPressed(new ShootAndRecockCG(100));
-        }
-        else
-        {
-            shootMedium.whenPressed(new WindWinchC(100));
-        }
-    }
-    public void fullButtonPressedOnce(boolean buttonWasPressed)
-    {
-        if(buttonWasPressed)
-        {
-            shoot.whenPressed(new ShootAndRecockCG(0));
-        }
-        else
-        {
-            shoot.whenPressed(new WindWinchC(0));
-        }
     }
 }
 

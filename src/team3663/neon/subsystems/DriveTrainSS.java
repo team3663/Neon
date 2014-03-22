@@ -203,12 +203,12 @@ public class DriveTrainSS extends Subsystem
     //    SmartDashboard.putNumber("Right Encoder:", GetRightEncoder());
 //	SmartDashboard.putNumber("Left Encoder:", GetLeftEncoder());
         CommandBase.dsLCD.println(DriverStationLCD.Line.kUser1,1, ("R:" + (int)GetRightEncoder()) + " L:" + (int)GetLeftEncoder());
-        SmartDashboard.putNumber("Left encoder:",GetLeftEncoder());
+        /*SmartDashboard.putNumber("Left encoder:",GetLeftEncoder());
         SmartDashboard.putNumber("Right encoder:",GetRightEncoder());
         SmartDashboard.putNumber("Joystick X:", joyX);
         SmartDashboard.putNumber("Joystick Y:", joyY);
         SmartDashboard.putNumber("Joystick Z:", joyZ);
-
+*/
 	
 	
        // System.out.println("Ecnoder fr DriveTrain:"+GetTotalDistance());
