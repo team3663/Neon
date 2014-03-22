@@ -7,6 +7,7 @@ import team3663.neon.commands.Autonomous2CG;
 import team3663.neon.commands.Bob;
 import team3663.neon.commands.DriveForwardTimeC;
 import team3663.neon.commands.DriveMotorTestC;
+import team3663.neon.commands.FireWithArmUpCG;
 import team3663.neon.commands.HammerRetractC;
 import team3663.neon.commands.TractionWheelsDownC;
 import team3663.neon.commands.ShiftToHighGearC;
@@ -26,7 +27,6 @@ import team3663.neon.commands.LatchCloseC;
 import team3663.neon.commands.LatchOpenC;
 import team3663.neon.commands.SpinLoadingArmMotorC;
 import team3663.neon.commands.TestAllPartsOfTheRobotCG;
-import team3663.neon.commands.TimeWaitC;
 import team3663.neon.commands.TractionDownLowGearCG;
 import team3663.neon.commands.TractionWheelsUpHighGearCG;
 import team3663.neon.commands.WinchLoosenC;
@@ -76,6 +76,7 @@ public class OI
     private static JoystickButton fullFireAfterBackUp;
     private static JoystickButton fireHammerAfterBackUp;
     private static JoystickButton relatchAndRewind;
+    private static JoystickButton fireWithArmUp;
     public OI()
     {
         System.out.println("OI constructor start");
@@ -103,6 +104,9 @@ public class OI
         
         //fullFireAfterBackUp = new JoystickButton(driveJoystick, 9);
         //fullFireAfterBackUp.whenPressed(new FullFireAfterBackUpC());
+        
+        fireWithArmUp = new JoystickButton(driveJoystick, 10);
+        fireWithArmUp.whenPressed(new FireWithArmUpCG(200));
         
         //hammerFireAfterBackUp = new JoystickButton(driveJoystick, 11);
         //hammerFireAfterBackUp.whileHeld(new HammerFireAfterBackUpC());

@@ -9,20 +9,16 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
- * @author briking
+ * @author curtis
  */
-public class ShootAndRecockCG extends CommandGroup {
+public class FireWithArmUpCG extends CommandGroup {
     
-    public ShootAndRecockCG(double shotStrength) {
-        // Add Commands here:
-        //addSequential(new EnableAndDissableButtons(true));
-        addSequential(new WindWinchC(shotStrength));     
-        addSequential(new LoadingArmDownC());   
+    public FireWithArmUpCG(double shotStrength) {
+        addSequential(new WindWinchC(shotStrength));    
         addSequential(new LatchOpenC());
         addSequential(new FootDownC());
         addParallel(new LoadingArmUpC());
         addSequential(new LoosenWinchAndLatchC());      
         addSequential(new WindWinchC(0));
-
     }
 }
