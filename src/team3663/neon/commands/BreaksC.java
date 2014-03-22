@@ -10,7 +10,8 @@ package team3663.neon.commands;
  * @author curtis
  */
 public class BreaksC extends CommandBase {
-    
+    double lastRanEncoderValueR;
+    double distanceR;
     public BreaksC() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -18,15 +19,20 @@ public class BreaksC extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+        lastRanEncoderValueR = driveTrainSS.GetRightEncoder();
+        
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+        distanceR = driveTrainSS.GetRightEncoder() - lastRanEncoderValueR;
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        
+        
+        return true;
     }
 
     // Called once after isFinished returns true

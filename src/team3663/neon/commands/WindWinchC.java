@@ -11,10 +11,15 @@ public class WindWinchC extends CommandBase {
     double direction;
     int counter;
     double encoder;
+    double ticksAddFour;
+    double ticksSubtractFour;
+    boolean kill;
+    final double LEWAY = 4;
 
     public WindWinchC(double pTargetTicks) {
         requires(winchAndLatchSS);
         targetTicks = pTargetTicks;
+        
     }
 
     //encoder tightens using negative speed
@@ -25,11 +30,18 @@ public class WindWinchC extends CommandBase {
         SmartDashboard.putString("WindWinchC", "initialize "+targetTicks);
         System.out.println("WindWinch.initialize" + targetTicks);
         tightening = winchAndLatchSS.getWinchEncoder() > targetTicks;
+        
         if (tightening){
             direction = speed = -1;
         }
         else{
             direction = speed = 1;
+        }
+        kill = false;
+        if((encoder > targetTicks - LEWAY) && (encoder < targetTicks + LEWAY))
+        {
+            kill = true;
+            speed = 0;
         }
     }
 
@@ -42,6 +54,10 @@ public class WindWinchC extends CommandBase {
         double currentTicks = winchAndLatchSS.getWinchEncoder();
         
         //stop if goal passed
+        if(kill)
+        {
+            return true;
+        }
         if (tightening){
             if (currentTicks <= targetTicks){
                 return true;
@@ -56,6 +72,7 @@ public class WindWinchC extends CommandBase {
             return true;
         }
         return false;
+        
     }
 
     protected void end() {

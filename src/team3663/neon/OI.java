@@ -7,6 +7,7 @@ import team3663.neon.commands.Autonomous2CG;
 import team3663.neon.commands.Bob;
 import team3663.neon.commands.DriveForwardTimeC;
 import team3663.neon.commands.DriveMotorTestC;
+import team3663.neon.commands.FireAfterBackUpCG;
 import team3663.neon.commands.FireWithArmUpCG;
 import team3663.neon.commands.HammerRetractC;
 import team3663.neon.commands.TractionWheelsDownC;
@@ -16,6 +17,7 @@ import team3663.neon.commands.TractionWheelsUpC;
 import team3663.neon.commands.FootDownC;
 import team3663.neon.commands.FootUpC;
 import team3663.neon.commands.HammerExtendC;
+import team3663.neon.commands.HammerFireAfterDriveForwardCG;
 import team3663.neon.commands.HammerFireCG;
 import team3663.neon.commands.LoadBallC;
 import team3663.neon.commands.LoadingArmDownC;
@@ -56,7 +58,6 @@ public class OI
     private static JoystickButton tightenWinch;
     private static JoystickButton winchEncoderZero;
     private static JoystickButton LoosenWinchAndLatch;
-    private static JoystickButton heldTractionWheels;
     private static JoystickButton tractionWheelsDown;
     private static JoystickButton tractionWheelsUp;
     private static JoystickButton shooterLatchOpen;
@@ -77,6 +78,8 @@ public class OI
     private static JoystickButton fireHammerAfterBackUp;
     private static JoystickButton relatchAndRewind;
     private static JoystickButton fireWithArmUp;
+    private static JoystickButton fireFromWall;
+    private static JoystickButton fireFromGoal;
     public OI()
     {
         System.out.println("OI constructor start");
@@ -93,8 +96,8 @@ public class OI
         changeToArcadeDrive = new JoystickButton(driveJoystick, 3);
         changeToArcadeDrive.whenPressed(new TractionDownLowGearCG());
         
-        shootWeak = new JoystickButton(driveJoystick, 4);
-        shootWeak.whenPressed(new ShootAndRecockCG(200));
+        fireWithArmUp = new JoystickButton(driveJoystick, 4);
+        fireWithArmUp.whenPressed(new FireWithArmUpCG(175));
         
         changeToMecanumDrive = new JoystickButton(driveJoystick, 5);
         changeToMecanumDrive.whenPressed(new TractionWheelsUpHighGearCG());
@@ -102,14 +105,14 @@ public class OI
         shootMedium = new JoystickButton(driveJoystick, 6);
         shootMedium.whenPressed(new ShootAndRecockCG(100));
         
-        //fullFireAfterBackUp = new JoystickButton(driveJoystick, 9);
-        //fullFireAfterBackUp.whenPressed(new FullFireAfterBackUpC());
+        fireFromGoal = new JoystickButton(driveJoystick, 9);
+        fireFromGoal.whenPressed(new FireAfterBackUpCG(0, .5, .9));
         
-        fireWithArmUp = new JoystickButton(driveJoystick, 10);
-        fireWithArmUp.whenPressed(new FireWithArmUpCG(200));
+        fireFromWall = new JoystickButton(driveJoystick, 10);
+        fireFromWall.whenPressed(new FireAfterBackUpCG(0, 1, .9));
         
-        //hammerFireAfterBackUp = new JoystickButton(driveJoystick, 11);
-        //hammerFireAfterBackUp.whileHeld(new HammerFireAfterBackUpC());
+        fireHammerAfterBackUp = new JoystickButton(driveJoystick, 11);
+        fireHammerAfterBackUp.whenPressed(new HammerFireAfterDriveForwardCG());
         
         hammer = new JoystickButton(driveJoystick, 12);
         hammer.whenPressed(new HammerFireCG());
@@ -126,6 +129,14 @@ public class OI
         footUp = new JoystickButton(buttonJoystick, 6);
         footUp.whenPressed(new FootUpC());
         
+        resetWinchEncoder = new JoystickButton(buttonJoystick, 7);
+        resetWinchEncoder.whenPressed(new ResetWinchEncoderC());
+        
+        tightenWinch = new JoystickButton(buttonJoystick, 8);
+        tightenWinch.whenPressed(new WinchTightenC());
+        
+        loosenWinch = new JoystickButton(buttonJoystick, 9);
+        loosenWinch.whenPressed(new WinchLoosenC());
         
         SmartDashboard.putData("Autonomous2", new Autonomous2CG());
         SmartDashboard.putData("bob", new Bob());

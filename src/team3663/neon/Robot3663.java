@@ -36,8 +36,6 @@ public class Robot3663 extends IterativeRobot
         System.out.println("Robot3663.robotInit start");
         RobotMap.init();
         CommandBase.init();
-        
-        bob = new Bob();
         windWinchToFull = new WindAndLatchToFullPowerCG();
         autonomousfinalCG = new AutonomousfinalCG();
         //autonomousBackUpCG = new AutonomousBackUpCG();
@@ -68,11 +66,11 @@ public class Robot3663 extends IterativeRobot
     public void teleopInit() 
     {
         isTesting = false;
-        windWinchToFull.start();
        // bob.start();
         System.out.println("Robot3663.teleopInit start");
         //autonomousBackUpCG.cancel();
         autonomousfinalCG.cancel();
+        windWinchToFull.start();
         System.out.println("Robot3663.teleopInit end");
     }
     

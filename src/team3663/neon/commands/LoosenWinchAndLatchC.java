@@ -6,25 +6,40 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class LoosenWinchAndLatchC extends CommandBase {
     double currentTicks;
-    double targetTicks = 720;
+    double targetTicks = 710;
     double startTime;
-    
+    double speed;
+    boolean kill;
     public LoosenWinchAndLatchC() {
         requires(winchAndLatchSS);
     }
 
     protected void initialize() {
-        SmartDashboard.putString("LoosenWinchAndLatchC", "initialize");        
-        winchAndLatchSS.latchOpen();
+        SmartDashboard.putString("LoosenWinchAndLatchC", "initialize");      
         startTime = 0;
+        speed = 0;
+        if(!catapultLimitSwitchSS.catapultIsDown())
+        {
+            speed = 1;
+            winchAndLatchSS.latchOpen();
+            kill = false;
+        }    
+        else 
+        {
+            kill = true;
+        }
     }
 
     protected void execute() {
-        winchAndLatchSS.setWinchSpeed(1);
+        winchAndLatchSS.setWinchSpeed(speed);
     }
 
     protected boolean isFinished() {
          currentTicks = winchAndLatchSS.getWinchEncoder();
+         if(kill)
+         {
+             return true;
+         }
 
         if (currentTicks > targetTicks){
             return true;

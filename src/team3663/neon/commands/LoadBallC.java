@@ -9,9 +9,9 @@ public class LoadBallC extends CommandBase {
     }
 
     protected void initialize() {
+        footSS.footDown();
         loadingArmSS.loadingArmDown();
         loadingArmSS.loadingArmMotorIntake();
-        footSS.footDown();
         SmartDashboard.putString("LoadBallC", "initialize");        
     }
 
