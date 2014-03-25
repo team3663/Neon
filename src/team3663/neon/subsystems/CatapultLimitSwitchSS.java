@@ -3,13 +3,13 @@ package team3663.neon.subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import team3663.neon.RobotMap;
-import team3663.neon.commands.CatapultLimitSwitchMonitorC;
+import team3663.neon.commands.C_CatapultLimitSwitchMonitor;
 
 public class CatapultLimitSwitchSS extends Subsystem {
     boolean catapultIsReallyDown;
         
     public void initDefaultCommand() {
-        setDefaultCommand(new CatapultLimitSwitchMonitorC());
+        setDefaultCommand(new C_CatapultLimitSwitchMonitor());
     }
     
     public boolean catapultIsDownRaw()

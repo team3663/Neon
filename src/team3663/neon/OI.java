@@ -3,38 +3,39 @@ package team3663.neon;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import team3663.neon.commands.Autonomous2CG;
 import team3663.neon.commands.Bob;
-import team3663.neon.commands.DriveForwardTimeC;
-import team3663.neon.commands.DriveMotorTestC;
-import team3663.neon.commands.FireAfterBackUpCG;
-import team3663.neon.commands.FireWithArmUpCG;
-import team3663.neon.commands.HammerRetractC;
-import team3663.neon.commands.TractionWheelsDownC;
-import team3663.neon.commands.ShiftToHighGearC;
-import team3663.neon.commands.ShiftToLowGearC;
-import team3663.neon.commands.TractionWheelsUpC;
-import team3663.neon.commands.FootDownC;
-import team3663.neon.commands.FootUpC;
-import team3663.neon.commands.HammerExtendC;
-import team3663.neon.commands.HammerFireAfterDriveForwardCG;
-import team3663.neon.commands.HammerFireCG;
-import team3663.neon.commands.LoadBallC;
-import team3663.neon.commands.LoadingArmDownC;
-import team3663.neon.commands.LoadingArmUpC;
-import team3663.neon.commands.LoosenWinchAndLatchC;
-import team3663.neon.commands.ResetWinchEncoderC;
-import team3663.neon.commands.ShootAndRecockCG;
-import team3663.neon.commands.LatchCloseC;
-import team3663.neon.commands.LatchOpenC;
-import team3663.neon.commands.SpinLoadingArmMotorC;
-import team3663.neon.commands.TestAllPartsOfTheRobotCG;
-import team3663.neon.commands.TractionDownLowGearCG;
-import team3663.neon.commands.TractionWheelsUpHighGearCG;
-import team3663.neon.commands.WinchLoosenC;
-import team3663.neon.commands.WinchTightenC;
-import team3663.neon.commands.WindAndLatchToFullPowerCG;
-import team3663.neon.commands.WindWinchC;
+import team3663.neon.commands.CG_Autonomous2;
+import team3663.neon.commands.C_DriveForwardTime;
+import team3663.neon.commands.C_DriveMotorTest;
+import team3663.neon.commands.CG_FireAfterBackUp;
+import team3663.neon.commands.CG_FireWithArmUp;
+import team3663.neon.commands.P_HammerRetract;
+import team3663.neon.commands.P_TractionWheelsDown;
+import team3663.neon.commands.P_ShiftToHighGear;
+import team3663.neon.commands.P_ShiftToLowGear;
+import team3663.neon.commands.P_TractionWheelsUp;
+import team3663.neon.commands.P_FootDown;
+import team3663.neon.commands.P_FootUp;
+import team3663.neon.commands.P_HammerExtend;
+import team3663.neon.commands.CG_HammerFireAfterDriveForward;
+import team3663.neon.commands.CG_HammerFire;
+import team3663.neon.commands.C_LoadBall;
+import team3663.neon.commands.P_LoadingArmDown;
+import team3663.neon.commands.P_LoadingArmUp;
+import team3663.neon.commands.C_LoosenWinchAndLatch;
+import team3663.neon.commands.P_ResetWinchEncoder;
+import team3663.neon.commands.CG_ShootAndRecock;
+import team3663.neon.commands.P_LatchClose;
+import team3663.neon.commands.P_LatchOpen;
+import team3663.neon.commands.C_SpinLoadingArmMotor;
+import team3663.neon.commands.CG_TestAllPartsOfTheRobot;
+import team3663.neon.commands.CG_TractionDownLowGear;
+import team3663.neon.commands.CG_TractionWheelsUpHighGear;
+import team3663.neon.commands.P_WinchLoosen;
+import team3663.neon.commands.P_WinchTighten;
+import team3663.neon.commands.CG_WindAndLatchToFullPower;
+import team3663.neon.commands.C_WindWinch;
+import team3663.neon.commands.P_ResetBothDriveEncoders;
 
 
 public class OI 
@@ -44,37 +45,16 @@ public class OI
 
     private static JoystickButton changeToArcadeDrive;
     private static JoystickButton changeToMecanumDrive;
-    private static JoystickButton switchToHighGear;
-    private static JoystickButton switchToLowGear;
     private static JoystickButton hammer;
-    private static JoystickButton imageOn;
     private static JoystickButton loadBall;
     private static JoystickButton shoot;
     private static JoystickButton shootMedium;
-    private static JoystickButton shootWeak;
     private static JoystickButton footUp;
     private static JoystickButton footDown;
     private static JoystickButton loosenWinch;
     private static JoystickButton tightenWinch;
-    private static JoystickButton winchEncoderZero;
-    private static JoystickButton LoosenWinchAndLatch;
-    private static JoystickButton tractionWheelsDown;
-    private static JoystickButton tractionWheelsUp;
-    private static JoystickButton shooterLatchOpen;
-    private static JoystickButton shooterLatchClose;
-    private static JoystickButton hammerRetract;
-    private static JoystickButton hammerExtend;
-    private static JoystickButton motorTest_LeftFront;
-    private static JoystickButton motorTest_RightFront;
-    private static JoystickButton motorTest_RightBack;
-    private static JoystickButton motorTest_LeftBack;
-    private static JoystickButton spinLoadingArmMotorIntake;
-    private static JoystickButton spinLoadingArmMotorEject;
     private static JoystickButton windWinchToFull;
-    private static JoystickButton moveAllTheMotors;
-    private static JoystickButton testAllThings;
     private static JoystickButton resetWinchEncoder;
-    private static JoystickButton fullFireAfterBackUp;
     private static JoystickButton fireHammerAfterBackUp;
     private static JoystickButton relatchAndRewind;
     private static JoystickButton fireWithArmUp;
@@ -88,97 +68,88 @@ public class OI
         buttonJoystick = new Joystick(2);
         
         shoot = new JoystickButton(driveJoystick, 1);
-        shoot.whenPressed(new ShootAndRecockCG(0));
+        shoot.whenPressed(new CG_ShootAndRecock(0));
         
         loadBall = new JoystickButton(driveJoystick, 2);
-        loadBall.whileHeld(new LoadBallC());
+        loadBall.whileHeld(new C_LoadBall());
         
         changeToArcadeDrive = new JoystickButton(driveJoystick, 3);
-        changeToArcadeDrive.whenPressed(new TractionDownLowGearCG());
+        changeToArcadeDrive.whenPressed(new CG_TractionDownLowGear());
         
         fireWithArmUp = new JoystickButton(driveJoystick, 4);
-        fireWithArmUp.whenPressed(new FireWithArmUpCG(175));
+        fireWithArmUp.whenPressed(new CG_FireWithArmUp(175));
         
         changeToMecanumDrive = new JoystickButton(driveJoystick, 5);
-        changeToMecanumDrive.whenPressed(new TractionWheelsUpHighGearCG());
+        changeToMecanumDrive.whenPressed(new CG_TractionWheelsUpHighGear());
         
         shootMedium = new JoystickButton(driveJoystick, 6);
-        shootMedium.whenPressed(new ShootAndRecockCG(100));
+        shootMedium.whenPressed(new CG_ShootAndRecock(100));
         
         fireFromGoal = new JoystickButton(driveJoystick, 9);
-        fireFromGoal.whenPressed(new FireAfterBackUpCG(0, .5, .9));
+        fireFromGoal.whenPressed(new CG_FireAfterBackUp(0, .5, .9));
         
         fireFromWall = new JoystickButton(driveJoystick, 10);
-        fireFromWall.whenPressed(new FireAfterBackUpCG(0, 1, .9));
+        fireFromWall.whenPressed(new CG_FireAfterBackUp(0, 1, .9));
         
         fireHammerAfterBackUp = new JoystickButton(driveJoystick, 11);
-        fireHammerAfterBackUp.whenPressed(new HammerFireAfterDriveForwardCG());
+        fireHammerAfterBackUp.whenPressed(new CG_HammerFireAfterDriveForward());
         
         hammer = new JoystickButton(driveJoystick, 12);
-        hammer.whenPressed(new HammerFireCG());
+        hammer.whenPressed(new CG_HammerFire());
         
         relatchAndRewind = new JoystickButton(buttonJoystick, 3);
-        relatchAndRewind.whenPressed(new WindAndLatchToFullPowerCG());
+        relatchAndRewind.whenPressed(new CG_WindAndLatchToFullPower());
         
         footDown = new JoystickButton(buttonJoystick, 4);
-        footDown.whenPressed(new FootDownC());
+        footDown.whenPressed(new P_FootDown());
         
         windWinchToFull = new JoystickButton(buttonJoystick, 5);
-        windWinchToFull.whenPressed(new WindWinchC(0));
+        windWinchToFull.whenPressed(new C_WindWinch(0));
 
         footUp = new JoystickButton(buttonJoystick, 6);
-        footUp.whenPressed(new FootUpC());
+        footUp.whenPressed(new P_FootUp());
         
         resetWinchEncoder = new JoystickButton(buttonJoystick, 7);
-        resetWinchEncoder.whenPressed(new ResetWinchEncoderC());
+        resetWinchEncoder.whenPressed(new P_ResetWinchEncoder());
         
         tightenWinch = new JoystickButton(buttonJoystick, 8);
-        tightenWinch.whenPressed(new WinchTightenC());
+        tightenWinch.whenPressed(new P_WinchTighten());
         
         loosenWinch = new JoystickButton(buttonJoystick, 9);
-        loosenWinch.whenPressed(new WinchLoosenC());
+        loosenWinch.whenPressed(new P_WinchLoosen());
         
-        SmartDashboard.putData("Autonomous2", new Autonomous2CG());
+        SmartDashboard.putData("Autonomous2", new CG_Autonomous2());
         SmartDashboard.putData("bob", new Bob());
-        SmartDashboard.putData("loadBall", new LoadBallC());
-        SmartDashboard.putData("FootDown", new FootDownC());
-        SmartDashboard.putData("FootUp", new FootUpC());
-        SmartDashboard.putData("HammerRetract", new HammerRetractC());
-        SmartDashboard.putData("HammerExtendC", new HammerExtendC());
-        SmartDashboard.putData("LoadingArmDown", new LoadingArmDownC());
-        SmartDashboard.putData("LoadingArmUp", new LoadingArmUpC());
-        SmartDashboard.putData("ShiftToLowGear", new ShiftToLowGearC());
-        SmartDashboard.putData("ShiftToHighGear", new ShiftToHighGearC());
-        SmartDashboard.putData("TractionWheelsUp", new TractionWheelsUpC());
-        SmartDashboard.putData("TractionWheelsDown", new TractionWheelsDownC());
-        SmartDashboard.putData("LatchOpen", new LatchOpenC());
-        SmartDashboard.putData("LatchClose", new LatchCloseC());
-        SmartDashboard.putData("TightenWinch", new WinchTightenC());
-        SmartDashboard.putData("LoosenWinch", new WinchLoosenC());
-        SmartDashboard.putData("WindWinch_0", new WindWinchC(0));
-        SmartDashboard.putData("SpinLoadingArmMotorC_Intake", new SpinLoadingArmMotorC(true,10000));
-        SmartDashboard.putData("SpinLoadingArmMotorC_Eject", new SpinLoadingArmMotorC(false,10000));
-        SmartDashboard.putData("DriveMotorTestC_LeftBack", new DriveMotorTestC(1,10000,.5));
-        SmartDashboard.putData("DriveMotorTestC_LeftFront", new DriveMotorTestC(3,10000,.5));
-        SmartDashboard.putData("DriveMotorTestC_RightFront", new DriveMotorTestC(4,10000,.5));
-        SmartDashboard.putData("DriveMotorTestC_RightBack", new DriveMotorTestC(2,10000,.5));
+        SmartDashboard.putData("loadBall", new C_LoadBall());
+        SmartDashboard.putData("FootDown", new P_FootDown());
+        SmartDashboard.putData("FootUp", new P_FootUp());
+        SmartDashboard.putData("HammerRetract", new P_HammerRetract());
+        SmartDashboard.putData("HammerExtendC", new P_HammerExtend());
+        SmartDashboard.putData("LoadingArmDown", new P_LoadingArmDown());
+        SmartDashboard.putData("LoadingArmUp", new P_LoadingArmUp());
+        SmartDashboard.putData("ShiftToLowGear", new P_ShiftToLowGear());
+        SmartDashboard.putData("ShiftToHighGear", new P_ShiftToHighGear());
+        SmartDashboard.putData("TractionWheelsUp", new P_TractionWheelsUp());
+        SmartDashboard.putData("TractionWheelsDown", new P_TractionWheelsDown());
+        SmartDashboard.putData("LatchOpen", new P_LatchOpen());
+        SmartDashboard.putData("LatchClose", new P_LatchClose());
+        SmartDashboard.putData("TightenWinch", new P_WinchTighten());
+        SmartDashboard.putData("LoosenWinch", new P_WinchLoosen());
+        SmartDashboard.putData("WindWinch_0", new C_WindWinch(0));
+        SmartDashboard.putData("SpinLoadingArmMotorC_Intake", new C_SpinLoadingArmMotor(true,10000));
+        SmartDashboard.putData("SpinLoadingArmMotorC_Eject", new C_SpinLoadingArmMotor(false,10000));
+        SmartDashboard.putData("DriveMotorTestC_LeftBack", new C_DriveMotorTest(1,10000,.5));
+        SmartDashboard.putData("DriveMotorTestC_LeftFront", new C_DriveMotorTest(3,10000,.5));
+        SmartDashboard.putData("DriveMotorTestC_RightFront", new C_DriveMotorTest(4,10000,.5));
+        SmartDashboard.putData("DriveMotorTestC_RightBack", new C_DriveMotorTest(2,10000,.5));
         
-        
-        SmartDashboard.putData("TestAllThingsOfTheRobot", new TestAllPartsOfTheRobotCG());
-        SmartDashboard.putData("DriveForwardTime_70", new DriveForwardTimeC(.7, -1));
-        SmartDashboard.putData("ResetWinchEncoder", new ResetWinchEncoderC());
-        SmartDashboard.putData("LoosenWinchAndLatch", new LoosenWinchAndLatchC());
-        SmartDashboard.putData("ShootAndRecockCG", new ShootAndRecockCG(0));
+        SmartDashboard.putData("ReaetBothDriveEncoders", new P_ResetBothDriveEncoders());
+        SmartDashboard.putData("TestAllThingsOfTheRobot", new CG_TestAllPartsOfTheRobot());
+        SmartDashboard.putData("DriveForwardTime_70", new C_DriveForwardTime(.7, -1));
+        SmartDashboard.putData("ResetWinchEncoder", new P_ResetWinchEncoder());
+        SmartDashboard.putData("LoosenWinchAndLatch", new C_LoosenWinchAndLatch());
+        SmartDashboard.putData("ShootAndRecockCG", new CG_ShootAndRecock(0));
 
-       /* SmartDashboard.putData("DriveBasedOnEncodersC(2000,2000)", new DriveBasedOnEncodersC(2000,2000));
-        SmartDashboard.putData("DriveBasedOnEncodersC(20000,0)", new DriveBasedOnEncodersC(20000,0));
-        SmartDashboard.putData("DriveBasedOnEncodersC(0,-20000)", new DriveBasedOnEncodersC(0,-20000));
-        SmartDashboard.putData("DriveBasedOnEncodersC(-20000,-20000)", new DriveBasedOnEncodersC(-20000,-20000));
-        SmartDashboard.putData("DriveBasedOnEncodersC(10000,20000)", new DriveBasedOnEncodersC(10000,20000));
-        SmartDashboard.putData("DriveBasedOnEncodersC(20000,20000)", new DriveBasedOnEncodersC(20000,20000));
-        SmartDashboard.putData("DriveBasedOnEncodersC(-6000,20000)", new DriveBasedOnEncodersC(-6000,20000));
-        SmartDashboard.putData("DriveBasedOnEncodersC(-20000,20000)", new DriveBasedOnEncodersC(-20000,20000));
-    */
         
         System.out.println("OI constructor end");
     }

@@ -2,13 +2,13 @@ package team3663.neon.commands.autonomous;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import team3663.neon.commands.FootDownC;
-import team3663.neon.commands.LoadingArmDownC;
-import team3663.neon.commands.LoadingArmUpC;
-import team3663.neon.commands.LoosenWinchAndLatchC;
-import team3663.neon.commands.LatchOpenC;
-import team3663.neon.commands.TractionWheelsUpC;
-import team3663.neon.commands.WindWinchC;
+import team3663.neon.commands.P_FootDown;
+import team3663.neon.commands.P_LoadingArmDown;
+import team3663.neon.commands.P_LoadingArmUp;
+import team3663.neon.commands.C_LoosenWinchAndLatch;
+import team3663.neon.commands.P_LatchOpen;
+import team3663.neon.commands.P_TractionWheelsUp;
+import team3663.neon.commands.C_WindWinch;
 
 /*
  * @author Kainoa & Tyler
@@ -17,21 +17,21 @@ public class ShooterCommand extends CommandGroup
 {
     public ShooterCommand()
     {     System.out.println("************************It shot in shooter command***********");
-        addSequential(new WindWinchC(0));       
+        addSequential(new C_WindWinch(0));       
         System.out.println("wind winch");
-        addSequential(new LatchOpenC());
+        addSequential(new P_LatchOpen());
         Timer.delay(0.5);
         System.out.println("shoot latch");
-        addSequential(new FootDownC());
+        addSequential(new P_FootDown());
         System.out.println("foot down");
-        addParallel(new LoadingArmUpC());
+        addParallel(new P_LoadingArmUp());
         System.out.println("loading arm");
-        addSequential(new TractionWheelsUpC());
+        addSequential(new P_TractionWheelsUp());
         System.out.println("traction wheels");
-        addSequential(new LoosenWinchAndLatchC());
+        addSequential(new C_LoosenWinchAndLatch());
         System.out.println("loosen winch");
         //addParallel(new ResetTheFireButtonsC());
-        addSequential(new WindWinchC(0));
+        addSequential(new C_WindWinch(0));
         System.out.println("wind winch");
     }
     public void Shoot()

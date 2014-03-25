@@ -3,36 +3,59 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/TractionWheelsUpHighGearCG.java</file>
-            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/LoadBallC.java</file>
-            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/ShootAndRecockCG.java</file>
-            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/WindAndLatchToFullPowerCG.java</file>
-            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/AutonomousBackUpCG.java</file>
-            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/HammerExtendC.java</file>
-            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/AutonomousfinalCG.java</file>
-            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/TimeWaitC.java</file>
-            <file>file:/C:/workspace/Neon/src/team3663/neon/Robot3663.java</file>
-            <file>file:/C:/workspace/Neon/src/team3663/neon/PortMap.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/C_RecordToSmartDashboard.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/CG_ShootAndRecock.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/CG_TestAllPartsOfTheRobot.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/C_DriveForwardTime.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/CG_HammerFireAfterDriveForward.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/P_TractionWheelsUp.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/CG_Autonomousfinal.java</file>
             <file>file:/C:/workspace/Neon/src/team3663/neon/subsystems/DriveTrainSS.java</file>
-            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/LaunchBallC.java</file>
-            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/AutonomousBackUpUsingEncodersC.java</file>
-            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/WindWinchC.java</file>
-            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/DriveC.java</file>
-            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/DriveForwardTimeC.java</file>
-            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/HammerRetractC.java</file>
-            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/FootDownC.java</file>
-            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/LoadingArmUpC.java</file>
-            <file>file:/C:/workspace/Neon/src/team3663/neon/RobotMap.java</file>
-            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/HammerFireAfterDriveForwardCG.java</file>
-            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/ResetWinchEncoderC.java</file>
-            <file>file:/C:/workspace/Neon/src/team3663/neon/OI.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/PortMap.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/P_LatchClose.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/P_WinchTighten.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/CG_TractionWheelsUpHighGear.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/C_WaitForCompressor.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/CG_Autonomous2.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/C_Break.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/P_ResetWinchEncoder.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/C_LoosenWinchAndLatch.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/C_CatapultLimitSwitchMonitor.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/C_TimeWait.java</file>
             <file>file:/C:/workspace/Neon/src/team3663/neon/subsystems/HammerSS.java</file>
-            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/HammerFireCG.java</file>
-            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/TractionDownLowGearCG.java</file>
-            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/LoadingArmDownC.java</file>
-            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/Autonomous2CG.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/P_LatchOpen.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/CG_WindAndLatchToFullPower.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/P_ShiftToLowGear.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/CG_TractionDownLowGear.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/P_ShiftToHighGear.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/C_SpinLoadingArmMotor.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/CG_FireWithArmUp.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/P_FootUp.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/C_TimeWaitIfCold.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/C_FillAirTanks.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/Bob.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/P_HammerExtend.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/P_LoadingArmUp.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/Robot3663.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/P_ResetBothDriveEncoders.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/CG_AutonomousBackUp.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/C_DriveMotorTest.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/P_LoadingArmDown.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/P_TractionWheelsDown.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/RobotMap.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/P_HammerRetract.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/C_WindWinch.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/CommandBase.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/C_DriveBasedOnEncoders.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/OI.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/C_LoadBall.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/P_FootDown.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/CG_HammerFire.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/P_WinchLoosen.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/C_Drive.java</file>
             <file>file:/C:/workspace/Neon/src/team3663/neon/subsystems/FootSS.java</file>
-            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/TestAllPartsOfTheRobotCG.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/C_LaunchBall.java</file>
+            <file>file:/C:/workspace/Neon/src/team3663/neon/commands/CG_FireAfterBackUp.java</file>
         </group>
     </open-files>
 </project-private>

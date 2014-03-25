@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import team3663.neon.commands.AutonomousBackUpCG;
+import team3663.neon.commands.CG_AutonomousBackUp;
 import team3663.neon.commands.CommandBase;
-import team3663.neon.commands.WindAndLatchToFullPowerCG;
+import team3663.neon.commands.CG_WindAndLatchToFullPower;
 
 public class Robot3663 extends IterativeRobot
 {
@@ -35,9 +35,9 @@ public class Robot3663 extends IterativeRobot
         System.out.println("Robot3663.robotInit start");
         RobotMap.init();
         CommandBase.init();
-        windWinchToFull = new WindAndLatchToFullPowerCG();
+        windWinchToFull = new CG_WindAndLatchToFullPower();
         //autonomousfinalCG = new AutonomousfinalCG();
-        autonomousBackUpCG = new AutonomousBackUpCG();
+        autonomousBackUpCG = new CG_AutonomousBackUp();
         driveStation = DriverStation.getInstance();
         CommandBase.dsLCD.clear();
         updateStatusNextRefresh = Timer.getFPGATimestamp();

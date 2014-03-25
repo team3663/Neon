@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import team3663.neon.RobotMap;
-import team3663.neon.commands.FillAirTanksC;
+import team3663.neon.commands.C_FillAirTanks;
 
 public class CompressorSS extends Subsystem 
 {
@@ -12,7 +12,7 @@ public class CompressorSS extends Subsystem
     
     public void initDefaultCommand() 
     {
-        setDefaultCommand(new FillAirTanksC());
+        setDefaultCommand(new C_FillAirTanks());
     }
 
     public void CompressorSS()

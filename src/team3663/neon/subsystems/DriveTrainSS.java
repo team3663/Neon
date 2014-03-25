@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import team3663.neon.RobotMap;
 import team3663.neon.commands.CommandBase;
-import team3663.neon.commands.DriveC;
+import team3663.neon.commands.C_Drive;
 
 public class DriveTrainSS extends Subsystem
 {
@@ -40,7 +40,7 @@ public class DriveTrainSS extends Subsystem
         
     public void initDefaultCommand()
     {
-       setDefaultCommand(new DriveC());
+       setDefaultCommand(new C_Drive());
     }
       
     public boolean TractionIsDown()
