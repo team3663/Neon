@@ -143,7 +143,7 @@ public class OI
         SmartDashboard.putData("DriveMotorTestC_RightFront", new C_DriveMotorTest(4,10000,.5));
         SmartDashboard.putData("DriveMotorTestC_RightBack", new C_DriveMotorTest(2,10000,.5));
         
-        SmartDashboard.putData("ReaetBothDriveEncoders", new P_ResetBothDriveEncoders());
+        SmartDashboard.putData("ResetBothDriveEncoders", new P_ResetBothDriveEncoders());
         SmartDashboard.putData("TestAllThingsOfTheRobot", new CG_TestAllPartsOfTheRobot());
         SmartDashboard.putData("DriveForwardTime_70", new C_DriveForwardTime(.7, -1));
         SmartDashboard.putData("ResetWinchEncoder", new P_ResetWinchEncoder());

@@ -14,7 +14,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class CG_Autonomous2 extends CommandGroup {
     
     public CG_Autonomous2() {
-        addSequential(new C_TimeWaitIfCold());
+        addSequential(new C_RecordToSmartDashboard("CG_Autonomous2", "start"));
+        addSequential(new C_TimeWaitIfGoalNotHot());
         addSequential(new P_TractionWheelsDown());
         addSequential(new P_FootUp());
         addSequential(new P_ShiftToHighGear());
@@ -28,5 +29,6 @@ public class CG_Autonomous2 extends CommandGroup {
         addSequential(new P_TractionWheelsUp());
         addSequential(new C_LoosenWinchAndLatch());
         addSequential(new C_WindWinch(0));
+        addSequential(new C_RecordToSmartDashboard("CG_Autonomous2", "end"));
     }
 }

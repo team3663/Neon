@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class CG_TestAllPartsOfTheRobot extends CommandGroup {
     
     public CG_TestAllPartsOfTheRobot() {
+        addSequential(new C_RecordToSmartDashboard("CG_TestAllPartsOfTheRobot", "start"));
         
         double interCommandDelay = .25;
         
@@ -87,6 +88,7 @@ public class CG_TestAllPartsOfTheRobot extends CommandGroup {
         addSequential(new C_DriveMotorTest(2, 2, .5));
         addSequential(new C_DriveMotorTest(3, 2, .5));
         addSequential(new C_DriveMotorTest(4, 2, .5));
+        addSequential(new C_RecordToSmartDashboard("CG_TestAllPartsOfTheRobot", "end"));
 
 }
 }

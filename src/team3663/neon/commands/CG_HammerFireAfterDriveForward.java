@@ -15,10 +15,12 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class CG_HammerFireAfterDriveForward extends CommandGroup {
     
     public CG_HammerFireAfterDriveForward() {
+        addSequential(new C_RecordToSmartDashboard("CG_HammerFireAfterDriveForward", "start"));
         addSequential(new C_DriveForwardTime(0.3, -0.5));
         addSequential(new P_FootDown());
         addSequential(new P_HammerExtend());
         addSequential(new C_TimeWait(0.5));
         addSequential(new P_HammerRetract());
+        addSequential(new C_RecordToSmartDashboard("CG_HammerFireAfterDriveForward", "end"));
     }
 }

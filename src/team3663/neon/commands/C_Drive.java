@@ -1,5 +1,7 @@
 package team3663.neon.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 public class C_Drive extends CommandBase
 {
     public C_Drive()
@@ -8,6 +10,7 @@ public class C_Drive extends CommandBase
     }
 
     protected void initialize(){
+        SmartDashboard.putString("C_Drive", "Initialized");
     }
 
     protected void execute() 
@@ -29,9 +32,11 @@ public class C_Drive extends CommandBase
     }
 
     protected void end(){
+        SmartDashboard.putString("C_Drive", "End");
     }
 
     protected void interrupted(){
+        SmartDashboard.putString("C_Drive", "Interrupted");
     }
 }
 

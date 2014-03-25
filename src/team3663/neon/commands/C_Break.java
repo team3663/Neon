@@ -10,37 +10,46 @@ package team3663.neon.commands;
  * @author curtis
  */
 public class C_Break extends CommandBase {
-    double lastRanEncoderValueR;
-    double distanceR;
+    double lastRanEncoderValue;
+    double distance;
+    
     public C_Break() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
     }
-
-    // Called just before this Command runs the first time
+    
     protected void initialize() {
-        lastRanEncoderValueR = driveTrainSS.GetRightEncoder();
-        
+        driveTrainSS.drive3663(0, .5, 0);
+        lastRanEncoderValue = driveTrainSS.GetRightEncoder();
     }
-
-    // Called repeatedly when this Command is scheduled to run
+    
     protected void execute() {
-        distanceR = driveTrainSS.GetRightEncoder() - lastRanEncoderValueR;
+        distance = driveTrainSS.GetRightEncoder() - lastRanEncoderValue;
+        if (distance < 0)
+        {
+            distance = -distance;
+        }
+        if((distance < 4)&&(distance > -4))
+        {
+            distance = 0;
+        }
     }
-
-    // Make this return true when this Command no longer needs to run execute()
+    
     protected boolean isFinished() {
-        
-        
-        return true;
+        lastRanEncoderValue = driveTrainSS.GetRightEncoder();
+        if(distance == 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
-
-    // Called once after isFinished returns true
+    
     protected void end() {
+        driveTrainSS.drive3663(0, 0, 0);
     }
-
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
+    
     protected void interrupted() {
+        end();
     }
 }

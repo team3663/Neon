@@ -14,11 +14,13 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class CG_FireWithArmUp extends CommandGroup {
     
     public CG_FireWithArmUp(double shotStrength) {
+        addSequential(new C_RecordToSmartDashboard("CG_FireWithArmUp", "start"));
         addSequential(new C_WindWinch(shotStrength));    
         addSequential(new P_LatchOpen());
         addSequential(new P_FootDown());
         addParallel(new P_LoadingArmUp());
         addSequential(new C_LoosenWinchAndLatch());      
         addSequential(new C_WindWinch(0));
+        addSequential(new C_RecordToSmartDashboard("CG_FireWithArmUp", "end"));
     }
 }

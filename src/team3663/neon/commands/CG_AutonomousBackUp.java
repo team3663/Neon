@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class CG_AutonomousBackUp extends CommandGroup {
     
     public CG_AutonomousBackUp() {
+        addSequential(new C_RecordToSmartDashboard("CG_AutonomousBackUp", "start"));
         addSequential(new P_TractionWheelsDown());
         addSequential(new P_FootUp());
         addSequential(new P_ShiftToHighGear());
@@ -28,6 +29,7 @@ public class CG_AutonomousBackUp extends CommandGroup {
         addSequential(new C_LoosenWinchAndLatch());
         //addParallel(new ResetTheFireButtonsC());
         addSequential(new C_WindWinch(0));
+        addSequential(new C_RecordToSmartDashboard("CG_Autonomous2", "end"));
        
     }
 }

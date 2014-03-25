@@ -14,7 +14,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class CG_TractionDownLowGear extends CommandGroup {
     
     public CG_TractionDownLowGear() {
+        addSequential(new C_RecordToSmartDashboard("CG_TractionDownLowGear", "start"));
          addSequential(new P_TractionWheelsDown());
          addSequential(new P_ShiftToLowGear());
+        addSequential(new C_RecordToSmartDashboard("CG_TractionDownLowGear", "end"));
      }
 }

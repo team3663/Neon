@@ -1,12 +1,15 @@
 package team3663.neon.commands;
 
+import edu.wpi.first.wpilibj.Timer;
+
 public class P_LatchClose extends CommandBase {
-    
+    double endTime;
     public P_LatchClose() {
         requires(winchAndLatchSS);
     }
 
     protected void initialize() {
+        endTime = Timer.getFPGATimestamp() + .5;
     }
 
     protected void execute() {
@@ -14,7 +17,11 @@ public class P_LatchClose extends CommandBase {
     }
 
     protected boolean isFinished() {
-        return true;
+        if (Timer.getFPGATimestamp() >= endTime)
+        {
+            return true;
+        }
+        return false;
     }
 
     protected void end() {

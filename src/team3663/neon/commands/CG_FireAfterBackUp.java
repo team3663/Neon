@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class CG_FireAfterBackUp extends CommandGroup {
     
     public CG_FireAfterBackUp(double shotStrength, double time, double speed) {
+        addSequential(new C_RecordToSmartDashboard("CG_FireAfterBackUp", "start"));
         addSequential(new P_TractionWheelsDown());
         addSequential(new C_DriveForwardTime(time, speed));
         addSequential(new C_WindWinch(shotStrength));     
@@ -23,5 +24,6 @@ public class CG_FireAfterBackUp extends CommandGroup {
         addParallel(new P_LoadingArmUp());
         addSequential(new C_LoosenWinchAndLatch());      
         addSequential(new C_WindWinch(0));
+        addSequential(new C_RecordToSmartDashboard("CG_FireAfterBackUp", "end"));
     }
 }

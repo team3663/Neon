@@ -1,12 +1,15 @@
 package team3663.neon.commands;
 
+import edu.wpi.first.wpilibj.Timer;
+
 public class P_FootUp extends CommandBase {
-    
+    double endTime;
     public P_FootUp() {
         //requires(footSS);
     }
 
     protected void initialize() {
+        endTime = Timer.getFPGATimestamp() + .5;
     }
 
     protected void execute() {
@@ -14,7 +17,11 @@ public class P_FootUp extends CommandBase {
     }
 
     protected boolean isFinished() {
-        return true;
+        if (Timer.getFPGATimestamp() >= endTime)
+        {
+            return true;
+        }
+        return false;
     }
 
     protected void end() {
