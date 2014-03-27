@@ -20,8 +20,7 @@ public class C_DriveForwardTime extends CommandBase {
     protected void initialize() {
        // speed = SmartDashboard.getNumber("drive forward time speed");
        //timeToWait = SmartDashboard.getNumber("drive forward time time ");
-        SmartDashboard.putString("DriveForwardTimeC", "initialize");        
-        System.out.println("DriveForwardTimeC.initialize");
+        SmartDashboard.putString("C_DriveForwardTime", "initialize");        
         endTime = Timer.getFPGATimestamp() + timeToWait;
     }
 
@@ -38,14 +37,12 @@ public class C_DriveForwardTime extends CommandBase {
     }
 
     protected void end() {
-        SmartDashboard.putString("DriveForwardTimeC", "end");        
-        System.out.println("DriveForwardTimeC.end");
+        SmartDashboard.putString("C_DriveForwardTime", "end");        
         driveTrainSS.drive3663(0, 0, 0);
     }
 
     protected void interrupted() {
-        SmartDashboard.putString("DriveForwardTimeC", "interrupted");        
-        System.out.println("DriveForwardTimeC.interrupted");
+        SmartDashboard.putString("C_DriveForwardTime", "interrupted");        
         end();
     }
 }

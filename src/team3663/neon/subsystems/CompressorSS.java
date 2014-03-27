@@ -1,10 +1,12 @@
 package team3663.neon.subsystems;
 
+import edu.wpi.first.wpilibj.DriverStationLCD;
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import team3663.neon.RobotMap;
 import team3663.neon.commands.C_FillAirTanks;
+import team3663.neon.commands.CommandBase;
 
 public class CompressorSS extends Subsystem 
 {
@@ -42,19 +44,21 @@ public class CompressorSS extends Subsystem
     public void updateStatus()
     {
         if(airTanksAreFull()){
-            SmartDashboard.putString("Air tanks ", "full");
+            SmartDashboard.putString("Air tanks", "full");
         }
         else
         {
-            SmartDashboard.putString("Air tanks ", "not full");
+            SmartDashboard.putString("Air tanks", "not full");
         }
         if(compressorOn)
         {
-            SmartDashboard.putString("Compressor ", "on");
+            SmartDashboard.putString("Compressor", "on");
+            CommandBase.dsLCD.println(DriverStationLCD.Line.kUser5, 1, "Compressor on");
         }
         else
         {
-            SmartDashboard.putString("Compressor ", "off");
+            SmartDashboard.putString("Compressor", "off");
+            CommandBase.dsLCD.println(DriverStationLCD.Line.kUser5, 1, "Compressor off");
         }
     }
 }

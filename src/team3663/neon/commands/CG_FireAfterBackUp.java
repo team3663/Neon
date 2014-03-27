@@ -18,10 +18,10 @@ public class CG_FireAfterBackUp extends CommandGroup {
         addSequential(new P_TractionWheelsDown());
         addSequential(new C_DriveForwardTime(time, speed));
         addSequential(new C_WindWinch(shotStrength));     
-        addSequential(new P_LoadingArmDown());   
+        addSequential(new P_ArmDown());   
         addSequential(new P_LatchOpen());
         addSequential(new P_FootDown());
-        addParallel(new P_LoadingArmUp());
+        addParallel(new P_ArmUp());
         addSequential(new C_LoosenWinchAndLatch());      
         addSequential(new C_WindWinch(0));
         addSequential(new C_RecordToSmartDashboard("CG_FireAfterBackUp", "end"));

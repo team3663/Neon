@@ -67,7 +67,7 @@ public class DriveTrainSS extends Subsystem
 
         // mustard does not flip
         // ketchup
-        jY = -jY;
+        //jY = -jY;
         
         if(TractionIsDown())
         {
@@ -200,41 +200,35 @@ public class DriveTrainSS extends Subsystem
     
     public void updateStatus()
     {
-    //    SmartDashboard.putNumber("Right Encoder:", GetRightEncoder());
-//	SmartDashboard.putNumber("Left Encoder:", GetLeftEncoder());
         CommandBase.dsLCD.println(DriverStationLCD.Line.kUser1,1, ("R:" + (int)GetRightEncoder()) + " L:" + (int)GetLeftEncoder());
-        /*SmartDashboard.putNumber("Left encoder:",GetLeftEncoder());
-        SmartDashboard.putNumber("Right encoder:",GetRightEncoder());
-        SmartDashboard.putNumber("Joystick X:", joyX);
-        SmartDashboard.putNumber("Joystick Y:", joyY);
-        SmartDashboard.putNumber("Joystick Z:", joyZ);
-*/
-	
-	
-       // System.out.println("Ecnoder fr DriveTrain:"+GetTotalDistance());
-        //CommandBase.dsLCD.println(DriverStationLCD.Line.kUser1,1, ("R:" + (int)GetRightEncoder()) + " L:" + (int)GetLeftEncoder());
+        SmartDashboard.putNumber("Left encoder",GetLeftEncoder());
+        SmartDashboard.putNumber("Right encoder",GetRightEncoder());
+        SmartDashboard.putNumber("Joystick X", joyX);
+        SmartDashboard.putNumber("Joystick Y", joyY);
+        SmartDashboard.putNumber("Joystick Z", joyZ);
+
         if (InLowGear())
         {
             CommandBase.dsLCD.println(DriverStationLCD.Line.kUser2, 1, "Low Gear");
-            SmartDashboard.putString("Gear ","low");
+            SmartDashboard.putString("Gear","low");
         }
         else
         {
             CommandBase.dsLCD.println(DriverStationLCD.Line.kUser2, 1, "High Gear");
-            SmartDashboard.putString("Gear ","high");
+            SmartDashboard.putString("Gear","high");
         }
         
         if (TractionIsDown())
         {
             CommandBase.dsLCD.println(DriverStationLCD.Line.kUser3, 1, "Traction Wheels Down");
-            SmartDashboard.putString("Traction wheels ","down");
-            SmartDashboard.putString("Driving mode ", "arcade");
+            SmartDashboard.putString("Traction wheels","down");
+            SmartDashboard.putString("Driving mode", "arcade");
         }
         else
         {
             CommandBase.dsLCD.println(DriverStationLCD.Line.kUser3, 1, "Traction Wheels Up   ");
-            SmartDashboard.putString("Traction wheels ","up");
-            SmartDashboard.putString("Driving mode ", "mecanum");
+            SmartDashboard.putString("Traction wheels","up");
+            SmartDashboard.putString("Driving mode", "mecanum");
         }
     }
 }

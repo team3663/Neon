@@ -4,7 +4,9 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import team3663.neon.commands.Bob;
-import team3663.neon.commands.CG_Autonomous2;
+import team3663.neon.commands.CG_AutonomousComplete;
+import team3663.neon.commands.CG_AutonomousMoveAndShoot;
+import team3663.neon.commands.CG_AutonomousVisionOnly;
 import team3663.neon.commands.C_DriveForwardTime;
 import team3663.neon.commands.C_DriveMotorTest;
 import team3663.neon.commands.CG_FireAfterBackUp;
@@ -20,16 +22,16 @@ import team3663.neon.commands.P_HammerExtend;
 import team3663.neon.commands.CG_HammerFireAfterDriveForward;
 import team3663.neon.commands.CG_HammerFire;
 import team3663.neon.commands.C_LoadBall;
-import team3663.neon.commands.P_LoadingArmDown;
-import team3663.neon.commands.P_LoadingArmUp;
+import team3663.neon.commands.P_ArmDown;
+import team3663.neon.commands.P_ArmUp;
 import team3663.neon.commands.C_LoosenWinchAndLatch;
 import team3663.neon.commands.P_ResetWinchEncoder;
 import team3663.neon.commands.CG_ShootAndRecock;
 import team3663.neon.commands.P_LatchClose;
 import team3663.neon.commands.P_LatchOpen;
-import team3663.neon.commands.C_SpinLoadingArmMotor;
+import team3663.neon.commands.P_SpinArmMotor;
 import team3663.neon.commands.CG_TestAllPartsOfTheRobot;
-import team3663.neon.commands.CG_TractionDownLowGear;
+import team3663.neon.commands.CG_TractionWheelsDownLowGear;
 import team3663.neon.commands.CG_TractionWheelsUpHighGear;
 import team3663.neon.commands.P_WinchLoosen;
 import team3663.neon.commands.P_WinchTighten;
@@ -74,7 +76,7 @@ public class OI
         loadBall.whileHeld(new C_LoadBall());
         
         changeToArcadeDrive = new JoystickButton(driveJoystick, 3);
-        changeToArcadeDrive.whenPressed(new CG_TractionDownLowGear());
+        changeToArcadeDrive.whenPressed(new CG_TractionWheelsDownLowGear());
         
         fireWithArmUp = new JoystickButton(driveJoystick, 4);
         fireWithArmUp.whenPressed(new CG_FireWithArmUp(175));
@@ -118,15 +120,18 @@ public class OI
         loosenWinch = new JoystickButton(buttonJoystick, 9);
         loosenWinch.whenPressed(new P_WinchLoosen());
         
-        SmartDashboard.putData("Autonomous2", new CG_Autonomous2());
+                
+        SmartDashboard.putData("AutonomousComplete", new CG_AutonomousComplete());
+        SmartDashboard.putData("AutonomousMoveAndShoot", new CG_AutonomousMoveAndShoot());
+        SmartDashboard.putData("AutonomousVisionOnly", new CG_AutonomousVisionOnly());
         SmartDashboard.putData("bob", new Bob());
         SmartDashboard.putData("loadBall", new C_LoadBall());
         SmartDashboard.putData("FootDown", new P_FootDown());
         SmartDashboard.putData("FootUp", new P_FootUp());
         SmartDashboard.putData("HammerRetract", new P_HammerRetract());
         SmartDashboard.putData("HammerExtendC", new P_HammerExtend());
-        SmartDashboard.putData("LoadingArmDown", new P_LoadingArmDown());
-        SmartDashboard.putData("LoadingArmUp", new P_LoadingArmUp());
+        SmartDashboard.putData("ArmDown", new P_ArmDown());
+        SmartDashboard.putData("ArmUp", new P_ArmUp());
         SmartDashboard.putData("ShiftToLowGear", new P_ShiftToLowGear());
         SmartDashboard.putData("ShiftToHighGear", new P_ShiftToHighGear());
         SmartDashboard.putData("TractionWheelsUp", new P_TractionWheelsUp());
@@ -136,8 +141,8 @@ public class OI
         SmartDashboard.putData("TightenWinch", new P_WinchTighten());
         SmartDashboard.putData("LoosenWinch", new P_WinchLoosen());
         SmartDashboard.putData("WindWinch_0", new C_WindWinch(0));
-        SmartDashboard.putData("SpinLoadingArmMotorC_Intake", new C_SpinLoadingArmMotor(true,10000));
-        SmartDashboard.putData("SpinLoadingArmMotorC_Eject", new C_SpinLoadingArmMotor(false,10000));
+        SmartDashboard.putData("SpinArmMotorC_Intake", new P_SpinArmMotor(true,10000));
+        SmartDashboard.putData("SpinArmMotorC_Eject", new P_SpinArmMotor(false,10000));
         SmartDashboard.putData("DriveMotorTestC_LeftBack", new C_DriveMotorTest(1,10000,.5));
         SmartDashboard.putData("DriveMotorTestC_LeftFront", new C_DriveMotorTest(3,10000,.5));
         SmartDashboard.putData("DriveMotorTestC_RightFront", new C_DriveMotorTest(4,10000,.5));

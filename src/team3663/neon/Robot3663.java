@@ -7,19 +7,17 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import team3663.neon.commands.CG_Autonomousfinal;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import team3663.neon.commands.CG_AutonomousComplete;
+import team3663.neon.commands.CG_AutonomousMoveAndShoot;
 import team3663.neon.commands.CommandBase;
-import team3663.neon.commands.CG_WindAndLatchToFullPower;
 
 public class Robot3663 extends IterativeRobot
 {
-    public static boolean mustard = true;
-    boolean test = true;
     int counter=0;
-    CommandGroup autonomousfinalCG;
-    CommandGroup autonomousBackUpCG; 
-    CommandBase bob;
-    CommandGroup windWinchToFull;
+    CommandGroup autonomousCG;
+    SendableChooser autoChooser;
 
     DriverStation driveStation;
     int isAliveCounter;
@@ -35,10 +33,14 @@ public class Robot3663 extends IterativeRobot
         System.out.println("Robot3663.robotInit start");
         RobotMap.init();
         CommandBase.init();
-        windWinchToFull = new CG_WindAndLatchToFullPower();
-        autonomousfinalCG = new CG_Autonomousfinal();
-       // autonomousBackUpCG = new CG_AutonomousBackUp();
+        autoChooser = new SendableChooser();
+        autoChooser.addDefault("AutonomousComplete", new CG_AutonomousComplete());
+        autoChooser.addObject("AutonomousMoveAndShootOnly", new CG_AutonomousMoveAndShoot());
+        SmartDashboard.putData("Autonomous Chooser", autoChooser);
+        
+       // autonomousCG = new CG_AutonomousMoveAndShoot();
         driveStation = DriverStation.getInstance();
+        //driveStation.isAutonomous();
         CommandBase.dsLCD.clear();
         updateStatusNextRefresh = Timer.getFPGATimestamp();
         updateStatus();
@@ -49,34 +51,28 @@ public class Robot3663 extends IterativeRobot
     {
         isTesting = false;
         System.out.println("Robot3663.autonomousInit start");
-        //autonomousBackUpCG.start();
         autoTimeStart = Timer.getFPGATimestamp();
-        autonomousfinalCG.start();
+        autonomousCG = (CommandGroup) autoChooser.getSelected();
+        autonomousCG.start();
         System.out.println("Robot3663.autonomousInit end");
     }
 
     public void autonomousPeriodic()
     {
         Scheduler.getInstance().run();
-        //LiveWindow.run();
         updateStatus();
     }
 
     public void teleopInit() 
     {
         isTesting = false;
-       // bob.start();
         System.out.println("Robot3663.teleopInit start");
-        //autonomousBackUpCG.cancel();
-        //autonomousfinalCG.cancel();
-        windWinchToFull.start();
         System.out.println("Robot3663.teleopInit end");
     }
     
     public void teleopPeriodic() 
     {
         Scheduler.getInstance().run();
-        //LiveWindow.run();
         updateStatus();
     }
     
@@ -85,14 +81,12 @@ public class Robot3663 extends IterativeRobot
         System.out.println("Robot3663.testInit start");
         LiveWindow.setEnabled(false);
         isTesting = true;
-        autonomousfinalCG.cancel();
         System.out.println("Robot3663.testInit end");
     }
 
     public void testPeriodic() 
     {
         Scheduler.getInstance().run();
-        //LiveWindow.run();
         updateStatus();
     }
     public void disabledInit() 
@@ -123,14 +117,15 @@ public class Robot3663 extends IterativeRobot
             CommandBase.catapultLimitSwitchSS.updateStatus();
             CommandBase.hammerSS.updateStatus();
             CommandBase.winchAndLatchSS.updateStatus();
-            CommandBase.loadingArmSS.updateStatus();
+            CommandBase.armSS.updateStatus();
+            CommandBase.imageProcess.updateStatus();
             //CommandBase.dsLCD.println(DriverStationLCD.Line.kUser4, 1, "Brian14 "+ counter++);
             CommandBase.dsLCD.updateLCD();
             CommandBase.dsLCD.println(DriverStationLCD.Line.kUser1, 1, "                     ");
             CommandBase.dsLCD.println(DriverStationLCD.Line.kUser2, 1, "                     ");
             CommandBase.dsLCD.println(DriverStationLCD.Line.kUser3, 1, "                     ");
             //CommandBase.dsLCD.println(DriverStationLCD.Line.kUser4, 1, "                     ");
-            //CommandBase.dsLCD.println(DriverStationLCD.Line.kUser5, 1, "                     ");
+            CommandBase.dsLCD.println(DriverStationLCD.Line.kUser5, 1, "                     ");
             CommandBase.dsLCD.println(DriverStationLCD.Line.kUser6, 1, "                     ");
         }
     }

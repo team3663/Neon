@@ -23,7 +23,7 @@ public class C_LaunchBall  extends CommandBase
         endTime = Timer.getFPGATimestamp() + DURATION;
         
         winchAndLatchSS.latchOpen();
-        SmartDashboard.putString("LaunchBallC", "initialize");        
+        SmartDashboard.putString("C_LaunchBall", "initialize");        
     }
     
     protected void execute()
@@ -41,11 +41,11 @@ public class C_LaunchBall  extends CommandBase
     
     protected void end()
     {
-        SmartDashboard.putString("LaunchBallC", "end");        
+        SmartDashboard.putString("C_LaunchBall", "end");        
     }
     
     protected void interrupted()
     {
-        SmartDashboard.putString("LaunchBallC", "interrupted");        
+        SmartDashboard.putString("C_LaunchBall", "interrupted");        
     }    
 }

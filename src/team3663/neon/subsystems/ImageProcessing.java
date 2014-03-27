@@ -59,6 +59,7 @@ public class ImageProcessing extends Subsystem
     AxisCamera camera;          // the axis camera object (connected to the switch)
     CriteriaCollection cc;      // the criteria for doing the particle filter operation
     DriverStationLCD dsLCD;
+    boolean initialized = false;
     
     public void Init()
     {
@@ -77,13 +78,19 @@ public class ImageProcessing extends Subsystem
         cc.addCriteria(MeasurementType.IMAQ_MT_BOUNDING_RECT_WIDTH, 30, 400, false);
         cc.addCriteria(MeasurementType.IMAQ_MT_BOUNDING_RECT_HEIGHT, 40, 400, false);
         dsLCD = DriverStationLCD.getInstance();
-        hotTargetFound = false;
+
         isHot = false;
+        initialized = true;
         System.out.println("Image Process init");
     }
 
     public void processCameraImage()
     {
+        if (!initialized)
+        {
+            Init();
+        }
+        hotTargetFound = false;
         TargetReport target = new TargetReport();
 	int verticalTargets[] = new int[MAX_PARTICLES];
 	int horizontalTargets[] = new int[MAX_PARTICLES];
@@ -214,7 +221,7 @@ public class ImageProcessing extends Subsystem
                     else
                     {
                         hotTargetFound = false;
-                        System.out.println("No hot target presnet");
+                        System.out.println("No hot target present");
                     }
                 }
                 if(verticalTargetCount > 0)
@@ -232,7 +239,7 @@ public class ImageProcessing extends Subsystem
                     else
                     {
                         hotTargetFound = false;
-                        System.out.println("No hot target presnet");
+                        System.out.println("No hot target present");
                     }
                     
                 }
@@ -259,8 +266,8 @@ public class ImageProcessing extends Subsystem
         } catch (AxisCameraException e){
             e.printStackTrace();
         }
-        dsLCD.println(DriverStationLCD.Line.kUser5, 1,"cycle completed" );
-        dsLCD.updateLCD();
+        //dsLCD.println(DriverStationLCD.Line.kUser5, 1,"cycle completed" );
+        //dsLCD.updateLCD();
         //Timer.delay(0.2);
     }
     
@@ -362,29 +369,25 @@ public class ImageProcessing extends Subsystem
         }
     }
     
-    public boolean getHotIsLeft()
-    {
+    public boolean getHotIsLeft(){
         return hotIsLeft;
     }
     
-    public boolean hotTargetFound()
-    {
+    public boolean hotTargetFound(){
         return hotTargetFound;
     }
     
-    protected void initDefaultCommand()
-    {
-        //setDefaultCommand(new TargetCommand());
+    protected void initDefaultCommand(){
     }
     
-        public void updateStatus()
+    public void updateStatus()
     {
         if(hotTargetFound()){
-            SmartDashboard.putString("Goal is ", "hot");
+            SmartDashboard.putString("Goal", "hot");
         }
         else
         {
-            SmartDashboard.putString("Goal is ", "cold");
+            SmartDashboard.putString("Goal", "cold");
         }
     }
 }

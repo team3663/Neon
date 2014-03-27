@@ -27,8 +27,8 @@ public class RobotMap
     public static SpeedController driveTrainBackLeftSpeedController;
     public static SpeedController driveTrainFrontRightSpeedController;
     public static SpeedController driveTrainBackRightSpeedController;
-    public static SpeedController LoadingArmSpeedController;
-    public static SpeedController shooterWinchSpeedController;
+    public static SpeedController armSpeedController;
+    public static SpeedController winchSpeedController;
     
     public static Encoder winchEncoder;
     public static Encoder driveTrainLeftEncoder;
@@ -38,10 +38,10 @@ public class RobotMap
     public static Solenoid gearShiftHighLowSolenoid2;
     public static Solenoid tractionWheelUpDownSolenoid1;
     public static Solenoid tractionWheelUpDownSolenoid2;
-    public static Solenoid loadingArmUpDownSolenoid1;
-    public static Solenoid loadingArmUpDownSolenoid2;
-    public static Solenoid shooterLatchSolenoid1;
-    public static Solenoid shooterLatchSolenoid2;
+    public static Solenoid armUpDownSolenoid1;
+    public static Solenoid armUpDownSolenoid2;
+    public static Solenoid latchSolenoid1;
+    public static Solenoid latchSolenoid2;
     public static Solenoid hammerRetractExtendSolenoid1;
     public static Solenoid hammerRetractExtendSolenoid2;
     public static Solenoid footUpDownSolenoid1;
@@ -98,8 +98,8 @@ public class RobotMap
 
         //Components relating to current game(2014) Shooter items Start----------------------------------------
 
-        loadingArmUpDownSolenoid1 = new Solenoid(PortMap.SecondaryModulePort, PortMap.loadingArmUpDownSolenoid1Port);
-        loadingArmUpDownSolenoid2 = new Solenoid(PortMap.SecondaryModulePort, PortMap.loadingArmUpDownSolenoid2Port);
+        armUpDownSolenoid1 = new Solenoid(PortMap.SecondaryModulePort, PortMap.armUpDownSolenoid1Port);
+        armUpDownSolenoid2 = new Solenoid(PortMap.SecondaryModulePort, PortMap.armUpDownSolenoid2Port);
 
         hammerRetractExtendSolenoid1 = new Solenoid(PortMap.MainModulePort, PortMap.hammerRetractExtendSolenoid1Port);
         hammerRetractExtendSolenoid2 = new Solenoid(PortMap.MainModulePort, PortMap.hammerRetractExtendSolenoid2Port);
@@ -107,19 +107,19 @@ public class RobotMap
         footUpDownSolenoid1 = new Solenoid(PortMap.SecondaryModulePort, PortMap.footUpDownSolenoid1Port);
         footUpDownSolenoid2 = new Solenoid(PortMap.SecondaryModulePort, PortMap.footUpDownSolenoid2Port);
 
-        shooterLatchSolenoid1 = new Solenoid(PortMap.MainModulePort, PortMap.shooterLatchSolenoid1Port);
-        shooterLatchSolenoid2 = new Solenoid(PortMap.MainModulePort, PortMap.shooterLatchSolenoid2Port);
+        latchSolenoid1 = new Solenoid(PortMap.MainModulePort, PortMap.latchSolenoid1Port);
+        latchSolenoid2 = new Solenoid(PortMap.MainModulePort, PortMap.latchSolenoid2Port);
 
-        shooterWinchSpeedController = new Victor(PortMap.MainModulePort, PortMap.shooterWinchSpeedControllerPort);
+        winchSpeedController = new Victor(PortMap.MainModulePort, PortMap.winchSpeedControllerPort);
         
-        winchEncoder = new Encoder(PortMap.MainModulePort, PortMap.shooterEncoderPort1, 
-                                     PortMap.MainModulePort, PortMap.shooterEncoderPort2);
+        winchEncoder = new Encoder(PortMap.MainModulePort, PortMap.winchEncoderPort1, 
+                                     PortMap.MainModulePort, PortMap.winchEncoderPort2);
         
         winchEncoder.setDistancePerPulse(1.0);
         winchEncoder.setPIDSourceParameter(Encoder.PIDSourceParameter.kRate);
         winchEncoder.start();
         
-        LoadingArmSpeedController = new Victor(PortMap.MainModulePort, PortMap.LoadingArmSpeedControllerPort); 
+        armSpeedController = new Victor(PortMap.MainModulePort, PortMap.ArmSpeedControllerPort); 
         shooterLimitSwitchDIO = new DigitalInput(PortMap.MainModulePort, PortMap.shooterLimitSwitchDIOPort);
         
         compressorOnOffRelay = new Relay(PortMap.MainModulePort, PortMap.compressorOnOffRelayPort);
@@ -131,12 +131,12 @@ public class RobotMap
         LiveWindow.addActuator("VICTORS", "SpeedControllerBackLeft", (Victor)driveTrainBackLeftSpeedController);
         LiveWindow.addActuator("VICTORS", "SpeeedControllerFrontRight",(Victor)driveTrainFrontRightSpeedController);
         LiveWindow.addActuator("VICTORS", "SpeeedControllerBackRight",(Victor)driveTrainBackRightSpeedController);
-        LiveWindow.addActuator("VICTORS", "Pick up wheels", (Victor)LoadingArmSpeedController);
-        LiveWindow.addActuator("VICTORS", "Winch Motor", (Victor)shooterWinchSpeedController);
+        LiveWindow.addActuator("VICTORS", "Pick up wheels", (Victor)armSpeedController);
+        LiveWindow.addActuator("VICTORS", "Winch Motor", (Victor)winchSpeedController);
         
         LiveWindow.addSensor("ENCODERS", "LeftEncoder", driveTrainLeftEncoder);
         LiveWindow.addSensor("ENCODERS", "RightEncoder", driveTrainRightEncoder);
-        LiveWindow.addSensor("ENCODERS", "Shooter Encoder", winchEncoder);
+        LiveWindow.addSensor("ENCODERS", "Winch Encoder", winchEncoder);
         
         LiveWindow.addActuator("PNEUMATICS", "CompressorOnOffRelay", compressorOnOffRelay);
         LiveWindow.addSensor("PNEUMATICS", "CompressorLimitSwitch", compressorLimitSwitchDIO);
@@ -147,16 +147,14 @@ public class RobotMap
         LiveWindow.addActuator("SOLENOIDS", "Hammer2", hammerRetractExtendSolenoid2);
         LiveWindow.addActuator("SOLENOIDS", "Foot1", footUpDownSolenoid1);
         LiveWindow.addActuator("SOLENOIDS", "Foot2", footUpDownSolenoid2);
-        LiveWindow.addActuator("SOLENOIDS", "Latch1", shooterLatchSolenoid1);
-        LiveWindow.addActuator("SOLENOIDS", "Latch2", shooterLatchSolenoid2);
+        LiveWindow.addActuator("SOLENOIDS", "Latch1", latchSolenoid1);
+        LiveWindow.addActuator("SOLENOIDS", "Latch2", latchSolenoid2);
         LiveWindow.addActuator("SOLENOIDS", "Mecanum/Arcade1", tractionWheelUpDownSolenoid1);
         LiveWindow.addActuator("SOLENOIDS", "Mecanum/Arcade2", tractionWheelUpDownSolenoid2);
-        LiveWindow.addActuator("SOLENOIDS", "Pick Up1", loadingArmUpDownSolenoid1);
-        LiveWindow.addActuator("SOLENOIDS", "Pick Up2", loadingArmUpDownSolenoid2);
+        LiveWindow.addActuator("SOLENOIDS", "Pick Up1", armUpDownSolenoid1);
+        LiveWindow.addActuator("SOLENOIDS", "Pick Up2", armUpDownSolenoid2);
         
         LiveWindow.addSensor("LIMIT SWITCHES", "ShooterLimitSwitch", shooterLimitSwitchDIO);
-        LiveWindow.addSensor("LIMIT SWITCHES", "LimitSwitch", shooterLimitSwitchDIO);
-        LiveWindow.addSensor("RangeFinder", "FrontUltrasonic", frontUltrasonicAnalog);
 */
         System.out.println("RobotMap.init end");
     }

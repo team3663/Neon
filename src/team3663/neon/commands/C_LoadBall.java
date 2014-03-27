@@ -5,14 +5,14 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class C_LoadBall extends CommandBase {
     
     public C_LoadBall() {
-        requires(loadingArmSS);
+        requires(armSS);
     }
 
     protected void initialize() {
         footSS.footDown();
-        loadingArmSS.loadingArmDown();
-        loadingArmSS.loadingArmMotorIntake();
-        SmartDashboard.putString("LoadBallC", "initialize");        
+        armSS.armDown();
+        armSS.armMotorIntake();
+        SmartDashboard.putString("C_LoadBall", "initialize");        
     }
 
     protected void execute() {
@@ -24,13 +24,13 @@ public class C_LoadBall extends CommandBase {
 
     protected void end() {
         footSS.footUp();
-        loadingArmSS.loadingArmUp();
-        loadingArmSS.loadingArmMotorStop();
-        SmartDashboard.putString("LoadBallC", "end");        
+        armSS.armUp();
+        armSS.armMotorStop();
+        SmartDashboard.putString("C_LoadBall", "end");        
     }
 
     protected void interrupted() {
-        SmartDashboard.putString("LoadBallC", "interrupted");        
+        SmartDashboard.putString("C_LoadBall", "interrupted");        
         end();
     }
 }

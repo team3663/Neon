@@ -27,8 +27,7 @@ public class C_WindWinch extends CommandBase {
     protected void initialize() {
         encoder = winchAndLatchSS.getWinchEncoder();
         counter = 0;
-        SmartDashboard.putString("WindWinchC", "initialize "+targetTicks);
-        System.out.println("WindWinch.initialize" + targetTicks);
+        SmartDashboard.putString("C_WindWinch", "initialize "+targetTicks);
         tightening = winchAndLatchSS.getWinchEncoder() > targetTicks;
         
         if (tightening){
@@ -76,13 +75,13 @@ public class C_WindWinch extends CommandBase {
     }
 
     protected void end() {
-        SmartDashboard.putString("WindWinchC", "end");
+        SmartDashboard.putString("C_WindWinch", "end");
         CommandBase.dsLCD.println(DriverStationLCD.Line.kUser4, 1, "~~~~READY TO FIRE~~~~");
         winchAndLatchSS.setWinchSpeed(0);
     }
 
     protected void interrupted() {
-        SmartDashboard.putString("WindWinchC", "interrupted");
+        SmartDashboard.putString("C_WindWinch", "interrupted");
         end();
     }
 }

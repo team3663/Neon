@@ -1,17 +1,18 @@
 package team3663.neon.commands;
 
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class P_LoadingArmDown extends CommandBase {
+public class P_ArmDown extends CommandBase {
     
     double endTime;
 
-    public P_LoadingArmDown() {
+    public P_ArmDown() {
     }
 
     protected void initialize() {
-        System.out.println("LoadingArmDownC.initalize");
-        loadingArmSS.loadingArmDown();
+        SmartDashboard.putString("P_ArmDown", "initialize");        
+        armSS.armDown();
         endTime = Timer.getFPGATimestamp() + .5;
     }
 
@@ -27,10 +28,10 @@ public class P_LoadingArmDown extends CommandBase {
     }
 
     protected void end() {
-        System.out.println("LoadingArmDownC.end");
+        SmartDashboard.putString("P_ArmDown", "end");
     }
 
     protected void interrupted() {
-        System.out.println("LoadingArmDownC.interrupted");
+        SmartDashboard.putString("P_ArmDown", "interrupted");
     }
 }

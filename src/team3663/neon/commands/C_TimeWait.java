@@ -14,7 +14,7 @@ public class C_TimeWait extends CommandBase {
 
     protected void initialize() {
         endTime = Timer.getFPGATimestamp() + seconds;
-        SmartDashboard.putString("TimeWaitC", "initialize " + seconds);        
+        SmartDashboard.putString("C_TimeWait", "initialize " + seconds);        
     }
 
     protected void execute() {
@@ -29,10 +29,10 @@ public class C_TimeWait extends CommandBase {
     }
 
     protected void end() {
-        SmartDashboard.putString("TimeWaitC", "end");        
+        SmartDashboard.putString("C_TimeWait", "end");        
     }
 
     protected void interrupted() {
-        SmartDashboard.putString("TimeWaitC", "interrupted");        
+        SmartDashboard.putString("C_TimeWait", "interrupted");        
     }
 }

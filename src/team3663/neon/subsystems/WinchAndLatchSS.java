@@ -26,23 +26,23 @@ public class WinchAndLatchSS extends Subsystem
     
     public void latchClose()
     {
-        RobotMap.shooterLatchSolenoid1.set(false);
-        RobotMap.shooterLatchSolenoid2.set(true);
+        RobotMap.latchSolenoid1.set(false);
+        RobotMap.latchSolenoid2.set(true);
     }
     public void latchOpen()
     {
-        RobotMap.shooterLatchSolenoid1.set(true);
-        RobotMap.shooterLatchSolenoid2.set(false);
+        RobotMap.latchSolenoid1.set(true);
+        RobotMap.latchSolenoid2.set(false);
     }
     
     public boolean latchIsOpen()
     {
-        return RobotMap.shooterLatchSolenoid1.get();
+        return RobotMap.latchSolenoid1.get();
     }
     
     public void setWinchSpeed(double speed)
     {
-        RobotMap.shooterWinchSpeedController.set(speed);
+        RobotMap.winchSpeedController.set(speed);
     }
     
     public void winchEncoderReset()
@@ -59,12 +59,12 @@ public class WinchAndLatchSS extends Subsystem
     public void updateStatus()
     {
         if (latchIsOpen())
-            SmartDashboard.putString("Latch ","open");
+            SmartDashboard.putString("Latch","open");
         else
-            SmartDashboard.putString("Latch ","closed");
+            SmartDashboard.putString("Latch","closed");
         
-        SmartDashboard.putNumber("WinchEncoder:", getWinchEncoder());
-        SmartDashboard.putNumber("WinchMotor:", RobotMap.shooterWinchSpeedController.get());
+        SmartDashboard.putNumber("WinchEncoder", getWinchEncoder());
+        SmartDashboard.putNumber("WinchMotor", RobotMap.winchSpeedController.get());
         CommandBase.dsLCD.println(DriverStationLCD.Line.kUser6,1, "Winch: " + (int)getWinchEncoder());
     }
 }

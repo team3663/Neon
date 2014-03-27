@@ -1,6 +1,7 @@
 package team3663.neon.commands;
 
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class P_HammerRetract extends CommandBase
 {
@@ -11,6 +12,7 @@ public class P_HammerRetract extends CommandBase
     }
     
     protected void initialize(){
+        SmartDashboard.putString("P_HammerRetract", "initialize");        
         endTime = Timer.getFPGATimestamp() + .5;
     }
     
@@ -28,11 +30,11 @@ public class P_HammerRetract extends CommandBase
         return false;
     }
     
-    protected void end()
-    {
+    protected void end(){
+        SmartDashboard.putString("P_HammerRetract", "end");
     }
     
-    protected void interrupted()
-    {
+    protected void interrupted(){
+        SmartDashboard.putString("P_HammerRetract", "interrupted");
     }
 }

@@ -3,17 +3,17 @@ package team3663.neon;
 public class PortMap 
 {
     //All ports on the Sidecar PWM
-    public static int driveTrainBackLeftSpeedControllerPort   = 1;//2
-    public static int driveTrainBackRightSpeedControllerPort  = 2;//3
-    public static int driveTrainFrontRightSpeedControllerPort = 3;//1
-    public static int driveTrainFrontLeftSpeedControllerPort  = 4;//4
-    public static int LoadingArmSpeedControllerPort           = 5;
-    public static int shooterWinchSpeedControllerPort         = 6;
+    public static int driveTrainBackLeftSpeedControllerPort   = 1;
+    public static int driveTrainBackRightSpeedControllerPort  = 2;
+    public static int driveTrainFrontRightSpeedControllerPort = 3;
+    public static int driveTrainFrontLeftSpeedControllerPort  = 4;
+    public static int ArmSpeedControllerPort                  = 5;
+    public static int winchSpeedControllerPort                = 6;
 
     //All Ports on the Sidecar's Digital IO (1 - 14)
     public static int compressorLimitSwitchDIOPort            = 1;
-    public static int shooterEncoderPort1                     = 2;
-    public static int shooterEncoderPort2                     = 3;
+    public static int winchEncoderPort1                       = 2;
+    public static int winchEncoderPort2                       = 3;
     public static int driveTrainLeftEncoder1Port              = 4;
     public static int driveTrainLeftEncoder2Port              = 5;
     public static int driveTrainRightEncoder1Port             = 6;
@@ -28,12 +28,12 @@ public class PortMap
     public static int gearShiftHighLowSolenoid2Port           = 4;
     public static int tractionWheelUpDownSolenoid2Port        = 5;
     public static int tractionWheelUpDownSolenoid1Port        = 6;
-    public static int shooterLatchSolenoid2Port               = 7;
-    public static int shooterLatchSolenoid1Port               = 8;
+    public static int latchSolenoid2Port                      = 7;
+    public static int latchSolenoid1Port                      = 8;
 
     // 2nd puck
-    public static int loadingArmUpDownSolenoid2Port           = 1;
-    public static int loadingArmUpDownSolenoid1Port           = 2;
+    public static int armUpDownSolenoid2Port                  = 1;
+    public static int armUpDownSolenoid1Port                  = 2;
     public static int footUpDownSolenoid2Port                 = 3;
     public static int footUpDownSolenoid1Port                 = 4;   
     

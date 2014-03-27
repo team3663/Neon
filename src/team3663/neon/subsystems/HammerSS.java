@@ -29,8 +29,8 @@ public class HammerSS extends Subsystem {
     
     public void updateStatus(){
         if (hammerIsRetracted())
-            SmartDashboard.putString("Hammer ","retracted");
+            SmartDashboard.putString("Hammer","retracted");
         else
-            SmartDashboard.putString("Hammer ","extended");
+            SmartDashboard.putString("Hammer","extended");
     }
 }

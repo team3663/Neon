@@ -1,6 +1,7 @@
 package team3663.neon.commands;
 
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class P_HammerExtend extends CommandBase {
     
@@ -10,6 +11,7 @@ public class P_HammerExtend extends CommandBase {
     }
 
     protected void initialize() {
+        SmartDashboard.putString("P_HammerExtend", "initialize");        
         endTime = Timer.getFPGATimestamp() + .5;
     }
 
@@ -26,8 +28,10 @@ public class P_HammerExtend extends CommandBase {
     }
 
     protected void end() {
+        SmartDashboard.putString("P_HammerExtend", "end");
     }
 
     protected void interrupted() {
+        SmartDashboard.putString("P_HammerExtend", "interrupted");
     }
 }

@@ -9,7 +9,7 @@ public class P_WinchLoosen extends CommandBase {
     }
 
     protected void initialize() {
-        SmartDashboard.putString("WinchLoosenC", "initialize");        
+        SmartDashboard.putString("P_WinchLoosen", "initialize");        
     }
 
     protected void execute() {
@@ -22,11 +22,11 @@ public class P_WinchLoosen extends CommandBase {
 
     protected void end() {
         winchAndLatchSS.setWinchSpeed(0);
-        SmartDashboard.putString("WinchLoosenC", "end");        
+        SmartDashboard.putString("P_WinchLoosen", "end");        
     }
 
     protected void interrupted() {
-        SmartDashboard.putString("WinchLoosenC", "interrupted");        
+        SmartDashboard.putString("P_WinchLoosen", "interrupted");        
         end();
     }
 }

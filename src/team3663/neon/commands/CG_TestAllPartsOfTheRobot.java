@@ -70,18 +70,18 @@ public class CG_TestAllPartsOfTheRobot extends CommandGroup {
         
         addSequential(new P_FootUp());
         
-        //loading arm
-        addSequential(new P_LoadingArmUp());
+        //arm
+        addSequential(new P_ArmUp());
         addSequential(new C_TimeWait(interCommandDelay));
         
-        addSequential(new P_LoadingArmDown());
+        addSequential(new P_ArmDown());
         addSequential(new C_TimeWait(interCommandDelay));
         
-        addSequential(new C_SpinLoadingArmMotor(true, 2.0));
+        addSequential(new P_SpinArmMotor(true, 2.0));
         addSequential(new C_TimeWait(interCommandDelay));
-        addSequential(new C_SpinLoadingArmMotor(false, 2.0));
+        addSequential(new P_SpinArmMotor(false, 2.0));
         
-        addSequential(new P_LoadingArmUp());
+        addSequential(new P_ArmUp());
         addSequential(new C_TimeWait(interCommandDelay));
 
         addSequential(new C_DriveMotorTest(1, 2, .5));

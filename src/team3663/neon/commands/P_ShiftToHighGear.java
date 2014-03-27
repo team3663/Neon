@@ -1,6 +1,7 @@
 package team3663.neon.commands;
 
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class P_ShiftToHighGear extends CommandBase 
 {
@@ -12,6 +13,7 @@ public class P_ShiftToHighGear extends CommandBase
     
     protected void initialize()
     {
+        SmartDashboard.putString("P_ShiftToHighGear", "initialize");        
         endTime = Timer.getFPGATimestamp() + .25;
         driveTrainSS.ShiftToHighGear();
     }
@@ -29,8 +31,10 @@ public class P_ShiftToHighGear extends CommandBase
     }
     
     public void end(){
+        SmartDashboard.putString("P_ShiftToHighGear", "end");
     }
     
     public void interrupted(){
+        SmartDashboard.putString("P_ShiftToHighGear", "interrupted");
     }
 }

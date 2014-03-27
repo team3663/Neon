@@ -1,29 +1,34 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package team3663.neon.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import team3663.neon.commands.autonomous.CheckIsHotCommand;
-import team3663.neon.commands.autonomous.TargetCommand;
 
-public class CG_Autonomousfinal extends CommandGroup
-{
-    public CG_Autonomousfinal()
-    {
-        addSequential(new C_RecordToSmartDashboard("CG_Autonomousfinal", "start"));
-        addSequential(new TargetCommand());
-        addSequential(new CheckIsHotCommand());
+/**
+ *
+ * @author curtis
+ */
+public class CG_AutonomousMoveAndShoot extends CommandGroup {
+    
+    public CG_AutonomousMoveAndShoot() {
+        addSequential(new C_RecordToSmartDashboard("CG_AutonomousMoveAndShoot", "start"));
         addSequential(new P_TractionWheelsDown());
         addSequential(new P_FootUp());
         addSequential(new P_ShiftToHighGear());
         addSequential(new C_TimeWait(.5));
         addSequential(new C_DriveForwardTime(1, -.8));
         addSequential(new C_WindWinch(0));     
-        addSequential(new P_LoadingArmDown());   
+        addSequential(new P_ArmDown());   
         addSequential(new P_LatchOpen());
         addSequential(new P_FootDown());
-        addParallel(new P_LoadingArmUp());
+        addParallel(new P_ArmUp());
         addSequential(new P_TractionWheelsUp());
         addSequential(new C_LoosenWinchAndLatch());
         addSequential(new C_WindWinch(0));
-        addSequential(new C_RecordToSmartDashboard("CG_Autonomousfinal", "end"));
+        addSequential(new C_RecordToSmartDashboard("CG_AutonomousMoveAndShoot", "end"));
+       
     }
 }

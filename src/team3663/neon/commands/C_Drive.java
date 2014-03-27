@@ -10,7 +10,7 @@ public class C_Drive extends CommandBase
     }
 
     protected void initialize(){
-        SmartDashboard.putString("C_Drive", "Initialized");
+        SmartDashboard.putString("C_Drive", "Initialize");
     }
 
     protected void execute() 

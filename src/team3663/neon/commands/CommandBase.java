@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import team3663.neon.OI;
 import team3663.neon.subsystems.CatapultLimitSwitchSS;
-import team3663.neon.subsystems.LoadingArmSS;
+import team3663.neon.subsystems.ArmSS;
 import team3663.neon.subsystems.CompressorSS;
 import team3663.neon.subsystems.DriveTrainSS;
 import team3663.neon.subsystems.FootSS;
@@ -22,7 +22,7 @@ public abstract class CommandBase extends Command
     public static FootSS footSS;
     public static WinchAndLatchSS winchAndLatchSS;
     public static HammerSS hammerSS;
-    public static LoadingArmSS loadingArmSS;
+    public static ArmSS armSS;
     public static CatapultLimitSwitchSS catapultLimitSwitchSS;
     public static ImageProcessing imageProcess;
     
@@ -41,12 +41,12 @@ public abstract class CommandBase extends Command
         driveTrainSS.Init();
         footSS = new FootSS();
         hammerSS = new HammerSS();
-        loadingArmSS = new LoadingArmSS();      
+        armSS = new ArmSS();      
         winchAndLatchSS = new WinchAndLatchSS();
         catapultLimitSwitchSS = new CatapultLimitSwitchSS();
 
         imageProcess = new ImageProcessing();
-        imageProcess.Init();
+        // imageProcess.Init(); called from processCameraImage so camera detection only happens as needed
 
         dsLCD = DriverStationLCD.getInstance();
         

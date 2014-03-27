@@ -29,8 +29,8 @@ public class FootSS extends Subsystem {
     
     public void updateStatus(){
         if(footIsUp())
-            SmartDashboard.putString("Foot ","up");
+            SmartDashboard.putString("Foot","up");
         else
-            SmartDashboard.putString("Foot ","down");
+            SmartDashboard.putString("Foot","down");
     }
 }

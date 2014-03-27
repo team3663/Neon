@@ -18,7 +18,7 @@ public class CG_FireWithArmUp extends CommandGroup {
         addSequential(new C_WindWinch(shotStrength));    
         addSequential(new P_LatchOpen());
         addSequential(new P_FootDown());
-        addParallel(new P_LoadingArmUp());
+        addParallel(new P_ArmUp());
         addSequential(new C_LoosenWinchAndLatch());      
         addSequential(new C_WindWinch(0));
         addSequential(new C_RecordToSmartDashboard("CG_FireWithArmUp", "end"));

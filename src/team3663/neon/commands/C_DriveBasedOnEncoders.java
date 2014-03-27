@@ -21,7 +21,7 @@ public class C_DriveBasedOnEncoders extends CommandBase {
 
     protected void initialize() {
         
-        SmartDashboard.putString("C_DriveBasedOnEncoders", "Initialized");
+        SmartDashboard.putString("C_DriveBasedOnEncoders", "Initialize");
         double rightAdjust, leftAdjust;
         
         driveTrainSS.ResetDriveEncoders();

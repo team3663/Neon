@@ -8,7 +8,7 @@ public class C_WaitForCompressor extends CommandBase {
     }
 
     protected void initialize() {
-        SmartDashboard.putString("WaitForCompressorC", "initialize");        
+        SmartDashboard.putString("C_WaitForCompressor", "initialize");        
     }
 
     protected void execute() {
@@ -23,10 +23,10 @@ public class C_WaitForCompressor extends CommandBase {
     }
 
     protected void end() {
-        SmartDashboard.putString("WaitForCompressorC", "end");        
+        SmartDashboard.putString("C_WaitForCompressor", "end");        
     }
 
     protected void interrupted() {
-        SmartDashboard.putString("WaitForCompressorC", "interrupted");        
+        SmartDashboard.putString("C_WaitForCompressor", "interrupted");        
     }
 }

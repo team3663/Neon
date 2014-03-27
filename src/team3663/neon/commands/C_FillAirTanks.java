@@ -1,5 +1,7 @@
 package team3663.neon.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 public class C_FillAirTanks extends CommandBase
 {
     public C_FillAirTanks()
@@ -8,6 +10,7 @@ public class C_FillAirTanks extends CommandBase
     }
     
     protected void initialize(){
+        SmartDashboard.putString("C_FillAirTanks", "initialize");        
     }
     
     protected void execute()
@@ -28,8 +31,10 @@ public class C_FillAirTanks extends CommandBase
     }
     
     protected void end(){
+        SmartDashboard.putString("C_FillAirTanks", "end");        
     }
     
     protected void interrupted(){
+        SmartDashboard.putString("C_FillAirTanks", "interrupted");        
     }
 }

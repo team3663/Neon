@@ -13,8 +13,7 @@ public class P_LatchOpen extends CommandBase {
     }
 
     protected void initialize() {
-        SmartDashboard.putString("LatchOpenC", "initialize");        
-        System.out.println("LatchOpenC.initialize");
+        SmartDashboard.putString("P_LatchOpen", "initialize");        
         winchAndLatchSS.latchOpen();
         endTime = Timer.getFPGATimestamp()+1;
         CommandBase.dsLCD.println(DriverStationLCD.Line.kUser4, 1, "~~~DO NOT FIRE~~~");
@@ -36,12 +35,10 @@ public class P_LatchOpen extends CommandBase {
     }
 
     protected void end() {
-        SmartDashboard.putString("LatchOpenC", "end");        
-        System.out.println("LatchOpenC.end");
+        SmartDashboard.putString("P_LatchOpen", "end");        
     }
 
     protected void interrupted() {
-        SmartDashboard.putString("LatchOpenC", "interrupted");        
-        System.out.println("LatchOpenC.interrupted");
+        SmartDashboard.putString("P_LatchOpen", "interrupted");        
     }
 }
