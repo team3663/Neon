@@ -12,6 +12,7 @@ import team3663.neon.commands.C_Drive;
 
 public class DriveTrainSS extends Subsystem
 {
+    public double driveValue = 1;
     public double PI;
     public double ENCODER_CORRECT;
     private double encodeLeftChange;
@@ -55,6 +56,8 @@ public class DriveTrainSS extends Subsystem
         joyX = jX;
         joyY = jY;
         joyZ = jZ;
+        jY *= driveValue;
+        //jZ *= .75;
         
         if(jX < IDLETOLERANCE && jX > -IDLETOLERANCE)
             jX = 0;
@@ -197,7 +200,10 @@ public class DriveTrainSS extends Subsystem
         RobotMap.driveTrain.setInvertedMotor(RobotDrive.MotorType.kFrontRight, false);
         RobotMap.driveTrain.setInvertedMotor(RobotDrive.MotorType.kRearRight, false);
     }
-    
+    public void changeDriveY()
+    {
+        driveValue = driveValue * -1;  
+    }
     public void updateStatus()
     {
         CommandBase.dsLCD.println(DriverStationLCD.Line.kUser1,1, ("R:" + (int)GetRightEncoder()) + " L:" + (int)GetLeftEncoder());
@@ -231,4 +237,5 @@ public class DriveTrainSS extends Subsystem
             SmartDashboard.putString("Driving mode", "mecanum");
         }
     }
+    
 }

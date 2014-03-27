@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class P_TractionWheelsUp extends CommandBase {
     double endTime;
     public P_TractionWheelsUp() {
-        requires(driveTrainSS);
+       // requires(driveTrainSS);
     }
 
     protected void initialize() {

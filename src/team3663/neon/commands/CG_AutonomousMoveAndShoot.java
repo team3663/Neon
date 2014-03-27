@@ -19,7 +19,8 @@ public class CG_AutonomousMoveAndShoot extends CommandGroup {
         addSequential(new P_FootUp());
         addSequential(new P_ShiftToHighGear());
         addSequential(new C_TimeWait(.5));
-        addSequential(new C_DriveForwardTime(1, -.8));
+        //addSequential(new C_GetValues(1, -.8, 0));
+        addSequential(new C_DriveForwardTime(1, -.8, 0));
         addSequential(new C_WindWinch(0));     
         addSequential(new P_ArmDown());   
         addSequential(new P_LatchOpen());

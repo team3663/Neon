@@ -37,6 +37,7 @@ import team3663.neon.commands.P_WinchLoosen;
 import team3663.neon.commands.P_WinchTighten;
 import team3663.neon.commands.CG_WindAndLatchToFullPower;
 import team3663.neon.commands.C_WindWinch;
+import team3663.neon.commands.P_ChangeValueForDriver;
 import team3663.neon.commands.P_ResetBothDriveEncoders;
 
 
@@ -120,11 +121,11 @@ public class OI
         loosenWinch = new JoystickButton(buttonJoystick, 9);
         loosenWinch.whenPressed(new P_WinchLoosen());
         
-                
+        SmartDashboard.putData("FlipYDirection",new P_ChangeValueForDriver());
         SmartDashboard.putData("AutonomousComplete", new CG_AutonomousComplete());
         SmartDashboard.putData("AutonomousMoveAndShoot", new CG_AutonomousMoveAndShoot());
         SmartDashboard.putData("AutonomousVisionOnly", new CG_AutonomousVisionOnly());
-        SmartDashboard.putData("bob", new Bob());
+        //SmartDashboard.putData("bob", new Bob());
         SmartDashboard.putData("loadBall", new C_LoadBall());
         SmartDashboard.putData("FootDown", new P_FootDown());
         SmartDashboard.putData("FootUp", new P_FootUp());
@@ -143,14 +144,14 @@ public class OI
         SmartDashboard.putData("WindWinch_0", new C_WindWinch(0));
         SmartDashboard.putData("SpinArmMotorC_Intake", new P_SpinArmMotor(true,10000));
         SmartDashboard.putData("SpinArmMotorC_Eject", new P_SpinArmMotor(false,10000));
-        SmartDashboard.putData("DriveMotorTestC_LeftBack", new C_DriveMotorTest(1,10000,.5));
-        SmartDashboard.putData("DriveMotorTestC_LeftFront", new C_DriveMotorTest(3,10000,.5));
-        SmartDashboard.putData("DriveMotorTestC_RightFront", new C_DriveMotorTest(4,10000,.5));
-        SmartDashboard.putData("DriveMotorTestC_RightBack", new C_DriveMotorTest(2,10000,.5));
+        SmartDashboard.putData("Drive_LB", new C_DriveMotorTest(1,10000,.5));
+        SmartDashboard.putData("Drive_LF", new C_DriveMotorTest(3,10000,.5));
+        SmartDashboard.putData("Drive_RF", new C_DriveMotorTest(4,10000,.5));
+        SmartDashboard.putData("Drive_RB", new C_DriveMotorTest(2,10000,.5));
         
         SmartDashboard.putData("ResetBothDriveEncoders", new P_ResetBothDriveEncoders());
         SmartDashboard.putData("TestAllThingsOfTheRobot", new CG_TestAllPartsOfTheRobot());
-        SmartDashboard.putData("DriveForwardTime_70", new C_DriveForwardTime(.7, -1));
+        SmartDashboard.putData("DriveForwardTime_70", new C_DriveForwardTime(.7, -1, 0));
         SmartDashboard.putData("ResetWinchEncoder", new P_ResetWinchEncoder());
         SmartDashboard.putData("LoosenWinchAndLatch", new C_LoosenWinchAndLatch());
         SmartDashboard.putData("ShootAndRecockCG", new CG_ShootAndRecock(0));

@@ -21,7 +21,6 @@ public class C_Drive extends CommandBase
         jY = oi.getDriveJoystick().getY();
         jZ = oi.getDriveJoystick().getZ(); // twist
         
-        jZ = jZ*.75;
 
         driveTrainSS.drive3663(jX, jY, jZ);
     }

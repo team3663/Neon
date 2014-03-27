@@ -40,7 +40,7 @@ public class Robot3663 extends IterativeRobot
         
        // autonomousCG = new CG_AutonomousMoveAndShoot();
         driveStation = DriverStation.getInstance();
-        //driveStation.isAutonomous();
+        driveStation.getBatteryVoltage();
         CommandBase.dsLCD.clear();
         updateStatusNextRefresh = Timer.getFPGATimestamp();
         updateStatus();
@@ -109,7 +109,7 @@ public class Robot3663 extends IterativeRobot
                 updateStatusNextRefresh = currentTime + UPDATESTATUSREFRESHINTERVAL;
             
             //SmartDashboard.putNumber("updateStatus:", isAliveCounter++);
-
+            SmartDashboard.putNumber("BatteryVoltage", driveStation.getBatteryVoltage());
             CommandBase.winchAndLatchSS.updateStatus();
             CommandBase.compressorSS.updateStatus();
             CommandBase.driveTrainSS.updateStatus();

@@ -8,7 +8,7 @@ public class P_ShiftToLowGear extends CommandBase
     double endTime;
     public P_ShiftToLowGear()
     {
-        requires(driveTrainSS);
+        //requires(driveTrainSS);
     }
     
     protected void initialize()
