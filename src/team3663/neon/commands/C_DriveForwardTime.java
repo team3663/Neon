@@ -14,7 +14,7 @@ public class C_DriveForwardTime extends CommandBase {
         speed = pSpeed;
         twist = pTwist;
         timeToWait = pTimeWait;
-       // requires(driveTrainSS);
+        requires(driveTrainSS);
     }
 
     protected void initialize() {

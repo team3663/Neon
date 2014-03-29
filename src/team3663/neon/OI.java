@@ -63,6 +63,8 @@ public class OI
     private static JoystickButton fireWithArmUp;
     private static JoystickButton fireFromWall;
     private static JoystickButton fireFromGoal;
+    
+    
     public OI()
     {
         System.out.println("OI constructor start");

@@ -46,7 +46,7 @@ public abstract class CommandBase extends Command
         catapultLimitSwitchSS = new CatapultLimitSwitchSS();
 
         imageProcess = new ImageProcessing();
-        // imageProcess.Init(); called from processCameraImage so camera detection only happens as needed
+        //uuimageProcess.Init(); //called from processCameraImage so camera detection only happens as needed
 
         dsLCD = DriverStationLCD.getInstance();
         

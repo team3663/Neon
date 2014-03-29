@@ -12,7 +12,7 @@ import team3663.neon.commands.C_Drive;
 
 public class DriveTrainSS extends Subsystem
 {
-    public double driveValue = 1;
+    public double driveValue;
     public double PI;
     public double ENCODER_CORRECT;
     private double encodeLeftChange;
@@ -33,6 +33,7 @@ public class DriveTrainSS extends Subsystem
     
     public void Init()
     {
+        driveValue = 1;
         PI = 3.14159;
         ENCODER_CORRECT = PI * 6.25 /** 18.0000 * (5.0000/18.0000) * (1.0000/30.0000) * 6.0000*/;
         leftEncoder = RobotMap.driveTrainLeftEncoder;
@@ -41,6 +42,7 @@ public class DriveTrainSS extends Subsystem
         
     public void initDefaultCommand()
     {
+        //might get commented out
        setDefaultCommand(new C_Drive());
     }
       
@@ -74,10 +76,12 @@ public class DriveTrainSS extends Subsystem
         
         if(TractionIsDown())
         {
+            //System.out.println( "ARCADE" + "jY: " + jY + "jZ: " + jZ);
             Arcade(jY, jZ);
         }
         else
         {
+            //System.out.println( "MECANUM" + "JX: " + jX + "jY: " + jY + "jZ: " + jZ);
             Mecanum(jX, jY, jZ);
         }
     }
@@ -212,6 +216,10 @@ public class DriveTrainSS extends Subsystem
         SmartDashboard.putNumber("Joystick X", joyX);
         SmartDashboard.putNumber("Joystick Y", joyY);
         SmartDashboard.putNumber("Joystick Z", joyZ);
+        SmartDashboard.putNumber("DriveMotorLB", RobotMap.driveTrainBackLeftSpeedController.get());
+        SmartDashboard.putNumber("DriveMotorRB", RobotMap.driveTrainBackRightSpeedController.get());
+        SmartDashboard.putNumber("DriveMotorLF", RobotMap.driveTrainFrontLeftSpeedController.get());
+        SmartDashboard.putNumber("DriveMotorRF", RobotMap.driveTrainFrontRightSpeedController.get());
 
         if (InLowGear())
         {

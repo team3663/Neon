@@ -107,7 +107,7 @@ public class ImageProcessing extends Subsystem
             ColorImage image = camera.getImage();     // comment if using stored images
 
             //ColorImage image;                           // next 2 lines read image from flash on cRIO
-            //image =  new RGBImage("/targetTest.jpg");
+            //ColorImage image =  new RGBImage("/photos/baseimage.bmp");
             //BinaryImage thresholdImage = image.thresholdRGB(0, 150, 200, 255, 200, 255);   // keep only green objects
             BinaryImage thresholdImage = image.thresholdRGB(230, 255, 230, 255, 230, 255);   // keep only white objects
             
@@ -247,9 +247,9 @@ public class ImageProcessing extends Subsystem
             
             System.out.println("Number of Particles:"+filteredImage.getNumberParticles() + " Timestamp: " + Timer.getFPGATimestamp());
             //convexHullImage.write("/photos/hullImage.bmp");
-            //thresholdImage.write("/photos/thresholdImage.bmp");
-            //filteredImage.write("/photos/filteredImage.bmp");
-            image.write("/photos/baseimage.bmp");
+           // thresholdImage.write("/photos/thresholdImage.bmp");
+            filteredImage.write("/photos/filteredImage.bmp");
+            //image.write("/photos/baseimage.bmp");
             /**
              * all images in Java must be freed after they are used since they are allocated out
              * of C data structures. Not calling free() will cause the memory to accumulate over
