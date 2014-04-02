@@ -1,7 +1,5 @@
 package team3663.neon.commands;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 public class P_WinchTighten extends CommandBase {
     
     public P_WinchTighten() {
@@ -9,7 +7,6 @@ public class P_WinchTighten extends CommandBase {
     }
 
     protected void initialize() {
-        SmartDashboard.putString("P_WinchTighten", "initialize");        
     }
 
     protected void execute() {
@@ -22,11 +19,9 @@ public class P_WinchTighten extends CommandBase {
 
     protected void end() {
         winchAndLatchSS.setWinchSpeed(0);
-        SmartDashboard.putString("P_WinchTighten", "end");
     }
 
     protected void interrupted() {
-        SmartDashboard.putString("P_WinchTighten", "interrupted");
         end();
     }
 }

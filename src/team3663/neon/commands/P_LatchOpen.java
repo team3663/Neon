@@ -2,7 +2,7 @@ package team3663.neon.commands;
 
 import edu.wpi.first.wpilibj.DriverStationLCD;
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import team3663.neon.Robot3663;
 
 public class P_LatchOpen extends CommandBase {
     
@@ -13,7 +13,7 @@ public class P_LatchOpen extends CommandBase {
     }
 
     protected void initialize() {
-        SmartDashboard.putString("P_LatchOpen", "initialize");        
+        Robot3663.updateCommandStatus("P_LatchOpen", "initialize");        
         winchAndLatchSS.latchOpen();
         endTime = Timer.getFPGATimestamp()+1;
         CommandBase.dsLCD.println(DriverStationLCD.Line.kUser4, 1, "~~~DO NOT FIRE~~~");
@@ -35,10 +35,10 @@ public class P_LatchOpen extends CommandBase {
     }
 
     protected void end() {
-        SmartDashboard.putString("P_LatchOpen", "end");        
+        Robot3663.updateCommandStatus("P_LatchOpen", "end");        
     }
 
     protected void interrupted() {
-        SmartDashboard.putString("P_LatchOpen", "interrupted");        
+        Robot3663.updateCommandStatus("P_LatchOpen", "interrupted");        
     }
 }

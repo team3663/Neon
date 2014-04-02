@@ -3,6 +3,7 @@ package team3663.neon.commands;
 import edu.wpi.first.wpilibj.DriverStationLCD;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import team3663.neon.Robot3663;
 
 public class C_LoosenWinchAndLatch extends CommandBase {
     double currentTicks;
@@ -15,7 +16,7 @@ public class C_LoosenWinchAndLatch extends CommandBase {
     }
 
     protected void initialize() {
-        SmartDashboard.putString("C_LoosenWinchAndLatch", "initialize");      
+        Robot3663.updateCommandStatus("C_LoosenWinchAndLatch", "initialize");      
         startTime = 0;
         speed = 0;
         if(!catapultLimitSwitchSS.catapultIsDown())
@@ -61,12 +62,12 @@ public class C_LoosenWinchAndLatch extends CommandBase {
     }
 
     protected void end() {
-        SmartDashboard.putString("C_LoosenWinchAndLatch", "end");        
+        Robot3663.updateCommandStatus("C_LoosenWinchAndLatch", "end");        
         winchAndLatchSS.setWinchSpeed(0);
     }
 
     protected void interrupted() {
-        SmartDashboard.putString("C_LoosenWinchAndLatch", "interrupted");        
+        Robot3663.updateCommandStatus("C_LoosenWinchAndLatch", "interrupted");        
         end();
     }
 }

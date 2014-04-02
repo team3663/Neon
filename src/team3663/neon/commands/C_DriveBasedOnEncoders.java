@@ -1,6 +1,6 @@
 package team3663.neon.commands;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import team3663.neon.Robot3663;
 import team3663.neon.RobotMap;
 
 public class C_DriveBasedOnEncoders extends CommandBase {
@@ -21,7 +21,7 @@ public class C_DriveBasedOnEncoders extends CommandBase {
 
     protected void initialize() {
         
-        SmartDashboard.putString("C_DriveBasedOnEncoders", "Initialize");
+        Robot3663.updateCommandStatus("C_DriveBasedOnEncoders", "Initialize");
         double rightAdjust, leftAdjust;
         
         driveTrainSS.ResetDriveEncoders();
@@ -138,7 +138,7 @@ public class C_DriveBasedOnEncoders extends CommandBase {
     }
 
     protected void end() {
-        SmartDashboard.putString("C_DriveBasedOnEncoders", "End");
+        Robot3663.updateCommandStatus("C_DriveBasedOnEncoders", "End");
         RobotMap.driveTrainBackLeftSpeedController.set(0);
         RobotMap.driveTrainFrontLeftSpeedController.set(0);
         RobotMap.driveTrainBackRightSpeedController.set(0);
@@ -146,7 +146,7 @@ public class C_DriveBasedOnEncoders extends CommandBase {
     }
 
     protected void interrupted() {
-        SmartDashboard.putString("C_DriveBasedOnEncoders", "Interrupted");
+        Robot3663.updateCommandStatus("C_DriveBasedOnEncoders", "Interrupted");
         end();
     }
 }

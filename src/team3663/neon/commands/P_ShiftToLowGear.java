@@ -1,7 +1,7 @@
 package team3663.neon.commands;
 
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import team3663.neon.Robot3663;
 
 public class P_ShiftToLowGear extends CommandBase 
 {
@@ -13,7 +13,7 @@ public class P_ShiftToLowGear extends CommandBase
     
     protected void initialize()
     {
-        SmartDashboard.putString("P_ShiftToLowGear", "initialize");        
+        Robot3663.updateCommandStatus("P_ShiftToLowGear", "initialize");        
         endTime = Timer.getFPGATimestamp() + 0.25;
         driveTrainSS.ShiftToLowGear();
     }
@@ -30,10 +30,10 @@ public class P_ShiftToLowGear extends CommandBase
     }
     
     public void end(){
-        SmartDashboard.putString("P_ShiftToLowGear", "end");
+        Robot3663.updateCommandStatus("P_ShiftToLowGear", "end");
     }
     
     public void interrupted(){
-        SmartDashboard.putString("P_ShiftToLowGear", "interrupted");
+        Robot3663.updateCommandStatus("P_ShiftToLowGear", "interrupted");
     }
 }

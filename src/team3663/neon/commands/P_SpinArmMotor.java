@@ -1,7 +1,6 @@
 package team3663.neon.commands;
 
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class P_SpinArmMotor extends CommandBase {
     
@@ -16,7 +15,6 @@ public class P_SpinArmMotor extends CommandBase {
     }
 
     protected void initialize() {
-        SmartDashboard.putString("P_SpinArmMotor", "Initialize");
         endTime = Timer.getFPGATimestamp() + duration;
         if (intake)
             armSS.armMotorIntake();
@@ -36,12 +34,10 @@ public class P_SpinArmMotor extends CommandBase {
     }
 
     protected void end() {
-        SmartDashboard.putString("P_SpinArmMotor", "End");
         armSS.armMotorStop();
     }
 
     protected void interrupted() {
-        SmartDashboard.putString("P_SpinArmMotor", "Interrupted");
         end();
     }
 }

@@ -1,7 +1,6 @@
 package team3663.neon.commands;
 
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class C_CatapultLimitSwitchMonitor extends CommandBase {
     
@@ -14,7 +13,6 @@ public class C_CatapultLimitSwitchMonitor extends CommandBase {
     }
 
     protected void initialize() {
-        SmartDashboard.putString("C_CatapultLimitSwitchMonitor", "Initialize");
         whenCatapultWentDown = 0;
         if (catapultLimitSwitchSS.catapultIsDownRaw())
             catapultIsReallyDown = catapultWasPreviouslyDown = true;
@@ -56,10 +54,8 @@ public class C_CatapultLimitSwitchMonitor extends CommandBase {
     }
 
     protected void end() {
-        SmartDashboard.putString("C_CatapultLimitSwitchMonitor", "End");
     }
 
     protected void interrupted() {
-        SmartDashboard.putString("C_CatapultLimitSwitchMonitor", "Interrupted");
     }
 }

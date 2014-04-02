@@ -1,8 +1,7 @@
 
 package team3663.neon.commands;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
+import team3663.neon.Robot3663;
 
 public class C_RecordToSmartDashboard extends CommandBase {
     String key;
@@ -14,7 +13,7 @@ public class C_RecordToSmartDashboard extends CommandBase {
     }
     
     protected void initialize() {
-        SmartDashboard.putString(key, value);
+        Robot3663.updateCGStatus(key,value);
     }
     
     protected void execute() {

@@ -1,7 +1,7 @@
 package team3663.neon.commands;
 
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import team3663.neon.Robot3663;
 
 public class P_TractionWheelsDown extends CommandBase {
     double endTime;
@@ -10,7 +10,7 @@ public class P_TractionWheelsDown extends CommandBase {
     }
 
     protected void initialize() {
-        SmartDashboard.putString("P_TractionWheelsDown", "initialize");        
+        Robot3663.updateCommandStatus("P_TractionWheelsDown", "initialize");        
         endTime = Timer.getFPGATimestamp() + 0.5;
         driveTrainSS.TractionWheelsDown();
     }
@@ -27,10 +27,10 @@ public class P_TractionWheelsDown extends CommandBase {
     }
 
     protected void end() {
-        SmartDashboard.putString("P_TractionWheelsDown", "end");
+        Robot3663.updateCommandStatus("P_TractionWheelsDown", "end");
     }
 
     protected void interrupted() {
-        SmartDashboard.putString("P_TractionWheelsDown", "interrupted");
+        Robot3663.updateCommandStatus("P_TractionWheelsDown", "interrupted");
     }
 }

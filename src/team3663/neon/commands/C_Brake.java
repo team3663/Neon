@@ -1,19 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package team3663.neon.commands;
 
-/**
- *
- * @author curtis
- */
-public class C_Break extends CommandBase {
+public class C_Brake extends CommandBase {
     double lastRanEncoderValue;
     double distance;
     
-    public C_Break() {
+    public C_Brake() {
     }
     
     protected void initialize() {

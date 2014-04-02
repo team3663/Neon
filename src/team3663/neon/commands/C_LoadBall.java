@@ -1,6 +1,6 @@
 package team3663.neon.commands;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import team3663.neon.Robot3663;
 
 public class C_LoadBall extends CommandBase {
     
@@ -9,10 +9,10 @@ public class C_LoadBall extends CommandBase {
     }
 
     protected void initialize() {
+        Robot3663.updateCommandStatus("C_LoadBall", "initialize");        
         footSS.footDown();
         armSS.armDown();
         armSS.armMotorIntake();
-        SmartDashboard.putString("C_LoadBall", "initialize");        
     }
 
     protected void execute() {
@@ -26,11 +26,11 @@ public class C_LoadBall extends CommandBase {
         footSS.footUp();
         armSS.armUp();
         armSS.armMotorStop();
-        SmartDashboard.putString("C_LoadBall", "end");        
+        Robot3663.updateCommandStatus("C_LoadBall", "end");        
     }
 
     protected void interrupted() {
-        SmartDashboard.putString("C_LoadBall", "interrupted");        
+        Robot3663.updateCommandStatus("C_LoadBall", "interrupted");        
         end();
     }
 }

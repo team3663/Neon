@@ -1,7 +1,7 @@
 package team3663.neon.commands;
 
 import edu.wpi.first.wpilibj.DriverStationLCD;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import team3663.neon.Robot3663;
 
 public class C_WindWinch extends CommandBase {
     
@@ -27,7 +27,7 @@ public class C_WindWinch extends CommandBase {
     protected void initialize() {
         encoder = winchAndLatchSS.getWinchEncoder();
         counter = 0;
-        SmartDashboard.putString("C_WindWinch", "initialize "+targetTicks);
+        Robot3663.updateCommandStatus("C_WindWinch", "initialize "+targetTicks);
         tightening = winchAndLatchSS.getWinchEncoder() > targetTicks;
         
         if (tightening){
@@ -75,13 +75,13 @@ public class C_WindWinch extends CommandBase {
     }
 
     protected void end() {
-        SmartDashboard.putString("C_WindWinch", "end");
+        Robot3663.updateCommandStatus("C_WindWinch", "end");
         CommandBase.dsLCD.println(DriverStationLCD.Line.kUser4, 1, "~~~~READY TO FIRE~~~~");
         winchAndLatchSS.setWinchSpeed(0);
     }
 
     protected void interrupted() {
-        SmartDashboard.putString("C_WindWinch", "interrupted");
+        Robot3663.updateCommandStatus("C_WindWinch", "interrupted");
         end();
     }
 }

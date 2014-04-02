@@ -1,7 +1,7 @@
 package team3663.neon.commands;
 
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import team3663.neon.Robot3663;
 
 public class C_TimeWait extends CommandBase {
     
@@ -14,7 +14,7 @@ public class C_TimeWait extends CommandBase {
 
     protected void initialize() {
         endTime = Timer.getFPGATimestamp() + seconds;
-        SmartDashboard.putString("C_TimeWait", "initialize " + seconds);        
+        Robot3663.updateCommandStatus("C_TimeWait", "initialize " + seconds);        
     }
 
     protected void execute() {
@@ -29,10 +29,10 @@ public class C_TimeWait extends CommandBase {
     }
 
     protected void end() {
-        SmartDashboard.putString("C_TimeWait", "end");        
+        Robot3663.updateCommandStatus("C_TimeWait", "end");        
     }
 
     protected void interrupted() {
-        SmartDashboard.putString("C_TimeWait", "interrupted");        
+        Robot3663.updateCommandStatus("C_TimeWait", "interrupted");        
     }
 }

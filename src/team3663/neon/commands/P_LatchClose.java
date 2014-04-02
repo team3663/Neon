@@ -1,7 +1,7 @@
 package team3663.neon.commands;
 
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import team3663.neon.Robot3663;
 
 public class P_LatchClose extends CommandBase {
     double endTime;
@@ -10,7 +10,7 @@ public class P_LatchClose extends CommandBase {
     }
 
     protected void initialize() {
-        SmartDashboard.putString("P_LatchClose", "initialize");        
+        Robot3663.updateCommandStatus("P_LatchClose", "initialize");        
         endTime = Timer.getFPGATimestamp() + .5;
     }
 
@@ -27,10 +27,10 @@ public class P_LatchClose extends CommandBase {
     }
 
     protected void end() {
-        SmartDashboard.putString("P_LatchClose", "end");
+        Robot3663.updateCommandStatus("P_LatchClose", "end");
     }
 
     protected void interrupted() {
-        SmartDashboard.putString("P_LatchClose", "interrupted");
+        Robot3663.updateCommandStatus("P_LatchClose", "interrupted");
     }
 }

@@ -19,9 +19,11 @@ public class Robot3663 extends IterativeRobot
 {
     int counter=0;
     CommandGroup autonomousCG;
-    CommandGroup lossenAndWindWinch;
+    CommandGroup loosenAndWindWinch;
     //CommandBase c_Drive;
     SendableChooser autoChooser;
+    public static String CG_SmartDash;
+    public static String C_SmartDash;
 
     DriverStation driveStation;
     int isAliveCounter;
@@ -29,7 +31,7 @@ public class Robot3663 extends IterativeRobot
     public static double autoTimeStart;
     
     double updateStatusNextRefresh;
-    final double UPDATESTATUSREFRESHINTERVAL = 0.25;
+    final double UPDATESTATUSREFRESHINTERVAL = 0.2;
 
     
     public void robotInit() 
@@ -37,7 +39,7 @@ public class Robot3663 extends IterativeRobot
         System.out.println("Robot3663.robotInit start");
         RobotMap.init();
         CommandBase.init();
-        lossenAndWindWinch = new CG_WindAndLatchToFullPower();
+        loosenAndWindWinch = new CG_WindAndLatchToFullPower();
         //autoChooser = new SendableChooser();
         //autoChooser.addDefault("AutonomousComplete", new CG_AutonomousComplete());
         //autoChooser.addObject("AutonomousMoveAndShootOnly", new CG_AutonomousMoveAndShoot());
@@ -74,7 +76,7 @@ public class Robot3663 extends IterativeRobot
     {
         autonomousCG.cancel();
         //c_Drive.start();
-        lossenAndWindWinch.start();
+        loosenAndWindWinch.start();
         isTesting = false;
         System.out.println("Robot3663.teleopInit start");
         System.out.println("Robot3663.teleopInit end");
@@ -112,44 +114,9 @@ public class Robot3663 extends IterativeRobot
     }    
     public void clearSmartDashboard()
     {
-        SmartDashboard.putString("CG_AutonomousComplete", "-reset-");
-        SmartDashboard.putString("CG_AutonomousMoveAndShoot", "-reset-");
-        SmartDashboard.putString("CG_AutonomousVisionOnly", "-reset-");
-        SmartDashboard.putString("CG_FireAfterBackUp", "-reset-");
-        SmartDashboard.putString("CG_FireWithArmUp", "-reset-");
-        SmartDashboard.putString("CG_HammerFire", "-reset-");
-        SmartDashboard.putString("CG_HammerFireAfterDriveForward", "-reset-");
-        SmartDashboard.putString("CG_ShootAndRecock", "-reset-");
-        SmartDashboard.putString("CG_TestAllPartsOfTheRobot", "-reset-");
-        SmartDashboard.putString("CG_TractionWheelsDownLowGear", "-reset-");
-        SmartDashboard.putString("CG_TractionWheelsUpHighGear", "-reset-");
-        SmartDashboard.putString("CG_WindAndLatchToFullPower", "-reset-");
-        SmartDashboard.putString("C_CatapultLimitSwitchMonitor", "-reset-");
-        SmartDashboard.putString("C_Drive", "-reset-");
-        SmartDashboard.putString("C_DriveBasedOnEncoders", "-reset-");
-        SmartDashboard.putString("C_DriveForwardTime", "-reset-");        
-        SmartDashboard.putString("C_FillAirTanks", "-reset-");     
-        SmartDashboard.putString("C_LaunchBall", "-reset-");        
-        SmartDashboard.putString("C_LoadBall", "-reset-");        
-        SmartDashboard.putString("C_LoosenWinchAndLatch", "-reset-");      
-        SmartDashboard.putString("C_TimeWait", "-reset- ");        
-        SmartDashboard.putString("C_WaitForCompressor", "-reset-");        
-        SmartDashboard.putString("C_WindWinch", "-reset- ");
-        SmartDashboard.putString("P_ArmDown", "-reset-");        
-        SmartDashboard.putString("P_ArmUp", "-reset-");        
-        SmartDashboard.putString("P_FootDown", "-reset-");        
-        SmartDashboard.putString("P_FootUp", "-reset-");        
-        SmartDashboard.putString("P_HammerExtend", "-reset-");        
-        SmartDashboard.putString("P_HammerRetract", "-reset-");        
-        SmartDashboard.putString("P_LatchClose", "-reset-");        
-        SmartDashboard.putString("P_LatchOpen", "-reset-");        
-        SmartDashboard.putString("P_ShiftToHighGear", "-reset-");        
-        SmartDashboard.putString("P_ShiftToLowGear", "-reset-");        
-        SmartDashboard.putString("P_SpinArmMotor", "-reset-");
-        SmartDashboard.putString("P_TractionWheelsDown", "-reset-");        
-        SmartDashboard.putString("P_TractionWheelsUp", "-reset-");        
-        SmartDashboard.putString("P_WinchLoosen", "-reset-");        
-        SmartDashboard.putString("P_WinchTighten", "-reset-");        
+        CG_SmartDash = "-reset-";
+        C_SmartDash = "-reset-";
+        /*
         SmartDashboard.putString("Arm", "-reset-");
         SmartDashboard.putString("Catapult", "-reset-");
         SmartDashboard.putString("Air tanks", "-reset-");
@@ -161,19 +128,21 @@ public class Robot3663 extends IterativeRobot
         SmartDashboard.putString("Hammer","-reset-");
         SmartDashboard.putString("Goal", "-reset-");
         SmartDashboard.putString("Latch","-reset-");
+        */
     }
     public void updateStatus()
     {
         double currentTime = Timer.getFPGATimestamp();
         if (currentTime >= updateStatusNextRefresh)
         {
-            updateStatusNextRefresh += UPDATESTATUSREFRESHINTERVAL;
-            if (currentTime > updateStatusNextRefresh)
-                updateStatusNextRefresh = currentTime + UPDATESTATUSREFRESHINTERVAL;
+            updateStatusNextRefresh = currentTime + UPDATESTATUSREFRESHINTERVAL;
             
             //SmartDashboard.putNumber("updateStatus:", isAliveCounter++);
+            SmartDashboard.putString("CG_Commands", CG_SmartDash);
+            SmartDashboard.putString("Commands", C_SmartDash);
             SmartDashboard.putNumber("BatteryVoltage", driveStation.getBatteryVoltage());
-            SmartDashboard.putNumber("MatchTime: ", driveStation.getMatchTime());       
+            SmartDashboard.putNumber("MatchTime", driveStation.getMatchTime());
+            
             CommandBase.winchAndLatchSS.updateStatus();
             CommandBase.compressorSS.updateStatus();
             CommandBase.driveTrainSS.updateStatus();
@@ -183,14 +152,7 @@ public class Robot3663 extends IterativeRobot
             CommandBase.winchAndLatchSS.updateStatus();
             CommandBase.armSS.updateStatus();
             CommandBase.imageProcess.updateStatus();
-            //CommandBase.dsLCD.println(DriverStationLCD.Line.kUser4, 1, "Brian14 "+ counter++);
-            CommandBase.dsLCD.updateLCD();
-            CommandBase.dsLCD.println(DriverStationLCD.Line.kUser1, 1, "                     ");
-            CommandBase.dsLCD.println(DriverStationLCD.Line.kUser2, 1, "                     ");
-            CommandBase.dsLCD.println(DriverStationLCD.Line.kUser3, 1, "                     ");
-            //CommandBase.dsLCD.println(DriverStationLCD.Line.kUser4, 1, "                     ");
-            CommandBase.dsLCD.println(DriverStationLCD.Line.kUser5, 1, "                     ");
-            CommandBase.dsLCD.println(DriverStationLCD.Line.kUser6, 1, "                     ");
+
             if(isOperatorControl())
             {
                 SmartDashboard.putString("RobotState", "Teleoperated");
@@ -205,8 +167,29 @@ public class Robot3663 extends IterativeRobot
             }
             else
             {
-                SmartDashboard.putString("RobotState", "Practice");
+                SmartDashboard.putString("RobotState", "Unknown");
             }
+            //CommandBase.dsLCD.println(DriverStationLCD.Line.kUser4, 1, "Brian14 "+ counter++);
+            CommandBase.dsLCD.updateLCD();
+            CommandBase.dsLCD.println(DriverStationLCD.Line.kUser1, 1, "                     ");
+            CommandBase.dsLCD.println(DriverStationLCD.Line.kUser2, 1, "                     ");
+            CommandBase.dsLCD.println(DriverStationLCD.Line.kUser3, 1, "                     ");
+            //CommandBase.dsLCD.println(DriverStationLCD.Line.kUser4, 1, "                     ");
+            CommandBase.dsLCD.println(DriverStationLCD.Line.kUser5, 1, "                     ");
+            CommandBase.dsLCD.println(DriverStationLCD.Line.kUser6, 1, "                     ");
+
         }
+    }
+    
+    public static void updateCommandStatus(String command, String state)
+    {
+        //this is lossy
+        C_SmartDash = command + " " + state;
+    }
+    
+    public static void updateCGStatus(String command, String state)
+    {
+        //this is lossy
+        CG_SmartDash = command + " " + state;
     }
 }

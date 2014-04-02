@@ -1,7 +1,7 @@
 package team3663.neon.commands;
 
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import team3663.neon.Robot3663;
 
 public class P_ArmDown extends CommandBase {
     
@@ -11,7 +11,7 @@ public class P_ArmDown extends CommandBase {
     }
 
     protected void initialize() {
-        SmartDashboard.putString("P_ArmDown", "initialize");        
+        Robot3663.updateCommandStatus("P_ArmDown", "initialize");        
         armSS.armDown();
         endTime = Timer.getFPGATimestamp() + .5;
     }
@@ -28,10 +28,10 @@ public class P_ArmDown extends CommandBase {
     }
 
     protected void end() {
-        SmartDashboard.putString("P_ArmDown", "end");
+        Robot3663.updateCommandStatus("P_ArmDown", "end");
     }
 
     protected void interrupted() {
-        SmartDashboard.putString("P_ArmDown", "interrupted");
+        Robot3663.updateCommandStatus("P_ArmDown", "interrupted");
     }
 }
