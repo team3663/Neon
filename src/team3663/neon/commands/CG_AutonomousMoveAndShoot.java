@@ -15,12 +15,13 @@ public class CG_AutonomousMoveAndShoot extends CommandGroup {
     
     public CG_AutonomousMoveAndShoot() {
         addSequential(new C_RecordToSmartDashboard("CG_AutonomousMoveAndShoot", "start"));
-        addSequential(new P_TractionWheelsDown());
+        addSequential(new P_TractionWheelsDown(true));
         addSequential(new P_FootUp());
         addSequential(new P_ShiftToHighGear());
         addSequential(new C_TimeWait(.5));
         //addSequential(new C_GetValues(1, -.8, 0));
-        addSequential(new C_DriveForwardTime(1 , -.8, 0));
+        addSequential(new C_DriveForwardTime(1 , -.8, 0,0));
+        //addSequential(new C_DriveBasedOnEncoderWithTwist( .8, 62400));
         addSequential(new C_WindWinch(0));     
         addSequential(new P_ArmDown());   
         addSequential(new P_LatchOpen());

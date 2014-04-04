@@ -10,7 +10,7 @@ public class C_DriveForwardTime extends CommandBase {
     double speed;
     double twist;
     
-    public C_DriveForwardTime(double pTimeWait, double pSpeed, double pTwist) {
+    public C_DriveForwardTime(double pTimeWait, double pSpeed, double pTwist, double pXValue) {
         speed = pSpeed;
         twist = pTwist;
         timeToWait = pTimeWait;

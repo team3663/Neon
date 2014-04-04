@@ -5,13 +5,16 @@ import team3663.neon.Robot3663;
 
 public class P_TractionWheelsDown extends CommandBase {
     double endTime;
-    public P_TractionWheelsDown() {
+    boolean doWaitTime;
+    
+    public P_TractionWheelsDown(boolean pDoWaitTime) {
+        doWaitTime = pDoWaitTime;
        // requires(driveTrainSS);
     }
 
     protected void initialize() {
         Robot3663.updateCommandStatus("P_TractionWheelsDown", "initialize");        
-        endTime = Timer.getFPGATimestamp() + 0.5;
+        endTime = Timer.getFPGATimestamp() + 0.1;
         driveTrainSS.TractionWheelsDown();
     }
 
@@ -19,6 +22,10 @@ public class P_TractionWheelsDown extends CommandBase {
     }
 
     protected boolean isFinished() {
+        if(!doWaitTime)
+        {
+            return true;
+        }
         if (Timer.getFPGATimestamp() >= endTime)
         {
             return true;

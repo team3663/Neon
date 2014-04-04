@@ -3,7 +3,6 @@ package team3663.neon;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import team3663.neon.commands.Bob;
 import team3663.neon.commands.CG_AutonomousComplete;
 import team3663.neon.commands.CG_AutonomousMoveAndShoot;
 import team3663.neon.commands.CG_AutonomousVisionOnly;
@@ -36,6 +35,8 @@ import team3663.neon.commands.CG_TractionWheelsUpHighGear;
 import team3663.neon.commands.P_WinchLoosen;
 import team3663.neon.commands.P_WinchTighten;
 import team3663.neon.commands.CG_WindAndLatchToFullPower;
+import team3663.neon.commands.C_DriveBasedOnEncoderWithTwist;
+import team3663.neon.commands.C_GetValues;
 import team3663.neon.commands.C_WindWinch;
 import team3663.neon.commands.P_ChangeValueForDriver;
 import team3663.neon.commands.P_ResetBothDriveEncoders;
@@ -138,7 +139,7 @@ public class OI
         SmartDashboard.putData("ToLowGear", new P_ShiftToLowGear());
         SmartDashboard.putData("ToHighGear", new P_ShiftToHighGear());
         SmartDashboard.putData("TractionWheelsUp", new P_TractionWheelsUp());
-        SmartDashboard.putData("TractionWheelsDown", new P_TractionWheelsDown());
+        SmartDashboard.putData("TractionWheelsDown", new P_TractionWheelsDown(false));
         SmartDashboard.putData("LatchOpen", new P_LatchOpen());
         SmartDashboard.putData("LatchClose", new P_LatchClose());
         SmartDashboard.putData("TightenWinch", new P_WinchTighten());
@@ -153,10 +154,11 @@ public class OI
         
         SmartDashboard.putData("ResetDriveEncoders", new P_ResetBothDriveEncoders());
         SmartDashboard.putData("TestAllOfRobot", new CG_TestAllPartsOfTheRobot());
-        SmartDashboard.putData("DriveForwardTime", new C_DriveForwardTime(.7, -1, 0));
+        SmartDashboard.putData("DriveForwardTime", new C_DriveForwardTime(.7, -1, 0, 0));
         SmartDashboard.putData("ResetWinchEncoder", new P_ResetWinchEncoder());
         SmartDashboard.putData("LoosenWinchAndLatch", new C_LoosenWinchAndLatch());
         SmartDashboard.putData("ShootAndRecock", new CG_ShootAndRecock(0));
+        SmartDashboard.putData("GetValues", new C_GetValues(0, 0, 0, 0));
 
         
         System.out.println("OI constructor end");

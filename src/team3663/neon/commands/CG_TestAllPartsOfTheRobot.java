@@ -35,13 +35,13 @@ public class CG_TestAllPartsOfTheRobot extends CommandGroup {
         addSequential(new C_WindWinch(0));  
         
         //traction wheels
-        addSequential(new P_TractionWheelsDown());
+        addSequential(new P_TractionWheelsDown(false));
         addSequential(new C_TimeWait(interCommandDelay));
         
         addSequential(new P_TractionWheelsUp());
         addSequential(new C_TimeWait(interCommandDelay));
         
-        addSequential(new P_TractionWheelsDown());
+        addSequential(new P_TractionWheelsDown(false));
         
         //gear shifting
         addSequential(new P_ShiftToHighGear());

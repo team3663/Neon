@@ -16,11 +16,14 @@ public class C_GetValues extends CommandBase {
     double param1;
     double param2;
     double param3;
+    double param4;
     Command command;
-    public C_GetValues(double pParam1, double pParam2, double pParam3) {
+    public C_GetValues(double pParam1, double pParam2, double pParam3, double pParam4) {
         SmartDashboard.putNumber("param1", pParam1);
         SmartDashboard.putNumber("param2", pParam2);        
-        SmartDashboard.putNumber("param3", pParam3);
+        SmartDashboard.putNumber("param3", pParam3);     
+        SmartDashboard.putNumber("param4", pParam4);
+        
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -30,8 +33,9 @@ public class C_GetValues extends CommandBase {
         param1 = SmartDashboard.getNumber("param1");
         param2 = SmartDashboard.getNumber("param2");
         param3 = SmartDashboard.getNumber("param3");
-        command = new C_DriveForwardTime(param1, param2, param3);
-    }
+        param4 = SmartDashboard.getNumber("param4");
+        command = new C_DriveBasedOnEncoderWithTwist(param1, param2, param3);
+    }//                                              speed  distance  acceleration
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {

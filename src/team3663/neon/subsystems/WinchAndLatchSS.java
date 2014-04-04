@@ -53,6 +53,7 @@ public class WinchAndLatchSS extends Subsystem
     public double getWinchEncoder()
     {
         //one revolution is 360 ticks
+        //may be changed in mustard to be a negative
         return -RobotMap.winchEncoder.get();
     }
     
