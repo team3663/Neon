@@ -158,7 +158,7 @@ public class OI
         SmartDashboard.putData("ResetWinchEncoder", new P_ResetWinchEncoder());
         SmartDashboard.putData("LoosenWinchAndLatch", new C_LoosenWinchAndLatch());
         SmartDashboard.putData("ShootAndRecock", new CG_ShootAndRecock(0));
-        SmartDashboard.putData("GetValues", new C_GetValues(0, 0, 0, 0));
+        SmartDashboard.putData("GetValues", new C_GetValues(.731, 100000, .5 , 0));
 
         
         System.out.println("OI constructor end");
