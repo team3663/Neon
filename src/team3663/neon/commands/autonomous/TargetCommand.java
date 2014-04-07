@@ -26,7 +26,6 @@ public class TargetCommand extends CommandBase
 
         if(imageProcess.hotTargetFound())
         {
-            isHot = true;
             return true;
         }
         if(Timer.getFPGATimestamp() > _endTime)

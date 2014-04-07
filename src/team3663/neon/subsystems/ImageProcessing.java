@@ -161,7 +161,7 @@ public class ImageProcessing extends Subsystem
                     System.out.println("Aspect Ratio Vertical: " + scores[i].aspectRatioVertical);
                 
                     //dsLCD.println(DriverStationLCD.Line.kUser4, 1,"Particle: " + i + ":  Center of mass x: " + report.center_mass_x );
-                    dsLCD.updateLCD();
+                    //dsLCD.updateLCD();
                 }
                 //Clear out scores and set verticalIndex to first target in case there are no horizontal targets
                 target.totalScore = target.leftScore = target.rightScore = target.tapeWidthScore = target.verticalScore = 0;
@@ -212,7 +212,7 @@ public class ImageProcessing extends Subsystem
                        to get measurement information such as sizes or locations use the
                        horizontal or vertical index to get the particle report as shown below*/
                     if(target.Hot)
-                    {   // This is nto accurate and was not put together well it will fail for horizontal distance
+                    {   // This is not accurate and was not put together well it will fail for horizontal distance
                         hotTargetSide(target);
                         hotTargetFound = true;
                         System.out.println("Target on Left: " + getHotIsLeft() );
@@ -241,7 +241,6 @@ public class ImageProcessing extends Subsystem
                         hotTargetFound = false;
                         System.out.println("No hot target present");
                     }
-                    
                 }
             }
             

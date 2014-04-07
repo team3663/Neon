@@ -29,13 +29,11 @@ public abstract class CommandBase extends Command
     public static DriverStationLCD dsLCD;
     
     public static boolean isHot;
-    public static boolean autoIsShot;
     public static Timer timer;
     
     public static void init() 
     {
         isHot = false;
-        autoIsShot = false;
         compressorSS = new CompressorSS();
         driveTrainSS = new DriveTrainSS();
         driveTrainSS.Init();
