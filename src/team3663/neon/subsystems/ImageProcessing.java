@@ -247,7 +247,7 @@ public class ImageProcessing extends Subsystem
             System.out.println("Number of Particles:"+filteredImage.getNumberParticles() + " Timestamp: " + Timer.getFPGATimestamp());
             //convexHullImage.write("/photos/hullImage.bmp");
            // thresholdImage.write("/photos/thresholdImage.bmp");
-            filteredImage.write("/photos/filteredImage.bmp");
+            //filteredImage.write("/photos/filteredImage.bmp");
             //image.write("/photos/baseimage.bmp");
             /**
              * all images in Java must be freed after they are used since they are allocated out

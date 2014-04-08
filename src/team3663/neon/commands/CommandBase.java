@@ -12,6 +12,7 @@ import team3663.neon.subsystems.FootSS;
 import team3663.neon.subsystems.HammerSS;
 import team3663.neon.subsystems.WinchAndLatchSS;
 import team3663.neon.subsystems.ImageProcessing;
+import team3663.neon.subsystems.ImageProcessing2;
 
 public abstract class CommandBase extends Command 
 {
@@ -24,16 +25,14 @@ public abstract class CommandBase extends Command
     public static HammerSS hammerSS;
     public static ArmSS armSS;
     public static CatapultLimitSwitchSS catapultLimitSwitchSS;
-    public static ImageProcessing imageProcess;
+    public static ImageProcessing2 imageProcess2;
     
     public static DriverStationLCD dsLCD;
     
-    public static boolean isHot;
     public static Timer timer;
     
     public static void init() 
     {
-        isHot = false;
         compressorSS = new CompressorSS();
         driveTrainSS = new DriveTrainSS();
         driveTrainSS.Init();
@@ -43,8 +42,8 @@ public abstract class CommandBase extends Command
         winchAndLatchSS = new WinchAndLatchSS();
         catapultLimitSwitchSS = new CatapultLimitSwitchSS();
 
-        imageProcess = new ImageProcessing();
-        //uuimageProcess.Init(); //called from processCameraImage so camera detection only happens as needed
+        imageProcess2 = new ImageProcessing2();
+        //imageProcess2.Init(); //called from processCameraImage so camera detection only happens as needed
 
         dsLCD = DriverStationLCD.getInstance();
         

@@ -35,7 +35,9 @@ import team3663.neon.commands.CG_TractionWheelsUpHighGear;
 import team3663.neon.commands.P_WinchLoosen;
 import team3663.neon.commands.P_WinchTighten;
 import team3663.neon.commands.CG_WindAndLatchToFullPower;
-import team3663.neon.commands.C_DriveBasedOnEncoderWithTwist;
+import team3663.neon.commands.C_CameraDetectHotGoal;
+import team3663.neon.commands.C_CameraProcessSavedImage;
+import team3663.neon.commands.C_FillAirTanks;
 import team3663.neon.commands.C_GetValues;
 import team3663.neon.commands.C_WindWinch;
 import team3663.neon.commands.P_ChangeValueForDriver;
@@ -159,7 +161,9 @@ public class OI
         SmartDashboard.putData("LoosenWinchAndLatch", new C_LoosenWinchAndLatch());
         SmartDashboard.putData("ShootAndRecock", new CG_ShootAndRecock(0));
         SmartDashboard.putData("GetValues", new C_GetValues(.731, 100000, .5 , 0));
-
+        SmartDashboard.putData("FillAirTanks", new C_FillAirTanks());
+        SmartDashboard.putData("ProcessSavedImage", new C_CameraProcessSavedImage());
+        SmartDashboard.putData("DetectHotGoal", new C_CameraDetectHotGoal());
         
         System.out.println("OI constructor end");
     }

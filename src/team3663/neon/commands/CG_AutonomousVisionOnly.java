@@ -7,7 +7,7 @@ public class CG_AutonomousVisionOnly extends CommandGroup {
     
     public CG_AutonomousVisionOnly() {
         addSequential(new C_RecordToSmartDashboard("CG_AutonomousVisionOnly", "start"));
-        addSequential(new TargetCommand());
+        addSequential(new C_CameraDetectHotGoal());
         addSequential(new C_RecordToSmartDashboard("CG_AutonomousVisionOnly", "end"));
 
     }

@@ -21,6 +21,7 @@ public class DriveTrainSS extends Subsystem
     public Encoder rightEncoder;
     
     private double joyX, joyY, joyZ;
+    private double yFlip = 1;
     
     public void DriveTrainSS()
     {
@@ -51,6 +52,13 @@ public class DriveTrainSS extends Subsystem
         return RobotMap.tractionWheelUpDownSolenoid1.get();
     }
     
+    public void setYDirection(boolean flipYDirection){
+        if (flipYDirection)
+            yFlip = -1;
+        else
+            yFlip = 1;
+    }
+    
     public void drive3663(double jX, double jY, double jZ) 
     {
         final double IDLETOLERANCE = 0.09;
@@ -72,7 +80,8 @@ public class DriveTrainSS extends Subsystem
 
         // mustard does not flip
         // ketchup
-        //jY = -jY;
+        
+        jY = jY*yFlip;
         
         if(TractionIsDown())
         {

@@ -3,7 +3,9 @@ package team3663.neon;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStationLCD;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.camera.AxisCameraException;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -12,7 +14,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import team3663.neon.commands.CG_AutonomousComplete;
 import team3663.neon.commands.CG_AutonomousMoveAndShoot;
 import team3663.neon.commands.CG_WindAndLatchToFullPower;
-import team3663.neon.commands.C_Drive;
 import team3663.neon.commands.CommandBase;
 
 public class Robot3663 extends IterativeRobot
@@ -26,13 +27,13 @@ public class Robot3663 extends IterativeRobot
     public static String C_SmartDash;
 
     DriverStation driveStation;
-    int isAliveCounter;
-    public static boolean isTesting;
-    public static double autoTimeStart;
     
     double updateStatusNextRefresh;
     final double UPDATESTATUSREFRESHINTERVAL = 0.2;
-
+    Preferences prefs;
+    public static boolean dontUseCamera;
+    boolean flipYDirection;
+    
     
     public void robotInit() 
     {
@@ -40,16 +41,31 @@ public class Robot3663 extends IterativeRobot
         RobotMap.init();
         CommandBase.init();
         loosenAndWindWinch = new CG_WindAndLatchToFullPower();
-        //autoChooser = new SendableChooser();
-        //autoChooser.addDefault("AutonomousComplete", new CG_AutonomousComplete());
-        //autoChooser.addObject("AutonomousMoveAndShootOnly", new CG_AutonomousMoveAndShoot());
-       // SmartDashboard.putData("Autonomous Chooser", autoChooser);
-        autonomousCG = new CG_AutonomousMoveAndShoot();
-        //autonomousCG = (CommandGroup) autoChooser.getSelected();
+        autoChooser = new SendableChooser();
+        autoChooser.addDefault("AutonomousComplete", new CG_AutonomousComplete());
+        autoChooser.addObject("AutonomousMoveAndShootOnly", new CG_AutonomousMoveAndShoot());
+        SmartDashboard.putData("Autonomous Chooser", autoChooser);
+        //autonomousCG = new CG_AutonomousMoveAndShoot();
+        autonomousCG = (CommandGroup) autoChooser.getSelected();
         
-        //c_Drive = new C_Drive();
         driveStation = DriverStation.getInstance();
-        driveStation.getBatteryVoltage();
+        prefs = Preferences.getInstance();
+        /*
+        prefs.putBoolean("dontUseCamera", false);
+        prefs.getBoolean("flipYDirection", false);
+        prefs.save();
+        */
+        try{
+            dontUseCamera = prefs.getBoolean("dontUseCamera", true);
+            flipYDirection = prefs.getBoolean("flipYDirection", false);
+        }
+        catch (Preferences.IncompatibleTypeException ex) 
+        {
+            SmartDashboard.putString("problem", "IncompatibleTypeException" + ex.getMessage());
+        } 
+        CommandBase.driveTrainSS.setYDirection(flipYDirection);
+        // initialize camera
+        CommandBase.imageProcess2.processCameraImage(dontUseCamera, false, false, false, 10);
         CommandBase.dsLCD.clear();
         updateStatusNextRefresh = Timer.getFPGATimestamp();
         clearSmartDashboard();
@@ -59,9 +75,7 @@ public class Robot3663 extends IterativeRobot
 
     public void autonomousInit() 
     {
-        isTesting = false;
         System.out.println("Robot3663.autonomousInit start");
-        autoTimeStart = Timer.getFPGATimestamp();
         autonomousCG.start();
         System.out.println("Robot3663.autonomousInit end");
     }
@@ -75,9 +89,7 @@ public class Robot3663 extends IterativeRobot
     public void teleopInit() 
     {
         autonomousCG.cancel();
-        //c_Drive.start();
         loosenAndWindWinch.start();
-        isTesting = false;
         System.out.println("Robot3663.teleopInit start");
         System.out.println("Robot3663.teleopInit end");
     }
@@ -93,7 +105,6 @@ public class Robot3663 extends IterativeRobot
         autonomousCG.cancel();
         System.out.println("Robot3663.testInit start");
         LiveWindow.setEnabled(false);
-        isTesting = true;
         System.out.println("Robot3663.testInit end");
     }
 
@@ -137,7 +148,6 @@ public class Robot3663 extends IterativeRobot
         {
             updateStatusNextRefresh = currentTime + UPDATESTATUSREFRESHINTERVAL;
             
-            //SmartDashboard.putNumber("updateStatus:", isAliveCounter++);
             SmartDashboard.putString("CG_Commands", CG_SmartDash);
             SmartDashboard.putString("Commands", C_SmartDash);
             SmartDashboard.putNumber("BatteryVoltage", driveStation.getBatteryVoltage());
@@ -151,7 +161,7 @@ public class Robot3663 extends IterativeRobot
             CommandBase.hammerSS.updateStatus();
             CommandBase.winchAndLatchSS.updateStatus();
             CommandBase.armSS.updateStatus();
-            CommandBase.imageProcess.updateStatus();
+            CommandBase.imageProcess2.updateStatus();
 
             if(isOperatorControl())
             {
