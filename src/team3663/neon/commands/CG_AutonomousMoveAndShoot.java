@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -15,7 +16,7 @@ public class CG_AutonomousMoveAndShoot extends CommandGroup {
     
     public CG_AutonomousMoveAndShoot() {
         addSequential(new C_RecordToSmartDashboard("CG_AutonomousMoveAndShoot", "start"));
-        addSequential(new P_TractionWheelsDown(true));
+        addSequential(new P_TractionWheelsDown(false));
         addSequential(new P_FootUp());
         addSequential(new P_ShiftToHighGear());
         addSequential(new C_TimeWait(.5));
@@ -23,7 +24,7 @@ public class CG_AutonomousMoveAndShoot extends CommandGroup {
         addSequential(new C_DriveForwardTime(1 , -.8, 0,0));
         //addSequential(new C_DriveBasedOnEncoderWithTwist( .8, 62400));
         addSequential(new C_WindWinch(0));     
-        addSequential(new P_ArmDown());   
+        //addSequential(new P_ArmDown());   
         addSequential(new P_LatchOpen());
         addSequential(new P_FootDown());
         addParallel(new P_ArmUp());

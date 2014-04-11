@@ -20,6 +20,10 @@ public class C_DriveBasedOnEncoderWithTwist extends CommandBase {
     double finalDistanceL;
     
     //timer stuff
+    double startOfDecelerationX;
+    double startOfDecelerationY;
+    double endOfDecelerationX;
+    double endOfDecelerationY;
     double lastEncoderSpeed;
     double loopCounter;
     final double INITIALSPEED = 0.15;
@@ -29,6 +33,7 @@ public class C_DriveBasedOnEncoderWithTwist extends CommandBase {
     double lastTime;
     double currentSpeed;
     double peakSpeed;
+    double slope;
     
     public C_DriveBasedOnEncoderWithTwist(double pPeakSpeed, double pDistance, double pAcceleration) {
         peakSpeed = pPeakSpeed;
@@ -43,6 +48,7 @@ public class C_DriveBasedOnEncoderWithTwist extends CommandBase {
         loopCounter = 0;
         currentSpeed = INITIALSPEED;
         lastTime = Timer.getFPGATimestamp();
+        lastEncoderTicksR = driveTrainSS.GetRightEncoder();
         
         //twist stuff
         startDistanceR = driveTrainSS.GetRightEncoder();
@@ -73,18 +79,16 @@ public class C_DriveBasedOnEncoderWithTwist extends CommandBase {
         double encoderSpeed = deltaEncoderTicksR / deltaTime;
         double deltaEncoderSpeed = encoderSpeed - lastEncoderSpeed;
         lastEncoderSpeed = encoderSpeed;
-       // System.out.println(""  /* deltaEncoderTicksR + ", " + ((int)(deltaTime*1000))/1000.0 + ", " + ((int)(deltaSpeed*1000))/1000.0  + ", " + currentSpeed*/);
-        System.out.println("" + ((int)(encoderSpeed*1000))/1000.0  + ", "  + ((int)(deltaEncoderSpeed*1000))/1000.0 +  ", " + ((int)(currentSpeed*1000))/1000.0 );
+        // System.out.println(""  /* deltaEncoderTicksR + ", " + ((int)(deltaTime*1000))/1000.0 + ", " + ((int)(deltaSpeed*1000))/1000.0  + ", " + currentSpeed*/);
+        System.out.println("" + loopCounter + ", " + ((int)(encoderSpeed*1000))/1000.0  + ", "  + ((int)(deltaEncoderSpeed*1000))/1000.0 +  ", " + ((int)(currentSpeed*1000))/1000.0/* + ", " + currentEncoderTicksR + ", "+ deltaTime + ", " + encoderSpeed + ", " + deltaEncoderTicksR*/);
         if (acceleration != 0)
         {
             currentSpeed = currentSpeed + (acceleration * deltaTime);
             //System.out.println("" + currentSpeed);
             if(currentSpeed >= peakSpeed)
             {
-                System.out.println("(" + loopCounter + ") " + "where reached full speed " + currentEncoderTicksR);
-                finalDistanceR = finalDistanceR - (currentEncoderTicksR - startDistanceR);
+                System.out.println("(" + loopCounter + ") " + "Peak " + currentEncoderTicksR);
                 currentSpeed = peakSpeed;
-                System.out.println("(" + loopCounter + ") " + "the subtracted value " + finalDistanceR);
                 acceleration = 0;
             }
         }
@@ -93,27 +97,39 @@ public class C_DriveBasedOnEncoderWithTwist extends CommandBase {
     }
 
     protected boolean isFinished() {
+        double currentEncoderR = driveTrainSS.GetRightEncoder();
         //twist stuff
         /*rightEncoderStartDistance = driveTrainSS.GetRightEncoder();
         leftEncoderStartDistance = driveTrainSS.GetLeftEncoder();*/
         
-        //timer stuff
-        double currentEncoderR = driveTrainSS.GetRightEncoder();
-        if((currentEncoderR >= (startDistanceR + finalDistanceR/2))&&(acceleration > 0))
-        {            
-            System.out.println("(" + loopCounter + ") " + "hit half way mark" + currentEncoderR);
-            acceleration = -initialAcceleration;
-        }
-        if((acceleration >= 0) && (currentEncoderR >= finalDistanceR)/*&&(driveTrainSS.GetLeftEncoder() >= finalDistanceL)*/)
+        //y = mx + b
+        if(acceleration >= 0)
         {
-            System.out.println("(" + loopCounter + ") " + "decelerating" + currentEncoderR);
-            acceleration = -initialAcceleration;
+            double xDistance = -lastEncoderSpeed / -1.460096;
+            double distanceWithDecline = xDistance + lastEncoderTicksR;
+            if(distanceWithDecline >= finalDistanceR)
+            {
+                
+                startOfDecelerationX = currentEncoderR;
+                startOfDecelerationY = lastEncoderSpeed;
+                System.out.println("Decceleration "+ lastEncoderTicksR + ", " + xDistance + ", " + distanceWithDecline + ", " + currentSpeed);
+                acceleration = -1;
+            }
         }
-        if((acceleration < 0)&&(currentSpeed <= INITIALSPEED))
+        if((acceleration < 0)&&(lastEncoderSpeed <= 0))
+        {
+            
+            endOfDecelerationX = currentEncoderR;
+            endOfDecelerationY = lastEncoderSpeed;
+            slope = (endOfDecelerationY - startOfDecelerationY) / (endOfDecelerationX - startOfDecelerationX);
+            System.out.println("" + slope);
+            return true;
+        }
+        /*if((acceleration < 0)&&(currentSpeed <= INITIALSPEED))
         {
             System.out.println("(" + loopCounter + ") " + "ended at" + driveTrainSS.GetRightEncoder());
             return true;
-        }
+        }*/
         return false;
         
     }

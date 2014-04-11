@@ -39,6 +39,8 @@ import team3663.neon.commands.C_CameraDetectHotGoal;
 import team3663.neon.commands.C_CameraProcessSavedImage;
 import team3663.neon.commands.C_FillAirTanks;
 import team3663.neon.commands.C_GetValues;
+import team3663.neon.commands.C_SafelyLoosenWinch;
+import team3663.neon.commands.C_SafelyTightenWinch;
 import team3663.neon.commands.C_WindWinch;
 import team3663.neon.commands.P_ChangeValueForDriver;
 import team3663.neon.commands.P_ResetBothDriveEncoders;
@@ -121,10 +123,10 @@ public class OI
         resetWinchEncoder.whenPressed(new P_ResetWinchEncoder());
         
         tightenWinch = new JoystickButton(buttonJoystick, 8);
-        tightenWinch.whenPressed(new P_WinchTighten());
+        tightenWinch.whenPressed(new C_SafelyTightenWinch());
         
         loosenWinch = new JoystickButton(buttonJoystick, 9);
-        loosenWinch.whenPressed(new P_WinchLoosen());
+        loosenWinch.whenPressed(new C_SafelyLoosenWinch());
         
         SmartDashboard.putData("FlipYDirection",new P_ChangeValueForDriver());
         SmartDashboard.putData("AutonomousComplete", new CG_AutonomousComplete());
@@ -144,8 +146,8 @@ public class OI
         SmartDashboard.putData("TractionWheelsDown", new P_TractionWheelsDown(false));
         SmartDashboard.putData("LatchOpen", new P_LatchOpen());
         SmartDashboard.putData("LatchClose", new P_LatchClose());
-        SmartDashboard.putData("TightenWinch", new P_WinchTighten());
-        SmartDashboard.putData("LoosenWinch", new P_WinchLoosen());
+        SmartDashboard.putData("TightenWinch", new C_SafelyTightenWinch());
+        SmartDashboard.putData("LoosenWinch", new C_SafelyLoosenWinch());
         SmartDashboard.putData("WindWinch_0", new C_WindWinch(0));
         SmartDashboard.putData("ArmMotorIntake", new P_SpinArmMotor(true,10000));
         SmartDashboard.putData("ArmMotorEject", new P_SpinArmMotor(false,10000));

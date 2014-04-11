@@ -18,7 +18,7 @@ public class CG_ShootAndRecock extends CommandGroup {
         //addSequential(new EnableAndDissableButtons(true));
         addSequential(new C_RecordToSmartDashboard("CG_ShootAndRecock", "start"));
         addSequential(new C_WindWinch(shotStrength));     
-        addSequential(new P_ArmDown());   
+        //addSequential(new P_ArmDown());   
         addSequential(new P_LatchOpen());
         addSequential(new P_FootDown());
         addParallel(new P_ArmUp());

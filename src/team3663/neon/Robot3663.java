@@ -62,7 +62,8 @@ public class Robot3663 extends IterativeRobot
         catch (Preferences.IncompatibleTypeException ex) 
         {
             SmartDashboard.putString("problem", "IncompatibleTypeException" + ex.getMessage());
-        } 
+        }
+        dontUseCamera = true;
         CommandBase.driveTrainSS.setYDirection(flipYDirection);
         // initialize camera
         CommandBase.imageProcess2.processCameraImage(dontUseCamera, false, false, false, 10);
